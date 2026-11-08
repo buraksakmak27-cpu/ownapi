@@ -790,6 +790,79 @@ class SessionHealer:
                     })
             return val
 
+        def _build_thy_search_state_url(
+            p_load: Any,
+            cid: str | None = None,
+            candidate_url: str | None = None,
+        ) -> str:
+            """
+            THY /api/v1/availability isteğinden önce Playwright'ın gidip sayfa state'ini
+            oluşturması gereken gidiş-dönüş (veya tek yön) arama URL'sini üretir.
+            """
+            active_cid = cid or str(uuid.uuid4())
+            if candidate_url and "turkishairlines.com" in candidate_url.lower():
+                parsed_c = urlparse(candidate_url)
+                if (
+                    "/ucak-bileti/rezervasyon/" in parsed_c.path
+                    and "origin=" in parsed_c.query
+                    and "departureDate=" in parsed_c.query
+                ):
+                    if not cid or f"cId={cid}" in parsed_c.query:
+                        return candidate_url
+
+            try:
+                from registry.thy.client import build_thy_search_url_from_payload
+                return build_thy_search_url_from_payload(
+                    p_load if isinstance(p_load, dict) else None,
+                    cid=active_cid,
+                )
+            except Exception:
+                from urllib.parse import urlencode
+
+                orig = "IST"
+                dest = "ESB"
+                dep_date = "02-03-2027"
+                ret_date: str | None = "09-03-2027"
+                trip_type = "R"
+                cabin = "ECONOMY"
+                adults = 1
+                is_domestic = True
+
+                if isinstance(p_load, dict):
+                    trip_type = str(p_load.get("selectedBookerSearch") or "R").upper()
+                    cabin = str(p_load.get("selectedCabinClass") or "ECONOMY").upper()
+                    od_l = p_load.get("originDestinationInformationList")
+                    if isinstance(od_l, list) and len(od_l) >= 1 and isinstance(od_l[0], dict):
+                        seg0 = od_l[0]
+                        orig = str(seg0.get("originAirportCode") or orig)
+                        dest = str(seg0.get("destinationAirportCode") or dest)
+                        dep_date = str(seg0.get("departureDate") or dep_date)
+                        is_domestic = bool(
+                            seg0.get("originDomestic", True) and seg0.get("destinationDomestic", True)
+                        )
+                        if len(od_l) >= 2 and isinstance(od_l[1], dict):
+                            ret_date = str(od_l[1].get("departureDate") or "") or None
+                        elif trip_type == "O":
+                            ret_date = None
+
+                base_path = (
+                    "/tr-tr/ucak-bileti/rezervasyon/ic-hat-musaitlik/"
+                    if is_domestic
+                    else "/tr-tr/ucak-bileti/rezervasyon/rezervasyon-durumu/"
+                )
+                q_params: dict[str, Any] = {
+                    "cId": active_cid,
+                    "origin": orig,
+                    "destination": dest,
+                    "departureDate": dep_date,
+                }
+                if ret_date:
+                    q_params["returnDate"] = ret_date
+                q_params["tripType"] = "R" if ret_date else "O"
+                q_params["cabinClass"] = cabin
+                q_params["ADT"] = adults
+                return f"https://www.turkishairlines.com{base_path}?{urlencode(q_params)}"
+
         def _is_populated_availability(json_obj_or_str: Any) -> bool:
             if isinstance(json_obj_or_str, str):
                 try:
@@ -980,55 +1053,204 @@ class SessionHealer:
                 page.on("request", handle_request)
                 page.on("response", handle_response)
 
-            console.print(f"[bold cyan]ğŸŒ TarayÄ±cÄ± aÃ§Ä±lÄ±yor:[/bold cyan] [white]{visit_url}[/white]")
+            async def _prepare_thy_search_page_state(
+                page_obj: Any,
+                p_load: Any,
+                hdrs: dict[str, Any],
+                cid: str | None = None,
+            ) -> str:
+                """
+                WAF/Captcha geçildikten veya HITL onayı (resume) alındıktan sonra,
+                doğrudan /api/v1/availability isteği atmadan önce:
+                1. Tarayıcıda ön doğrulama (pax-type-codes, availability/validate) ve storage state'ini hazırlar,
+                2. İlgili gidiş-dönüş arama URL'sine (page.goto) giderek sayfa state'ini oluşturur,
+                3. Başlıkları (Referer, x-current-page-url, x-client-id) aktif arama sayfasıyla senkronize eder.
+                """
+                active_cid = (
+                    cid
+                    or hdrs.get("x-client-id")
+                    or hdrs.get("x-clientid")
+                    or str(uuid.uuid4())
+                )
+                search_state_url = _build_thy_search_state_url(
+                    p_load,
+                    cid=active_cid,
+                    candidate_url=raw_visit_url,
+                )
+                parsed_s = urlparse(search_state_url)
+                route_path = (
+                    f"{parsed_s.path}?{parsed_s.query}"
+                    if parsed_s.query
+                    else parsed_s.path
+                )
+
+                hdrs["x-client-id"] = active_cid
+                hdrs["x-clientid"] = active_cid
+                hdrs["x-current-page-url"] = route_path
+                hdrs["Referer"] = search_state_url
+                hdrs["referer"] = search_state_url
+                hdrs["Origin"] = "https://www.turkishairlines.com"
+                hdrs["origin"] = "https://www.turkishairlines.com"
+
+                val_body = _build_validate_payload(p_load)
+
+                # Adım 1: Arama sayfasına gitmeden önce session/localStorage ve validate state'ini hazırla
+                try:
+                    await page_obj.evaluate(
+                        """async ({ cid, validateBody, fullPayload, routePath }) => {
+                            try {
+                                const stateObj = {
+                                    cId: cid,
+                                    bookingSearch: fullPayload || validateBody,
+                                    updatedAt: new Date().toISOString()
+                                };
+                                sessionStorage.setItem('thy_booking_search_state', JSON.stringify(stateObj));
+                                sessionStorage.setItem('cId', cid);
+                                localStorage.setItem('thy_last_cid', cid);
+                            } catch (_) {}
+
+                            const commonHeaders = {
+                                'accept': 'application/json, text/plain, */*',
+                                'content-type': 'application/json',
+                                'x-country': 'TR',
+                                'x-language': 'tr',
+                                'x-client-id': cid,
+                                'x-clientid': cid,
+                                'x-current-page-url': '/tr-tr'
+                            };
+                            try {
+                                const odList = (validateBody && validateBody.originDestinationInformationList) || [];
+                                await fetch('https://www.turkishairlines.com/api/v1/passenger/pax-type-codes', {
+                                    method: 'POST',
+                                    headers: commonHeaders,
+                                    credentials: 'include',
+                                    body: JSON.stringify({
+                                        selectedBookerSearch: (validateBody && validateBody.selectedBookerSearch) || 'R',
+                                        moduleType: 'TICKETING',
+                                        originDestinationInformationList: odList.slice(0, 1)
+                                    })
+                                });
+                            } catch (_) {}
+
+                            if (validateBody) {
+                                try {
+                                    await fetch('https://www.turkishairlines.com/api/v1/availability/validate', {
+                                        method: 'POST',
+                                        headers: commonHeaders,
+                                        credentials: 'include',
+                                        body: JSON.stringify(validateBody)
+                                    });
+                                } catch (_) {}
+                            }
+                        }""",
+                        {
+                            "cid": active_cid,
+                            "validateBody": val_body,
+                            "fullPayload": p_load,
+                            "routePath": route_path,
+                        },
+                    )
+                except Exception:
+                    pass
+
+                # Adım 2: İlgili gidiş-dönüş arama URL'sine (search_state_url) giderek sayfa state'ini oluştur
+                console.print(
+                    f"[bold cyan]🧭 THY arama URL'sine gidilerek sayfa state'i oluşturuluyor:[/bold cyan] [white]{search_state_url}[/white]"
+                )
+                try:
+                    await page_obj.goto(
+                        search_state_url,
+                        wait_until="domcontentloaded",
+                        timeout=15_000,
+                    )
+                except Exception as nav_exc:
+                    console.print(f"[dim]THY arama sayfası gezinme bildirimi: {nav_exc}[/dim]")
+
+                await asyncio.sleep(3.0)
+                return search_state_url
+
+            console.print(f"[bold cyan]🌐 Tarayıcı açılıyor:[/bold cyan] [white]{visit_url}[/white]")
             try:
                 await page.goto(visit_url, wait_until="domcontentloaded", timeout=12_000)
             except Exception as e:
                 console.print(f"[dim]Sayfa gezinme bildirimi: {e}[/dim]")
 
             wait_seconds = 3 if is_thy_availability else 1
-            console.print(f"[dim]Frontend oturumunun yerleÅŸmesi iÃ§in {wait_seconds} saniye bekleniyor...[/dim]")
+            console.print(f"[dim]Frontend oturumunun yerleşmesi için {wait_seconds} saniye bekleniyor...[/dim]")
             await asyncio.sleep(wait_seconds)
 
-            # 1. DoÄŸrudan aÃ§Ä±k tarayÄ±cÄ± sekmesi iÃ§inden fetch() isteÄŸini tetikle
-            console.print(f"[dim]TarayÄ±cÄ± iÃ§i fetch({method.upper()} {full_req_url}) isteÄŸi gÃ¶nderiliyor...[/dim]")
-            try:
-                eval_result = await asyncio.wait_for(
-                    page.evaluate(
-                        fetch_js,
-                        {
-                            "validateUrl": validate_url,
-                            "validateBody": val_payload,
-                            "url": full_req_url,
-                            "method": method.upper(),
-                            "headers": req_headers,
-                            "body": req_payload,
-                        },
-                    ),
-                    timeout=15.0,
-                )
-            except Exception as eval_exc:
-                console.print(f"[dim]In-page fetch zaman aÅŸÄ±mÄ±/uyarÄ±sÄ± ({eval_exc}), context.request.fetch kullanÄ±lÄ±yor...[/dim]")
-                eval_result = {"status": 0, "ok": False, "text": "", "error": str(eval_exc)}
+            from core.hitl_queue import HITLQueueManager
 
-            if eval_result.get("status", 0) == 0:
+            hitl_mgr = HITLQueueManager()
+            active_hitl_task_id: str | None = None
+            is_resuming_hitl = os.getenv("OWNAPI_HITL_RESUMING", "0").strip() == "1"
+            pause_and_wait = (
+                not is_resuming_hitl
+                and os.getenv("OWNAPI_HITL_PAUSE_AND_WAIT", "1").strip().lower() not in ("0", "false", "no")
+            )
+            pause_timeout_sec = float(os.getenv("OWNAPI_HITL_PAUSE_TIMEOUT", "300"))
+
+            # Eğer THY availability çağrısıysa ve ana sayfada WAF engeli yoksa (veya HITL resume modundaysak),
+            # doğrudan /api/v1/availability isteği atmadan ÖNCE arama URL'sine gidip sayfa state'ini oluştur!
+            if is_thy_availability and (is_resuming_hitl or not await self._detect_challenge(page)):
+                await _prepare_thy_search_page_state(
+                    page,
+                    req_payload,
+                    req_headers,
+                    cid=req_headers.get("x-client-id") or req_headers.get("x-clientid"),
+                )
+                val_payload = _build_validate_payload(req_payload)
+
+            # Eğer arama URL'sine gidildiğinde sayfa kendi başına dolu /api/v1/availability yanıtı aldıysa onu kullan
+            pre_captured = captured_browser_response.get("text", "")
+            if is_thy_availability and pre_captured and _is_populated_availability(pre_captured):
+                console.print("[bold green]✔ Arama sayfası state oluşumu sırasında dolu uçuş yanıtı yakalandı![/bold green]")
+                eval_result = {
+                    "status": captured_browser_response.get("status", 200),
+                    "ok": True,
+                    "text": pre_captured,
+                    "step": "search_page_navigation",
+                }
+            else:
+                # 1. Doğrudan açık tarayıcı sekmesi içinden fetch() isteğini tetikle
+                console.print(f"[dim]Tarayıcı içi fetch({method.upper()} {full_req_url}) isteği gönderiliyor...[/dim]")
                 try:
-                    ctx_resp = await context.request.fetch(
-                        full_req_url,
-                        method=method.upper(),
-                        headers=req_headers,
-                        data=json.dumps(req_payload) if isinstance(req_payload, (dict, list)) else req_payload,
-                        timeout=15_000,
+                    eval_result = await asyncio.wait_for(
+                        page.evaluate(
+                            fetch_js,
+                            {
+                                "validateUrl": validate_url,
+                                "validateBody": val_payload,
+                                "url": full_req_url,
+                                "method": method.upper(),
+                                "headers": req_headers,
+                                "body": req_payload,
+                            },
+                        ),
+                        timeout=15.0,
                     )
-                    ctx_text = await ctx_resp.text()
-                    eval_result = {
-                        "status": ctx_resp.status,
-                        "ok": ctx_resp.ok,
-                        "text": ctx_text,
-                        "step": "context_request",
-                    }
-                except Exception as ctx_err:
-                    console.print(f"[dim]Context request uyarÄ±sÄ±: {ctx_err}[/dim]")
+                except Exception as eval_exc:
+                    console.print(f"[dim]In-page fetch zaman aşımı/uyarısı ({eval_exc}), context.request.fetch kullanılıyor...[/dim]")
+                    eval_result = {"status": 0, "ok": False, "text": "", "error": str(eval_exc)}
+
+                if eval_result.get("status", 0) == 0:
+                    try:
+                        ctx_resp = await context.request.fetch(
+                            full_req_url,
+                            method=method.upper(),
+                            headers=req_headers,
+                            data=json.dumps(req_payload) if isinstance(req_payload, (dict, list)) else req_payload,
+                            timeout=15_000,
+                        )
+                        ctx_text = await ctx_resp.text()
+                        eval_result = {
+                            "status": ctx_resp.status,
+                            "ok": ctx_resp.ok,
+                            "text": ctx_text,
+                            "step": "context_request",
+                        }
+                    except Exception as ctx_err:
+                        console.print(f"[dim]Context request uyarısı: {ctx_err}[/dim]")
 
             resp_text = _extract_response_text(
                 eval_result.get("text", "") if isinstance(eval_result, dict) else eval_result
@@ -1042,17 +1264,6 @@ class SessionHealer:
                 or "Reference Code:" in resp_text
                 or (not (eval_result.get("ok") if isinstance(eval_result, dict) else True) and await self._detect_challenge(page))
             )
-
-            from core.hitl_queue import HITLQueueManager
-
-            hitl_mgr = HITLQueueManager()
-            active_hitl_task_id: str | None = None
-            is_resuming_hitl = os.getenv("OWNAPI_HITL_RESUMING", "0").strip() == "1"
-            pause_and_wait = (
-                not is_resuming_hitl
-                and os.getenv("OWNAPI_HITL_PAUSE_AND_WAIT", "1").strip().lower() not in ("0", "false", "no")
-            )
-            pause_timeout_sec = float(os.getenv("OWNAPI_HITL_PAUSE_TIMEOUT", "300"))
 
             # 2. Eğer PerimeterX / Akamai / Cloudflare doğrulaması geldiyse
             if is_challenge:
@@ -1085,7 +1296,7 @@ class SessionHealer:
                         params=req_params,
                         headers=req_headers,
                         json_payload=req_payload,
-                        target_url=visit_url,
+                        target_url=_build_thy_search_state_url(req_payload) if is_thy_availability else visit_url,
                         reason=f"Captcha / WAF / PerimeterX doğrulaması algılandı (HTTP {resp_status})",
                         in_place_paused=pause_and_wait,
                     )
@@ -1152,17 +1363,38 @@ class SessionHealer:
                 else:
                     await asyncio.sleep(2.0)
 
-                eval_result = await page.evaluate(
-                    fetch_js,
-                    {
-                        "validateUrl": validate_url,
-                        "validateBody": val_payload,
-                        "url": full_req_url,
-                        "method": method.upper(),
-                        "headers": req_headers,
-                        "body": req_payload,
-                    },
-                )
+                # WAF/Captcha geçildikten ve HITL onayı alındıktan sonra:
+                # Doğrudan /api/v1/availability isteği atmadan ÖNCE ilgili arama URL'sine gidip sayfa state'ini oluştur!
+                if is_thy_availability:
+                    fresh_waf_cid = str(uuid.uuid4())
+                    await _prepare_thy_search_page_state(
+                        page,
+                        req_payload,
+                        req_headers,
+                        cid=fresh_waf_cid,
+                    )
+                    val_payload = _build_validate_payload(req_payload)
+
+                captured_after_waf = captured_browser_response.get("text", "")
+                if is_thy_availability and captured_after_waf and _is_populated_availability(captured_after_waf):
+                    console.print("[bold green]✔ WAF sonrası arama sayfası state oluşumundan dolu uçuş yanıtı yakalandı![/bold green]")
+                    eval_result = {
+                        "status": captured_browser_response.get("status", 200),
+                        "ok": True,
+                        "text": captured_after_waf,
+                    }
+                else:
+                    eval_result = await page.evaluate(
+                        fetch_js,
+                        {
+                            "validateUrl": validate_url,
+                            "validateBody": val_payload,
+                            "url": full_req_url,
+                            "method": method.upper(),
+                            "headers": req_headers,
+                            "body": req_payload,
+                        },
+                    )
 
             # 3. THY Özel Kontrolü: Eğer Error-DS-30006 dönerse veya availabilityInfoResponse boş ([[], []]) geldiyse
             if is_thy_availability:
@@ -1201,7 +1433,7 @@ class SessionHealer:
                                 params=req_params,
                                 headers=req_headers,
                                 json_payload=req_payload,
-                                target_url=visit_url,
+                                target_url=_build_thy_search_state_url(req_payload),
                                 reason="THY oturum/müsaitlik ön etkileşimi veya WAF doğrulaması gerekiyor",
                                 in_place_paused=pause_and_wait,
                             )
@@ -1281,28 +1513,40 @@ class SessionHealer:
                         }
                     else:
                         fresh_call_cid = str(uuid.uuid4())
-                        fresh_route = f"/tr-tr/ucak-bileti/rezervasyon/ic-hat-musaitlik/?cId={fresh_call_cid}"
-
                         retry_headers = dict(captured_browser_request.get("headers") or req_headers)
-                        retry_headers["x-client-id"] = fresh_call_cid
-                        retry_headers["x-clientid"] = fresh_call_cid
-                        retry_headers["x-current-page-url"] = fresh_route
-                        retry_headers["referer"] = f"https://www.turkishairlines.com{fresh_route}"
-
                         retry_url = captured_browser_request.get("url") or full_req_url
                         retry_payload = captured_browser_request.get("post_data") or req_payload
 
-                        eval_result = await page.evaluate(
-                            fetch_js,
-                            {
-                                "validateUrl": validate_url,
-                                "validateBody": val_payload,
-                                "url": retry_url,
-                                "method": method.upper(),
-                                "headers": retry_headers,
-                                "body": retry_payload,
-                            },
+                        # HITL resume sonrası doğrudan /api/v1/availability isteği atmadan ÖNCE
+                        # Playwright tarayıcısını gidiş-dönüş parametreleriyle arama URL'sine götür ve sayfa state'ini oluştur!
+                        await _prepare_thy_search_page_state(
+                            page,
+                            retry_payload,
+                            retry_headers,
+                            cid=fresh_call_cid,
                         )
+                        val_payload = _build_validate_payload(retry_payload)
+
+                        captured_after_nav = captured_browser_response.get("text", "")
+                        if captured_after_nav and _is_populated_availability(captured_after_nav):
+                            console.print("[bold green]✔ Arama sayfasına gezinme sonrası dolu uçuş yanıtı yakalandı![/bold green]")
+                            eval_result = {
+                                "status": captured_browser_response.get("status", 200),
+                                "ok": True,
+                                "text": captured_after_nav,
+                            }
+                        else:
+                            eval_result = await page.evaluate(
+                                fetch_js,
+                                {
+                                    "validateUrl": validate_url,
+                                    "validateBody": val_payload,
+                                    "url": retry_url,
+                                    "method": method.upper(),
+                                    "headers": retry_headers,
+                                    "body": retry_payload,
+                                },
+                            )
 
             # 4. Taze çerezleri ve User-Agent'ı TokenStore'a (.sessions/{tenant_id}/{service}_tokens.json) kaydet
             try:

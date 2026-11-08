@@ -272,7 +272,6 @@ class HITLQueueManager:
         req_payload = json_payload
 
         if clean_svc.lower() == "thy" or "turkishairlines.com" in (url or "").lower():
-            req_headers["Referer"] = "https://www.turkishairlines.com/"
             req_headers["Origin"] = "https://www.turkishairlines.com"
             if not isinstance(req_payload, dict) or not req_payload.get("originDestinationInformationList"):
                 try:
@@ -280,6 +279,14 @@ class HITLQueueManager:
                     req_payload = build_thy_availability_payload()
                 except Exception:
                     pass
+            try:
+                from registry.thy.client import build_thy_search_url_from_payload
+                cid_val = req_headers.get("x-client-id") or req_headers.get("x-clientid")
+                resolved_target_url = build_thy_search_url_from_payload(req_payload, cid=cid_val)
+                req_headers["Referer"] = resolved_target_url
+                req_headers["referer"] = resolved_target_url
+            except Exception:
+                req_headers["Referer"] = "https://www.turkishairlines.com/"
 
         task_record: dict[str, Any] = {
             "task_id": task_id,
@@ -505,7 +512,7 @@ class HITLQueueManager:
         self.update_task_state(task["task_id"], status="APPROVED_TO_RESUME")
 
         if task.get("in_place_paused"):
-            wait_deadline = time.monotonic() + 10.0
+            wait_deadline = time.monotonic() + 25.0
             while time.monotonic() < wait_deadline:
                 fresh_task, _ = self.get_task(task["task_id"], tenant_id=found_tenant)
                 if fresh_task and str(fresh_task.get("status", "")).upper() == "COMPLETED":
@@ -535,7 +542,6 @@ class HITLQueueManager:
         req_payload = task.get("json_payload")
 
         if str(task.get("service", "")).lower() == "thy" or "turkishairlines.com" in str(task.get("url", "")).lower():
-            req_headers["Referer"] = "https://www.turkishairlines.com/"
             req_headers["Origin"] = "https://www.turkishairlines.com"
             if not isinstance(req_payload, dict) or not req_payload.get("originDestinationInformationList"):
                 try:
@@ -543,6 +549,14 @@ class HITLQueueManager:
                     req_payload = build_thy_availability_payload()
                 except Exception:
                     pass
+            try:
+                from registry.thy.client import build_thy_search_url_from_payload
+                cid_val = req_headers.get("x-client-id") or req_headers.get("x-clientid")
+                resolved_target_url = build_thy_search_url_from_payload(req_payload, cid=cid_val)
+                req_headers["Referer"] = resolved_target_url
+                req_headers["referer"] = resolved_target_url
+            except Exception:
+                req_headers["Referer"] = "https://www.turkishairlines.com/"
 
         self.update_task_state(task["task_id"], status="RESUMING")
 

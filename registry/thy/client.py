@@ -206,6 +206,102 @@ def _build_validate_payload(p_load: Any) -> dict[str, Any]:
     return val
 
 
+def build_thy_search_url(
+    departure_date: str = "02-03-2027",
+    return_date: str | None = "09-03-2027",
+    origin_airport_code: str = "IST",
+    destination_airport_code: str = "ESB",
+    cabin_class: str = "ECONOMY",
+    adults: int = 1,
+    cid: str | None = None,
+) -> str:
+    """
+    THY frontend uygulamasının sayfa/oturum state'ini başlatması için gereken
+    gidiş-dönüş (veya tek yön) arama parametrelerini ve cId'yi içeren tam arama URL'sini üretir.
+    """
+    from urllib.parse import urlencode
+
+    active_cid = cid or str(uuid.uuid4())
+    orig_clean = (origin_airport_code or "IST").upper().strip()
+    dest_clean = (destination_airport_code or "ESB").upper().strip()
+    orig_meta = _airport_info(orig_clean)
+    dest_meta = _airport_info(dest_clean)
+    is_domestic = bool(orig_meta.get("domestic") and dest_meta.get("domestic"))
+
+    base_path = (
+        "/tr-tr/ucak-bileti/rezervasyon/ic-hat-musaitlik/"
+        if is_domestic
+        else "/tr-tr/ucak-bileti/rezervasyon/rezervasyon-durumu/"
+    )
+    dep_norm = _normalize_thy_date(departure_date)
+    is_round_trip = bool(return_date and str(return_date).strip())
+    ret_norm = _normalize_thy_date(return_date) if is_round_trip and return_date else None
+
+    query_params: dict[str, Any] = {
+        "cId": active_cid,
+        "origin": orig_clean,
+        "destination": dest_clean,
+        "departureDate": dep_norm,
+    }
+    if ret_norm:
+        query_params["returnDate"] = ret_norm
+    query_params["tripType"] = "R" if is_round_trip else "O"
+    query_params["cabinClass"] = (cabin_class or "ECONOMY").upper()
+    query_params["ADT"] = max(1, int(adults or 1))
+
+    return f"https://www.turkishairlines.com{base_path}?{urlencode(query_params)}"
+
+
+def build_thy_search_url_from_payload(
+    payload: dict[str, Any] | None,
+    cid: str | None = None,
+) -> str:
+    """
+    /api/v1/availability payload sözlüğündeki originDestinationInformationList verisinden
+    gidiş-dönüş arama URL'sini oluşturur.
+    """
+    if not isinstance(payload, dict):
+        return build_thy_search_url(cid=cid)
+
+    od_list = payload.get("originDestinationInformationList")
+    orig_code = "IST"
+    dest_code = "ESB"
+    dep_date = "02-03-2027"
+    ret_date: str | None = "09-03-2027"
+
+    if isinstance(od_list, list) and len(od_list) >= 1 and isinstance(od_list[0], dict):
+        first_seg = od_list[0]
+        orig_code = str(first_seg.get("originAirportCode") or orig_code)
+        dest_code = str(first_seg.get("destinationAirportCode") or dest_code)
+        dep_date = str(first_seg.get("departureDate") or dep_date)
+        if len(od_list) >= 2 and isinstance(od_list[1], dict):
+            ret_date = str(od_list[1].get("departureDate") or "") or None
+        elif str(payload.get("selectedBookerSearch", "R")).upper() == "O":
+            ret_date = None
+
+    cabin_class = str(payload.get("selectedCabinClass") or "ECONOMY")
+    adults = 1
+    pax_list = payload.get("passengerTypeList")
+    if isinstance(pax_list, list):
+        for p in pax_list:
+            if isinstance(p, dict) and str(p.get("code", "")).upper() in ("ADULT", "ADT"):
+                try:
+                    adults = max(1, int(p.get("quantity", 1)))
+                except Exception:
+                    adults = 1
+                break
+
+    return build_thy_search_url(
+        departure_date=dep_date,
+        return_date=ret_date,
+        origin_airport_code=orig_code,
+        destination_airport_code=dest_code,
+        cabin_class=cabin_class,
+        adults=adults,
+        cid=cid,
+    )
+
+
 def search_flights(
     departure_date: str = '02-03-2027',
     return_date: str | None = '09-03-2027',
@@ -219,9 +315,11 @@ def search_flights(
     """
     Türk Hava Yolları (THY) İstanbul - Ankara gidiş-dönüş veya tek yön uçuş seferlerini ve müsaitlik/fiyat bilgilerini
     doğrudan User-Delegated In-Browser Fetch tüneli üzerinden sorgular.
-    Önce https://www.turkishairlines.com/tr-tr/ ana sayfasına giderek oturum çerezlerini tazeler,
+    Önce THY ana sayfasında ve ilgili gidiş-dönüş arama URL'sinde sayfa/oturum state'ini oluşturur,
     ardından Referer ve Origin başlıklarıyla /api/v1/availability POST çağrısını yürütür.
     """
+    from urllib.parse import urlparse
+
     params: dict[str, Any] = {}
     headers: dict[str, str] = {
         "Accept": "application/json, text/plain, */*",
@@ -283,7 +381,7 @@ def search_flights(
         raw_referer = headers.get("referer", "")
         if "cid=" in raw_referer.lower():
             try:
-                from urllib.parse import parse_qs, urlparse
+                from urllib.parse import parse_qs
                 qs = parse_qs(urlparse(raw_referer).query)
                 found = qs.get("cId", qs.get("cid", [None]))[0]
                 if found:
@@ -307,13 +405,21 @@ def search_flights(
         if k not in ALLOWED_PAYLOAD_KEYS:
             del payload[k]
 
+    # Gidiş-dönüş parametrelerini içeren arama URL'sini oluştur
+    search_url = build_thy_search_url_from_payload(payload, cid=cid)
+    parsed_search = urlparse(search_url)
+    route_page = (
+        f"{parsed_search.path}?{parsed_search.query}"
+        if parsed_search.query
+        else parsed_search.path
+    )
+
     # Zorunlu Referer ve Origin başlıklarını ve THY özel başlıklarını sabitle
-    route_page = f"/tr-tr/ucak-bileti/rezervasyon/ic-hat-musaitlik/?cId={cid}"
     headers["accept"] = "application/json, text/plain, */*"
     headers["content-type"] = "application/json"
-    headers["Referer"] = "https://www.turkishairlines.com/"
+    headers["Referer"] = search_url
     headers["Origin"] = "https://www.turkishairlines.com"
-    headers["referer"] = "https://www.turkishairlines.com/"
+    headers["referer"] = search_url
     headers["origin"] = "https://www.turkishairlines.com"
     headers["x-current-page-url"] = route_page
     headers["x-client-id"] = cid
@@ -331,7 +437,7 @@ def search_flights(
             break
 
     # User-Delegated Browser Middleware:
-    # Önce tarayıcıda ana sayfaya (https://www.turkishairlines.com/tr-tr/) gidip çerezleri tazele,
+    # Önce tarayıcıda ana sayfaya ve gidiş-dönüş arama URL'sine (search_url) gidip sayfa state'ini oluştur,
     # ardından fetch tüneli üzerinden /api/v1/availability POST isteğini yürüt.
     raw_response = healer.execute_in_browser(
         method="POST",
@@ -339,7 +445,7 @@ def search_flights(
         headers=headers,
         params=params if params else None,
         json_payload=payload,
-        target_url=THY_HOME_URL,
+        target_url=search_url,
         tenant_id=tenant_id,
         mode=mode,
         non_interactive=non_interactive,
