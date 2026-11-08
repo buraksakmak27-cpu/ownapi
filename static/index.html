@@ -1,0 +1,1304 @@
+<!DOCTYPE html>
+<html lang="tr" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OwnAPI Enterprise — User-Delegated Browser Middleware & Live Playground</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            bgBase: '#090A0F',
+            bgCard: '#11131C',
+            bgElevated: '#171A26',
+            borderSubtle: '#232738',
+            accentIndigo: '#6366F1',
+            accentCyan: '#06B6D4',
+            accentEmerald: '#10B981',
+            accentAmber: '#F59E0B',
+            accentRose: '#F43F5E',
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+            mono: ['JetBrains Mono', 'Fira Code', 'Consolas', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: #090A0F;
+      color: #F3F4F6;
+      font-family: 'Inter', sans-serif;
+      background-image:
+        radial-gradient(circle at 15% 0%, rgba(99, 102, 241, 0.12), transparent 35%),
+        radial-gradient(circle at 85% 0%, rgba(6, 182, 212, 0.10), transparent 35%);
+    }
+    .glass-card {
+      background: rgba(17, 19, 28, 0.88);
+      backdrop-filter: blur(12px);
+      border: 1px solid #232738;
+    }
+    .glass-card:hover {
+      border-color: #343A52;
+    }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #090A0F; }
+    ::-webkit-scrollbar-thumb { background: #262B3D; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #3B425E; }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col selection:bg-indigo-500 selection:text-white">
+
+  <!-- ÜST DURUM ÇUBUĞU (TOP NAVBAR) -->
+  <header class="sticky top-0 z-40 border-b border-borderSubtle bg-bgBase/90 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-indigo-500 via-indigo-600 to-cyan-500 flex items-center justify-center shadow-lg shadow-indigo-500/20 font-bold text-white text-lg">
+          O
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="font-bold text-lg tracking-tight text-white">OwnAPI</span>
+            <span class="text-[11px] font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full bg-indigo-500/15 text-indigo-400 border border-indigo-500/30">
+              Enterprise v1.0
+            </span>
+          </div>
+          <p class="text-xs text-gray-400 hidden sm:block">
+            Plaid-Style User-Delegated Browser Middleware & Auto-Validated API Engine
+          </p>
+        </div>
+      </div>
+
+      <!-- Sağ Kontroller: Tenant Seçici, Mode Switcher (Local vs Cloud), Yenile -->
+      <div class="flex items-center gap-3">
+        <!-- Tenant ID -->
+        <div class="hidden md:flex items-center gap-1.5 bg-bgCard border border-borderSubtle rounded-lg px-2.5 py-1.5 text-xs">
+          <span class="text-gray-400">Tenant:</span>
+          <input id="globalTenantInput" type="text" value="default"
+            class="bg-transparent text-cyan-400 font-mono font-medium w-24 focus:outline-none"
+            onchange="refreshAllData()" />
+        </div>
+
+        <!-- 2 Modlu Çalışma Seçici: Local Chrome vs Cloud CDP -->
+        <div class="flex items-center bg-bgCard border border-borderSubtle rounded-lg p-1 text-xs">
+          <button id="modeBtnLocal" onclick="setExecutionMode('local')"
+            class="px-2.5 py-1 rounded-md font-medium transition flex items-center gap-1.5 bg-indigo-600 text-white shadow">
+            <span>💻</span> Local Chrome
+          </button>
+          <button id="modeBtnCloud" onclick="setExecutionMode('cloud')"
+            class="px-2.5 py-1 rounded-md font-medium transition flex items-center gap-1.5 text-gray-400 hover:text-white">
+            <span>☁️</span> Cloud CDP
+          </button>
+        </div>
+
+        <button onclick="openAddSiteModal()"
+          class="px-3.5 py-1.5 rounded-lg bg-gradient-to-r from-indigo-600 to-cyan-600 hover:from-indigo-500 hover:to-cyan-500 text-white font-semibold text-xs shadow-lg shadow-indigo-600/25 transition flex items-center gap-1.5">
+          <span>➕</span> Add New Site
+        </button>
+
+        <button onclick="refreshAllData()" title="Verileri Yenile"
+          class="p-2 rounded-lg bg-bgCard border border-borderSubtle text-gray-300 hover:text-white hover:border-gray-600 transition text-xs font-medium flex items-center gap-1.5">
+          <span id="refreshSpinner">🔄</span>
+          <span class="hidden sm:inline">Yenile</span>
+        </button>
+
+        <a href="/docs" target="_blank"
+          class="px-3 py-1.5 rounded-lg bg-bgElevated border border-borderSubtle text-xs font-medium text-gray-300 hover:text-white hover:border-indigo-500/50 transition">
+          OpenAPI / Swagger ↗
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ANA İÇERİK -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+
+    <!-- KPI KARTLARI (5 ADET) -->
+    <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+      <!-- KPI 1: Aktif Servis Sayısı -->
+      <div class="glass-card rounded-xl p-4 flex flex-col justify-between">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-medium text-gray-400">Aktif Registry (Moat)</span>
+          <span class="text-indigo-400 text-sm">🗂️</span>
+        </div>
+        <div class="mt-2 flex items-baseline gap-2">
+          <span id="kpiTotalServices" class="text-2xl font-bold text-white">-</span>
+          <span class="text-xs text-emerald-400 font-medium">Hazır Servis</span>
+        </div>
+        <div id="kpiActiveSessions" class="mt-1 text-[11px] text-gray-500">TokenStore izole oturum hazır</div>
+      </div>
+
+      <!-- KPI 2: 3x Auto-Test Başarı Oranı -->
+      <div class="glass-card rounded-xl p-4 flex flex-col justify-between">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-medium text-gray-400">3x Auto-Test Doğrulama</span>
+          <span class="text-emerald-400 text-sm">🛡️</span>
+        </div>
+        <div class="mt-2 flex items-baseline gap-2">
+          <span id="kpiValidationRate" class="text-2xl font-bold text-emerald-400">%100</span>
+          <span id="kpiValidatedCount" class="text-xs text-gray-400 font-mono">(3/3 Pass)</span>
+        </div>
+        <div class="mt-1 text-[11px] text-gray-500">Compiler + GPT-4o Validator Loop</div>
+      </div>
+
+      <!-- KPI 3: Çalışma Modu -->
+      <div class="glass-card rounded-xl p-4 flex flex-col justify-between">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-medium text-gray-400">Browser Tünel Modu</span>
+          <span class="text-cyan-400 text-sm">🌐</span>
+        </div>
+        <div class="mt-2 flex items-baseline gap-2">
+          <span id="kpiCurrentMode" class="text-lg font-bold text-cyan-400">LOCAL CHROME</span>
+        </div>
+        <div id="kpiModeDesc" class="mt-1 text-[11px] text-gray-500">User-Delegated In-Browser Fetch</div>
+      </div>
+
+      <!-- KPI 4: Gece 03:00 Auto-Repair Durumu -->
+      <div class="glass-card rounded-xl p-4 flex flex-col justify-between cursor-pointer" onclick="switchTab('hitl')">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-medium text-gray-400">Gece 03:00 Auto-Repair</span>
+          <span class="text-amber-400 text-sm">🌙</span>
+        </div>
+        <div class="mt-2 flex items-baseline gap-2">
+          <span id="kpiAutoRepairStatus" class="text-lg font-bold text-emerald-400">AKTİF (03:00)</span>
+        </div>
+        <div id="kpiAutoRepairLast" class="mt-1 text-[11px] text-gray-500 truncate">Self-Healing 2.0 Zamanlayıcı</div>
+      </div>
+
+      <!-- KPI 5: Bekleyen HITL Görev Sayısı -->
+      <div class="glass-card rounded-xl p-4 flex flex-col justify-between cursor-pointer" onclick="switchTab('hitl')">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-medium text-gray-400">Bekleyen HITL Onayı</span>
+          <span class="text-rose-400 text-sm">⏳</span>
+        </div>
+        <div class="mt-2 flex items-baseline gap-2">
+          <span id="kpiPendingHitl" class="text-2xl font-bold text-amber-400">0</span>
+          <span class="text-xs text-gray-400">Görev</span>
+        </div>
+        <div class="mt-1 text-[11px] text-indigo-400 hover:underline">Kuyruğu Yönet →</div>
+      </div>
+    </section>
+
+    <!-- SEKME MENÜSÜ (4 SEKME) -->
+    <div class="border-b border-borderSubtle flex flex-wrap items-center gap-2">
+      <button id="tabBtn-marketplace" onclick="switchTab('marketplace')"
+        class="px-4 py-2.5 text-sm font-medium border-b-2 border-indigo-500 text-white transition flex items-center gap-2">
+        <span>🏪</span> 1. Registry Marketplace
+      </button>
+      <button id="tabBtn-playground" onclick="switchTab('playground')"
+        class="px-4 py-2.5 text-sm font-medium border-b-2 border-transparent text-gray-400 hover:text-white transition flex items-center gap-2">
+        <span>⚡</span> 2. Live API Playground & AI Agent
+      </button>
+      <button id="tabBtn-hitl" onclick="switchTab('hitl')"
+        class="px-4 py-2.5 text-sm font-medium border-b-2 border-transparent text-gray-400 hover:text-white transition flex items-center gap-2">
+        <span>🛡️</span> 3. HITL Onay Kuyruğu & Auto-Repair
+        <span id="tabHitlBadge" class="hidden px-1.5 py-0.5 text-[10px] rounded-full bg-rose-500/20 text-rose-400 border border-rose-500/40 font-mono">0</span>
+      </button>
+      <button id="tabBtn-consent" onclick="switchTab('consent')"
+        class="px-4 py-2.5 text-sm font-medium border-b-2 border-transparent text-gray-400 hover:text-white transition flex items-center gap-2">
+        <span>⚖️</span> 4. ToS Consent Audit Log
+      </button>
+    </div>
+
+    <!-- BİLDİRİM TOAST ALANI -->
+    <div id="statusToast" class="hidden rounded-xl p-4 border bg-bgElevated border-indigo-500/40 text-sm flex items-center justify-between">
+      <div id="statusToastText" class="text-gray-200"></div>
+      <button onclick="document.getElementById('statusToast').classList.add('hidden')" class="text-gray-400 hover:text-white text-xs">✕</button>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- SEKME 1: REGISTRY MARKETPLACE                             -->
+    <!-- ========================================================= -->
+    <section id="tabContent-marketplace" class="space-y-4">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div>
+          <h2 class="text-lg font-semibold text-white">Hazır Kurumsal API Kütüphanesi (Moat Registry)</h2>
+          <p class="text-xs text-gray-400">
+            Tüm servisler <code class="text-indigo-400 font-mono">BaseOwnClient</code> tarayıcı içi fetch tüneli, çok kiracılı <code class="text-cyan-400 font-mono">TokenStore</code> ve 3x Auto-Test güvencesiyle çalışır.
+          </p>
+        </div>
+        <div class="flex items-center gap-2">
+          <input id="serviceSearchInput" type="text" placeholder="Servis veya uç nokta ara..."
+            oninput="renderMarketplaceCards()"
+            class="bg-bgCard border border-borderSubtle rounded-lg px-3 py-1.5 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-indigo-500 w-60" />
+          <button onclick="openAddSiteModal()"
+            class="px-3.5 py-1.5 rounded-lg bg-gradient-to-r from-indigo-600 to-cyan-600 hover:from-indigo-500 hover:to-cyan-500 text-white font-semibold text-xs shadow-lg shadow-indigo-600/25 transition flex items-center gap-1.5 whitespace-nowrap">
+            <span>➕</span> Add New Site
+          </button>
+        </div>
+      </div>
+
+      <div id="marketplaceGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <!-- JS ile doldurulur -->
+      </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- SEKME 2: LIVE API PLAYGROUND & AI AGENT                   -->
+    <!-- ========================================================= -->
+    <section id="tabContent-playground" class="hidden">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+        <!-- SOL SÜTUN: Servis Parametreleri + Doğal Dil AI Agent -->
+        <div class="lg:col-span-5 space-y-6">
+
+          <!-- Doğrudan Servis Çağrısı Kartı -->
+          <div class="glass-card rounded-xl p-5 space-y-4">
+            <div class="flex items-center justify-between border-b border-borderSubtle pb-3">
+              <div>
+                <h3 class="text-sm font-semibold text-white flex items-center gap-2">
+                  <span>⚡</span> Doğrudan Servis Çağrısı (In-Browser Fetch)
+                </h3>
+                <p class="text-[11px] text-gray-400">Seçilen servisi gerçek tarayıcı oturumuyla çalıştırır</p>
+              </div>
+              <span id="pgMethodBadge" class="text-[11px] font-mono font-bold px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-400 border border-indigo-500/30">
+                GET
+              </span>
+            </div>
+
+            <!-- Servis Seçimi -->
+            <div>
+              <label class="block text-xs font-medium text-gray-300 mb-1">Kayıtlı Servis Seçin</label>
+              <select id="pgServiceSelect" onchange="onPlaygroundServiceChange()"
+                class="w-full bg-bgBase border border-borderSubtle rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-indigo-500">
+              </select>
+              <div id="pgEndpointUrl" class="mt-1 text-[11px] font-mono text-gray-400 truncate"></div>
+            </div>
+
+            <!-- Dinamik Parametre Inputları -->
+            <div id="pgDynamicParamsContainer" class="space-y-3">
+              <!-- JS ile seçilen servise göre oluşturulur -->
+            </div>
+
+            <!-- Non-Interactive HITL Toggle -->
+            <div class="flex items-center justify-between pt-2 border-t border-borderSubtle text-xs">
+              <label for="pgNonInteractive" class="text-gray-300 flex items-center gap-2 cursor-pointer">
+                <input id="pgNonInteractive" type="checkbox" onchange="updateCodeSnippets()"
+                  class="rounded bg-bgBase border-borderSubtle text-indigo-600 focus:ring-0" />
+                <span>Non-Interactive (Captcha çıkarsa HITL kuyruğuna at)</span>
+              </label>
+            </div>
+
+            <button id="pgExecuteBtn" onclick="executePlaygroundCall()"
+              class="w-full py-2.5 px-4 rounded-lg bg-gradient-to-r from-indigo-600 to-cyan-600 hover:from-indigo-500 hover:to-cyan-500 text-white font-semibold text-sm shadow-lg shadow-indigo-600/25 transition flex items-center justify-center gap-2">
+              <span>🚀</span> Şimdi Çalıştır (Execute In-Browser)
+            </button>
+          </div>
+
+          <!-- Doğal Dil AI Agent (Ask AI) Kartı -->
+          <div class="glass-card rounded-xl p-5 space-y-4">
+            <div class="border-b border-borderSubtle pb-3">
+              <h3 class="text-sm font-semibold text-white flex items-center gap-2">
+                <span>🤖</span> OwnAPI AI Agent (Function Calling)
+              </h3>
+              <p class="text-[11px] text-gray-400">
+                Doğal dilde soru sorun; ajan kayıtlı servisleri otomatik seçip yanıtlasın.
+              </p>
+            </div>
+
+            <div class="flex flex-wrap gap-1.5">
+              <button onclick="setAgentPrompt('Wikipedia üzerinde Peter Thiel hakkında arama yap ve özetle')"
+                class="text-[11px] px-2.5 py-1 rounded-full bg-bgElevated border border-borderSubtle text-gray-300 hover:text-white hover:border-indigo-500/40">
+                Wikipedia: Peter Thiel
+              </button>
+              <button onclick="setAgentPrompt('Enuygun popüler uçuş rotalarını getir ve listele')"
+                class="text-[11px] px-2.5 py-1 rounded-full bg-bgElevated border border-borderSubtle text-gray-300 hover:text-white hover:border-indigo-500/40">
+                Enuygun Popüler Uçuşlar
+              </button>
+              <button onclick="setAgentPrompt('Trendyol üzerinde laptop araması yap ve ilk 3 ürünü fiyatlarıyla listele')"
+                class="text-[11px] px-2.5 py-1 rounded-full bg-bgElevated border border-borderSubtle text-gray-300 hover:text-white hover:border-indigo-500/40">
+                Trendyol Laptop Fiyatları
+              </button>
+            </div>
+
+            <textarea id="pgAgentPrompt" rows="3"
+              placeholder="Örn: Trendyol'da kablosuz kulaklık araması yap ve en uygun 3 modeli özetle..."
+              class="w-full bg-bgBase border border-borderSubtle rounded-lg p-3 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-indigo-500"></textarea>
+
+            <button id="pgAskBtn" onclick="executeAgentAsk()"
+              class="w-full py-2 px-4 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs shadow-lg shadow-emerald-600/20 transition flex items-center justify-center gap-2">
+              <span>✨</span> AI Ajanına Sor (`POST /api/v1/ask`)
+            </button>
+          </div>
+        </div>
+
+        <!-- SAĞ SÜTUN: Canlı JSON Yanıtı + Milisaniye Sayacı + SDK / cURL Kod Örnekleri -->
+        <div class="lg:col-span-7 space-y-6">
+
+          <!-- Canlı JSON Yanıt Kutusu -->
+          <div class="glass-card rounded-xl p-5 flex flex-col h-[420px]">
+            <div class="flex items-center justify-between border-b border-borderSubtle pb-3 mb-3">
+              <div class="flex items-center gap-2">
+                <span class="text-sm font-semibold text-white">📡 Canlı Yanıt (Live Response)</span>
+                <span id="pgStatusBadge" class="text-[11px] font-mono px-2 py-0.5 rounded bg-gray-800 text-gray-400">
+                  HAZIR
+                </span>
+              </div>
+              <div class="flex items-center gap-3">
+                <span id="pgTimerBadge" class="text-xs font-mono text-cyan-400 bg-cyan-500/10 border border-cyan-500/30 px-2.5 py-0.5 rounded">
+                  ⏱️ 0 ms
+                </span>
+                <button onclick="copyResponseJson()" class="text-xs text-gray-400 hover:text-white">
+                  📋 Kopyala
+                </button>
+              </div>
+            </div>
+
+            <pre id="pgResponseViewer" class="flex-1 bg-bgBase border border-borderSubtle rounded-lg p-4 text-xs font-mono text-emerald-300 overflow-auto leading-relaxed">{
+  "info": "Sol panelden bir servis seçip 'Şimdi Çalıştır' butonuna basın veya Marketplace'ten '⚡ Playground'da Dene' seçin."
+}</pre>
+          </div>
+
+          <!-- Hazır Python SDK & cURL Kod Örnekleri -->
+          <div class="glass-card rounded-xl p-5 space-y-3">
+            <div class="flex items-center justify-between border-b border-borderSubtle pb-2">
+              <div class="flex items-center gap-2">
+                <button id="codeTabPython" onclick="switchCodeTab('python')"
+                  class="text-xs font-semibold px-3 py-1 rounded-md bg-indigo-600 text-white">
+                  🐍 Python SDK (OwnAPIClient)
+                </button>
+                <button id="codeTabCurl" onclick="switchCodeTab('curl')"
+                  class="text-xs font-semibold px-3 py-1 rounded-md text-gray-400 hover:text-white">
+                  💻 REST cURL
+                </button>
+              </div>
+              <button onclick="copyCodeSnippet()" class="text-xs text-gray-400 hover:text-white">
+                📋 Kodu Kopyala
+              </button>
+            </div>
+            <pre id="pgCodeSnippet" class="bg-bgBase border border-borderSubtle rounded-lg p-3.5 text-xs font-mono text-indigo-300 overflow-x-auto leading-relaxed"></pre>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- SEKME 3: HITL ONAY KUYRUĞU & AUTO-REPAIR MERKEZİ          -->
+    <!-- ========================================================= -->
+    <section id="tabContent-hitl" class="hidden space-y-6">
+
+      <!-- Üst Aksiyon Paneli: Auto-Repair Tetikleyici -->
+      <div class="glass-card rounded-xl p-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <div class="flex items-center gap-2">
+            <h2 class="text-base font-semibold text-white">🛠️ Self-Healing 2.0 & Gece Otomatik Tamir Merkezi</h2>
+            <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">
+              Her Gece 03:00 Daemon Hazır
+            </span>
+          </div>
+          <p class="text-xs text-gray-400 mt-1">
+            Bozulan servisleri tespit eder, otomatik headless tarayıcıyla güncel trafiği yakalar ve GPT-4o ile <code class="text-indigo-400 font-mono">client.py</code> dosyasını onarıp 3x doğrulamadan geçirir.
+          </p>
+        </div>
+        <div class="flex items-center gap-3">
+          <button id="btnRunAutoRepair" onclick="triggerAutoRepair()"
+            class="px-4 py-2.5 rounded-lg bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-400 hover:to-orange-500 text-white font-semibold text-xs shadow-lg shadow-amber-500/20 transition flex items-center gap-2 whitespace-nowrap">
+            <span>🔧</span> Tüm Servisleri Şimdi Tara & Onar (Auto-Repair)
+          </button>
+        </div>
+      </div>
+
+      <!-- HITL Kuyruğu Tablosu -->
+      <div class="glass-card rounded-xl p-5 space-y-4">
+        <div class="flex items-center justify-between">
+          <div>
+            <h3 class="text-sm font-semibold text-white flex items-center gap-2">
+              <span>🛡️</span> Human-in-the-Loop (HITL) Asenkron Onay Kuyruğu
+            </h3>
+            <p class="text-xs text-gray-400">
+              Gece veya arka plan modunda (<code class="text-amber-400 font-mono">non_interactive=True</code>) Captcha / PerimeterX / 2FA doğrulamasına takılan görevler.
+            </p>
+          </div>
+          <button onclick="loadHitlQueue()" class="text-xs text-indigo-400 hover:underline">
+            🔄 Kuyruğu Yenile
+          </button>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse text-xs">
+            <thead>
+              <tr class="border-b border-borderSubtle text-gray-400 uppercase text-[11px]">
+                <th class="py-2.5 px-3">Task ID</th>
+                <th class="py-2.5 px-3">Servis / Tenant</th>
+                <th class="py-2.5 px-3">Metot & Uç Nokta</th>
+                <th class="py-2.5 px-3">Bekleme Nedeni</th>
+                <th class="py-2.5 px-3">Durum</th>
+                <th class="py-2.5 px-3">Zaman (UTC)</th>
+                <th class="py-2.5 px-3 text-right">Aksiyon</th>
+              </tr>
+            </thead>
+            <tbody id="hitlTableBody" class="divide-y divide-borderSubtle">
+              <!-- JS ile doldurulur -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Son Auto-Repair Raporu Tablosu -->
+      <div class="glass-card rounded-xl p-5 space-y-4">
+        <div class="flex items-center justify-between">
+          <div>
+            <h3 class="text-sm font-semibold text-white">📊 Son Self-Healing 2.0 Tarama & Onarım Raporu (`.sessions/auto_repair_report.json`)</h3>
+            <p id="autoRepairTimestamp" class="text-xs text-gray-400">Henüz rapor yüklenmedi</p>
+          </div>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse text-xs">
+            <thead>
+              <tr class="border-b border-borderSubtle text-gray-400 uppercase text-[11px]">
+                <th class="py-2 px-3">Servis</th>
+                <th class="py-2 px-3">İlk Durum</th>
+                <th class="py-2 px-3">Son Durum</th>
+                <th class="py-2 px-3">Otomatik Tamir</th>
+                <th class="py-2 px-3">Süre</th>
+                <th class="py-2 px-3">Detay</th>
+              </tr>
+            </thead>
+            <tbody id="autoRepairTableBody" class="divide-y divide-borderSubtle">
+              <!-- JS ile doldurulur -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- SEKME 4: ToS CONSENT AUDIT LOG                            -->
+    <!-- ========================================================= -->
+    <section id="tabContent-consent" class="hidden space-y-6">
+      <!-- Yasal Kalkan Beyanı -->
+      <div class="glass-card rounded-xl p-5 border-l-4 border-l-amber-500 space-y-2">
+        <div class="flex items-center justify-between">
+          <h2 class="text-sm font-bold text-amber-400 uppercase tracking-wider flex items-center gap-2">
+            <span>⚖️</span> OwnAPI Legal Shield — Terms of Service & User Delegation Disclaimer
+          </h2>
+          <span id="tosVersionBadge" class="text-xs font-mono px-2.5 py-0.5 rounded bg-amber-500/15 text-amber-300 border border-amber-500/30">
+            v1.0-Enterprise
+          </span>
+        </div>
+        <pre id="tosDisclaimerText" class="text-xs text-gray-300 whitespace-pre-wrap font-sans leading-relaxed"></pre>
+      </div>
+
+      <!-- Denetim Tablosu -->
+      <div class="glass-card rounded-xl p-5 space-y-4">
+        <div class="flex items-center justify-between">
+          <div>
+            <h3 class="text-sm font-semibold text-white">📜 SHA-256 İmzalı Kullanıcı Delegasyon Denetim Günlüğü (`consent_audit.json`)</h3>
+            <p class="text-xs text-gray-400">Her yeni site ekleme ve ilk servis çağrısında otomatik kaydedilen yasal onay izleri.</p>
+          </div>
+          <button onclick="loadConsentAudit()" class="text-xs text-indigo-400 hover:underline">
+            🔄 Kayıtları Yenile
+          </button>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse text-xs">
+            <thead>
+              <tr class="border-b border-borderSubtle text-gray-400 uppercase text-[11px]">
+                <th class="py-2.5 px-3">#</th>
+                <th class="py-2.5 px-3">Servis</th>
+                <th class="py-2.5 px-3">İşlem Türü</th>
+                <th class="py-2.5 px-3">Çalışma Modu</th>
+                <th class="py-2.5 px-3">Yetkilendiren (User@Host)</th>
+                <th class="py-2.5 px-3">SHA-256 İmza Özeti</th>
+                <th class="py-2.5 px-3">Onay Zamanı (UTC)</th>
+              </tr>
+            </thead>
+            <tbody id="consentTableBody" class="divide-y divide-borderSubtle">
+              <!-- JS ile doldurulur -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ALT BİLGİ (FOOTER) -->
+  <footer class="border-t border-borderSubtle py-4 mt-10 text-center text-xs text-gray-500">
+    OwnAPI Enterprise Middleware (`own-api v1.0.0`) • Plaid-Style User-Delegated Browser Fetch • Multi-Tenant TokenStore & Self-Healing 2.0
+  </footer>
+
+  <!-- ========================================================= -->
+  <!-- MODAL: ADD NEW SITE (ZERO-CODE ONBOARDING & 3X VALIDATOR) -->
+  <!-- ========================================================= -->
+  <div id="addSiteModal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black/75 backdrop-blur-sm p-4">
+    <div class="glass-card rounded-2xl w-full max-w-lg border border-indigo-500/40 shadow-2xl shadow-indigo-950/60 overflow-hidden">
+      <!-- Modal Başlık -->
+      <div class="px-6 py-4 border-b border-borderSubtle bg-bgElevated/80 flex items-center justify-between">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-cyan-500 flex items-center justify-center text-white font-bold text-sm shadow">
+            ➕
+          </div>
+          <div>
+            <h3 class="text-sm font-bold text-white">Add New Site (Zero-Code API Onboarding)</h3>
+            <p class="text-[11px] text-gray-400">Record XHR/Fetch • Compile via GPT-4o • 3x Auto-Test Loop</p>
+          </div>
+        </div>
+        <button onclick="closeAddSiteModal()" class="text-gray-400 hover:text-white text-sm px-2 py-1 rounded-lg hover:bg-white/5 transition">
+          ✕
+        </button>
+      </div>
+
+      <!-- Modal Form Gövdesi -->
+      <div class="p-6 space-y-4">
+        <!-- Site Adı (service_name) -->
+        <div>
+          <label class="block text-xs font-semibold text-gray-300 mb-1">
+            Site Adı (<code class="text-indigo-400 font-mono">service_name</code>) *
+          </label>
+          <input id="onboardServiceName" type="text" placeholder="Örn: biletix, stripe_docs, obilet"
+            class="w-full bg-bgBase border border-borderSubtle rounded-lg px-3.5 py-2 text-xs text-white font-mono placeholder-gray-500 focus:outline-none focus:border-indigo-500" />
+        </div>
+
+        <!-- Hedef URL (target_url) -->
+        <div>
+          <label class="block text-xs font-semibold text-gray-300 mb-1">
+            Hedef URL (<code class="text-cyan-400 font-mono">target_url</code>) *
+          </label>
+          <input id="onboardTargetUrl" type="url" placeholder="Örn: https://www.biletix.com"
+            class="w-full bg-bgBase border border-borderSubtle rounded-lg px-3.5 py-2 text-xs text-white font-mono placeholder-gray-500 focus:outline-none focus:border-indigo-500" />
+        </div>
+
+        <!-- Açıklama (description) -->
+        <div>
+          <label class="block text-xs font-semibold text-gray-300 mb-1">
+            Açıklama / Hedef İşlem (<code class="text-emerald-400 font-mono">description</code>)
+          </label>
+          <textarea id="onboardDescription" rows="2"
+            placeholder="Örn: Etkinlik ve konser biletlerini ara ve fiyatları getir..."
+            class="w-full bg-bgBase border border-borderSubtle rounded-lg px-3.5 py-2 text-xs text-white placeholder-gray-500 focus:outline-none focus:border-indigo-500"></textarea>
+        </div>
+
+        <!-- Kayıt Süresi (wait_seconds) -->
+        <div class="flex items-center justify-between gap-4 bg-bgBase/70 border border-borderSubtle rounded-lg px-3.5 py-2">
+          <div>
+            <span class="text-xs font-medium text-gray-300">Tarayıcı Dinleme Süresi</span>
+            <p class="text-[10px] text-gray-500">Açılan Chrome penceresindeki '✅ Kaydı Bitir' butonuyla erken de tamamlayabilirsiniz.</p>
+          </div>
+          <div class="flex items-center gap-1.5">
+            <input id="onboardWaitSeconds" type="number" value="20" min="5" max="120"
+              class="w-16 bg-bgCard border border-borderSubtle rounded px-2 py-1 text-xs font-mono text-cyan-400 text-center focus:outline-none focus:border-indigo-500" />
+            <span class="text-xs text-gray-400">sn</span>
+          </div>
+        </div>
+
+        <!-- Plaid Tarzı Yasal Onay Checkbox'ı -->
+        <div class="p-3.5 rounded-xl bg-indigo-500/10 border border-indigo-500/30 space-y-1.5">
+          <label for="onboardConsentCheck" class="flex items-start gap-2.5 cursor-pointer select-none">
+            <input id="onboardConsentCheck" type="checkbox" checked
+              class="mt-0.5 rounded bg-bgBase border-indigo-500/50 text-indigo-600 focus:ring-0" />
+            <span class="text-xs text-gray-200 leading-relaxed font-medium">
+              "Bu siteye kendi hesabım ve tarayıcımla vekaleten eriştiğimi onaylıyorum."
+            </span>
+          </label>
+          <div class="pl-6 flex items-center justify-between text-[10px] text-indigo-300/80 font-mono">
+            <span>🛡️ Plaid-Style User Delegation Shield</span>
+            <span>SHA-256 Audit Logged</span>
+          </div>
+        </div>
+
+        <!-- Durum Bilgisi Kutusu -->
+        <div id="onboardStatusBox" class="hidden rounded-lg p-3 bg-bgBase border border-borderSubtle text-xs text-gray-300 font-mono leading-relaxed">
+        </div>
+      </div>
+
+      <!-- Modal Alt Aksiyon Butonları -->
+      <div class="px-6 py-4 border-t border-borderSubtle bg-bgElevated/60 flex items-center justify-end gap-2.5">
+        <button onclick="closeAddSiteModal()"
+          class="px-4 py-2 rounded-lg bg-bgCard border border-borderSubtle text-xs font-medium text-gray-300 hover:text-white transition">
+          İptal
+        </button>
+        <button id="onboardSubmitBtn" onclick="submitOnboardSite()"
+          class="px-5 py-2 rounded-lg bg-gradient-to-r from-indigo-600 to-cyan-600 hover:from-indigo-500 hover:to-cyan-500 text-white font-semibold text-xs shadow-lg shadow-indigo-600/30 transition flex items-center gap-2">
+          <span>🔴</span> Start Recording & Compile
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT UYGULAMA MANTIĞI -->
+  <script>
+    let allServices = [];
+    let currentMode = 'local';
+    let currentCodeTab = 'python';
+
+    function showToast(htmlMessage, isError = false) {
+      const toast = document.getElementById('statusToast');
+      const text = document.getElementById('statusToastText');
+      toast.classList.remove('hidden', 'border-indigo-500/40', 'border-rose-500/50');
+      toast.classList.add(isError ? 'border-rose-500/50' : 'border-indigo-500/40');
+      text.innerHTML = htmlMessage;
+    }
+
+    function getTenant() {
+      return (document.getElementById('globalTenantInput').value || 'default').trim();
+    }
+
+    function setExecutionMode(mode) {
+      currentMode = mode;
+      const btnLocal = document.getElementById('modeBtnLocal');
+      const btnCloud = document.getElementById('modeBtnCloud');
+      const kpiMode = document.getElementById('kpiCurrentMode');
+      const kpiDesc = document.getElementById('kpiModeDesc');
+
+      if (mode === 'local') {
+        btnLocal.className = 'px-2.5 py-1 rounded-md font-medium transition flex items-center gap-1.5 bg-indigo-600 text-white shadow';
+        btnCloud.className = 'px-2.5 py-1 rounded-md font-medium transition flex items-center gap-1.5 text-gray-400 hover:text-white';
+        kpiMode.textContent = 'LOCAL CHROME';
+        kpiMode.className = 'text-lg font-bold text-cyan-400';
+        kpiDesc.textContent = 'User-Delegated In-Browser Fetch';
+      } else {
+        btnCloud.className = 'px-2.5 py-1 rounded-md font-medium transition flex items-center gap-1.5 bg-cyan-600 text-white shadow';
+        btnLocal.className = 'px-2.5 py-1 rounded-md font-medium transition flex items-center gap-1.5 text-gray-400 hover:text-white';
+        kpiMode.textContent = 'CLOUD CDP';
+        kpiMode.className = 'text-lg font-bold text-indigo-400';
+        kpiDesc.textContent = 'Remote Docker / Browserless Container';
+      }
+      updateCodeSnippets();
+    }
+
+    function switchTab(tabName) {
+      ['marketplace', 'playground', 'hitl', 'consent'].forEach(t => {
+        const content = document.getElementById(`tabContent-${t}`);
+        const btn = document.getElementById(`tabBtn-${t}`);
+        if (t === tabName) {
+          content.classList.remove('hidden');
+          btn.className = 'px-4 py-2.5 text-sm font-medium border-b-2 border-indigo-500 text-white transition flex items-center gap-2';
+        } else {
+          content.classList.add('hidden');
+          btn.className = 'px-4 py-2.5 text-sm font-medium border-b-2 border-transparent text-gray-400 hover:text-white transition flex items-center gap-2';
+        }
+      });
+    }
+
+    async function loadServices() {
+      const tenant = getTenant();
+      const res = await fetch(`/api/v1/services?tenant_id=${encodeURIComponent(tenant)}`);
+      const data = await res.json();
+      allServices = data.services || [];
+
+      document.getElementById('kpiTotalServices').textContent = data.total_services || 0;
+      document.getElementById('kpiActiveSessions').textContent = `${data.active_sessions_count || 0} aktif TokenStore oturumu`;
+      document.getElementById('kpiValidationRate').textContent = `%${data.validation_rate ?? 100}`;
+      document.getElementById('kpiValidatedCount').textContent = `(${data.validated_count}/${data.total_services} 3x Pass)`;
+      document.getElementById('kpiPendingHitl').textContent = data.pending_hitl_count || 0;
+
+      const hitlBadge = document.getElementById('tabHitlBadge');
+      if ((data.pending_hitl_count || 0) > 0) {
+        hitlBadge.textContent = data.pending_hitl_count;
+        hitlBadge.classList.remove('hidden');
+      } else {
+        hitlBadge.classList.add('hidden');
+      }
+
+      if (data.latest_auto_repair) {
+        const rep = data.latest_auto_repair;
+        document.getElementById('kpiAutoRepairStatus').textContent = `${rep.healthy} Sağlıklı / ${rep.repaired} Onarıldı`;
+        document.getElementById('kpiAutoRepairLast').textContent = `Son: ${(rep.timestamp || '').slice(0, 19).replace('T', ' ')}`;
+      }
+
+      renderMarketplaceCards();
+      populatePlaygroundSelect();
+    }
+
+    function renderMarketplaceCards() {
+      const grid = document.getElementById('marketplaceGrid');
+      const q = (document.getElementById('serviceSearchInput').value || '').toLowerCase().trim();
+      const filtered = allServices.filter(s =>
+        !q ||
+        s.service_name.toLowerCase().includes(q) ||
+        s.function_name.toLowerCase().includes(q) ||
+        (s.explanation || '').toLowerCase().includes(q) ||
+        (s.endpoint_url || '').toLowerCase().includes(q)
+      );
+
+      if (!filtered.length) {
+        grid.innerHTML = `<div class="col-span-full glass-card rounded-xl p-8 text-center text-gray-400 text-sm">Eşleşen servis bulunamadı.</div>`;
+        return;
+      }
+
+      grid.innerHTML = filtered.map(svc => {
+        const isOk = svc.validation_status === 'BAŞARILI';
+        const valBadge = isOk
+          ? `<span class="px-2 py-0.5 text-[10px] font-mono rounded-full bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">✔ 3/3 Auto-Test</span>`
+          : `<span class="px-2 py-0.5 text-[10px] font-mono rounded-full bg-amber-500/15 text-amber-400 border border-amber-500/30">⚠ ${svc.validation_status}</span>`;
+
+        const sessBadge = svc.has_active_session
+          ? `<span class="px-2 py-0.5 text-[10px] rounded-full bg-cyan-500/15 text-cyan-300 border border-cyan-500/30">🍪 Aktif Oturum</span>`
+          : `<span class="px-2 py-0.5 text-[10px] rounded-full bg-gray-800 text-gray-400 border border-gray-700">🍪 Hazır</span>`;
+
+        const tosBadge = svc.has_tos_consent
+          ? `<span class="px-2 py-0.5 text-[10px] rounded-full bg-indigo-500/15 text-indigo-300 border border-indigo-500/30">⚖️ ToS Onaylı</span>`
+          : `<span class="px-2 py-0.5 text-[10px] rounded-full bg-gray-800 text-gray-400">⚖️ İlk Çağrıda Onay</span>`;
+
+        const methodColor = svc.method === 'POST'
+          ? 'bg-amber-500/20 text-amber-300 border-amber-500/30'
+          : 'bg-cyan-500/20 text-cyan-300 border-cyan-500/30';
+
+        const paramsList = (svc.parameters || []).map(p =>
+          `<span class="px-2 py-0.5 rounded bg-bgBase border border-borderSubtle text-[11px] font-mono text-gray-300">${p.name}: <span class="text-indigo-400">${p.type}</span></span>`
+        ).join(' ') || '<span class="text-[11px] text-gray-500 italic">Parametresiz (Statik)</span>';
+
+        return `
+          <div class="glass-card rounded-xl p-5 flex flex-col justify-between space-y-4 transition">
+            <div class="space-y-2.5">
+              <div class="flex items-start justify-between gap-2">
+                <div>
+                  <h3 class="text-base font-bold text-white flex items-center gap-2">
+                    <span>${svc.service_name}</span>
+                  </h3>
+                  <p class="text-xs font-mono text-indigo-400">${svc.function_name}()</p>
+                </div>
+                <span class="text-[10px] font-mono font-bold px-2 py-0.5 rounded border ${methodColor}">
+                  ${svc.method}
+                </span>
+              </div>
+
+              <div class="flex flex-wrap gap-1.5">
+                ${valBadge}
+                ${sessBadge}
+                ${tosBadge}
+              </div>
+
+              <p class="text-xs text-gray-300 line-clamp-2 leading-relaxed">
+                ${svc.explanation || svc.goal || ''}
+              </p>
+
+              <div class="text-[11px] font-mono text-gray-400 bg-bgBase px-2.5 py-1.5 rounded border border-borderSubtle truncate" title="${svc.endpoint_url}">
+                ${svc.endpoint_url}
+              </div>
+
+              <div class="flex flex-wrap gap-1 pt-1">
+                ${paramsList}
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-2 pt-3 border-t border-borderSubtle">
+              <button onclick="openInPlayground('${svc.service_name}')"
+                class="py-2 px-3 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-medium text-xs transition flex items-center justify-center gap-1.5">
+                <span>⚡</span> Playground'da Dene
+              </button>
+              <button id="valBtn-${svc.service_name}" onclick="validateService('${svc.service_name}')"
+                class="py-2 px-3 rounded-lg bg-bgElevated hover:bg-gray-800 border border-borderSubtle text-gray-200 font-medium text-xs transition flex items-center justify-center gap-1.5">
+                <span>🛡️</span> 3x Validate
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function populatePlaygroundSelect() {
+      const sel = document.getElementById('pgServiceSelect');
+      const currentVal = sel.value;
+      sel.innerHTML = allServices.map(s =>
+        `<option value="${s.service_name}">${s.service_name} — ${s.function_name}() [${s.method}]</option>`
+      ).join('');
+      if (currentVal && allServices.some(s => s.service_name === currentVal)) {
+        sel.value = currentVal;
+      }
+      onPlaygroundServiceChange();
+    }
+
+    function openInPlayground(serviceName) {
+      switchTab('playground');
+      const sel = document.getElementById('pgServiceSelect');
+      sel.value = serviceName;
+      onPlaygroundServiceChange();
+    }
+
+    function onPlaygroundServiceChange() {
+      const sel = document.getElementById('pgServiceSelect');
+      const svc = allServices.find(s => s.service_name === sel.value) || allServices[0];
+      if (!svc) return;
+
+      document.getElementById('pgMethodBadge').textContent = svc.method;
+      document.getElementById('pgEndpointUrl').textContent = `${svc.method} ${svc.endpoint_url}`;
+
+      const container = document.getElementById('pgDynamicParamsContainer');
+      const params = svc.parameters || [];
+      if (!params.length) {
+        container.innerHTML = `<div class="text-xs text-gray-400 bg-bgBase border border-borderSubtle rounded-lg p-3">Bu servis ek dinamik parametre gerektirmiyor (doğrudan çalıştırılabilir).</div>`;
+      } else {
+        container.innerHTML = params.map(p => {
+          const defVal = p.default !== null && p.default !== undefined ? p.default : '';
+          return `
+            <div>
+              <div class="flex items-center justify-between text-xs mb-1">
+                <label class="font-mono font-medium text-indigo-300">${p.name}</label>
+                <span class="text-[10px] font-mono text-gray-500">${p.type} (${p.location})</span>
+              </div>
+              <input type="text" data-param-name="${p.name}" data-param-type="${p.type}" value="${defVal}"
+                oninput="updateCodeSnippets()"
+                placeholder="${p.description || p.name}"
+                class="pg-param-input w-full bg-bgBase border border-borderSubtle rounded-lg px-3 py-1.5 text-xs text-white font-mono focus:outline-none focus:border-indigo-500" />
+            </div>
+          `;
+        }).join('');
+      }
+      updateCodeSnippets();
+    }
+
+    function collectPlaygroundParams() {
+      const inputs = document.querySelectorAll('.pg-param-input');
+      const params = {};
+      inputs.forEach(inp => {
+        const name = inp.getAttribute('data-param-name');
+        const ptype = inp.getAttribute('data-param-type');
+        const raw = inp.value;
+        if (raw === '') return;
+        if (ptype === 'int') {
+          const parsed = parseInt(raw, 10);
+          params[name] = isNaN(parsed) ? raw : parsed;
+        } else if (ptype === 'float') {
+          const parsed = parseFloat(raw);
+          params[name] = isNaN(parsed) ? raw : parsed;
+        } else if (ptype === 'bool') {
+          params[name] = raw.toLowerCase() === 'true';
+        } else {
+          params[name] = raw;
+        }
+      });
+      return params;
+    }
+
+    function switchCodeTab(tab) {
+      currentCodeTab = tab;
+      document.getElementById('codeTabPython').className = tab === 'python'
+        ? 'text-xs font-semibold px-3 py-1 rounded-md bg-indigo-600 text-white'
+        : 'text-xs font-semibold px-3 py-1 rounded-md text-gray-400 hover:text-white';
+      document.getElementById('codeTabCurl').className = tab === 'curl'
+        ? 'text-xs font-semibold px-3 py-1 rounded-md bg-indigo-600 text-white'
+        : 'text-xs font-semibold px-3 py-1 rounded-md text-gray-400 hover:text-white';
+      updateCodeSnippets();
+    }
+
+    function updateCodeSnippets() {
+      const svcName = document.getElementById('pgServiceSelect').value || 'wikipedia';
+      const tenant = getTenant();
+      const nonInteractive = document.getElementById('pgNonInteractive').checked;
+      const params = collectPlaygroundParams();
+      const snippetEl = document.getElementById('pgCodeSnippet');
+
+      if (currentCodeTab === 'python') {
+        const kwParts = Object.entries(params).map(([k, v]) =>
+          `${k}=${typeof v === 'string' ? JSON.stringify(v) : v}`
+        );
+        const kwStr = kwParts.length ? ', ' + kwParts.join(', ') : '';
+        const niStr = nonInteractive ? ', non_interactive=True' : '';
+        snippetEl.textContent =
+`from own_api import OwnAPIClient
+
+client = OwnAPIClient(tenant_id="${tenant}", mode="${currentMode}"${niStr})
+response = client.call("${svcName}"${kwStr})
+print(response)`;
+      } else {
+        const bodyObj = {
+          service: svcName,
+          params: params,
+          tenant_id: tenant,
+          mode: currentMode,
+          non_interactive: nonInteractive
+        };
+        snippetEl.textContent =
+`curl -X POST http://localhost:8000/api/v1/call \\
+  -H "Content-Type: application/json" \\
+  -d '${JSON.stringify(bodyObj, null, 2)}'`;
+      }
+    }
+
+    async function executePlaygroundCall() {
+      const svcName = document.getElementById('pgServiceSelect').value;
+      const params = collectPlaygroundParams();
+      const tenant = getTenant();
+      const nonInteractive = document.getElementById('pgNonInteractive').checked;
+
+      const btn = document.getElementById('pgExecuteBtn');
+      const viewer = document.getElementById('pgResponseViewer');
+      const statusBadge = document.getElementById('pgStatusBadge');
+      const timerBadge = document.getElementById('pgTimerBadge');
+
+      btn.disabled = true;
+      btn.innerHTML = `<span>⏳</span> Tarayıcı Tüneli Çalışıyor (${currentMode.toUpperCase()})...`;
+      statusBadge.textContent = 'ÇALIŞIYOR...';
+      statusBadge.className = 'text-[11px] font-mono px-2 py-0.5 rounded bg-amber-500/20 text-amber-300';
+
+      const t0 = performance.now();
+      try {
+        const res = await fetch('/api/v1/call', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            service: svcName,
+            params: params,
+            tenant_id: tenant,
+            mode: currentMode,
+            non_interactive: nonInteractive
+          })
+        });
+        const data = await res.json();
+        const elapsed = data.elapsed_ms || Math.round(performance.now() - t0);
+        timerBadge.textContent = `⏱️ ${elapsed} ms`;
+        viewer.textContent = JSON.stringify(data, null, 2);
+
+        if (data.success) {
+          statusBadge.textContent = '200 OK (BAŞARILI)';
+          statusBadge.className = 'text-[11px] font-mono px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400';
+        } else {
+          statusBadge.textContent = 'HATA';
+          statusBadge.className = 'text-[11px] font-mono px-2 py-0.5 rounded bg-rose-500/20 text-rose-400';
+        }
+        await refreshAllData();
+      } catch (err) {
+        statusBadge.textContent = 'BAĞLANTI HATASI';
+        statusBadge.className = 'text-[11px] font-mono px-2 py-0.5 rounded bg-rose-500/20 text-rose-400';
+        viewer.textContent = JSON.stringify({ error: String(err) }, null, 2);
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = `<span>🚀</span> Şimdi Çalıştır (Execute In-Browser)`;
+      }
+    }
+
+    function setAgentPrompt(text) {
+      document.getElementById('pgAgentPrompt').value = text;
+    }
+
+    async function executeAgentAsk() {
+      const prompt = document.getElementById('pgAgentPrompt').value.trim();
+      if (!prompt) return;
+
+      const btn = document.getElementById('pgAskBtn');
+      const viewer = document.getElementById('pgResponseViewer');
+      const statusBadge = document.getElementById('pgStatusBadge');
+      const timerBadge = document.getElementById('pgTimerBadge');
+
+      btn.disabled = true;
+      btn.innerHTML = `<span>⏳</span> AI Agent Araçları Çalıştırıyor...`;
+      statusBadge.textContent = 'AI AGENT ÇALIŞIYOR...';
+      statusBadge.className = 'text-[11px] font-mono px-2 py-0.5 rounded bg-amber-500/20 text-amber-300';
+
+      try {
+        const res = await fetch('/api/v1/ask', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            prompt: prompt,
+            tenant_id: getTenant(),
+            mode: currentMode
+          })
+        });
+        const data = await res.json();
+        timerBadge.textContent = `⏱️ ${data.elapsed_ms || 0} ms`;
+        viewer.textContent = JSON.stringify(data, null, 2);
+        statusBadge.textContent = data.success ? 'AI YANITI HAZIR' : 'AJAN HATASI';
+        statusBadge.className = data.success
+          ? 'text-[11px] font-mono px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400'
+          : 'text-[11px] font-mono px-2 py-0.5 rounded bg-rose-500/20 text-rose-400';
+      } catch (err) {
+        viewer.textContent = JSON.stringify({ error: String(err) }, null, 2);
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = `<span>✨</span> AI Ajanına Sor (\`POST /api/v1/ask\`)`;
+      }
+    }
+
+    async function validateService(serviceName) {
+      const btn = document.getElementById(`valBtn-${serviceName}`);
+      if (btn) {
+        btn.disabled = true;
+        btn.innerHTML = `<span>⏳</span> 3x Test...`;
+      }
+      showToast(`🧪 <b>${serviceName}</b> servisi için 3x Auto-Test (Compiler + Validator Loop) başlatıldı...`);
+
+      try {
+        const res = await fetch(`/api/v1/validate/${encodeURIComponent(serviceName)}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ runs: 3, tenant_id: getTenant(), mode: currentMode })
+        });
+        const data = await res.json();
+        if (data.validation_status === 'BAŞARILI') {
+          showToast(`✅ <b>${serviceName}</b> 3/3 Auto-Test doğrulamasından başarıyla geçti!`);
+        } else {
+          showToast(`⚠️ <b>${serviceName}</b> doğrulama durumu: ${data.validation_status}`, true);
+        }
+        await refreshAllData();
+      } catch (err) {
+        showToast(`✖ Doğrulama hatası: ${err}`, true);
+      } finally {
+        if (btn) {
+          btn.disabled = false;
+          btn.innerHTML = `<span>🛡️</span> 3x Validate`;
+        }
+      }
+    }
+
+    async function triggerAutoRepair() {
+      const btn = document.getElementById('btnRunAutoRepair');
+      btn.disabled = true;
+      btn.innerHTML = `<span>⏳</span> Tüm Servisler Taranıyor & Onarılıyor...`;
+      showToast(`🛠️ <b>Self-Healing 2.0</b> tüm servisleri tarıyor ve gerekirse otomatik onarıyor...`);
+
+      try {
+        const res = await fetch('/api/v1/auto-repair', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            runs: 1,
+            auto_heal: true,
+            tenant_id: getTenant(),
+            mode: currentMode
+          })
+        });
+        const data = await res.json();
+        showToast(`✅ Self-Healing 2.0 Tamamlandı! Sağlıklı: <b>${data.healthy}</b> | Onarılan: <b>${data.repaired}</b> | HITL Bekleyen: <b>${data.pending_hitl}</b>`);
+        await refreshAllData();
+      } catch (err) {
+        showToast(`✖ Auto-Repair hatası: ${err}`, true);
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = `<span>🔧</span> Tüm Servisleri Şimdi Tara & Onar (Auto-Repair)`;
+      }
+    }
+
+    async function loadHitlQueue() {
+      const res = await fetch('/api/v1/hitl/queue');
+      const data = await res.json();
+      const tbody = document.getElementById('hitlTableBody');
+      const tasks = data.tasks || [];
+
+      if (!tasks.length) {
+        tbody.innerHTML = `<tr><td colspan="7" class="py-6 text-center text-gray-500">HITL kuyruğunda bekleyen veya tamamlanan görev bulunmuyor.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = tasks.map(t => {
+        const isPending = t.status === 'PENDING_USER_ACTION';
+        const badge = isPending
+          ? `<span class="px-2 py-0.5 rounded-full bg-rose-500/20 text-rose-400 border border-rose-500/30 font-mono text-[10px]">⏳ PENDING_USER_ACTION</span>`
+          : `<span class="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 font-mono text-[10px]">✔ COMPLETED</span>`;
+
+        const actionBtn = isPending
+          ? `<button onclick="approveHitlTask('${t.task_id}')" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs transition shadow">✅ Tarayıcıda Onayla & Devam Et</button>`
+          : `<span class="text-gray-500 text-[11px]">Tamamlandı</span>`;
+
+        return `
+          <tr class="hover:bg-bgElevated/50 transition">
+            <td class="py-3 px-3 font-mono font-semibold text-cyan-400">${t.task_id}</td>
+            <td class="py-3 px-3"><span class="font-semibold text-white">${t.service}</span> <span class="text-gray-400">(${t.tenant_id})</span></td>
+            <td class="py-3 px-3 font-mono text-[11px] text-gray-300 max-w-xs truncate" title="${t.url}">${t.method} ${t.url}</td>
+            <td class="py-3 px-3 text-amber-300">${t.reason || '-'}</td>
+            <td class="py-3 px-3">${badge}</td>
+            <td class="py-3 px-3 text-gray-400 font-mono text-[11px]">${(t.created_at || '').slice(0, 19).replace('T', ' ')}</td>
+            <td class="py-3 px-3 text-right">${actionBtn}</td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    async function approveHitlTask(taskId) {
+      showToast(`🌐 <b>${taskId}</b> görevi için yerel Chrome penceresi açılıyor. Lütfen doğrulamayı tamamlayın...`);
+      try {
+        const res = await fetch(`/api/v1/hitl/approve/${encodeURIComponent(taskId)}`, { method: 'POST' });
+        const data = await res.json();
+        if (res.ok && data.success) {
+          showToast(`✅ Görev <b>${taskId}</b> başarıyla onaylandı ve tamamlandı!`);
+        } else {
+          showToast(`✖ Görev onaylama hatası: ${data.detail || data.error}`, true);
+        }
+        await refreshAllData();
+      } catch (err) {
+        showToast(`✖ Hata: ${err}`, true);
+      }
+    }
+
+    async function loadAutoRepairReport() {
+      const res = await fetch('/api/v1/auto-repair/report');
+      const data = await res.json();
+      const tbody = document.getElementById('autoRepairTableBody');
+      const history = data.history || [];
+
+      if (!history.length) {
+        tbody.innerHTML = `<tr><td colspan="6" class="py-6 text-center text-gray-500">Henüz kayıtlı bir Self-Healing 2.0 raporu bulunmuyor.</td></tr>`;
+        return;
+      }
+
+      const latest = history[history.length - 1];
+      document.getElementById('autoRepairTimestamp').textContent =
+        `Son Çalışma: ${(latest.timestamp || '').slice(0, 19).replace('T', ' ')} UTC | Toplam Tarama Geçmişi: ${data.total_runs} döngü`;
+
+      const results = latest.results || [];
+      tbody.innerHTML = results.map(r => {
+        const initBadge = r.initial_status === 'BAŞARILI'
+          ? `<span class="text-emerald-400 font-semibold">🟢 BAŞARILI</span>`
+          : `<span class="text-rose-400 font-semibold">🔴 ${r.initial_status}</span>`;
+        const finBadge = r.final_status === 'BAŞARILI'
+          ? `<span class="text-emerald-400 font-semibold">🟢 BAŞARILI</span>`
+          : `<span class="text-amber-400 font-semibold">⏳ ${r.final_status}</span>`;
+        const healedStr = r.auto_healed
+          ? `<span class="px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-300 font-mono text-[10px]">🛠️ Onarıldı (3/3)</span>`
+          : `<span class="text-gray-500">-</span>`;
+
+        return `
+          <tr class="hover:bg-bgElevated/50">
+            <td class="py-2.5 px-3 font-semibold text-white">${r.service_name}</td>
+            <td class="py-2.5 px-3">${initBadge}</td>
+            <td class="py-2.5 px-3">${finBadge}</td>
+            <td class="py-2.5 px-3">${healedStr}</td>
+            <td class="py-2.5 px-3 font-mono text-cyan-400">${r.elapsed_ms || 0} ms</td>
+            <td class="py-2.5 px-3 text-gray-300 max-w-md truncate">${r.detail || '-'}</td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    async function loadConsentAudit() {
+      const tenant = getTenant();
+      const res = await fetch(`/api/v1/consent?tenant_id=${encodeURIComponent(tenant)}`);
+      const data = await res.json();
+
+      document.getElementById('tosVersionBadge').textContent = data.tos_version || 'v1.0-Enterprise';
+      document.getElementById('tosDisclaimerText').textContent = data.disclaimer || '';
+
+      const tbody = document.getElementById('consentTableBody');
+      const consents = data.consents || [];
+      if (!consents.length) {
+        tbody.innerHTML = `<tr><td colspan="7" class="py-6 text-center text-gray-500">Bu kiracı için henüz kaydedilmiş bir ToS onay kaydı bulunmuyor.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = consents.map((c, idx) => `
+        <tr class="hover:bg-bgElevated/50">
+          <td class="py-2.5 px-3 text-gray-500 font-mono">${idx + 1}</td>
+          <td class="py-2.5 px-3 font-semibold text-indigo-400">${c.service}</td>
+          <td class="py-2.5 px-3 text-amber-300 font-mono text-[11px]">${c.action}</td>
+          <td class="py-2.5 px-3"><span class="px-2 py-0.5 rounded bg-cyan-500/15 text-cyan-300 font-mono text-[10px]">${(c.execution_mode || 'local').toUpperCase()}</span></td>
+          <td class="py-2.5 px-3 text-gray-200 font-mono">${c.delegated_by || '-'}</td>
+          <td class="py-2.5 px-3 font-mono text-emerald-400">${c.disclaimer_sha256}</td>
+          <td class="py-2.5 px-3 text-gray-400 font-mono text-[11px]">${(c.accepted_at || '').slice(0, 19).replace('T', ' ')}</td>
+        </tr>
+      `).join('');
+    }
+
+    function copyResponseJson() {
+      const text = document.getElementById('pgResponseViewer').textContent;
+      navigator.clipboard.writeText(text);
+      showToast('📋 Canlı JSON yanıtı panoya kopyalandı.');
+    }
+
+    function copyCodeSnippet() {
+      const text = document.getElementById('pgCodeSnippet').textContent;
+      navigator.clipboard.writeText(text);
+      showToast('📋 Kod örneği panoya kopyalandı.');
+    }
+
+    function openAddSiteModal() {
+      const modal = document.getElementById('addSiteModal');
+      const statusBox = document.getElementById('onboardStatusBox');
+      statusBox.classList.add('hidden');
+      statusBox.innerHTML = '';
+      modal.classList.remove('hidden');
+      setTimeout(() => document.getElementById('onboardServiceName').focus(), 80);
+    }
+
+    function closeAddSiteModal() {
+      document.getElementById('addSiteModal').classList.add('hidden');
+    }
+
+    async function submitOnboardSite() {
+      const serviceName = (document.getElementById('onboardServiceName').value || '').trim();
+      const targetUrl = (document.getElementById('onboardTargetUrl').value || '').trim();
+      const description = (document.getElementById('onboardDescription').value || '').trim();
+      const waitSeconds = parseInt(document.getElementById('onboardWaitSeconds').value || '20', 10) || 20;
+      const consentAccepted = document.getElementById('onboardConsentCheck').checked;
+      const statusBox = document.getElementById('onboardStatusBox');
+      const btn = document.getElementById('onboardSubmitBtn');
+
+      if (!serviceName || !targetUrl) {
+        statusBox.classList.remove('hidden');
+        statusBox.innerHTML = `<span class="text-rose-400">✖ Lütfen Site Adı (service_name) ve Hedef URL (target_url) alanlarını doldurun.</span>`;
+        return;
+      }
+
+      if (!consentAccepted) {
+        statusBox.classList.remove('hidden');
+        statusBox.innerHTML = `<span class="text-amber-400">⚠️ Devam etmek için Plaid tarzı Yasal Onay kutucuğunu işaretlemelisiniz.</span>`;
+        return;
+      }
+
+      btn.disabled = true;
+      btn.innerHTML = `<span class="animate-spin">⏳</span> Recording & Compiling (GPT-4o + 3x Test)...`;
+      statusBox.classList.remove('hidden');
+      statusBox.innerHTML = `
+        <div class="text-cyan-400 font-semibold">🚀 1/3 Tarayıcı açılıyor: ${targetUrl}</div>
+        <div class="text-gray-400 mt-1">• Açılan Chrome penceresinde örnek işlemi yapın ve sağ üstteki <b>"✅ Kaydı Bitir & Derle"</b> butonuna basın (veya ${waitSeconds} sn bekleyin).</div>
+        <div class="text-gray-400">• Ardından GPT-4o <code class="text-indigo-400">client.py</code> dosyasını üretecek ve 3x Auto-Test doğrulamasından geçirecektir.</div>
+      `;
+
+      try {
+        const res = await fetch('/api/v1/onboard', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            service_name: serviceName,
+            target_url: targetUrl,
+            description: description,
+            consent_accepted: consentAccepted,
+            tenant_id: getTenant(),
+            mode: currentMode,
+            wait_seconds: waitSeconds,
+            validation_runs: 3
+          })
+        });
+        const data = await res.json();
+
+        if (res.ok && data.success) {
+          statusBox.innerHTML = `
+            <div class="text-emerald-400 font-bold">✅ Servis Başarıyla Eklendi ve Doğrulandı!</div>
+            <div class="text-gray-300 mt-1">• Servis: <b>${data.service_name}</b> | Fonksiyon: <b>${data.function_name}()</b></div>
+            <div class="text-gray-300">• Endpoint: ${data.method} ${data.endpoint_url}</div>
+            <div class="text-emerald-300">• 3x Auto-Test Durumu: <b>${data.validation_status}</b> (${data.elapsed_ms} ms)</div>
+          `;
+          showToast(`🎉 <b>${data.service_name}</b> başarıyla derlendi, 3x Auto-Test'ten geçti ve Registry Marketplace'e eklendi!`);
+          await refreshAllData();
+          setTimeout(() => {
+            closeAddSiteModal();
+            openInPlayground(data.service_name);
+          }, 1400);
+        } else {
+          const errMsg = data.detail || data.error || 'Bilinmeyen derleme hatası';
+          statusBox.innerHTML = `<span class="text-rose-400">✖ Onboarding Hatası: ${errMsg}</span>`;
+          showToast(`✖ Onboarding başarısız: ${errMsg}`, true);
+        }
+      } catch (err) {
+        statusBox.innerHTML = `<span class="text-rose-400">✖ Sunucu bağlantı hatası: ${err}</span>`;
+        showToast(`✖ Hata: ${err}`, true);
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = `<span>🔴</span> Start Recording & Compile`;
+      }
+    }
+
+    async function refreshAllData() {
+      await Promise.all([
+        loadServices(),
+        loadHitlQueue(),
+        loadAutoRepairReport(),
+        loadConsentAudit()
+      ]);
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      refreshAllData();
+    });
+  </script>
+</body>
+</html>

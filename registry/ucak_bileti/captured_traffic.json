@@ -1,0 +1,1989 @@
+{
+  "target_url": "https://www.obilet.com/ucak-bileti",
+  "recorded_at": "2026-11-06T19:34:06.459646+00:00",
+  "total_endpoints": 24,
+  "endpoints": [
+    {
+      "id": 1,
+      "timestamp": "2026-11-06T19:33:47.338715+00:00",
+      "method": "POST",
+      "url": "https://www.obilet.com/json/get-current-user",
+      "full_url": "https://www.obilet.com/json/get-current-user",
+      "domain": "www.obilet.com",
+      "path": "/json/get-current-user",
+      "status_code": 200,
+      "resource_type": "xhr",
+      "query_params": {},
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.obilet.com/ucak-bileti",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": null,
+      "response_sample": "{\n  \"isAuthenticated\": false,\n  \"fullName\": null,\n  \"Dwh\": null\n}",
+      "response_truncated": false
+    },
+    {
+      "id": 2,
+      "timestamp": "2026-11-06T19:33:48.789786+00:00",
+      "method": "POST",
+      "url": "https://www.obilet.com/event",
+      "full_url": "https://www.obilet.com/event",
+      "domain": "www.obilet.com",
+      "path": "/event",
+      "status_code": 200,
+      "resource_type": "xhr",
+      "query_params": {},
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.obilet.com/ucak-bileti",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "content-type": "application/json",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": {
+        "category": "Language and Currency",
+        "action": "Website Open Language",
+        "label": "TR"
+      },
+      "response_sample": "null",
+      "response_truncated": false
+    },
+    {
+      "id": 3,
+      "timestamp": "2026-11-06T19:33:50.770797+00:00",
+      "method": "POST",
+      "url": "https://www.obilet.com/event",
+      "full_url": "https://www.obilet.com/event",
+      "domain": "www.obilet.com",
+      "path": "/event",
+      "status_code": 200,
+      "resource_type": "xhr",
+      "query_params": {},
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.obilet.com/ucak-bileti",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "content-type": "application/json",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": {
+        "category": "Language and Currency",
+        "action": "Website  Open Currency",
+        "label": "TRY"
+      },
+      "response_sample": "null",
+      "response_truncated": false
+    },
+    {
+      "id": 4,
+      "timestamp": "2026-11-06T19:33:50.871613+00:00",
+      "method": "POST",
+      "url": "https://www.obilet.com/json/send-landing-page",
+      "full_url": "https://www.obilet.com/json/send-landing-page",
+      "domain": "www.obilet.com",
+      "path": "/json/send-landing-page",
+      "status_code": 200,
+      "resource_type": "xhr",
+      "query_params": {},
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.obilet.com/ucak-bileti",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "content-type": "application/json",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": {
+        "language": "tr-TR",
+        "currency": "TRY",
+        "baseUrl": "https://www.obilet.com/ucak-bileti",
+        "queryString": "",
+        "referrer": "",
+        "landingPageSession": null
+      },
+      "response_sample": "{\n  \"status\": \"Success\",\n  \"data\": \"eyJkZXZpY2UiOiJxS3FxekFVcWwwY2xCLzJrNWF1YWxXVUp3bWRxNVowSFlER1BvYTAvRENNPSIsInNlc3Npb24iOiJDUEMvaVdIajZod3JUd1hDbWlFeFcrQm5tcWd2NisxZ1NDK0djSFhLWGk0PSIsImJ1cyI6ZmFsc2UsImZsaWdodCI6dHJ1ZSwic2VhIjpmYWxzZSwiaG90ZWwiOmZhbHNlLCJvdGhlciI6ZmFsc2UsInJlbnRBQ2FyIjpmYWxzZX0=\",\n  \"message\": null,\n  \"user-message\": null,\n  \"api-request-id\": null,\n  \"controller\": null,\n  \"client-request-id\": null,\n  \"web-correlation-id\": null,\n  \"correlation-id\": null,\n  \"parameters\": null\n}",
+      "response_truncated": false
+    },
+    {
+      "id": 5,
+      "timestamp": "2026-11-06T19:33:52.191880+00:00",
+      "method": "POST",
+      "url": "https://www.obilet.com/json/ucak-duraklari",
+      "full_url": "https://www.obilet.com/json/ucak-duraklari",
+      "domain": "www.obilet.com",
+      "path": "/json/ucak-duraklari",
+      "status_code": 200,
+      "resource_type": "xhr",
+      "query_params": {},
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.obilet.com/ucak-bileti",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "content-type": "application/json",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": {
+        "query": "",
+        "page": 1,
+        "prev": "250_0",
+        "element": "destination"
+      },
+      "response_sample": "{\n  \"items\": [\n    {\n      \"id\": \"251_18\",\n      \"text\": \"İzmir (ADB)\",\n      \"display\": \"İzmir Adnan Menderes Havalimanı - İzmir\",\n      \"locationName\": \"İzmir\",\n      \"cityId\": 251,\n      \"refCode\": \"ADB\",\n      \"isMain\": true,\n      \"ufiId\": \"-755097\",\n      \"seoLocationName\": \"izmir\",\n      \"providerLocationId\": 60638,\n      \"isDomestic\": true\n    },\n    {\n      \"id\": \"217_8298\",\n      \"text\": \"Adana (COV)\",\n      \"display\": \"Adana Mersin Çukurova Havalimanı - Adana\",\n      \"locationName\": \"Adana\",\n      \"cityId\": 217,\n      \"refCode\": \"COV\",\n      \"isMain\": true,\n      \"ufiId\": \"\",\n      \"seoLocationName\": \"adana\",\n      \"providerLocationId\": 61773,\n      \"isDomestic\": true\n    },\n    {\n      \"id\": \"277_33\",\n      \"text\": \"Trabzon (TZX)\",\n      \"display\": \"Trabzon Havalimanı - Trabzon\",\n      \"locationName\": \"Trabzon\",\n      \"cityId\": 277,\n      \"refCode\": \"TZX\",\n      \"isMain\": true,\n      \"ufiId\": \"-773700\",\n      \"seoLocationName\": \"trabzon\",\n      \"providerLocationId\": 91506,\n      \"isDomestic\": true\n    },\n    {\n      \"id\": \"279_34\",\n      \"text\": \"Şanlıurfa (GNY)\",\n      \"display\": \"Şanlıurfa GAP Havalimanı - Şanlıurfa\",\n      \"locationName\": \"Şanlıurfa\",\n      \"cityId\": 279,\n      \"refCode\": \"GNY\",\n      \"isMain\": true,\n      \"ufiId\": \"-774562\",\n      \"seoLocationName\": \"sanliurfa\",\n      \"providerLocationId\": 98652,\n      \"isDomestic\": true\n    },\n    {\n      \"id\": \"271_28\",\n      \"text\": \"Samsun (SZF)\",\n      \"display\": \"Samsun Çarsamba Havalimanı - Samsun\",\n      \"locationName\": \"Samsun\",\n      \"cityId\": 271,\n      \"refCode\": \"SZF\",\n      \"isMain\": true,\n      \"ufiId\": \"-769015\",\n      \"seoLocationName\": \"samsun\",\n      \"providerLocationId\": 98622,\n      \"isDomestic\": true\n    },\n    {\n      \"id\": \"237_11\",\n      \"text\": \"Diyarbakır (DIY)\",\n      \"display\": \"Diyarbakır Havalimanı - Diyarbakır\",\n      \"locationName\": \"Diyarbakır\",\n      \"cityId\": 237,\n      \"refCode\": \"DIY\",\n      \"isMain\": true,\n      \"ufiId\": \"-746541\",\n      \"seoLocationName\": \"diyarbakir\",\n      \"providerLocationId\": 98616,\n      \"isDomestic\": true\n    },\n    {\n      \"id\": \"243_16\",\n      \"text\": \"Gaziantep (GZT)\",\n      \"display\": \"Gaziantep Oğuzeli Havalimanı - Gaziantep\",\n      \"locationName\": \"Gaziantep\",\n      \"cityId\": 243,\n      \"refCode\": \"GZT\",\n      \"isMain\": true,\n      \"ufiId\": \"-749276\",\n      \"seoLocationName\": \"gaziantep\",\n      \"providerLocationId\": 98633,\n      \"isDomestic\": true\n    },\n    {\n      \"id\": \"223_0\",\n      \"text\": \"Antalya (Tümü)\",\n      \"display\": \"Antalya Tümü\",\n      \"locationName\": \"Antalya\",\n      \"cityId\": 223,\n      \"refCode\": \"AYTT\",\n      \"isMain\": true,\n      \"ufiId\": \"-735347\",\n      \"seoLocationName\": \"antalya\",\n      \"providerLocationId\": 60208,\n      \"isDomestic\": true\n    },\n    {\n      \"id\": \"223_5\",\n      \"text\": \"Antalya (AYT)\",\n      \"display\": \"Antalya Havalimanı - Antalya\",\n      \"locationName\": \"Antalya\",\n      \"cityId\": 223,\n      \"refCode\": \"AYT\",\n      \"isMain\": false,\n      \"ufiId\": \"-735347\",\n      \"seoLoc",
+      "response_truncated": true
+    },
+    {
+      "id": 6,
+      "timestamp": "2026-11-06T19:33:52.192880+00:00",
+      "method": "POST",
+      "url": "https://www.obilet.com/event",
+      "full_url": "https://www.obilet.com/event",
+      "domain": "www.obilet.com",
+      "path": "/event",
+      "status_code": 200,
+      "resource_type": "xhr",
+      "query_params": {},
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.obilet.com/ucak-bileti",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "content-type": "application/json",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": {
+        "category": "Flight",
+        "action": "Departure Location Selection",
+        "label": "İstanbul (Tümü)"
+      },
+      "response_sample": "null",
+      "response_truncated": false
+    },
+    {
+      "id": 7,
+      "timestamp": "2026-11-06T19:33:52.192880+00:00",
+      "method": "POST",
+      "url": "https://www.obilet.com/event",
+      "full_url": "https://www.obilet.com/event",
+      "domain": "www.obilet.com",
+      "path": "/event",
+      "status_code": 200,
+      "resource_type": "xhr",
+      "query_params": {},
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.obilet.com/ucak-bileti",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "content-type": "application/json",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": {
+        "category": "Flight",
+        "action": "Arrival Location Selection",
+        "label": "İzmir (ADB)"
+      },
+      "response_sample": "null",
+      "response_truncated": false
+    },
+    {
+      "id": 8,
+      "timestamp": "2026-11-06T19:33:52.622252+00:00",
+      "method": "GET",
+      "url": "https://accounts.google.com/gsi/status",
+      "full_url": "https://accounts.google.com/gsi/status?client_id=279467723783-f3l8p96ljboqv4fs1nbm3313sdqvnp1p.apps.googleusercontent.com&cas=fXaJM28LWxlKKnZj2aNelpRaroHWmtyMGMjqJHrPsvo&bs=ohuqAvalpFIoiiy6TsgFkEIKMAbvQl2SY8ey1vHg8Gg&has_opted_out_fedcm=false",
+      "domain": "accounts.google.com",
+      "path": "/gsi/status",
+      "status_code": 200,
+      "resource_type": "xhr",
+      "query_params": {
+        "client_id": [
+          "279467723783-f3l8p96ljboqv4fs1nbm3313sdqvnp1p.apps.googleusercontent.com"
+        ],
+        "cas": [
+          "fXaJM28LWxlKKnZj2aNelpRaroHWmtyMGMjqJHrPsvo"
+        ],
+        "bs": [
+          "ohuqAvalpFIoiiy6TsgFkEIKMAbvQl2SY8ey1vHg8Gg"
+        ],
+        "has_opted_out_fedcm": [
+          "false"
+        ]
+      },
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.obilet.com/",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": null,
+      "response_sample": ")]}'\n[[\"1DxW0Uz4hyIGtr1Sr76rLcbbgz0DtwZKSJRK2AqYaXo\"],null,1,0,1,90,120,null,0]",
+      "response_truncated": false
+    },
+    {
+      "id": 9,
+      "timestamp": "2026-11-06T19:33:52.631247+00:00",
+      "method": "POST",
+      "url": "https://www.obilet.com/cdn-cgi/rum",
+      "full_url": "https://www.obilet.com/cdn-cgi/rum?",
+      "domain": "www.obilet.com",
+      "path": "/cdn-cgi/rum",
+      "status_code": 204,
+      "resource_type": "xhr",
+      "query_params": {},
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.obilet.com/ucak-bileti",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "content-type": "application/json",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": {
+        "startTime": 1793993626475,
+        "pageloadId": "02c14e56-d83b-4708-a2e6-0fc26add3c40",
+        "eventType": 1,
+        "nt": "navigate",
+        "location": "https://www.obilet.com/ucak-bileti",
+        "versions": {
+          "fl": "2024.11.0",
+          "js": "2026.10.1",
+          "timings": 2
+        },
+        "bi": {
+          "be": "Blink",
+          "bev": "156",
+          "bv": "156",
+          "ov": "10"
+        },
+        "memory": {
+          "totalJSHeapSize": 10092303,
+          "usedJSHeapSize": 7884803,
+          "jsHeapSizeLimit": 2187067392
+        },
+        "firstPaint": 696,
+        "firstContentfulPaint": 696,
+        "timingsV2": {
+          "nextHopProtocol": "h2",
+          "domainLookupStart": 5,
+          "domainLookupEnd": 66,
+          "connectStart": 66,
+          "connectEnd": 221,
+          "secureConnectionStart": 134,
+          "requestStart": 222,
+          "responseStart": 329,
+          "responseEnd": 414,
+          "domInteractive": 1580,
+          "domComplete": 4665,
+          "loadEventStart": 4666,
+          "loadEventEnd": 5260,
+          "finalResponseHeadersStart": 329,
+          "firstInterimResponseStart": 0,
+          "transferSize": 100193,
+          "decodedBodySize": 726120
+        },
+        "siteToken": "5d0a3655e36449ce81b8a487045c7d54",
+        "st": 2
+      },
+      "response_sample": "",
+      "response_truncated": false
+    },
+    {
+      "id": 10,
+      "timestamp": "2026-11-06T19:33:55.481354+00:00",
+      "method": "POST",
+      "url": "https://www.google.com/ccm/collect",
+      "full_url": "https://www.google.com/ccm/collect?rcb=11&frm=0&apvc=1&ae=g&auid=1558500767.1793993633&dt=U%C3%A7ak%20Bileti%20Al%2C%20Ucuz%20U%C3%A7ak%20Bileti%20Fiyatlar%C4%B1%20-%20obilet.com&en=page_view&dl=https%3A%2F%2Fwww.obilet.com%2Fucak-bileti&scrsrc=www.googletagmanager.com&rnd=1033578781.1793993633&navt=n&npa=0&ep.ads_data_redaction=1&_tu=CA&gtm=45He6b41v72074004za200zd72074004xeaxf1&gcs=G111&gcd=13t3t3t3t5l1&dma=0&tag_exp=115616985~115938465~115938468~118897920~118897930~120385422~120412528~120420414~120469145~120469153~121191153~121246026~121246034~123814185&tft=1793993633362&tfd=6888&fmt=8",
+      "domain": "www.google.com",
+      "path": "/ccm/collect",
+      "status_code": 200,
+      "resource_type": "fetch",
+      "query_params": {
+        "rcb": [
+          "11"
+        ],
+        "frm": [
+          "0"
+        ],
+        "apvc": [
+          "1"
+        ],
+        "ae": [
+          "g"
+        ],
+        "auid": [
+          "1558500767.1793993633"
+        ],
+        "dt": [
+          "Uçak Bileti Al, Ucuz Uçak Bileti Fiyatları - obilet.com"
+        ],
+        "en": [
+          "page_view"
+        ],
+        "dl": [
+          "https://www.obilet.com/ucak-bileti"
+        ],
+        "scrsrc": [
+          "www.googletagmanager.com"
+        ],
+        "rnd": [
+          "1033578781.1793993633"
+        ],
+        "navt": [
+          "n"
+        ],
+        "npa": [
+          "0"
+        ],
+        "ep.ads_data_redaction": [
+          "1"
+        ],
+        "_tu": [
+          "CA"
+        ],
+        "gtm": [
+          "45He6b41v72074004za200zd72074004xeaxf1"
+        ],
+        "gcs": [
+          "G111"
+        ],
+        "gcd": [
+          "13t3t3t3t5l1"
+        ],
+        "dma": [
+          "0"
+        ],
+        "tag_exp": [
+          "115616985~115938465~115938468~118897920~118897930~120385422~120412528~120420414~120469145~120469153~121191153~121246026~121246034~123814185"
+        ],
+        "tft": [
+          "1793993633362"
+        ],
+        "tfd": [
+          "6888"
+        ],
+        "fmt": [
+          "8"
+        ]
+      },
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.obilet.com/",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": null,
+      "response_sample": "",
+      "response_truncated": false
+    },
+    {
+      "id": 11,
+      "timestamp": "2026-11-06T19:33:55.858765+00:00",
+      "method": "POST",
+      "url": "https://www.google.com/ccm/collect",
+      "full_url": "https://www.google.com/ccm/collect?rcb=14&frm=0&apvc=0&auid=1558500767.1793993633&dt=U%C3%A7ak%20Bileti%20Al%2C%20Ucuz%20U%C3%A7ak%20Bileti%20Fiyatlar%C4%B1%20-%20obilet.com&tid=DC-13522373&en=page_view&dl=https%3A%2F%2Fwww.obilet.com%2Fucak-bileti&scrsrc=www.googletagmanager.com&rnd=1033578781.1793993633&navt=n&npa=0&_tu=CA&gtm=45fe6b41v9172171792za20ozb72074004zd72074004xecxf1&gcs=G111&gcd=13t3t3t3t5l1&dma=0&tag_exp=115938465~115938469~118897920~118897930~119793974~120213116~120385422~120412528~120420414~120469145~120469153~121191153~121246026~121246034~123814185~124013660&tft=1793993633864&tfd=7390&tids=DC-13522373&fmt=8",
+      "domain": "www.google.com",
+      "path": "/ccm/collect",
+      "status_code": 200,
+      "resource_type": "fetch",
+      "query_params": {
+        "rcb": [
+          "14"
+        ],
+        "frm": [
+          "0"
+        ],
+        "apvc": [
+          "0"
+        ],
+        "auid": [
+          "1558500767.1793993633"
+        ],
+        "dt": [
+          "Uçak Bileti Al, Ucuz Uçak Bileti Fiyatları - obilet.com"
+        ],
+        "tid": [
+          "DC-13522373"
+        ],
+        "en": [
+          "page_view"
+        ],
+        "dl": [
+          "https://www.obilet.com/ucak-bileti"
+        ],
+        "scrsrc": [
+          "www.googletagmanager.com"
+        ],
+        "rnd": [
+          "1033578781.1793993633"
+        ],
+        "navt": [
+          "n"
+        ],
+        "npa": [
+          "0"
+        ],
+        "_tu": [
+          "CA"
+        ],
+        "gtm": [
+          "45fe6b41v9172171792za20ozb72074004zd72074004xecxf1"
+        ],
+        "gcs": [
+          "G111"
+        ],
+        "gcd": [
+          "13t3t3t3t5l1"
+        ],
+        "dma": [
+          "0"
+        ],
+        "tag_exp": [
+          "115938465~115938469~118897920~118897930~119793974~120213116~120385422~120412528~120420414~120469145~120469153~121191153~121246026~121246034~123814185~124013660"
+        ],
+        "tft": [
+          "1793993633864"
+        ],
+        "tfd": [
+          "7390"
+        ],
+        "tids": [
+          "DC-13522373"
+        ],
+        "fmt": [
+          "8"
+        ]
+      },
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.obilet.com/",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": null,
+      "response_sample": "",
+      "response_truncated": false
+    },
+    {
+      "id": 12,
+      "timestamp": "2026-11-06T19:33:57.755240+00:00",
+      "method": "POST",
+      "url": "https://www.google.com/ccm/collect",
+      "full_url": "https://www.google.com/ccm/collect?rcb=4&frm=0&apvc=0&auid=1558500767.1793993633&dt=U%C3%A7ak%20Bileti%20Al%2C%20Ucuz%20U%C3%A7ak%20Bileti%20Fiyatlar%C4%B1%20-%20obilet.com&tid=AW-869750748&en=page_view&dl=https%3A%2F%2Fwww.obilet.com%2Fucak-bileti&scrsrc=www.googletagmanager.com&rnd=1033578781.1793993633&navt=n&npa=0&_tu=CA&gtm=45be6b41z8d_AW-869750748za20ozb72074004zd72074004xecxf1&gcs=G111&gcd=13t3t3t3t5l1&dma=0&tag_exp=115938465~115938468~118897920~118897930~120213116~120385422~120412526~120420416~120469145~120469153~121191153~121246026~121246034~123814185&tft=1793993634727&tfd=8253&tids=AW-869750748&fmt=8",
+      "domain": "www.google.com",
+      "path": "/ccm/collect",
+      "status_code": 200,
+      "resource_type": "fetch",
+      "query_params": {
+        "rcb": [
+          "4"
+        ],
+        "frm": [
+          "0"
+        ],
+        "apvc": [
+          "0"
+        ],
+        "auid": [
+          "1558500767.1793993633"
+        ],
+        "dt": [
+          "Uçak Bileti Al, Ucuz Uçak Bileti Fiyatları - obilet.com"
+        ],
+        "tid": [
+          "AW-869750748"
+        ],
+        "en": [
+          "page_view"
+        ],
+        "dl": [
+          "https://www.obilet.com/ucak-bileti"
+        ],
+        "scrsrc": [
+          "www.googletagmanager.com"
+        ],
+        "rnd": [
+          "1033578781.1793993633"
+        ],
+        "navt": [
+          "n"
+        ],
+        "npa": [
+          "0"
+        ],
+        "_tu": [
+          "CA"
+        ],
+        "gtm": [
+          "45be6b41z8d_AW-869750748za20ozb72074004zd72074004xecxf1"
+        ],
+        "gcs": [
+          "G111"
+        ],
+        "gcd": [
+          "13t3t3t3t5l1"
+        ],
+        "dma": [
+          "0"
+        ],
+        "tag_exp": [
+          "115938465~115938468~118897920~118897930~120213116~120385422~120412526~120420416~120469145~120469153~121191153~121246026~121246034~123814185"
+        ],
+        "tft": [
+          "1793993634727"
+        ],
+        "tfd": [
+          "8253"
+        ],
+        "tids": [
+          "AW-869750748"
+        ],
+        "fmt": [
+          "8"
+        ]
+      },
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.obilet.com/",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": null,
+      "response_sample": "",
+      "response_truncated": false
+    },
+    {
+      "id": 13,
+      "timestamp": "2026-11-06T19:33:57.755240+00:00",
+      "method": "POST",
+      "url": "https://www.google.com/rmkt/collect/869750748/",
+      "full_url": "https://www.google.com/rmkt/collect/869750748/?random=1793993634358&cv=11&fst=1793993634358&fmt=8&bg=ffffff&guid=ON&async=1&en=gtag.config&gtm=45be6b41z8d_AW-869750748za20ozb72074004zd72074004xecxf1&gcd=13t3t3t3t5l1&dma=0&tag_exp=115938465~115938468~118897920~118897930~120213116~120385422~120412526~120420416~120469145~120469153~121191153~121246026~121246034~123814185&u_w=1280&u_h=720&url=https%3A%2F%2Fwww.obilet.com%2Fucak-bileti&rcb=4&frm=0&tiba=U%C3%A7ak%20Bileti%20Al%2C%20Ucuz%20U%C3%A7ak%20Bileti%20Fiyatlar%C4%B1%20-%20obilet.com&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=1558500767.1793993633&uaa=x86&uab=64&uafvl=Not%253AA-Brand%3B8.0.0.0%7CChromium%3B156.0.8078.81%7CGoogle%2520Chrome%3B156.0.8078.81&uamb=0&uam=&uap=Windows&uapv=8.0.0&uaw=0&_tu=CA&data=event%3Dgtag.config&ept=68&gcp=5",
+      "domain": "www.google.com",
+      "path": "/rmkt/collect/869750748/",
+      "status_code": 200,
+      "resource_type": "fetch",
+      "query_params": {
+        "random": [
+          "1793993634358"
+        ],
+        "cv": [
+          "11"
+        ],
+        "fst": [
+          "1793993634358"
+        ],
+        "fmt": [
+          "8"
+        ],
+        "bg": [
+          "ffffff"
+        ],
+        "guid": [
+          "ON"
+        ],
+        "async": [
+          "1"
+        ],
+        "en": [
+          "gtag.config"
+        ],
+        "gtm": [
+          "45be6b41z8d_AW-869750748za20ozb72074004zd72074004xecxf1"
+        ],
+        "gcd": [
+          "13t3t3t3t5l1"
+        ],
+        "dma": [
+          "0"
+        ],
+        "tag_exp": [
+          "115938465~115938468~118897920~118897930~120213116~120385422~120412526~120420416~120469145~120469153~121191153~121246026~121246034~123814185"
+        ],
+        "u_w": [
+          "1280"
+        ],
+        "u_h": [
+          "720"
+        ],
+        "url": [
+          "https://www.obilet.com/ucak-bileti"
+        ],
+        "rcb": [
+          "4"
+        ],
+        "frm": [
+          "0"
+        ],
+        "tiba": [
+          "Uçak Bileti Al, Ucuz Uçak Bileti Fiyatları - obilet.com"
+        ],
+        "hn": [
+          "www.googleadservices.com"
+        ],
+        "npa": [
+          "0"
+        ],
+        "pscdl": [
+          "noapi"
+        ],
+        "auid": [
+          "1558500767.1793993633"
+        ],
+        "uaa": [
+          "x86"
+        ],
+        "uab": [
+          "64"
+        ],
+        "uafvl": [
+          "Not%3AA-Brand;8.0.0.0|Chromium;156.0.8078.81|Google%20Chrome;156.0.8078.81"
+        ],
+        "uamb": [
+          "0"
+        ],
+        "uap": [
+          "Windows"
+        ],
+        "uapv": [
+          "8.0.0"
+        ],
+        "uaw": [
+          "0"
+        ],
+        "_tu": [
+          "CA"
+        ],
+        "data": [
+          "event=gtag.config"
+        ],
+        "ept": [
+          "68"
+        ],
+        "gcp": [
+          "5"
+        ]
+      },
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.obilet.com/",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": null,
+      "response_sample": "",
+      "response_truncated": false
+    },
+    {
+      "id": 14,
+      "timestamp": "2026-11-06T19:33:57.755240+00:00",
+      "method": "POST",
+      "url": "https://www.google.com/rmkt/collect/997509091/",
+      "full_url": "https://www.google.com/rmkt/collect/997509091/?random=1793993634863&cv=11&fst=1793993634863&fmt=8&bg=ffffff&guid=ON&async=1&en=gtag.config&gtm=45be6b41v9231202897za20ozb72074004zd72074004xecxf1&gcd=13t3t3t3t5l1&dma=0&tag_exp=115938465~115938469~118897920~118897930~120213116~120385423~120412526~120420414~120469145~120469153~121191153~121246026~121246034~123814185~124013662&u_w=1280&u_h=720&url=https%3A%2F%2Fwww.obilet.com%2Fucak-bileti&rcb=12&frm=0&tiba=U%C3%A7ak%20Bileti%20Al%2C%20Ucuz%20U%C3%A7ak%20Bileti%20Fiyatlar%C4%B1%20-%20obilet.com&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=1558500767.1793993633&uaa=x86&uab=64&uafvl=Not%253AA-Brand%3B8.0.0.0%7CChromium%3B156.0.8078.81%7CGoogle%2520Chrome%3B156.0.8078.81&uamb=0&uam=&uap=Windows&uapv=8.0.0&uaw=0&_tu=CA&data=event%3Dgtag.config&ept=68&gcp=5",
+      "domain": "www.google.com",
+      "path": "/rmkt/collect/997509091/",
+      "status_code": 200,
+      "resource_type": "fetch",
+      "query_params": {
+        "random": [
+          "1793993634863"
+        ],
+        "cv": [
+          "11"
+        ],
+        "fst": [
+          "1793993634863"
+        ],
+        "fmt": [
+          "8"
+        ],
+        "bg": [
+          "ffffff"
+        ],
+        "guid": [
+          "ON"
+        ],
+        "async": [
+          "1"
+        ],
+        "en": [
+          "gtag.config"
+        ],
+        "gtm": [
+          "45be6b41v9231202897za20ozb72074004zd72074004xecxf1"
+        ],
+        "gcd": [
+          "13t3t3t3t5l1"
+        ],
+        "dma": [
+          "0"
+        ],
+        "tag_exp": [
+          "115938465~115938469~118897920~118897930~120213116~120385423~120412526~120420414~120469145~120469153~121191153~121246026~121246034~123814185~124013662"
+        ],
+        "u_w": [
+          "1280"
+        ],
+        "u_h": [
+          "720"
+        ],
+        "url": [
+          "https://www.obilet.com/ucak-bileti"
+        ],
+        "rcb": [
+          "12"
+        ],
+        "frm": [
+          "0"
+        ],
+        "tiba": [
+          "Uçak Bileti Al, Ucuz Uçak Bileti Fiyatları - obilet.com"
+        ],
+        "hn": [
+          "www.googleadservices.com"
+        ],
+        "npa": [
+          "0"
+        ],
+        "pscdl": [
+          "noapi"
+        ],
+        "auid": [
+          "1558500767.1793993633"
+        ],
+        "uaa": [
+          "x86"
+        ],
+        "uab": [
+          "64"
+        ],
+        "uafvl": [
+          "Not%3AA-Brand;8.0.0.0|Chromium;156.0.8078.81|Google%20Chrome;156.0.8078.81"
+        ],
+        "uamb": [
+          "0"
+        ],
+        "uap": [
+          "Windows"
+        ],
+        "uapv": [
+          "8.0.0"
+        ],
+        "uaw": [
+          "0"
+        ],
+        "_tu": [
+          "CA"
+        ],
+        "data": [
+          "event=gtag.config"
+        ],
+        "ept": [
+          "68"
+        ],
+        "gcp": [
+          "5"
+        ]
+      },
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.obilet.com/",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": null,
+      "response_sample": "",
+      "response_truncated": false
+    },
+    {
+      "id": 15,
+      "timestamp": "2026-11-06T19:33:57.767362+00:00",
+      "method": "POST",
+      "url": "https://www.google.com/ccm/collect",
+      "full_url": "https://www.google.com/ccm/collect?rcb=12&frm=0&apvc=0&auid=1558500767.1793993633&dt=U%C3%A7ak%20Bileti%20Al%2C%20Ucuz%20U%C3%A7ak%20Bileti%20Fiyatlar%C4%B1%20-%20obilet.com&tid=AW-997509091&en=page_view&dl=https%3A%2F%2Fwww.obilet.com%2Fucak-bileti&scrsrc=www.googletagmanager.com&rnd=1033578781.1793993633&navt=n&npa=0&_tu=CA&gtm=45be6b41v9231202897za20ozb72074004zd72074004xecxf1&gcs=G111&gcd=13t3t3t3t5l1&dma=0&tag_exp=115938465~115938469~118897920~118897930~120213116~120385423~120412526~120420414~120469145~120469153~121191153~121246026~121246034~123814185~124013662&tft=1793993635148&tfd=8673&tids=AW-997509091&fmt=8",
+      "domain": "www.google.com",
+      "path": "/ccm/collect",
+      "status_code": 200,
+      "resource_type": "fetch",
+      "query_params": {
+        "rcb": [
+          "12"
+        ],
+        "frm": [
+          "0"
+        ],
+        "apvc": [
+          "0"
+        ],
+        "auid": [
+          "1558500767.1793993633"
+        ],
+        "dt": [
+          "Uçak Bileti Al, Ucuz Uçak Bileti Fiyatları - obilet.com"
+        ],
+        "tid": [
+          "AW-997509091"
+        ],
+        "en": [
+          "page_view"
+        ],
+        "dl": [
+          "https://www.obilet.com/ucak-bileti"
+        ],
+        "scrsrc": [
+          "www.googletagmanager.com"
+        ],
+        "rnd": [
+          "1033578781.1793993633"
+        ],
+        "navt": [
+          "n"
+        ],
+        "npa": [
+          "0"
+        ],
+        "_tu": [
+          "CA"
+        ],
+        "gtm": [
+          "45be6b41v9231202897za20ozb72074004zd72074004xecxf1"
+        ],
+        "gcs": [
+          "G111"
+        ],
+        "gcd": [
+          "13t3t3t3t5l1"
+        ],
+        "dma": [
+          "0"
+        ],
+        "tag_exp": [
+          "115938465~115938469~118897920~118897930~120213116~120385423~120412526~120420414~120469145~120469153~121191153~121246026~121246034~123814185~124013662"
+        ],
+        "tft": [
+          "1793993635148"
+        ],
+        "tfd": [
+          "8673"
+        ],
+        "tids": [
+          "AW-997509091"
+        ],
+        "fmt": [
+          "8"
+        ]
+      },
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.obilet.com/",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": null,
+      "response_sample": "",
+      "response_truncated": false
+    },
+    {
+      "id": 16,
+      "timestamp": "2026-11-06T19:33:57.768555+00:00",
+      "method": "POST",
+      "url": "https://www.google.com/ccm/collect",
+      "full_url": "https://www.google.com/ccm/collect?rcb=12&frm=0&apvc=0&ae=g&auid=1558500767.1793993633&dt=U%C3%A7ak%20Bileti%20Al%2C%20Ucuz%20U%C3%A7ak%20Bileti%20Fiyatlar%C4%B1%20-%20obilet.com&tid=AW-997509091&en=page_view&dl=https%3A%2F%2Fwww.obilet.com%2Fucak-bileti&scrsrc=www.googletagmanager.com&rnd=1033578781.1793993633&navt=n&npa=0&ep.flight_pagetype=FlightHome&ep.flight_startdate=2026-11-08&ep.flight_enddate=2026-11-08&ep.ads_data_redaction=1&_tu=CA&gtm=45be6b41v9231202897z872074004za20gzb72074004zd72074004xeaxf1&gcs=G111&gcd=13t3t3t3t5l1&dma=0&tag_exp=115938465~115938469~118897920~118897930~120213116~120385423~120412526~120420414~120469145~120469153~121191153~121246026~121246034~123814185~124013662&tft=1793993635150&tfd=8676&tids=AW-997509091&fmt=8",
+      "domain": "www.google.com",
+      "path": "/ccm/collect",
+      "status_code": 200,
+      "resource_type": "fetch",
+      "query_params": {
+        "rcb": [
+          "12"
+        ],
+        "frm": [
+          "0"
+        ],
+        "apvc": [
+          "0"
+        ],
+        "ae": [
+          "g"
+        ],
+        "auid": [
+          "1558500767.1793993633"
+        ],
+        "dt": [
+          "Uçak Bileti Al, Ucuz Uçak Bileti Fiyatları - obilet.com"
+        ],
+        "tid": [
+          "AW-997509091"
+        ],
+        "en": [
+          "page_view"
+        ],
+        "dl": [
+          "https://www.obilet.com/ucak-bileti"
+        ],
+        "scrsrc": [
+          "www.googletagmanager.com"
+        ],
+        "rnd": [
+          "1033578781.1793993633"
+        ],
+        "navt": [
+          "n"
+        ],
+        "npa": [
+          "0"
+        ],
+        "ep.flight_pagetype": [
+          "FlightHome"
+        ],
+        "ep.flight_startdate": [
+          "2026-11-08"
+        ],
+        "ep.flight_enddate": [
+          "2026-11-08"
+        ],
+        "ep.ads_data_redaction": [
+          "1"
+        ],
+        "_tu": [
+          "CA"
+        ],
+        "gtm": [
+          "45be6b41v9231202897z872074004za20gzb72074004zd72074004xeaxf1"
+        ],
+        "gcs": [
+          "G111"
+        ],
+        "gcd": [
+          "13t3t3t3t5l1"
+        ],
+        "dma": [
+          "0"
+        ],
+        "tag_exp": [
+          "115938465~115938469~118897920~118897930~120213116~120385423~120412526~120420414~120469145~120469153~121191153~121246026~121246034~123814185~124013662"
+        ],
+        "tft": [
+          "1793993635150"
+        ],
+        "tfd": [
+          "8676"
+        ],
+        "tids": [
+          "AW-997509091"
+        ],
+        "fmt": [
+          "8"
+        ]
+      },
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.obilet.com/",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": null,
+      "response_sample": "",
+      "response_truncated": false
+    },
+    {
+      "id": 17,
+      "timestamp": "2026-11-06T19:33:57.769302+00:00",
+      "method": "POST",
+      "url": "https://www.google.com/rmkt/collect/997509091/",
+      "full_url": "https://www.google.com/rmkt/collect/997509091/?random=1793993634992&cv=11&fst=1793993634992&fmt=8&bg=ffffff&guid=ON&async=1&en=page_view&gtm=45be6b41v9231202897z872074004za20gzb72074004zd72074004xeaxf1&gcd=13t3t3t3t5l1&dma=0&tag_exp=115938465~115938469~118897920~118897930~120213116~120385423~120412526~120420414~120469145~120469153~121191153~121246026~121246034~123814185~124013662&u_w=1280&u_h=720&url=https%3A%2F%2Fwww.obilet.com%2Fucak-bileti&rcb=12&frm=0&tiba=U%C3%A7ak%20Bileti%20Al%2C%20Ucuz%20U%C3%A7ak%20Bileti%20Fiyatlar%C4%B1%20-%20obilet.com&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=1558500767.1793993633&uaa=x86&uab=64&uafvl=Not%253AA-Brand%3B8.0.0.0%7CChromium%3B156.0.8078.81%7CGoogle%2520Chrome%3B156.0.8078.81&uamb=0&uam=&uap=Windows&uapv=8.0.0&uaw=0&_tu=CA&data=event%3Dpage_view%3Bflight_pagetype%3DFlightHome%3Bflight_startdate%3D2026-11-08%3Bflight_enddate%3D2026-11-08%3Bads_data_redaction%3Dtrue&ept=68&gcp=5",
+      "domain": "www.google.com",
+      "path": "/rmkt/collect/997509091/",
+      "status_code": 200,
+      "resource_type": "fetch",
+      "query_params": {
+        "random": [
+          "1793993634992"
+        ],
+        "cv": [
+          "11"
+        ],
+        "fst": [
+          "1793993634992"
+        ],
+        "fmt": [
+          "8"
+        ],
+        "bg": [
+          "ffffff"
+        ],
+        "guid": [
+          "ON"
+        ],
+        "async": [
+          "1"
+        ],
+        "en": [
+          "page_view"
+        ],
+        "gtm": [
+          "45be6b41v9231202897z872074004za20gzb72074004zd72074004xeaxf1"
+        ],
+        "gcd": [
+          "13t3t3t3t5l1"
+        ],
+        "dma": [
+          "0"
+        ],
+        "tag_exp": [
+          "115938465~115938469~118897920~118897930~120213116~120385423~120412526~120420414~120469145~120469153~121191153~121246026~121246034~123814185~124013662"
+        ],
+        "u_w": [
+          "1280"
+        ],
+        "u_h": [
+          "720"
+        ],
+        "url": [
+          "https://www.obilet.com/ucak-bileti"
+        ],
+        "rcb": [
+          "12"
+        ],
+        "frm": [
+          "0"
+        ],
+        "tiba": [
+          "Uçak Bileti Al, Ucuz Uçak Bileti Fiyatları - obilet.com"
+        ],
+        "hn": [
+          "www.googleadservices.com"
+        ],
+        "npa": [
+          "0"
+        ],
+        "pscdl": [
+          "noapi"
+        ],
+        "auid": [
+          "1558500767.1793993633"
+        ],
+        "uaa": [
+          "x86"
+        ],
+        "uab": [
+          "64"
+        ],
+        "uafvl": [
+          "Not%3AA-Brand;8.0.0.0|Chromium;156.0.8078.81|Google%20Chrome;156.0.8078.81"
+        ],
+        "uamb": [
+          "0"
+        ],
+        "uap": [
+          "Windows"
+        ],
+        "uapv": [
+          "8.0.0"
+        ],
+        "uaw": [
+          "0"
+        ],
+        "_tu": [
+          "CA"
+        ],
+        "data": [
+          "event=page_view;flight_pagetype=FlightHome;flight_startdate=2026-11-08;flight_enddate=2026-11-08;ads_data_redaction=true"
+        ],
+        "ept": [
+          "68"
+        ],
+        "gcp": [
+          "5"
+        ]
+      },
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.obilet.com/",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": null,
+      "response_sample": "",
+      "response_truncated": false
+    },
+    {
+      "id": 18,
+      "timestamp": "2026-11-06T19:33:57.769302+00:00",
+      "method": "POST",
+      "url": "https://www.google.com/rmkt/collect/952167006/",
+      "full_url": "https://www.google.com/rmkt/collect/952167006/?random=1793993635292&cv=11&fst=1793993635292&fmt=8&bg=ffffff&guid=ON&async=1&en=gtag.config&gtm=45be6b41v891138405za20ozb72074004zd72074004xecxf1&gcd=13t3t3t3t5l1&dma=0&tag_exp=115938465~115938468~118897920~118897930~120213116~120385423~120412526~120420416~120469145~120469153~121191153~121246026~121246034~123814185~124013660&u_w=1280&u_h=720&url=https%3A%2F%2Fwww.obilet.com%2Fucak-bileti&rcb=0&frm=0&tiba=U%C3%A7ak%20Bileti%20Al%2C%20Ucuz%20U%C3%A7ak%20Bileti%20Fiyatlar%C4%B1%20-%20obilet.com&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=1558500767.1793993633&uaa=x86&uab=64&uafvl=Not%253AA-Brand%3B8.0.0.0%7CChromium%3B156.0.8078.81%7CGoogle%2520Chrome%3B156.0.8078.81&uamb=0&uam=&uap=Windows&uapv=8.0.0&uaw=0&_tu=CA&data=event%3Dgtag.config&ept=68&gcp=5",
+      "domain": "www.google.com",
+      "path": "/rmkt/collect/952167006/",
+      "status_code": 200,
+      "resource_type": "fetch",
+      "query_params": {
+        "random": [
+          "1793993635292"
+        ],
+        "cv": [
+          "11"
+        ],
+        "fst": [
+          "1793993635292"
+        ],
+        "fmt": [
+          "8"
+        ],
+        "bg": [
+          "ffffff"
+        ],
+        "guid": [
+          "ON"
+        ],
+        "async": [
+          "1"
+        ],
+        "en": [
+          "gtag.config"
+        ],
+        "gtm": [
+          "45be6b41v891138405za20ozb72074004zd72074004xecxf1"
+        ],
+        "gcd": [
+          "13t3t3t3t5l1"
+        ],
+        "dma": [
+          "0"
+        ],
+        "tag_exp": [
+          "115938465~115938468~118897920~118897930~120213116~120385423~120412526~120420416~120469145~120469153~121191153~121246026~121246034~123814185~124013660"
+        ],
+        "u_w": [
+          "1280"
+        ],
+        "u_h": [
+          "720"
+        ],
+        "url": [
+          "https://www.obilet.com/ucak-bileti"
+        ],
+        "rcb": [
+          "0"
+        ],
+        "frm": [
+          "0"
+        ],
+        "tiba": [
+          "Uçak Bileti Al, Ucuz Uçak Bileti Fiyatları - obilet.com"
+        ],
+        "hn": [
+          "www.googleadservices.com"
+        ],
+        "npa": [
+          "0"
+        ],
+        "pscdl": [
+          "noapi"
+        ],
+        "auid": [
+          "1558500767.1793993633"
+        ],
+        "uaa": [
+          "x86"
+        ],
+        "uab": [
+          "64"
+        ],
+        "uafvl": [
+          "Not%3AA-Brand;8.0.0.0|Chromium;156.0.8078.81|Google%20Chrome;156.0.8078.81"
+        ],
+        "uamb": [
+          "0"
+        ],
+        "uap": [
+          "Windows"
+        ],
+        "uapv": [
+          "8.0.0"
+        ],
+        "uaw": [
+          "0"
+        ],
+        "_tu": [
+          "CA"
+        ],
+        "data": [
+          "event=gtag.config"
+        ],
+        "ept": [
+          "68"
+        ],
+        "gcp": [
+          "5"
+        ]
+      },
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.obilet.com/",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": null,
+      "response_sample": "",
+      "response_truncated": false
+    },
+    {
+      "id": 19,
+      "timestamp": "2026-11-06T19:33:57.769302+00:00",
+      "method": "POST",
+      "url": "https://www.google.com/rmkt/collect/952167006/",
+      "full_url": "https://www.google.com/rmkt/collect/952167006/?random=1793993635401&cv=11&fst=1793993635401&fmt=8&bg=ffffff&guid=ON&async=1&en=page_view&gtm=45be6b41v891138405z872074004za20gzb72074004zd72074004xeaxf1&gcd=13t3t3t3t5l1&dma=0&tag_exp=115938465~115938468~118897920~118897930~120213116~120385423~120412526~120420416~120469145~120469153~121191153~121246026~121246034~123814185~124013660&u_w=1280&u_h=720&url=https%3A%2F%2Fwww.obilet.com%2Fucak-bileti&rcb=0&frm=0&tiba=U%C3%A7ak%20Bileti%20Al%2C%20Ucuz%20U%C3%A7ak%20Bileti%20Fiyatlar%C4%B1%20-%20obilet.com&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=1558500767.1793993633&uaa=x86&uab=64&uafvl=Not%253AA-Brand%3B8.0.0.0%7CChromium%3B156.0.8078.81%7CGoogle%2520Chrome%3B156.0.8078.81&uamb=0&uam=&uap=Windows&uapv=8.0.0&uaw=0&_tu=CA&data=event%3Dpage_view%3Bflight_pagetype%3DFlightHome%3Bflight_startdate%3D2026-11-08%3Bflight_enddate%3D2026-11-08%3Bads_data_redaction%3Dtrue&ept=68&gcp=5",
+      "domain": "www.google.com",
+      "path": "/rmkt/collect/952167006/",
+      "status_code": 200,
+      "resource_type": "fetch",
+      "query_params": {
+        "random": [
+          "1793993635401"
+        ],
+        "cv": [
+          "11"
+        ],
+        "fst": [
+          "1793993635401"
+        ],
+        "fmt": [
+          "8"
+        ],
+        "bg": [
+          "ffffff"
+        ],
+        "guid": [
+          "ON"
+        ],
+        "async": [
+          "1"
+        ],
+        "en": [
+          "page_view"
+        ],
+        "gtm": [
+          "45be6b41v891138405z872074004za20gzb72074004zd72074004xeaxf1"
+        ],
+        "gcd": [
+          "13t3t3t3t5l1"
+        ],
+        "dma": [
+          "0"
+        ],
+        "tag_exp": [
+          "115938465~115938468~118897920~118897930~120213116~120385423~120412526~120420416~120469145~120469153~121191153~121246026~121246034~123814185~124013660"
+        ],
+        "u_w": [
+          "1280"
+        ],
+        "u_h": [
+          "720"
+        ],
+        "url": [
+          "https://www.obilet.com/ucak-bileti"
+        ],
+        "rcb": [
+          "0"
+        ],
+        "frm": [
+          "0"
+        ],
+        "tiba": [
+          "Uçak Bileti Al, Ucuz Uçak Bileti Fiyatları - obilet.com"
+        ],
+        "hn": [
+          "www.googleadservices.com"
+        ],
+        "npa": [
+          "0"
+        ],
+        "pscdl": [
+          "noapi"
+        ],
+        "auid": [
+          "1558500767.1793993633"
+        ],
+        "uaa": [
+          "x86"
+        ],
+        "uab": [
+          "64"
+        ],
+        "uafvl": [
+          "Not%3AA-Brand;8.0.0.0|Chromium;156.0.8078.81|Google%20Chrome;156.0.8078.81"
+        ],
+        "uamb": [
+          "0"
+        ],
+        "uap": [
+          "Windows"
+        ],
+        "uapv": [
+          "8.0.0"
+        ],
+        "uaw": [
+          "0"
+        ],
+        "_tu": [
+          "CA"
+        ],
+        "data": [
+          "event=page_view;flight_pagetype=FlightHome;flight_startdate=2026-11-08;flight_enddate=2026-11-08;ads_data_redaction=true"
+        ],
+        "ept": [
+          "68"
+        ],
+        "gcp": [
+          "5"
+        ]
+      },
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.obilet.com/",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": null,
+      "response_sample": "",
+      "response_truncated": false
+    },
+    {
+      "id": 20,
+      "timestamp": "2026-11-06T19:33:57.769302+00:00",
+      "method": "POST",
+      "url": "https://www.google.com/ccm/collect",
+      "full_url": "https://www.google.com/ccm/collect?rcb=0&frm=0&apvc=0&auid=1558500767.1793993633&dt=U%C3%A7ak%20Bileti%20Al%2C%20Ucuz%20U%C3%A7ak%20Bileti%20Fiyatlar%C4%B1%20-%20obilet.com&tid=AW-952167006&en=page_view&dl=https%3A%2F%2Fwww.obilet.com%2Fucak-bileti&scrsrc=www.googletagmanager.com&rnd=1033578781.1793993633&navt=n&npa=0&_tu=CA&gtm=45be6b41v891138405za20ozb72074004zd72074004xecxf1&gcs=G111&gcd=13t3t3t3t5l1&dma=0&tag_exp=115938465~115938468~118897920~118897930~120213116~120385423~120412526~120420416~120469145~120469153~121191153~121246026~121246034~123814185~124013660&tft=1793993635440&tfd=8966&tids=AW-952167006&fmt=8",
+      "domain": "www.google.com",
+      "path": "/ccm/collect",
+      "status_code": 200,
+      "resource_type": "fetch",
+      "query_params": {
+        "rcb": [
+          "0"
+        ],
+        "frm": [
+          "0"
+        ],
+        "apvc": [
+          "0"
+        ],
+        "auid": [
+          "1558500767.1793993633"
+        ],
+        "dt": [
+          "Uçak Bileti Al, Ucuz Uçak Bileti Fiyatları - obilet.com"
+        ],
+        "tid": [
+          "AW-952167006"
+        ],
+        "en": [
+          "page_view"
+        ],
+        "dl": [
+          "https://www.obilet.com/ucak-bileti"
+        ],
+        "scrsrc": [
+          "www.googletagmanager.com"
+        ],
+        "rnd": [
+          "1033578781.1793993633"
+        ],
+        "navt": [
+          "n"
+        ],
+        "npa": [
+          "0"
+        ],
+        "_tu": [
+          "CA"
+        ],
+        "gtm": [
+          "45be6b41v891138405za20ozb72074004zd72074004xecxf1"
+        ],
+        "gcs": [
+          "G111"
+        ],
+        "gcd": [
+          "13t3t3t3t5l1"
+        ],
+        "dma": [
+          "0"
+        ],
+        "tag_exp": [
+          "115938465~115938468~118897920~118897930~120213116~120385423~120412526~120420416~120469145~120469153~121191153~121246026~121246034~123814185~124013660"
+        ],
+        "tft": [
+          "1793993635440"
+        ],
+        "tfd": [
+          "8966"
+        ],
+        "tids": [
+          "AW-952167006"
+        ],
+        "fmt": [
+          "8"
+        ]
+      },
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.obilet.com/",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": null,
+      "response_sample": "",
+      "response_truncated": false
+    },
+    {
+      "id": 21,
+      "timestamp": "2026-11-06T19:33:57.851449+00:00",
+      "method": "POST",
+      "url": "https://www.google.com/ccm/collect",
+      "full_url": "https://www.google.com/ccm/collect?rcb=0&frm=0&apvc=0&ae=g&auid=1558500767.1793993633&dt=U%C3%A7ak%20Bileti%20Al%2C%20Ucuz%20U%C3%A7ak%20Bileti%20Fiyatlar%C4%B1%20-%20obilet.com&tid=AW-952167006&en=page_view&dl=https%3A%2F%2Fwww.obilet.com%2Fucak-bileti&scrsrc=www.googletagmanager.com&rnd=1033578781.1793993633&navt=n&npa=0&ep.flight_pagetype=FlightHome&ep.flight_startdate=2026-11-08&ep.flight_enddate=2026-11-08&ep.ads_data_redaction=1&_tu=CA&gtm=45be6b41v891138405z872074004za20gzb72074004zd72074004xeaxf1&gcs=G111&gcd=13t3t3t3t5l1&dma=0&tag_exp=115938465~115938468~118897920~118897930~120213116~120385423~120412526~120420416~120469145~120469153~121191153~121246026~121246034~123814185~124013660&tft=1793993635442&tfd=8968&tids=AW-952167006&fmt=8",
+      "domain": "www.google.com",
+      "path": "/ccm/collect",
+      "status_code": 200,
+      "resource_type": "fetch",
+      "query_params": {
+        "rcb": [
+          "0"
+        ],
+        "frm": [
+          "0"
+        ],
+        "apvc": [
+          "0"
+        ],
+        "ae": [
+          "g"
+        ],
+        "auid": [
+          "1558500767.1793993633"
+        ],
+        "dt": [
+          "Uçak Bileti Al, Ucuz Uçak Bileti Fiyatları - obilet.com"
+        ],
+        "tid": [
+          "AW-952167006"
+        ],
+        "en": [
+          "page_view"
+        ],
+        "dl": [
+          "https://www.obilet.com/ucak-bileti"
+        ],
+        "scrsrc": [
+          "www.googletagmanager.com"
+        ],
+        "rnd": [
+          "1033578781.1793993633"
+        ],
+        "navt": [
+          "n"
+        ],
+        "npa": [
+          "0"
+        ],
+        "ep.flight_pagetype": [
+          "FlightHome"
+        ],
+        "ep.flight_startdate": [
+          "2026-11-08"
+        ],
+        "ep.flight_enddate": [
+          "2026-11-08"
+        ],
+        "ep.ads_data_redaction": [
+          "1"
+        ],
+        "_tu": [
+          "CA"
+        ],
+        "gtm": [
+          "45be6b41v891138405z872074004za20gzb72074004zd72074004xeaxf1"
+        ],
+        "gcs": [
+          "G111"
+        ],
+        "gcd": [
+          "13t3t3t3t5l1"
+        ],
+        "dma": [
+          "0"
+        ],
+        "tag_exp": [
+          "115938465~115938468~118897920~118897930~120213116~120385423~120412526~120420416~120469145~120469153~121191153~121246026~121246034~123814185~124013660"
+        ],
+        "tft": [
+          "1793993635442"
+        ],
+        "tfd": [
+          "8968"
+        ],
+        "tids": [
+          "AW-952167006"
+        ],
+        "fmt": [
+          "8"
+        ]
+      },
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.obilet.com/",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": null,
+      "response_sample": "",
+      "response_truncated": false
+    },
+    {
+      "id": 22,
+      "timestamp": "2026-11-06T19:33:58.019016+00:00",
+      "method": "POST",
+      "url": "https://www.google.com/measurement/conversion",
+      "full_url": "https://www.google.com/measurement/conversion?random=1793993635623&cv=11&tid=G-ZM4H7HE3QN&fst=1793993635623&fmt=8&en=session_start&gtm=45je6b41v878245844za20ozb72074004zd72074004xecxf1&gcs=G111&gcd=13t3t3t3t5l1&dma=0&tag_exp=115616985~115938465~115938469~118897920~118897930~120213116~120385423~120412526~120420416~120469145~120469153~121191153~121246026~121246034~123814185~124013662&u_w=1280&u_h=720&url=https%3A%2F%2Fwww.obilet.com%2Fucak-bileti&gacid=963678245.1793993636&hn=www.googleadservices.com&frm=0&tiba=U%C3%A7ak%20Bileti%20Al%2C%20Ucuz%20U%C3%A7ak%20Bileti%20Fiyatlar%C4%B1%20-%20obilet.com&npa=0&pscdl=noapi&auid=1558500767.1793993633&uaa=x86&uab=64&uafvl=Not%253AA-Brand%3B8.0.0.0%7CChromium%3B156.0.8078.81%7CGoogle%2520Chrome%3B156.0.8078.81&uamb=0&uam=&uap=Windows&uapv=8.0.0&uaw=0&_tu=CA&rcb=1",
+      "domain": "www.google.com",
+      "path": "/measurement/conversion",
+      "status_code": 200,
+      "resource_type": "fetch",
+      "query_params": {
+        "random": [
+          "1793993635623"
+        ],
+        "cv": [
+          "11"
+        ],
+        "tid": [
+          "G-ZM4H7HE3QN"
+        ],
+        "fst": [
+          "1793993635623"
+        ],
+        "fmt": [
+          "8"
+        ],
+        "en": [
+          "session_start"
+        ],
+        "gtm": [
+          "45je6b41v878245844za20ozb72074004zd72074004xecxf1"
+        ],
+        "gcs": [
+          "G111"
+        ],
+        "gcd": [
+          "13t3t3t3t5l1"
+        ],
+        "dma": [
+          "0"
+        ],
+        "tag_exp": [
+          "115616985~115938465~115938469~118897920~118897930~120213116~120385423~120412526~120420416~120469145~120469153~121191153~121246026~121246034~123814185~124013662"
+        ],
+        "u_w": [
+          "1280"
+        ],
+        "u_h": [
+          "720"
+        ],
+        "url": [
+          "https://www.obilet.com/ucak-bileti"
+        ],
+        "gacid": [
+          "963678245.1793993636"
+        ],
+        "hn": [
+          "www.googleadservices.com"
+        ],
+        "frm": [
+          "0"
+        ],
+        "tiba": [
+          "Uçak Bileti Al, Ucuz Uçak Bileti Fiyatları - obilet.com"
+        ],
+        "npa": [
+          "0"
+        ],
+        "pscdl": [
+          "noapi"
+        ],
+        "auid": [
+          "1558500767.1793993633"
+        ],
+        "uaa": [
+          "x86"
+        ],
+        "uab": [
+          "64"
+        ],
+        "uafvl": [
+          "Not%3AA-Brand;8.0.0.0|Chromium;156.0.8078.81|Google%20Chrome;156.0.8078.81"
+        ],
+        "uamb": [
+          "0"
+        ],
+        "uap": [
+          "Windows"
+        ],
+        "uapv": [
+          "8.0.0"
+        ],
+        "uaw": [
+          "0"
+        ],
+        "_tu": [
+          "CA"
+        ],
+        "rcb": [
+          "1"
+        ]
+      },
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.obilet.com/",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": null,
+      "response_sample": "",
+      "response_truncated": false
+    },
+    {
+      "id": 23,
+      "timestamp": "2026-11-06T19:33:58.435423+00:00",
+      "method": "GET",
+      "url": "https://www.google.com/pagead/1p-conversion/869750748/",
+      "full_url": "https://www.google.com/pagead/1p-conversion/869750748/?random=260211581&cv=11&fst=1793993634688&fmt=8&bg=ffffff&guid=ON&async=1&en=conversion&gtm=45be6b41z872074004za20gzb72074004zd72074004xeaxf1&gcs=G111&gcd=13t3t3t3t5l1&dma=0&tag_exp=115938465~115938468~118897920~118897930~120213116~120385422~120412526~120420416~120469145~120469153~121191153~121246026~121246034~123814185&u_w=1280&u_h=720&url=https%3A%2F%2Fwww.obilet.com%2Fucak-bileti&rcb=4&label=7LOBCKrBzmsQ3K_dngM&frm=0&tiba=U%C3%A7ak%20Bileti%20Al%2C%20Ucuz%20U%C3%A7ak%20Bileti%20Fiyatlar%C4%B1%20-%20obilet.com&value=0&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=1558500767.1793993633&uaa=x86&uab=64&uafvl=Not%253AA-Brand%3B8.0.0.0%7CChromium%3B156.0.8078.81%7CGoogle%2520Chrome%3B156.0.8078.81&uamb=0&uam=&uap=Windows&uapv=8.0.0&uaw=0&_tu=CA&gcl_ctr=1~0~0~0&data=ads_data_redaction%3Dtrue&category=acrcp_v1_512&ept=5&ct_cookie_present=false&crd=CLTesQII8t-xAgit4bECCK_hsQIIobixAgixwbECCLDBsQIIscOxAgiKxbECCMLJsQII1-ixAgi0xrECCOLTsQIIh9uxAgjTxbECCOvMsQII7c6xAgjVz7ECCIrysQII9NqxAgji6rECCOjusQIIuPKxAgiS67ECCJfUsQIIyduxAgim3bECCLDesQIIgNuxAgjN4bECCMvhsQI&cerd=CgyDsL4tueu-Lbn-vi0&fsk=ChEIgJK21wYQ3tfDrqmLg6H2ARIsAMce10IbxJYST4zYRbelkMds28JCjilafridmTjsP9-8OnVNX15Od_lpoZUaAlOO&pscrd=IhMIk4ekiov0lwMVD5L9Bx0RzQnJOhdodHRwczovL3d3dy5vYmlsZXQuY29tL0JYQ2hFSWdKSzIxd1lRbjVYMXF1RGx1SjZoQVJJdEFJQW9FSV9MdEtWXzJaU0kwUTBkRjctbkhTNjlTNm9EcGxnbFdOMjFKRGdaQ2F5RXc5X1hwaXY2aUpwN3oMCAliCAgAEAAYACAA&is_vtc=1&cid=CAQS4QEAogo4de8qd5KefLDlIR_OZCeYWfMD8JsEoVuTYtg0VSXi-gY1Wbvb6w2Md-qsJeiFcnVaCGAUEExgx1E-Cynp2gXw4o2OUcS0nq_zDgrKSUcXV39SObfGxZXL4oynMGe8c-7g4oRoc0YDWFZT3gMwMM_-U7QAHrm8IhO7IvDS5CNxwBOLGe83SsCPffpnUAX4xj8bySAulBZvMYya4Bp3dI6yvjIe09kTRhwgffqSAzg24YvSTsA2S4JU2tLu16m7Zd6ZxyLSykrw2ip4s-UKhp9H4S-bRT3fqSuNH19nNRg&eitems=ChEIgJK21wYQwLSvqu7X-oqrARIdACVFSEzb1PoAa8bZ5ZvsC1c-TNay3TJJQM928tY&random=888604993",
+      "domain": "www.google.com",
+      "path": "/pagead/1p-conversion/869750748/",
+      "status_code": 302,
+      "resource_type": "fetch",
+      "query_params": {
+        "random": [
+          "260211581",
+          "888604993"
+        ],
+        "cv": [
+          "11"
+        ],
+        "fst": [
+          "1793993634688"
+        ],
+        "fmt": [
+          "8"
+        ],
+        "bg": [
+          "ffffff"
+        ],
+        "guid": [
+          "ON"
+        ],
+        "async": [
+          "1"
+        ],
+        "en": [
+          "conversion"
+        ],
+        "gtm": [
+          "45be6b41z872074004za20gzb72074004zd72074004xeaxf1"
+        ],
+        "gcs": [
+          "G111"
+        ],
+        "gcd": [
+          "13t3t3t3t5l1"
+        ],
+        "dma": [
+          "0"
+        ],
+        "tag_exp": [
+          "115938465~115938468~118897920~118897930~120213116~120385422~120412526~120420416~120469145~120469153~121191153~121246026~121246034~123814185"
+        ],
+        "u_w": [
+          "1280"
+        ],
+        "u_h": [
+          "720"
+        ],
+        "url": [
+          "https://www.obilet.com/ucak-bileti"
+        ],
+        "rcb": [
+          "4"
+        ],
+        "label": [
+          "7LOBCKrBzmsQ3K_dngM"
+        ],
+        "frm": [
+          "0"
+        ],
+        "tiba": [
+          "Uçak Bileti Al, Ucuz Uçak Bileti Fiyatları - obilet.com"
+        ],
+        "value": [
+          "0"
+        ],
+        "hn": [
+          "www.googleadservices.com"
+        ],
+        "npa": [
+          "0"
+        ],
+        "pscdl": [
+          "noapi"
+        ],
+        "auid": [
+          "1558500767.1793993633"
+        ],
+        "uaa": [
+          "x86"
+        ],
+        "uab": [
+          "64"
+        ],
+        "uafvl": [
+          "Not%3AA-Brand;8.0.0.0|Chromium;156.0.8078.81|Google%20Chrome;156.0.8078.81"
+        ],
+        "uamb": [
+          "0"
+        ],
+        "uap": [
+          "Windows"
+        ],
+        "uapv": [
+          "8.0.0"
+        ],
+        "uaw": [
+          "0"
+        ],
+        "_tu": [
+          "CA"
+        ],
+        "gcl_ctr": [
+          "1~0~0~0"
+        ],
+        "data": [
+          "ads_data_redaction=true"
+        ],
+        "category": [
+          "acrcp_v1_512"
+        ],
+        "ept": [
+          "5"
+        ],
+        "ct_cookie_present": [
+          "false"
+        ],
+        "crd": [
+          "CLTesQII8t-xAgit4bECCK_hsQIIobixAgixwbECCLDBsQIIscOxAgiKxbECCMLJsQII1-ixAgi0xrECCOLTsQIIh9uxAgjTxbECCOvMsQII7c6xAgjVz7ECCIrysQII9NqxAgji6rECCOjusQIIuPKxAgiS67ECCJfUsQIIyduxAgim3bECCLDesQIIgNuxAgjN4bECCMvhsQI"
+        ],
+        "cerd": [
+          "CgyDsL4tueu-Lbn-vi0"
+        ],
+        "fsk": [
+          "ChEIgJK21wYQ3tfDrqmLg6H2ARIsAMce10IbxJYST4zYRbelkMds28JCjilafridmTjsP9-8OnVNX15Od_lpoZUaAlOO"
+        ],
+        "pscrd": [
+          "IhMIk4ekiov0lwMVD5L9Bx0RzQnJOhdodHRwczovL3d3dy5vYmlsZXQuY29tL0JYQ2hFSWdKSzIxd1lRbjVYMXF1RGx1SjZoQVJJdEFJQW9FSV9MdEtWXzJaU0kwUTBkRjctbkhTNjlTNm9EcGxnbFdOMjFKRGdaQ2F5RXc5X1hwaXY2aUpwN3oMCAliCAgAEAAYACAA"
+        ],
+        "is_vtc": [
+          "1"
+        ],
+        "cid": [
+          "CAQS4QEAogo4de8qd5KefLDlIR_OZCeYWfMD8JsEoVuTYtg0VSXi-gY1Wbvb6w2Md-qsJeiFcnVaCGAUEExgx1E-Cynp2gXw4o2OUcS0nq_zDgrKSUcXV39SObfGxZXL4oynMGe8c-7g4oRoc0YDWFZT3gMwMM_-U7QAHrm8IhO7IvDS5CNxwBOLGe83SsCPffpnUAX4xj8bySAulBZvMYya4Bp3dI6yvjIe09kTRhwgffqSAzg24YvSTsA2S4JU2tLu16m7Zd6ZxyLSykrw2ip4s-UKhp9H4S-bRT3fqSuNH19nNRg"
+        ],
+        "eitems": [
+          "ChEIgJK21wYQwLSvqu7X-oqrARIdACVFSEzb1PoAa8bZ5ZvsC1c-TNay3TJJQM928tY"
+        ]
+      },
+      "headers": {
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "referer": "https://www.obilet.com/"
+      },
+      "request_payload": null,
+      "response_sample": "",
+      "response_truncated": false
+    },
+    {
+      "id": 24,
+      "timestamp": "2026-11-06T19:33:58.442961+00:00",
+      "method": "GET",
+      "url": "https://www.google.com.tr/pagead/1p-conversion/869750748/",
+      "full_url": "https://www.google.com.tr/pagead/1p-conversion/869750748/?random=260211581&cv=11&fst=1793993634688&fmt=8&bg=ffffff&guid=ON&async=1&en=conversion&gtm=45be6b41z872074004za20gzb72074004zd72074004xeaxf1&gcs=G111&gcd=13t3t3t3t5l1&dma=0&tag_exp=115938465~115938468~118897920~118897930~120213116~120385422~120412526~120420416~120469145~120469153~121191153~121246026~121246034~123814185&u_w=1280&u_h=720&url=https%3A%2F%2Fwww.obilet.com%2Fucak-bileti&rcb=4&label=7LOBCKrBzmsQ3K_dngM&frm=0&tiba=U%C3%A7ak%20Bileti%20Al%2C%20Ucuz%20U%C3%A7ak%20Bileti%20Fiyatlar%C4%B1%20-%20obilet.com&value=0&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=1558500767.1793993633&uaa=x86&uab=64&uafvl=Not%253AA-Brand%3B8.0.0.0%7CChromium%3B156.0.8078.81%7CGoogle%2520Chrome%3B156.0.8078.81&uamb=0&uam=&uap=Windows&uapv=8.0.0&uaw=0&_tu=CA&gcl_ctr=1~0~0~0&data=ads_data_redaction%3Dtrue&category=acrcp_v1_512&ept=5&ct_cookie_present=false&crd=CLTesQII8t-xAgit4bECCK_hsQIIobixAgixwbECCLDBsQIIscOxAgiKxbECCMLJsQII1-ixAgi0xrECCOLTsQIIh9uxAgjTxbECCOvMsQII7c6xAgjVz7ECCIrysQII9NqxAgji6rECCOjusQIIuPKxAgiS67ECCJfUsQIIyduxAgim3bECCLDesQIIgNuxAgjN4bECCMvhsQI&cerd=CgyDsL4tueu-Lbn-vi0&fsk=ChEIgJK21wYQ3tfDrqmLg6H2ARIsAMce10IbxJYST4zYRbelkMds28JCjilafridmTjsP9-8OnVNX15Od_lpoZUaAlOO&is_vtc=1&cid=CAQS4QEAogo4de8qd5KefLDlIR_OZCeYWfMD8JsEoVuTYtg0VSXi-gY1Wbvb6w2Md-qsJeiFcnVaCGAUEExgx1E-Cynp2gXw4o2OUcS0nq_zDgrKSUcXV39SObfGxZXL4oynMGe8c-7g4oRoc0YDWFZT3gMwMM_-U7QAHrm8IhO7IvDS5CNxwBOLGe83SsCPffpnUAX4xj8bySAulBZvMYya4Bp3dI6yvjIe09kTRhwgffqSAzg24YvSTsA2S4JU2tLu16m7Zd6ZxyLSykrw2ip4s-UKhp9H4S-bRT3fqSuNH19nNRg&eitems=ChEIgJK21wYQwLSvqu7X-oqrARIdACVFSEzb1PoAa8bZ5ZvsC1c-TNay3TJJQM928tY&random=888604993&ipr=y&pscrd=IhMIk4ekiov0lwMVD5L9Bx0RzQnJOhdodHRwczovL3d3dy5vYmlsZXQuY29tL0JYQ2hFSWdKSzIxd1lRbjVYMXF1RGx1SjZoQVJJdEFJQW9FSV9MdEtWXzJaU0kwUTBkRjctbkhTNjlTNm9EcGxnbFdOMjFKRGdaQ2F5RXc5X1hwaXY2aUpwN2ICIAF6DAgJYggIABAAGAAgAYIBD3ABiAEB8QFN-Hj8HBzrPw",
+      "domain": "www.google.com.tr",
+      "path": "/pagead/1p-conversion/869750748/",
+      "status_code": 200,
+      "resource_type": "fetch",
+      "query_params": {
+        "random": [
+          "260211581",
+          "888604993"
+        ],
+        "cv": [
+          "11"
+        ],
+        "fst": [
+          "1793993634688"
+        ],
+        "fmt": [
+          "8"
+        ],
+        "bg": [
+          "ffffff"
+        ],
+        "guid": [
+          "ON"
+        ],
+        "async": [
+          "1"
+        ],
+        "en": [
+          "conversion"
+        ],
+        "gtm": [
+          "45be6b41z872074004za20gzb72074004zd72074004xeaxf1"
+        ],
+        "gcs": [
+          "G111"
+        ],
+        "gcd": [
+          "13t3t3t3t5l1"
+        ],
+        "dma": [
+          "0"
+        ],
+        "tag_exp": [
+          "115938465~115938468~118897920~118897930~120213116~120385422~120412526~120420416~120469145~120469153~121191153~121246026~121246034~123814185"
+        ],
+        "u_w": [
+          "1280"
+        ],
+        "u_h": [
+          "720"
+        ],
+        "url": [
+          "https://www.obilet.com/ucak-bileti"
+        ],
+        "rcb": [
+          "4"
+        ],
+        "label": [
+          "7LOBCKrBzmsQ3K_dngM"
+        ],
+        "frm": [
+          "0"
+        ],
+        "tiba": [
+          "Uçak Bileti Al, Ucuz Uçak Bileti Fiyatları - obilet.com"
+        ],
+        "value": [
+          "0"
+        ],
+        "hn": [
+          "www.googleadservices.com"
+        ],
+        "npa": [
+          "0"
+        ],
+        "pscdl": [
+          "noapi"
+        ],
+        "auid": [
+          "1558500767.1793993633"
+        ],
+        "uaa": [
+          "x86"
+        ],
+        "uab": [
+          "64"
+        ],
+        "uafvl": [
+          "Not%3AA-Brand;8.0.0.0|Chromium;156.0.8078.81|Google%20Chrome;156.0.8078.81"
+        ],
+        "uamb": [
+          "0"
+        ],
+        "uap": [
+          "Windows"
+        ],
+        "uapv": [
+          "8.0.0"
+        ],
+        "uaw": [
+          "0"
+        ],
+        "_tu": [
+          "CA"
+        ],
+        "gcl_ctr": [
+          "1~0~0~0"
+        ],
+        "data": [
+          "ads_data_redaction=true"
+        ],
+        "category": [
+          "acrcp_v1_512"
+        ],
+        "ept": [
+          "5"
+        ],
+        "ct_cookie_present": [
+          "false"
+        ],
+        "crd": [
+          "CLTesQII8t-xAgit4bECCK_hsQIIobixAgixwbECCLDBsQIIscOxAgiKxbECCMLJsQII1-ixAgi0xrECCOLTsQIIh9uxAgjTxbECCOvMsQII7c6xAgjVz7ECCIrysQII9NqxAgji6rECCOjusQIIuPKxAgiS67ECCJfUsQIIyduxAgim3bECCLDesQIIgNuxAgjN4bECCMvhsQI"
+        ],
+        "cerd": [
+          "CgyDsL4tueu-Lbn-vi0"
+        ],
+        "fsk": [
+          "ChEIgJK21wYQ3tfDrqmLg6H2ARIsAMce10IbxJYST4zYRbelkMds28JCjilafridmTjsP9-8OnVNX15Od_lpoZUaAlOO"
+        ],
+        "is_vtc": [
+          "1"
+        ],
+        "cid": [
+          "CAQS4QEAogo4de8qd5KefLDlIR_OZCeYWfMD8JsEoVuTYtg0VSXi-gY1Wbvb6w2Md-qsJeiFcnVaCGAUEExgx1E-Cynp2gXw4o2OUcS0nq_zDgrKSUcXV39SObfGxZXL4oynMGe8c-7g4oRoc0YDWFZT3gMwMM_-U7QAHrm8IhO7IvDS5CNxwBOLGe83SsCPffpnUAX4xj8bySAulBZvMYya4Bp3dI6yvjIe09kTRhwgffqSAzg24YvSTsA2S4JU2tLu16m7Zd6ZxyLSykrw2ip4s-UKhp9H4S-bRT3fqSuNH19nNRg"
+        ],
+        "eitems": [
+          "ChEIgJK21wYQwLSvqu7X-oqrARIdACVFSEzb1PoAa8bZ5ZvsC1c-TNay3TJJQM928tY"
+        ],
+        "ipr": [
+          "y"
+        ],
+        "pscrd": [
+          "IhMIk4ekiov0lwMVD5L9Bx0RzQnJOhdodHRwczovL3d3dy5vYmlsZXQuY29tL0JYQ2hFSWdKSzIxd1lRbjVYMXF1RGx1SjZoQVJJdEFJQW9FSV9MdEtWXzJaU0kwUTBkRjctbkhTNjlTNm9EcGxnbFdOMjFKRGdaQ2F5RXc5X1hwaXY2aUpwN2ICIAF6DAgJYggIABAAGAAgAYIBD3ABiAEB8QFN-Hj8HBzrPw"
+        ]
+      },
+      "headers": {
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "referer": "https://www.obilet.com/"
+      },
+      "request_payload": null,
+      "response_sample": "",
+      "response_truncated": false
+    }
+  ]
+}

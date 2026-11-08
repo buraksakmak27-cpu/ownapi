@@ -1,0 +1,23 @@
+{
+  "service_name": "hepsiburada",
+  "target_url": "https://www.hepsiburada.com",
+  "goal": "E-ticaret ve ürün arama servisi",
+  "function_name": "send_sensor_data",
+  "explanation": "Kullanıcının e-ticaret ve ürün arama servisi için gönderdiği sensör verilerini işleyen uç nokta.",
+  "method": "POST",
+  "endpoint_url": "https://www.hepsiburada.com/tp85CVo3/IOuS42J/5VSVkyO/Rd/kiiuLJ8VJQfftt/UApRcXVcJg/UQp9FT/ZZREA",
+  "dynamic_params": [
+    {
+      "name": "sensor_data",
+      "original_key": "sensor_data",
+      "location": "body",
+      "param_type": "str",
+      "default_value": "",
+      "description": "Kullanıcıdan alınan sensör verileri."
+    }
+  ],
+  "created_at": "2026-11-04T20:06:09.009830+00:00",
+  "validation_status": "BAŞARILI",
+  "validation_passed_runs": 3,
+  "last_validated_at": "2026-11-06T19:32:37.694658+00:00"
+}

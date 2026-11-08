@@ -1,0 +1,46 @@
+{
+  "service_name": "linkedin_jobs",
+  "target_url": "https://www.linkedin.com/jobs/search/?keywords=AI%20Engineer",
+  "goal": "LinkedIn Jobs üzerinde anahtar kelime (keywords), konum (location) ve istenen ilan adedine (limit) göre güncel iş ilanlarını arama ve listeleme servisi",
+  "function_name": "search_jobs",
+  "explanation": "LinkedIn iş arama API uç noktası üzerinden `keywords` (örn. 'AI Engineer'), `location`, `limit` (getirilecek ilan sayısı, örn. 2, 10, 15) ve `start` parametreleriyle gerçek zamanlı iş ilanlarını otomatik sayfalamayla döndürür.",
+  "method": "GET",
+  "endpoint_url": "https://www.linkedin.com/jobs-guest/jobs/api/seeMoreJobPostings/search",
+  "dynamic_params": [
+    {
+      "name": "keywords",
+      "original_key": "keywords",
+      "location": "query",
+      "param_type": "str",
+      "default_value": "AI Engineer",
+      "description": "Aranacak iş unvanı, pozisyon veya yetenek anahtar kelimesi (örn. 'AI Engineer', 'Python Developer', 'Product Manager')."
+    },
+    {
+      "name": "location",
+      "original_key": "location",
+      "location": "query",
+      "param_type": "str",
+      "default_value": "",
+      "description": "İsteğe bağlı şehir, ülke veya çalışma modeli filtresi (örn. 'Turkey', 'Istanbul', 'Remote', 'United States')."
+    },
+    {
+      "name": "limit",
+      "original_key": "limit",
+      "location": "query",
+      "param_type": "int",
+      "default_value": 10,
+      "description": "Döndürülecek maksimum iş ilanı sayısı (örn. 2, 5, 10, 15). Tek sayfada yeterli ilan yoksa otomatik sayfalama yapılır."
+    },
+    {
+      "name": "start",
+      "original_key": "start",
+      "location": "query",
+      "param_type": "int",
+      "default_value": 0,
+      "description": "Sayfalama başlangıç indeksi (0, 10, 20 vb.)."
+    }
+  ],
+  "created_at": "2026-11-06T20:27:02.643887+00:00",
+  "validation_status": "BAŞARILI",
+  "validation_passed_runs": 3
+}

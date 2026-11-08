@@ -1,0 +1,23 @@
+{
+  "service_name": "coingecko",
+  "target_url": "https://www.coingecko.com/",
+  "goal": "Cryptocurrency market, token, and market cap rank search on CoinGecko",
+  "function_name": "search_crypto",
+  "explanation": "CoinGecko cryptocurrency search endpoint returning matching coins, symbols, market cap rankings, and categories.",
+  "method": "GET",
+  "endpoint_url": "https://api.coingecko.com/api/v3/search",
+  "dynamic_params": [
+    {
+      "name": "query",
+      "original_key": "query",
+      "location": "query",
+      "param_type": "str",
+      "default_value": "bitcoin",
+      "description": "Cryptocurrency name or ticker symbol (e.g. bitcoin, solana, ethereum)"
+    }
+  ],
+  "created_at": "2026-11-06T17:48:00+00:00",
+  "validation_status": "BAŞARILI",
+  "validation_passed_runs": 3,
+  "last_validated_at": "2026-11-06T19:29:09.420490+00:00"
+}

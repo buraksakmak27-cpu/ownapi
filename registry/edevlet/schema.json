@@ -1,0 +1,14 @@
+{
+  "service_name": "edevlet",
+  "target_url": "https://www.turkiye.gov.tr",
+  "goal": "edevlet test",
+  "function_name": "get_homepage_content",
+  "explanation": "Kullanıcının hedefi olan e-Devlet ana sayfasını almak için uygun uç nokta.",
+  "method": "GET",
+  "endpoint_url": "https://www.turkiye.gov.tr/",
+  "dynamic_params": [],
+  "created_at": "2026-11-06T19:25:14.919786+00:00",
+  "validation_status": "BAŞARILI",
+  "validation_passed_runs": 3,
+  "last_validated_at": "2026-11-06T19:30:22.403562+00:00"
+}

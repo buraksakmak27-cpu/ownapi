@@ -1,0 +1,31 @@
+{
+  "service_name": "wikipedia",
+  "target_url": "https://en.wikipedia.org",
+  "goal": "Wikipedia üzerinde kavram ve kişi araması yap",
+  "function_name": "search_wikipedia",
+  "explanation": "Kullanıcının amacı Wikipedia üzerinde kavram ve kişi araması yapmak olduğundan, '/w/rest.php/v1/search/title' uç noktası arama sorgularını gerçekleştirmek için en uygun uç noktadır. Bu uç nokta, arama sorgusu ve sonuç limiti gibi dinamik parametreleri desteklemektedir.",
+  "method": "GET",
+  "endpoint_url": "https://en.wikipedia.org/w/rest.php/v1/search/title",
+  "dynamic_params": [
+    {
+      "name": "query",
+      "original_key": "q",
+      "location": "query",
+      "param_type": "str",
+      "default_value": "peter thiel",
+      "description": "Aranacak kavram veya kişi ismi."
+    },
+    {
+      "name": "limit",
+      "original_key": "limit",
+      "location": "query",
+      "param_type": "int",
+      "default_value": 10,
+      "description": "Dönen sonuçların sayısı."
+    }
+  ],
+  "created_at": "2026-10-31T22:06:55.412344+00:00",
+  "validation_status": "BAŞARILI",
+  "validation_passed_runs": 3,
+  "last_validated_at": "2026-11-05T15:27:20.325892+00:00"
+}

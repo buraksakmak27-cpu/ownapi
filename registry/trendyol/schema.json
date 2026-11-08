@@ -1,0 +1,30 @@
+{
+  "service_name": "trendyol",
+  "target_url": "https://www.trendyol.com",
+  "goal": "Trendyol üzerinde ürün arama ve fiyat karşılaştırması yap",
+  "function_name": "search_products",
+  "explanation": "Trendyol arama motoru üzerinden verilen sorgu kelimesine göre ürünleri, markaları, güncel indirimli fiyatları ve ürün puanlarını listeler.",
+  "method": "GET",
+  "endpoint_url": "https://www.trendyol.com/sr",
+  "dynamic_params": [
+    {
+      "name": "query",
+      "original_key": "q",
+      "location": "query",
+      "param_type": "str",
+      "default_value": "laptop",
+      "description": "Aranacak ürün adı veya kategori"
+    },
+    {
+      "name": "max_results",
+      "original_key": "max_results",
+      "location": "query",
+      "param_type": "int",
+      "default_value": 10,
+      "description": "Döndürülecek maksimum ürün adedi"
+    }
+  ],
+  "created_at": "2026-11-03T23:00:00.000000+00:00",
+  "validation_status": "BAŞARILI",
+  "last_validated_at": "2026-11-06T19:33:43.505975+00:00"
+}

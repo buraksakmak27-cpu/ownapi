@@ -1,0 +1,2066 @@
+{
+  "target_url": "https://www.enuygun.com/ucak-bileti/",
+  "recorded_at": "2026-11-06T18:26:46.736620+00:00",
+  "total_endpoints": 25,
+  "endpoints": [
+    {
+      "id": 1,
+      "timestamp": "2026-11-06T18:26:35.142279+00:00",
+      "method": "POST",
+      "url": "https://www.enuygun.com/cdn-cgi/challenge-platform/h/b/jsd/oneshot/8340802ab0bb/0.07430557199531052:1793985038:e8uxcVEX5zHjDHLUO6qkw6t4V3Z9kuG4KcPDtY2mvqU/a56625900f7bf18a",
+      "full_url": "https://www.enuygun.com/cdn-cgi/challenge-platform/h/b/jsd/oneshot/8340802ab0bb/0.07430557199531052:1793985038:e8uxcVEX5zHjDHLUO6qkw6t4V3Z9kuG4KcPDtY2mvqU/a56625900f7bf18a",
+      "domain": "www.enuygun.com",
+      "path": "/cdn-cgi/challenge-platform/h/b/jsd/oneshot/8340802ab0bb/0.07430557199531052:1793985038:e8uxcVEX5zHjDHLUO6qkw6t4V3Z9kuG4KcPDtY2mvqU/a56625900f7bf18a",
+      "status_code": 200,
+      "resource_type": "xhr",
+      "query_params": {},
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "content-type": "text/plain;charset=UTF-8",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": "sAd7jkawj-N17U-rcXo9ump70pUEsqHUU+$x$ki3ggL0sSg4+RXO9LFR1tvqMczGNspNav6xOAD+I5YPB308$kn3$oJImap$ZOU$KaY4tXddpg9mRLNzZh4TsvXgGYlG$fCjkz4cb5K2Ri162KUoMtsMSgbA9tCHX$uQ36hSdtX$FjAqtU9GP-KIK+id7uIwROGhX6P+VbkU+0g$c4iFhUevC1csFMfxNpZgOheacKnPkeObvywrCNf9K5QH81hZqrzYw$XjYHln61jU6pfaUZH4DVYKiDcbJxnyUkl5F8EzQ0bbQ2tvTy$GMR7eioAKBQlAsja-UaviP7YUk2PbgbJr3cMlEDeFw-Vl7bwfbvvqLq0UTk0N2SiRseFIvdmjDQUvZVL2g0kIJFnXc38$j2v$SxlO32K6Jh9mzqybuXE26IlSSF617pxzMpYVqzq2Y-Rcu3JkseVJmQj1CVq89Yybhzo1n2vKyxoe7022Dg1pQsHcoVnXnS+IyHrvt$Prg2FvVtV49I6o1RjI7U3+ODRtni6$UEjNGZH4dqXlAynB4O5JVjAjujQfg6XN8eGfzXn6IlV1f4tNTYYIRw6FcCYUnRGD33LCd5mUss1gb8jESpvDjt1z7mfuK0FwUM4pG$GoXfkwml-rQmzpKE-k+Ol2QYHi52gqupS90tCNkLmbhpQgIKv0-cvSBilhLQ$kNBHwaXtUYS6zkiDUD0DVvvuja8J-6-myeE+hbqfYgdTGeT2ow+eOpf+zxnstjRNNVx4MifsM4hRS8k6Sqc3jvc6m-+-hNw2RtJSvQIGxjKexpywUPr-BOsrhfEC8yhpItnoSwbrp4AgVs4jmGFHu0F9Yw1RIlxECcOCLZklZnkh6OFidJSdseF2Gn5UDwaeVDlsG6m$Tzw3xyH64dd-mNy0zZc84lyn2bcrx5j4JczvtkVK47ccAF2seZc9tu4z8t-0MaeSiLx39aGBgj12Kvnns$4rnaH2rN+IYKXrsTrUZedvMk6K$XgNkEgzQDnokDmRa2spo17RqaCM4a2N02K23vmVl$+EXt3ZlP1U-dorNwZMBNS$hEMTmUL5c+XgVeBygbg8FqEh8gIcZv6N-LuxeUFt0npj41dPRljj7EbftATeObU+AwdCTdhP8ChFs3hzNLCcijnLBoSO7APf-uRylnYhMKUtGfym2dhcaELnr5qvvFGtk5d3N--dLzp5hpT3J0NvkuI1kyqk-H8Gxfbyg$xr+VojFN$M1QbGlVjbHh$1I3pL6-eahqFhtiKJ+zojQYxzriz$BT-sCbBZAaG-XbgNl2oH8Sfe7xb-B-79RHdgJs1x+ahdEO0vYhfALoe9ivmDd7-QRTNMBxxl8Nfz+hUnNEfZveiIzBfvcCgqqtHZQ93rG93JILQIdkbKAt$LgqVbp3VZFrgqVAMVEfTAZQwAm6m45XNtUw$yMFs$IsZfywixUxz3ljApUF5By-us-47MN$LEnLD-pF$+TBm4fVERCqame1GOzoy$5niIE$mD7m$f-DCFmkUEybmMMxllTxyHmTvTnyp-B+LiXC7a1x1G4LcYIPY$XOp0Qd4K-KzYSrRaS5cmTppgUu10h5w5$ly35qjE60D+RtrYZ7+LaD4jAzR8nf0z5uLzP5CQtpSO7RzF14MeAt4-V07Hg5kNh9D9waq2q89jIxkBRAodankmKwgzkfrgpH3DSvHN20RERhwVR7UUaVrj92$nbqmbSmQZrREgQz3cRZZh0T65H6cxS50i8Hs9s9Zd80z1OgtD+j0dI3enNf$vvuReGjaMhdBZX5FGNDDf-Z0D-OPGNkaUyzmRDQhK3L6o7UJPzelY6mOU7OBi2vvpj6fu1Pnz6bzFyXQphhEbl+i+$ASevwdLR3SCqzK$+f2oxvznLkAnIRcvMRN6z9FeIk8dpDfsqftGGDaIznm8w+QFlVDePnMurq0xaTP$Asf-n3KV1O6aNslmF++9+kdD-0YxxhuU7d4xt+QZqY0wgMPudJCZ9lUDdTXlidumLffVtlhVxytKtNaX+Xx6QqzsY$vs6DH5gL2YtOv6aPSjV6loa+non$pg08dKJPAzbLt7TILQK9xVmCsyM7QyK8UqTLJeleIBRvTAmA4c4lMHfNeN5pfIQ6RO+Ix9DMisUUOesZ31kDpnYNyI6mu8Zl5x8jg-emiHfgbx9scon8oJXmOalH5i7xQrOK9wwlxqA5poOrjeZddn6GwFgktnwu3wcGMhagcxYmHI23xOi2Z2PfssBHHj$2zaYHFEo3NNhw3Y4z-+vyeEhAL0mKPpVn3NLfFbrbGg52woikVDNx+XyL4KcuIycki40buQ+FAawIlzBgOoPIlI8ZRkjSmBcbAwuVb610As6xUG9By$dadT46yT2rJNNutH1AtTEXkGiCAVxd7Is1KDVN$OHgeFvUelsHslH2Uei2wfrupo-Fx+XlJohxhAgBS6fMOrhNxXQb4yOurRCPT+NRkEQre+FNn2ouOTQzkAIyQpat4BfaJiywd408QSuBDZoROL7oGu-LkCprDvxC3-UiFUcEyuOZKxGdKn2b668o11+18zEZwHJcjKduhVVeJbP2bwBaHxDpAMLANNNDbsuGmNdBm1wx3JCGd8$KmlMPTo2LrZgY18aQCA6H8peh48vIiLxJMgzVMbJEenYe1GM-IA2DfqKrrENEYCuRcBorf2nSg7vifmQwCNQMkSlDZ3cYfi-Glvx1d7siJEpyA3$8D55PsTLlUuj2-0C$MVVY6SeCGR9jskzdB6lP0G2S8b7fkXdzeIkll1Rs7cXgwvO+he+EfQHzKUNmd0AB2sGXt7gIYc-6YKLd2tFfs1t9XM$NGVbpKUGO4cay0xYT4y6RY+2Q458CAw5GjOzXDVQbM-2o$qTdxhrOC3xlYgxD$H8bXUe-s2xC9VOpbGqvpqKKjQ3H89+vJbXJscYC-qznjfwr1mtwSUPN4$EJCYh6MFUdZRpEs0z1yj3AE$7Cp2PM1w-Ygw-DrfrKCVy0oKGfxa2gYzLRBFTcjaCFt9ktI18qxM1EqftuN$z$hkZ1qhUPf8nV076Umv0dia64Fl3avQXNstqMnOwaHv+BVN5uIUy1Q+FvCglsE-bSmF1-ywN-mFS$0zgTZVkGXD8BZY9G28EwiU-Q4Vju2NRwQvzV2kDj9378J3CnkbeIDKsDtE87JC-SOuR+-$vE5paUZg8XhcYSnORrFVcGLrrJVMHfx-e6CCaubJCAMmaZkFPZK8rT524vEKEao1TYC9g38xkU1uTdoVpeKTs+MYIQoIVw0MYcRpLD7fkPm2J0y7hdFHQJqez+McZlUsLSAbdVb65CAAeimRzYYohzYzKbDnmglmnTsswomVAHopjuTN1MJmab2Q3939FwNe3pq7zkfI81F2CReNqef1GsscRrPBtoZz69ewMoOzeNtBfjJHyDIAQ1BkyO3HEyd5g4hcD20gX1s4wDDwVsUfu+VThKzupGE3qE1MyN0fbiZQvO8VvGKODvXSlaO9-oowV49p8N4ChcMcQHKb9NYpPa4TjhATlFyCD$sk52uHUryFGyiMmG9TrG$Evjsx35StU-QxNSeyrFBNu7+nxQzRR4MpKXugAN-$lIYDYQpnRnpozwSyer2bSoUnClff82Ej$EDr0Gtw0Ntgpj0IdDknOvBq2uDrMfEFTMcCH68ygUgV+-NqvDSQmtoZspaawjInYQFo7JXQhsbrcB7-2ujbTnNhlSMyU+kGbZUEl38YYCewxcztbUZsm2ZQe9vfhdrGdMJyG$Yp7c0cNUNRgnKKp9lbN3Ybu5VjG$ms9Er40k8IuSNRtk5EtoLYXqDvYm6dgq6Dzuvd-gBF+cD806Mr5enJ$NsRE$sbjCmwVPjzGcQarlF0gPiYt0cBctFq9q2gzYnQPg$AYAJvijoY+kN537xIvZ3hUkI2FxxeLKM6EgPQHXIrNGspDDkZR-P$1qS4AC2PR70rtkF3LnMMD5eNtrihYt0zxUx1Dtq+zlzniPrO$bApCYJugtxufOPMP7L+rvRNZnln8EJC+Rdich5zvgBRqD7rJHaYBi0IvbqngfRLzq2UAPUi3dJvwB1FBxtbTcpg3zh9plo74NhDrJI-GBFO8x8i1ab5Tfic2uZjBH$NoLGIcxm76J2Pd$SaiA-XuugU7wlNLrmbDy7v5d4Dln$hbyatxTQ-8hBeoh98UZ6SAHqC3g9GHQqOldcHYnpKJInIACPwM7ZR4uLkcaaURS76gejolZDTQ5toczARhjKJkmfI4f9l7eALp$+-X3EprqTeJ1w$T2$eeUkxTi$maIanoxA0KN6SpkXI-9iEtrud$AZ7pwa+4R9cfr5JIVh64aAz4fBsbtjA8XqzajmH9Ux5fIMMeZPb4e+F6SicuT1KErU4ae+QKALsAV4+dZHE20tAY-qMiHMuymu+mIoYAww$XvF4jVVAxPO0w0sO7sZm-JRcz2uQUpJkl0cUOZpU2hi7o4US0aHVbTFvyfV1vH2sSeQiqs6TSLvZUBFml8A7lchMrVsyQv58iCoxpuc4zx6Jwu7BgIdBkbx6bycETT5Zo1hlLhq-h4aPw7CefthQq$haq6hVOKDKJUUSw$Yn4oAqz4R2ZlHA0BPjytX0+238$Dbogu-nRqlzYN2RN+ijVDCTHTT0jICH4DHUH5gqaco-40s8I8Tf9CsSqIemjIHBcsN3YMfZy6bMsdJLCFT3RC4tsdlTeyMUogZxlPrb$0aANX$5ZhFAyZNxawaHh2f+C6Lujcn4ApDTYCd1NPGBt5Aj3Aj284nN6VLAjGn$9oxJCph0aHK$i6ZvqbEmmsZDF1-1tF2b19fQNTiVyt717$pAsYtKEHaJk4iQKi1oYd$ZEIzsbaiJ5moMJe0ryEIbUNEfUvVXpgGgliyAspZFqOB2PAVsdUabr+1l6m-6EQl2UPVRbaZN4qI1CNBnQsFdINRiM2AeJ2f$fjFgFESG$9dmzr$4D4wOSq3cSbGd+1Q9X-IoVoXc4V8oDjw38HnSE0qAmGwo6-PBiHr$NiY3VcIS+$qhJNeJZ5BGyQvi8H+p2DOsIo$a1$GJLMNwyJ$gqCgTAvloE+LwZQcrUtT$OLVvtv7-IZYke+2UxcuHMS7K6IDHEBVcN-RcF4OArlG1Jrlg1UYlue9nHccRyo0QRyPzvHCR-SbYBU13fZ$6$tHUh-Xq$Z0s4E1Rn8I6zKc$permpY8RYlqnAjI3mYcvnT60kl85h30ilI72wYqVtFm2x+L5BdXmEzT$gryIGstuuuPM+H4JKs-s1lynnCsrI6+$CkKMkTZLFXgJy36$lfStwzIFB+co7lPdeYfrUvcMC8fqCInUY6bw0B76lDCrwkOukX$XbkUkqLP-uRX+ayCvVqL058EfyqtDGgrY289AK9Avv+EFb2wjDScJdRvlKCFHiQ$6r0tu-6RVrFUBcXC8P0n1JlD-E8eCUpAZgjx3wi-ZaMXn$eMU$86k5SNc4Xue4o-etkzHSUw525RBCw8VGNjDTzdpRgdZeKXaY$BDNR4j-MLijg0GbA5iO8KTvGDpuoxP$RASRDo-360-GICAZbgAbagUbKeGIiu-fzHsT4ETlERlkg0P7dabvOruJoMaz0VCSbKhD2yc$x7UQ8cyMyXyMTyE5FR7Lk8ywIFnFhaBMQLe8PRLoi4AHgqRNrs+X1VQwoEUZyx-TPRCQsJhJ-wqUQhdxEkCUqgbOg31qqTfVLjVYLuXu0mLgv5THy88+qPPE8NiixS24f2sHpRlE0n2iyH+qpGxMacmv9KvCxDJ-PoIZndlXNgBUCLUtI8R579XLmo0OeDA3m4RMJXDiLwFn8LSHn-px1kzcIG4nmK1X3LvBcb01rZ$0JlbiKYp7oel0Y96FrohTdylfCzDJMuvEGxLuFIHoIlwQAifkO8P+0tt4P$ugHCwfQxdHq0rvxOgFgi$zhLoA39wlXAYMN3ny5zlwMfjqhLJzHePEP5nVAyfY6EcqSfajFEmCKgM2om5UrpkpvKk2rXBnYkFtQEO8oTwqQw9JXdqCYRVXYwygjw2eF3XGkRurpNSLimmpu12l8dclSVlwiVIncDIF$rH1MdKxF$wAtcaNByRvL41fM8jbGQPSrdUIk0X5Vm0ZYg+fIKjRIxn-ATpf+gwFuR1+kCgL0uvCA2U8L0TPXSzvv+BNA9YGk2F$xaAyVHOS7jQGm3zIcVX690I2b24CUZuTXJFF2Ki6+Y4Hd6GK8R6mG26EEzznKPO+iKBQ$v3dB8N0U5fcJZ3U0uaL0YZH9FYigTduyna-Xmn1$HYBIDPGm4u$3nhsOvMMPQ3$YYj9rcTaAdOE6GcD70$U41B9sCgjzDdw+HilocvXaSJ1oflp-s1VCKZ93dUytv+sBQY78VvDT1u+UO6C0$iYY9PfujlNgiMUOqTD6A3p41bQ2bvlM4Ygs9ZqAdLTeZhx28nKM-t1oX71RAheRHUKNuq+5hQ03j8jySLdomojIGcEcp0u0cmztDDB1pJIT$1ePpTA729aIBSxFjvBQRI9DdjQleErbfQ19iUcXm$McN7s20AA-JrYcDgRD+4CxPGPa8gOw+dfmVjRu-i5IoGvGxyUa3vkTh3F$353IarnYFwaSD+Sg7l-9Y3OQECJfI3dpISulvU9HquOoJg19nT6KBqoX4PLMD6lMfbDPpF8kc3DLpGfuEgebe$mml0BuGsrNcBklp-9d71ffmqt1uNhEuoQRHZ8Bu25UBKQDU$5JXj0$3FnsCa3bpSpdeyaTZGdGp10$gEmtF4dT$VAEMeFbq37iCPqoZj8-Qmb9GeqAhT6h39uiRjyCjc--3al3v-qvlJII8w$4B25QMuhqecwwQ1FF7+c0lZChuxVLAlnPTxup+Jm2ixJlZiyPiNlaRQiqSsdJ1uRBuRa5EwRA$waCl-3I0BLJHieBDFwmNYBF-yM8uSlqMhpSdZYnMkQrSnaF61yiTE6IF3lLD5NAoLlAQkLo5cqePi6qawJOkOMh7N91YbCjR-NvZIZ-0zP5Aju$4l15suM+i8TiQcy5RyfK3uoXlawnICJhND1fm0303AtNzo8HbvAJHojcgZjD7pA4Hr$lrHA$+X4OV6QZE7q74bn7nIs9+svVV74LnfewnyhCMzx8Rp+KXu2EAPn70bem3bsjD5ny18Rx0qb+fiSLZEv6qYKbCe7l-z+k1ttpipNmbxeSOON1$MUAVzTiuIqD$SGBywZJcOh1eXoPIGsaSmZNZ-R4Pb6S3ESkUYtJsdp1dCQrHHjUZZ6AfzH3w5T$rNBe7UE6nIHlr457BfjrRMis8LFX+fx3qeRKujUXuw1EkPDaMKIfz0x15Fz2p27yO0Efjr+-zFO9BATt4k7ZvgySXVGFa80R$xL5J6qZYKKJBz+6EnRR9miei-wR2AX3XvN+AixCBPe68F62ayBGh$wehFhLh95I8BI-bCSaqLOHMoXjwth73SwQov8UBuGO0lcin3Pjb7ECNpD8bZaZuNRGfg4diP0ycTZEOqY7J7cUTcV8hD1VzxXnzLyHgwy8vy0eVeroDqxuCAvZ6cJb0xeRO7$c60MIHPvRXd9FeNzIKQ$Jrr$HXfMkdeemhZ2uFRPIkZSv+fBIXYHBzP-pXrtByd6hzMj$O3+AS2xzhQSG0fnNHNGYInrR1laRPCeXYUiRY$d1xOTvjI1ai$h8b$FB2lXBYfXd3ma$be3rxLHt1lmq9YOky+EEo0lOvLIm41reuDU4Ob-e+$y0mTopfYdmK36-3pdXJIptAvDhT0xDrxBb2+GAL6gXIUxt$DqlYLM7vaMOVFfs9KzrT61tsLl$QzXG664yHDzJIIa0VlNqbGUzbGQA8p29nM5P-zdyhc+iOAuANezeSlygNzNTTXrs++fbt$BdjbrKg2r8NOJlp$B1mncGxZqbiL2EXJAE2MFyAXjYqr9GFITeZSCupgBlZCCuw4h9ye1GireTi7qK9b5XeSD89GBcihzxiVZF-kFUEhg$di99eHspi0i5d5VfA5w73X0IfSXNoKTiUnAMc1o+bv$j$R27rMBvLhS-km6rM-IfK9J9cGX1ixLsxMXlhchrpaJLlcYo2eVOxK8$Zltv1Yqfyyz8+g-59g9QgqknpSUZJSJxk-$DZ6PzZ3EBtfbXDt$1kIDI7+E1MvXV6HFksVIAIDwyaIPul+-yvN-dxlrdnhlTG8Pvdxj2kzZsiGdEqtrCR2Ee8x6D6JOqanP+220FBPNKD5ds4PupoglTbYdnY2JsyGh8+CTwI$-I1l7SU61kJUAbl9pKOQ7s+PUsjTPPqbDBTt9pnZkaDouiM$eLSK4SsxMr0tH8JudwzscmaFnQhI7Mnhkp$nQgAeofGLE8ZiFQ8EEMTwtAIzVXOxjOlvrKl+FQ9pxgQ6PFPGJw3spS9Gv9$gkaZskexmIyHFz8UJjH4LoTA4Lk5A7TSAo0bua-a4qg9zg65OpIDetCD2q4O8hDjQlYtpDdHtxjyTkMDIdgL1NqMS8AfC+4L3dpD3wodmY-5bKl0KLUhBhmSDnM8Frc-$gvncD-R$LouJy+rhgd3C4xTDHXCEJ1YIMOBjYifnct6G-aI-DCicfzYiVklYbSx+A07KNsIdYZamIQ0lbrdBFQbdGccVgDiGjfgPzFZEKhqPLho-fsj5z5buELA72w54sf+rbAxIdXufk1QpdCYOVKZIm6mi3jteIACCIa+jE-zC$EVOM3qeRzTKIpZH7qv1GDXxmEBSU4TuJ$YB$0shFejhGUktVZ4HZhUIKDIMFOJOIC2adMTZzX6QpNymNziymykCBMuBN4LEutM6AQ6voi0jZZ2OwC8D3Sbs67aV$+cor-yLsguKO3Ne0J80PFdIiBx8vhruF97CCLkrLaSJyc8teiGFAqNtdPRcoC28zc9mRO1Bc7y9y8itxX+hOC6XFaj$mwzRu4x0LRE6BpIxQM9GayyiwiZz101YNmaJCgqBilqI-XXC2-sR0GF7cAjRJ58JfhehRkSgONjpME$NaKqJ5hs+LrJ95USY9KIx0Mud8lLQKdzQ5ELiG2iSEHDijvMyyjpD-iMsZFuX7R1M9N7Lq-0wfIhAPvk4P+o0u1rxqlC$-9ur4zibj3QF5vfvIDwvr1XUkPK7v3Lv$CU+urP7+9LysTvymAjZzLcVeMnJ4rgYZwk0ESHD19G5sZvR3fpf5LY67Ru3$ovf7ur2N+JzO4BPR7t$1n0mbZtKksRs30IXThCVXl0U0BagEeunHOnOXiw0z3csEy171teVb9N$0yGiskVBoJ4SJL8q8Z95PJLGMsP4nCMzqlaUjmQuwLJ58VSwAMYxidJqHEKMHwcPuDHmyTae9Eic1x1MMt8Ak6jpIPBi1uIlZhusNk7KihKVo9gFAYj4o7RrLxTev+RS3FcJ$3F7NMIkkUJ3+tSMe8NHIO05gXJB1+RkaG8CLfezk$Dn4ok4d6UnDb9AiSRqIAyZ8Xn3$mV9ysv3S-L9JuFgMkD6Emy88DmxS2NB2pylPx9bm9ZqBYi9pF8dwn0NOX8nfzd29tGYT7eADsSiZ-QrbrtPBE5nvk52Gtfpc8eEfFfDSe4z$C2XMG4rLyNBtMhR4QuwrqUfu8bIqCZoquudRN54jgnTcKXr++xpGxGMv8twvu3i3wnI2qEZOLzPjedbvgNlTwKRKmcmfHNKwkZxGvVKng$dwdqAvkhqAwHGkdF2ZdioE-SE$ULQFx0rg+538$xKZmBl0mnTCAnnOBdoP8THOzSDi$C90SA6wfkIFwBDvHBGn-c71Bc5kE85MXoQkODyikljTVnT1C1oU9549obhYVsbrr4jrDhmsFDOHT27sfzCCrUZgtrhtT-+kroU3BRd6hKoDCe5LN0a8vVDnmF$S-jpswYfVpbEdJFFawNxjzU$V3jRhMFK8xQ88rbuAkr-wqj+zoIBP2dMhYBzK3QRt-moI30safqJC1qRQV5SEkC29rhUZL4eEw5FKo3IkrxOjkeq4bY$rllYGlI1xAF8$vYX5ZvkidtFG9w6ALe3JIa9m$mppMcJpbZhZm3D0an8Ai0S5S8iN7b60IXx8i8G6txkiN1fZ58clzyVOUFKLFixmQ3VyO1nSBH7mCwYROT0Sud8ILgE+lpYqNgKCRTHhH0JTM+VAoXJVdFvUcz6NnJFIBGTNbFPXKXk2mFOiJv-S9LJ7LaTzOBfi5+Y1thR2cjFE88gDnv7v2taR0QLwR3vZqrR$Yxg-gxuc7tCJwwsm6ycD88G48z-mPhPXsbPX5-w++8iTtUoOJJezSV2v+-wvlFwBgTSHiD-RsMqgr1bZEiN-0w9Bpf+1V-egG3YN4dwrePJA+lPDInbqYqJfrOcVpGL$V9d$DJah6eNHSgLvF8TlrmpBAgJka45bw4bSPzx5juB5guH3sk8NPKVg7Ea$6gx6m2Ndlq1-30$8w2ewNtUPQaEPqblNrvzwBdxsNb8$uD6emrpOvDRnrSbGOdTDc+3ShKfDRQHOjzr1SZ+L+LiHviCUq+kuknnXF3m5f8-Z0yAua57YBzbzc37ZD3VaZ2Uuwl177$lsGhuBFjZxkD8l6plp-asQSn$2qvoJQgvHnUhbARpk2ItKsdbDBjEEKY1MHAtsqXKvp3+9Ga38i4x$cnkL08TI4KiNunMHF960NXZ1FSou7vU-VEdl0EAgq5q+8hv6NGGX6m90g4TqlXatgpuUm$pDp9ahksrLNozdnacg0ZaOSq9-DpykOHzLvbLE0lU3gtgSZUU$dkDjZ8iQQGVqNJlop89+lYKceRMcHkaYyn3Uzt5C5Gw8N97zFOiY9y52Pao-fl6zObv1Lx4hjaLtywx$ANod9CKyFas8$JGaXr04Y+Um$g5CGwpjoVkcYmDz7sU6DmxvTu1sikNacZgy7TZeO6y1LH2L2asvQt9dBFQZVzq+wTHok4BVX1quGqh0SM-QQt3robH2$d81GxQMrO3wBorYKAflpr-8kdRerhR6QdlqR6QP+DVmam2UhQ$gGGLlfIuATDGlQxnzHbcEGxwMvyXFoPZ5cDU-eE6r$kw6SEcUhjRDcGHMpXCh7l9p3XGzB2MPL1+me+i4tA-dPZ6PvJbaGOO$hJ5szfyQ$dP8N8jqSp459T6LH4UqyFQbm$QbrK1CJjaHXjFZ$HcCXLR2DcexXIPNaEKsmzn5VLNgetvfC0zjGOLH+cGAk8ByYlyVEbhG2NVf$yS0+QNb3cHDlK2kxqa2VujStJYTTNgg0Y-IHcANhR5bXqwcBlosDIUBotI99H9Fjdyot$ShOpLPHHEmIpoocRkfVxt20Ta1SotpNPQu23tFaEIcH-8B3b2SYRhYN$l+9MkYANqoG1QyPXtXd7NPLuH+0$iwxH-IrSXXvhlran-kaNpXa7rklu3bKVjKziVoPqHP-Ifvypa82eif1XTZyTOBsLA5CV2B-awkwM4q2X79aS2awh9HTjqpa$Mja6xFIleyez0LKhFe3wfCIgUgi+s$NAekS4J+Xs-l8Ecuz$+grV7yUt-swmXdAo-6ibHpnUm-YMlNVey5CMJAH$7cAjh9j9Kmz9oZxDlOt7Lt3$udmYCszkzQxY9-gsz6Bw0ma9T+eRY+3QRRT12Vs8DZFtuUnaFB55s$1G0buCVf0BEZxmXef7ayI0k$e4juJxlzX8F2asgdf73BLSh1PMtDtiBKebSBFMUpJkEjHQF5ZHNuHF85wD1AOGMYXUKsfFCRuwJx-JGQH9n4YjNH8c4qZlP6-i1LlVEuweCUMevMm0lbsmNc-TFX+Rd4ziYjI5P2yQAU+gVZUwSI3dEkMJA0-hx3DSjnh$lgevd+Cs8DgzNQ3Nh8k5oE4gt51HzQ6yixs9Dc7nVJpD3Mqxz6QgTQXMr5a$wcKZ75LvCr7dA64dQAumriFhjNfdus4pkFXUmVmPCq+t6suLZSAYNrKqmEk-6p6BH8d$I3y$73tM1H4siG9sYRk9n0qMf5cMMIDtjpVOftYN0clPlAwKCuH2-u51A7sr81Fc71OzTsnyHpJjqoazzjg9fBneoUOMJ7BuCPtVHmnCnsny1dDxb9voQMi1SomGvfpVg3gPK-jxwd7cqc47HhmNn3yToiSF2RLRZQAnwQXVCdZ9nvVg6Bi3w3X9Xl8VxwSDj56O0$Q4TTLmqf-louqOYbRZQbumugwqcb-H-42zOluzPSttvwQFMSq2VsfaUYH0n2ktXu-R4Y$PGY5nvLJmPl-GS87KmVSG5eyaLYrAYqECZXYdr1uIsM$ix7rNipOkng8y9C1G22hiUr3IguAVKr+QUTOAreGVsxsgG7ijV5fvnahnornj4B$BnYjDjMN1BAKpyHUiJpJ61DEldsIbT21ksgtUzhXNj-g2VHh9vjD+a4$gIkUBb5ChgY$VAo1O17zbUfqhyGhjGLjjKgSI2l9sVoaaedsdPgMw1uR7y9t4OO9MGVsvEn-yquKsJNp+8hwwZb-VfZ$8v0R0DkVPB+8nHiYobFenNZLbRLSwxeQcN5VYXzgw8T0LL1l9wGbc8atTfxj8svNk+$9oFbg6J0Oy2tP6NzyqMK2nO-QzO2o9GX6j-MCcw-OmaseQIv92NQnSA$S7b9YVo+b00FN58pvgSy6Ok96x5PApl--SEaBD77sHFJ2IzoHIAIBeKFNUU5fOSocd7cPgAIMbNDslE7y2RQYUrRMS-P5v9gvjA7zsQ7hDEwQ07+HiQ4-bCcQ639ef2EGXB8hxKlaX5m32axu3gMJm6pR7-ObFBsNHXyI$RSzdUfO2RklQeB10JDabLdFLRUPP2mxnj0jmed9H3-$AvlG7bqg$-BcaQ3tkLXcUqerAGIqfrFh4aLI+x-hnFwADziaRzdOQff7UJrxp+1I2YDCy18kw5c60yLwV4M71OX-3BlRUJxN6S8ksYI1om2n9tAcCBejtuXDc8VayP9f0jVreNx6mdAkQ-OzxUCgubDzX5u87Ua-ZyCw$vmCM2IHKTxZCJHn$Xqm3sgfDyuad7XusYF+CesL4+JEDVUuhgv52N7wIN2GOYmPHlAps9Vmy4UBpO9qyiSEPMhlpcdaDEzFdzO7MyTMo59+D-131lpYzbn9q0kZDmSBCKpSBtkYDND6mJpOpXZfJlGTKwBDJCg+BBJ9+$f5b0fxEJLzfdXNKUe423kaa5YvlyxCHlsHuSJ9XMz15Grj-gdQnUhtiI2ggkJIXtGC0+qrinOnDPkSUIUtlx0Aix+R6n2CrvYle4-Q+DkxSshGxpxsjJahhZ8PfuFv5EkA+qZgewmHB3ISHoEJeBcROVbGKzxGYUIw-xn7s0$ElSHhyM00JV3prvFKUekSzRqp6f52oF6s-rAUYmswqGFe3J-tZjHHc5dAZfnx$kUYPcQBvVrsVIxN2ka0ij7L82TIc6$miDFjynAIg59XrPfYKl8svPonstMwcwhID2OygjU$hsrXZov8M7pa5Ci6-zPPXdsaAN0uZtTtS0OsfIpZ2xjSasy4pZ1QedZSjJRSHVvOsiiAXBiHdSMtLjCNrHRuMv2lnfkXjo0Hv0-a7C3GvPn5+OQq9QDbpOjHixJyYl50A1ipIuN$-m2jZNp0Xij3RZlaM7GvHaoObP0vtIYZLx2g+KSn$$Pab0rVuUOVOFpi+jrr07bJpEa$JsftIKpMqJHeEQ0KNYoCNNj4FUT-Q2lmcM40x9b7iBKrLlw4jaIASQHz8$OXqIAM-ZmZTilE8lTkoeMnoxsMU9oMrng++yMK5taA1I-FXKt8PMrq5otKExvPMMJZzRANlRVVPToQ3H+zXujEQEaJ8CzaVN2IabHkLB8SG2eEmhKY0z8oLGjpTjonKTEuAGs4Vza3jatJv6xFuAvUw7mmKNTGhPkjq4bCIj612+yvuo68Ok+6PlwkosEm1cvzaTUYIGr+BiS9QCyPQhIlQrTLwcJHr8ymsZ6VUZmmotAZq1bvr-p8Aiwl1pNmy23Ckx+fR9N30aUJI8NoaufwFnrJIEDGGPUEfn01-0NV-TqnzmrKm7zKoxIB7t0CZMtQmH99wTpgkE7+osQ2xfAsV08IJUeJXOYmNMD+lHctcioim97vKzqI-6wpI$PLMVorytVMVJ0rOdVFxN2K7It2h6kg2UlGSGZfb1d10oH-kOPLCPcgGjjxDbXQmf4itxziIJPtAcmkacOjCy-hiEJFrn6prt1gULBgGX74RBTCYPdAJaBAo4nIO1uGImGq-S5jzvG6GMmUuVzKLTwHcToFF15TTOQ8u$OJd-XUZ$f6lJ0TrOX9ZUaRz-OmJmAp2tv03jbcnR8bpcsqts4d1NuOmsDBDecK6gRkan1nj+gUmgXHKHTul1TJlKaIwDibTaAA9$H+FuHPDlcrjpnJ2u-xo6GcE$8q8JOncJEKkX7pzyk5aTfhbnM7i0ODUSGM5oLbp-Pe-sP3TcDoGYSRtmVSZal1y-pGKy3cEXF7ooz0YUlbQV5$AsuUMLlHeHc+7a1O4M8V9jPPbVE221At8myY3kTqgCJgvSEjDKNjTnfaslyb10cs2Q-OyorHse2ppqrirhZR2C2FlNl$cQ4KBOmCP4vzBXP-ni3CyNKNjJrjoOVdksTw0DyKLYfk2z$9xL+6dNE0h94QPpeVa29j0aTb5vN6gL8v341HkgF1pJ6F9-JMB1pch06-iEDR9Fd3SI8G202hLxo$AU3tGz-ciCy+o+NYacD1VSI9dDFgHshuKQBYa9cuznh$F8PgVa$NcUl54UnBIZYMX-pnbHt3HRjmosho8yYg5skHGTkJA9wJj55+cRDBfnOs2z46bPJIhZ0u1dL$fEmlbxk9Tt0Hc5jvluEwlI5X3CXVEjIIx+10+4tSbRuX9vH1u08b6cSdlve1pFShw7shlcEgY+o0x4-cH1mdZh56VGjnNJeQM4T2pPs9c6nyVY9QZlil1ubIzcR0tOIT6V56kh0DkdrcOTQl75ZlObYcMBQRal$2+ZOqpv2+faSZ2Koln-09qsj8X7Nl4TzsEp4v6cS8IywN0$uMwfk8daJ9oqEoHQBd+RurCDtdZHuwENNvve7lo2L$0HVxiSFDIBMt5l7uwg6J1t1zlMA4hFFzsJFqRbXS8Bjjb1GFA8m2x-2ipzrl2LQVDwjBzSx06tVdu223X9MksXxGvVycqQeFwXI9ZkdqcBPqQ7rppfgIKadLpQPrTA9gxjFL0CYFvBDwuJfi61shXCjYL-xt2DHwxQN5Lx2-Z2FNN1bQH6foFu3Jlexfk124NHjTatqp3k7h8JnNmofy8v67+6oQR67XhxhrqSOd0nGh7LLvD7G0CXyPtAFVFn2Mp$nlmRmnXTVNMMozz-73rOkkba5NVYD7YEbFMm5UwM8IuCczot14nE6FnRO1VFa1o8m7nzx7+KFOX$fI8MSuihtP1YqTBeu5+OICD8N7sI8y2tUzx24EaFTLrQ2eM4gGKjjs9LabUGPypowCvENvH8owv4Ge+uYfnttw$0x9Hsaxx0pAeOKZ$IgyxVIiJkjmHOFUD$AcKQujCpFhwG3KGpnuR+58wMoZENaSmEg-Vl+pIBgajk0k6mNETaEND9+EaBwPB2SJHKXAD2hFREk8lreoMDCZPf2Uw5MfsRfRcBy37c1KiXBdySFwpwaqlLCL6RFAjYye-RATg9L9rJr49ldfqn8oP6gsC8mZ4FbnOqucCh7x7D+SVOS6NyBTvOTZuD8GrGrzMoIxVV5ceRcwnf71YGvw50QyrOFTv4QYhN4y$3AOvpMJjnD2y9j2pi+JXHBDF1zoje10hPf$rUXKcH1ovIOkfOTmYYuMhciE8woqLk+hzae9inDuFZyyte197nmF5d-CaZd0SRzFkogVZMkcB2ut8+w-njJNu1eZ8KtxIJ8gdYmkCj9+SLFdr6qp3Ggl1FPu+idPf6MxrufQOFrPk2656t+l1pwPBkwumpGpIMbZOG8RleQJJRATi5pMKav0i+r40uaJoD3HU9kVOyQtY8PRoQOLJ0q5s9-LviN0EoXjwFtQwgOi$1yKIofcis$q4uAxIi4tEIF$RjwRnururbUNfG0KoAnL7Q$zKUnilvM24IunmnYOTAGTVc6tULlyIcmCEJIcMYu9wAMZox0mwgFnIgdHIYY52VTn6O$I2h2yctlYOLlNvALTUYnokJr1UB5-YNubosdYX6Ta6Ksn4fvPjdfDAhEbizQXQVSp6u9RsykSvJAvfmB7KCAcUTFcTbBv0X-6k-tcOB-3fZFi7afmpOoPR1Oqxr9PQ71cm-PbTQapgP55s0q+U",
+      "response_sample": "",
+      "response_truncated": false
+    },
+    {
+      "id": 2,
+      "timestamp": "2026-11-06T18:26:35.150525+00:00",
+      "method": "POST",
+      "url": "https://www.enuygun.com/cdn-cgi/rum",
+      "full_url": "https://www.enuygun.com/cdn-cgi/rum?",
+      "domain": "www.enuygun.com",
+      "path": "/cdn-cgi/rum",
+      "status_code": 204,
+      "resource_type": "xhr",
+      "query_params": {},
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.enuygun.com/ucak-bileti/",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "content-type": "application/json",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": {
+        "startTime": 1793989589642,
+        "pageloadId": "af02ab7a-1215-4749-9f30-d57f3ac9b6a6",
+        "eventType": 1,
+        "nt": "navigate",
+        "location": "https://www.enuygun.com/ucak-bileti/",
+        "versions": {
+          "fl": "2024.11.0",
+          "js": "2026.10.1",
+          "timings": 2
+        },
+        "bi": {
+          "be": "Blink",
+          "bev": "156",
+          "bv": "156",
+          "ov": "10"
+        },
+        "memory": {
+          "totalJSHeapSize": 28875599,
+          "usedJSHeapSize": 20334179,
+          "jsHeapSizeLimit": 2187067392
+        },
+        "firstPaint": 2144,
+        "firstContentfulPaint": 2144,
+        "timingsV2": {
+          "nextHopProtocol": "h3",
+          "domainLookupStart": 12,
+          "domainLookupEnd": 71,
+          "connectStart": 71,
+          "connectEnd": 167,
+          "secureConnectionStart": 71,
+          "requestStart": 167,
+          "responseStart": 354,
+          "responseEnd": 398,
+          "domInteractive": 1941,
+          "domComplete": 3747,
+          "loadEventStart": 3747,
+          "loadEventEnd": 3747,
+          "finalResponseHeadersStart": 354,
+          "firstInterimResponseStart": 0,
+          "transferSize": 100458,
+          "decodedBodySize": 866392
+        },
+        "siteToken": "6651ec1d9c3a41999fc99682236c8d1b",
+        "st": 2
+      },
+      "response_sample": "",
+      "response_truncated": false
+    },
+    {
+      "id": 3,
+      "timestamp": "2026-11-06T18:26:40.495548+00:00",
+      "method": "POST",
+      "url": "https://www.enuygun.com/6wz7af34h/g/measurement/conversion",
+      "full_url": "https://www.enuygun.com/6wz7af34h/g/measurement/conversion?random=1793989597056&cv=11&tid=G-VNWQY32CGH&fst=1793989597056&fmt=8&en=session_start&gtm=45g92e6b41v871943099za20szb76734383zd76734383xecxf4&gcs=G111&gcd=13t3t3t3t5l1&dma=0&tag_exp=115616986~115938466~115938469~118897920~118897930~120213116~120385422~120412526~120420414~120469145~120469153~121191153~121246026~121246034~123814183&u_w=1280&u_h=720&url=https%3A%2F%2Fwww.enuygun.com%2Fucak-bileti%2F&gacid=1688610352.1793822081&hn=www.googleadservices.com&frm=0&tiba=U%C3%A7ak%20Bileti%20Al%2C%20Ucuz%20U%C3%A7ak%20Bileti%20Fiyatlar%C4%B1%20%7C%20ENUYGUN&gdid=dY2E1Nz&npa=0&pscdl=noapi&auid=147324003.1793822079&uaa=x86&uab=64&uafvl=Not%253AA-Brand%3B8.0.0.0%7CChromium%3B156.0.8078.81%7CGoogle%2520Chrome%3B156.0.8078.81&uamb=0&uam=&uap=Windows&uapv=8.0.0&uaw=0&rcb=16",
+      "domain": "www.enuygun.com",
+      "path": "/6wz7af34h/g/measurement/conversion",
+      "status_code": 302,
+      "resource_type": "fetch",
+      "query_params": {
+        "random": [
+          "1793989597056"
+        ],
+        "cv": [
+          "11"
+        ],
+        "tid": [
+          "G-VNWQY32CGH"
+        ],
+        "fst": [
+          "1793989597056"
+        ],
+        "fmt": [
+          "8"
+        ],
+        "en": [
+          "session_start"
+        ],
+        "gtm": [
+          "45g92e6b41v871943099za20szb76734383zd76734383xecxf4"
+        ],
+        "gcs": [
+          "G111"
+        ],
+        "gcd": [
+          "13t3t3t3t5l1"
+        ],
+        "dma": [
+          "0"
+        ],
+        "tag_exp": [
+          "115616986~115938466~115938469~118897920~118897930~120213116~120385422~120412526~120420414~120469145~120469153~121191153~121246026~121246034~123814183"
+        ],
+        "u_w": [
+          "1280"
+        ],
+        "u_h": [
+          "720"
+        ],
+        "url": [
+          "https://www.enuygun.com/ucak-bileti/"
+        ],
+        "gacid": [
+          "1688610352.1793822081"
+        ],
+        "hn": [
+          "www.googleadservices.com"
+        ],
+        "frm": [
+          "0"
+        ],
+        "tiba": [
+          "Uçak Bileti Al, Ucuz Uçak Bileti Fiyatları | ENUYGUN"
+        ],
+        "gdid": [
+          "dY2E1Nz"
+        ],
+        "npa": [
+          "0"
+        ],
+        "pscdl": [
+          "noapi"
+        ],
+        "auid": [
+          "147324003.1793822079"
+        ],
+        "uaa": [
+          "x86"
+        ],
+        "uab": [
+          "64"
+        ],
+        "uafvl": [
+          "Not%3AA-Brand;8.0.0.0|Chromium;156.0.8078.81|Google%20Chrome;156.0.8078.81"
+        ],
+        "uamb": [
+          "0"
+        ],
+        "uap": [
+          "Windows"
+        ],
+        "uapv": [
+          "8.0.0"
+        ],
+        "uaw": [
+          "0"
+        ],
+        "rcb": [
+          "16"
+        ]
+      },
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.enuygun.com/ucak-bileti/",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": null,
+      "response_sample": "",
+      "response_truncated": false
+    },
+    {
+      "id": 4,
+      "timestamp": "2026-11-06T18:26:41.576267+00:00",
+      "method": "POST",
+      "url": "https://www.google.com/rmkt/collect/746017722/",
+      "full_url": "https://www.google.com/rmkt/collect/746017722/?random=1793989599249&cv=11&fst=1793989599249&fmt=8&bg=ffffff&guid=ON&async=1&en=gtag.config&gtm=45892e6b41v9216811576za20szb76734383zd76734383xecxf4&gcd=13t3t3t3t5l1&dma=0&tag_exp=115938466~115938469~118897920~118897930~120213116~120385422~120412528~120420416~120469145~120469153~121191153~121246026~121246034~123814185~124013660&u_w=1280&u_h=720&url=https%3A%2F%2Fwww.enuygun.com%2Fucak-bileti%2F&rcb=13&frm=0&tiba=U%C3%A7ak%20Bileti%20Al%2C%20Ucuz%20U%C3%A7ak%20Bileti%20Fiyatlar%C4%B1%20%7C%20ENUYGUN&did=dY2E1Nz&gdid=dY2E1Nz.dNzQzZD&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=147324003.1793822079&uaa=x86&uab=64&uafvl=Not%253AA-Brand%3B8.0.0.0%7CChromium%3B156.0.8078.81%7CGoogle%2520Chrome%3B156.0.8078.81&uamb=0&uam=&uap=Windows&uapv=8.0.0&uaw=0&gtb=2&data=event%3Dgtag.config&gap.gtb=2&ept=68&gcp=5",
+      "domain": "www.google.com",
+      "path": "/rmkt/collect/746017722/",
+      "status_code": 200,
+      "resource_type": "fetch",
+      "query_params": {
+        "random": [
+          "1793989599249"
+        ],
+        "cv": [
+          "11"
+        ],
+        "fst": [
+          "1793989599249"
+        ],
+        "fmt": [
+          "8"
+        ],
+        "bg": [
+          "ffffff"
+        ],
+        "guid": [
+          "ON"
+        ],
+        "async": [
+          "1"
+        ],
+        "en": [
+          "gtag.config"
+        ],
+        "gtm": [
+          "45892e6b41v9216811576za20szb76734383zd76734383xecxf4"
+        ],
+        "gcd": [
+          "13t3t3t3t5l1"
+        ],
+        "dma": [
+          "0"
+        ],
+        "tag_exp": [
+          "115938466~115938469~118897920~118897930~120213116~120385422~120412528~120420416~120469145~120469153~121191153~121246026~121246034~123814185~124013660"
+        ],
+        "u_w": [
+          "1280"
+        ],
+        "u_h": [
+          "720"
+        ],
+        "url": [
+          "https://www.enuygun.com/ucak-bileti/"
+        ],
+        "rcb": [
+          "13"
+        ],
+        "frm": [
+          "0"
+        ],
+        "tiba": [
+          "Uçak Bileti Al, Ucuz Uçak Bileti Fiyatları | ENUYGUN"
+        ],
+        "did": [
+          "dY2E1Nz"
+        ],
+        "gdid": [
+          "dY2E1Nz.dNzQzZD"
+        ],
+        "hn": [
+          "www.googleadservices.com"
+        ],
+        "npa": [
+          "0"
+        ],
+        "pscdl": [
+          "noapi"
+        ],
+        "auid": [
+          "147324003.1793822079"
+        ],
+        "uaa": [
+          "x86"
+        ],
+        "uab": [
+          "64"
+        ],
+        "uafvl": [
+          "Not%3AA-Brand;8.0.0.0|Chromium;156.0.8078.81|Google%20Chrome;156.0.8078.81"
+        ],
+        "uamb": [
+          "0"
+        ],
+        "uap": [
+          "Windows"
+        ],
+        "uapv": [
+          "8.0.0"
+        ],
+        "uaw": [
+          "0"
+        ],
+        "gtb": [
+          "2"
+        ],
+        "data": [
+          "event=gtag.config"
+        ],
+        "gap.gtb": [
+          "2"
+        ],
+        "ept": [
+          "68"
+        ],
+        "gcp": [
+          "5"
+        ]
+      },
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.enuygun.com/ucak-bileti/",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": null,
+      "response_sample": "",
+      "response_truncated": false
+    },
+    {
+      "id": 5,
+      "timestamp": "2026-11-06T18:26:41.576267+00:00",
+      "method": "POST",
+      "url": "https://www.google.com/rmkt/collect/385830129/",
+      "full_url": "https://www.google.com/rmkt/collect/385830129/?random=1793989599092&cv=11&fst=1793989599092&fmt=8&bg=ffffff&guid=ON&async=1&en=gtag.config&gtm=45892e6b41v897896685za20szb76734383zd76734383xecxf4&gcd=13t3t3t3t5l1&dma=0&tag_exp=115938466~115938468~118897920~118897930~120213116~120385423~120412528~120420414~120469145~120469153~121191153~121246026~121246034~123814183&u_w=1280&u_h=720&url=https%3A%2F%2Fwww.enuygun.com%2Fucak-bileti%2F&rcb=4&frm=0&tiba=U%C3%A7ak%20Bileti%20Al%2C%20Ucuz%20U%C3%A7ak%20Bileti%20Fiyatlar%C4%B1%20%7C%20ENUYGUN&did=dY2E1Nz&gdid=dY2E1Nz.dNzQzZD&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=147324003.1793822079&uaa=x86&uab=64&uafvl=Not%253AA-Brand%3B8.0.0.0%7CChromium%3B156.0.8078.81%7CGoogle%2520Chrome%3B156.0.8078.81&uamb=0&uam=&uap=Windows&uapv=8.0.0&uaw=0&gtb=2&data=event%3Dgtag.config&gap.gtb=2&ept=68&gcp=5",
+      "domain": "www.google.com",
+      "path": "/rmkt/collect/385830129/",
+      "status_code": 200,
+      "resource_type": "fetch",
+      "query_params": {
+        "random": [
+          "1793989599092"
+        ],
+        "cv": [
+          "11"
+        ],
+        "fst": [
+          "1793989599092"
+        ],
+        "fmt": [
+          "8"
+        ],
+        "bg": [
+          "ffffff"
+        ],
+        "guid": [
+          "ON"
+        ],
+        "async": [
+          "1"
+        ],
+        "en": [
+          "gtag.config"
+        ],
+        "gtm": [
+          "45892e6b41v897896685za20szb76734383zd76734383xecxf4"
+        ],
+        "gcd": [
+          "13t3t3t3t5l1"
+        ],
+        "dma": [
+          "0"
+        ],
+        "tag_exp": [
+          "115938466~115938468~118897920~118897930~120213116~120385423~120412528~120420414~120469145~120469153~121191153~121246026~121246034~123814183"
+        ],
+        "u_w": [
+          "1280"
+        ],
+        "u_h": [
+          "720"
+        ],
+        "url": [
+          "https://www.enuygun.com/ucak-bileti/"
+        ],
+        "rcb": [
+          "4"
+        ],
+        "frm": [
+          "0"
+        ],
+        "tiba": [
+          "Uçak Bileti Al, Ucuz Uçak Bileti Fiyatları | ENUYGUN"
+        ],
+        "did": [
+          "dY2E1Nz"
+        ],
+        "gdid": [
+          "dY2E1Nz.dNzQzZD"
+        ],
+        "hn": [
+          "www.googleadservices.com"
+        ],
+        "npa": [
+          "0"
+        ],
+        "pscdl": [
+          "noapi"
+        ],
+        "auid": [
+          "147324003.1793822079"
+        ],
+        "uaa": [
+          "x86"
+        ],
+        "uab": [
+          "64"
+        ],
+        "uafvl": [
+          "Not%3AA-Brand;8.0.0.0|Chromium;156.0.8078.81|Google%20Chrome;156.0.8078.81"
+        ],
+        "uamb": [
+          "0"
+        ],
+        "uap": [
+          "Windows"
+        ],
+        "uapv": [
+          "8.0.0"
+        ],
+        "uaw": [
+          "0"
+        ],
+        "gtb": [
+          "2"
+        ],
+        "data": [
+          "event=gtag.config"
+        ],
+        "gap.gtb": [
+          "2"
+        ],
+        "ept": [
+          "68"
+        ],
+        "gcp": [
+          "5"
+        ]
+      },
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.enuygun.com/ucak-bileti/",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": null,
+      "response_sample": "",
+      "response_truncated": false
+    },
+    {
+      "id": 6,
+      "timestamp": "2026-11-06T18:26:41.584338+00:00",
+      "method": "POST",
+      "url": "https://www.google.com/rmkt/collect/997262965/",
+      "full_url": "https://www.google.com/rmkt/collect/997262965/?random=1793989599388&cv=11&fst=1793989599388&fmt=8&bg=ffffff&guid=ON&async=1&en=gtag.config&gtm=45892e6b41v892763840za20szb76734383zd76734383xecxf4&gcd=13t3t3t3t5l1&dma=0&tag_exp=115616986~115938466~115938469~118897920~118897930~120213116~120385422~120412526~120420416~120469145~120469153~121191153~121246026~121246034~123814183~124013660&u_w=1280&u_h=720&url=https%3A%2F%2Fwww.enuygun.com%2Fucak-bileti%2F&rcb=10&frm=0&tiba=U%C3%A7ak%20Bileti%20Al%2C%20Ucuz%20U%C3%A7ak%20Bileti%20Fiyatlar%C4%B1%20%7C%20ENUYGUN&did=dY2E1Nz&gdid=dY2E1Nz.dNzQzZD&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=147324003.1793822079&uaa=x86&uab=64&uafvl=Not%253AA-Brand%3B8.0.0.0%7CChromium%3B156.0.8078.81%7CGoogle%2520Chrome%3B156.0.8078.81&uamb=0&uam=&uap=Windows&uapv=8.0.0&uaw=0&gtb=2&data=event%3Dgtag.config&gap.gtb=2&ept=68&gcp=5",
+      "domain": "www.google.com",
+      "path": "/rmkt/collect/997262965/",
+      "status_code": 200,
+      "resource_type": "fetch",
+      "query_params": {
+        "random": [
+          "1793989599388"
+        ],
+        "cv": [
+          "11"
+        ],
+        "fst": [
+          "1793989599388"
+        ],
+        "fmt": [
+          "8"
+        ],
+        "bg": [
+          "ffffff"
+        ],
+        "guid": [
+          "ON"
+        ],
+        "async": [
+          "1"
+        ],
+        "en": [
+          "gtag.config"
+        ],
+        "gtm": [
+          "45892e6b41v892763840za20szb76734383zd76734383xecxf4"
+        ],
+        "gcd": [
+          "13t3t3t3t5l1"
+        ],
+        "dma": [
+          "0"
+        ],
+        "tag_exp": [
+          "115616986~115938466~115938469~118897920~118897930~120213116~120385422~120412526~120420416~120469145~120469153~121191153~121246026~121246034~123814183~124013660"
+        ],
+        "u_w": [
+          "1280"
+        ],
+        "u_h": [
+          "720"
+        ],
+        "url": [
+          "https://www.enuygun.com/ucak-bileti/"
+        ],
+        "rcb": [
+          "10"
+        ],
+        "frm": [
+          "0"
+        ],
+        "tiba": [
+          "Uçak Bileti Al, Ucuz Uçak Bileti Fiyatları | ENUYGUN"
+        ],
+        "did": [
+          "dY2E1Nz"
+        ],
+        "gdid": [
+          "dY2E1Nz.dNzQzZD"
+        ],
+        "hn": [
+          "www.googleadservices.com"
+        ],
+        "npa": [
+          "0"
+        ],
+        "pscdl": [
+          "noapi"
+        ],
+        "auid": [
+          "147324003.1793822079"
+        ],
+        "uaa": [
+          "x86"
+        ],
+        "uab": [
+          "64"
+        ],
+        "uafvl": [
+          "Not%3AA-Brand;8.0.0.0|Chromium;156.0.8078.81|Google%20Chrome;156.0.8078.81"
+        ],
+        "uamb": [
+          "0"
+        ],
+        "uap": [
+          "Windows"
+        ],
+        "uapv": [
+          "8.0.0"
+        ],
+        "uaw": [
+          "0"
+        ],
+        "gtb": [
+          "2"
+        ],
+        "data": [
+          "event=gtag.config"
+        ],
+        "gap.gtb": [
+          "2"
+        ],
+        "ept": [
+          "68"
+        ],
+        "gcp": [
+          "5"
+        ]
+      },
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.enuygun.com/ucak-bileti/",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": null,
+      "response_sample": "",
+      "response_truncated": false
+    },
+    {
+      "id": 7,
+      "timestamp": "2026-11-06T18:26:41.586815+00:00",
+      "method": "POST",
+      "url": "https://www.google.com/rmkt/collect/962408946/",
+      "full_url": "https://www.google.com/rmkt/collect/962408946/?random=1793989599520&cv=11&fst=1793989599520&fmt=8&bg=ffffff&guid=ON&async=1&en=gtag.config&gtm=45892e6b41v868536350za20szb76734383zd76734383xecxf4&gcd=13t3t3t3t5l1&dma=0&tag_exp=115938466~115938468~118897920~118897930~120213116~120385422~120412528~120420416~120469145~120469153~121191153~121246026~121246034~123814185~124013662&u_w=1280&u_h=720&url=https%3A%2F%2Fwww.enuygun.com%2Fucak-bileti%2F&rcb=19&frm=0&tiba=U%C3%A7ak%20Bileti%20Al%2C%20Ucuz%20U%C3%A7ak%20Bileti%20Fiyatlar%C4%B1%20%7C%20ENUYGUN&did=dY2E1Nz&gdid=dY2E1Nz.dNzQzZD&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=147324003.1793822079&uaa=x86&uab=64&uafvl=Not%253AA-Brand%3B8.0.0.0%7CChromium%3B156.0.8078.81%7CGoogle%2520Chrome%3B156.0.8078.81&uamb=0&uam=&uap=Windows&uapv=8.0.0&uaw=0&gtb=2&data=event%3Dgtag.config&gap.gtb=2&ept=68&gcp=5",
+      "domain": "www.google.com",
+      "path": "/rmkt/collect/962408946/",
+      "status_code": 200,
+      "resource_type": "fetch",
+      "query_params": {
+        "random": [
+          "1793989599520"
+        ],
+        "cv": [
+          "11"
+        ],
+        "fst": [
+          "1793989599520"
+        ],
+        "fmt": [
+          "8"
+        ],
+        "bg": [
+          "ffffff"
+        ],
+        "guid": [
+          "ON"
+        ],
+        "async": [
+          "1"
+        ],
+        "en": [
+          "gtag.config"
+        ],
+        "gtm": [
+          "45892e6b41v868536350za20szb76734383zd76734383xecxf4"
+        ],
+        "gcd": [
+          "13t3t3t3t5l1"
+        ],
+        "dma": [
+          "0"
+        ],
+        "tag_exp": [
+          "115938466~115938468~118897920~118897930~120213116~120385422~120412528~120420416~120469145~120469153~121191153~121246026~121246034~123814185~124013662"
+        ],
+        "u_w": [
+          "1280"
+        ],
+        "u_h": [
+          "720"
+        ],
+        "url": [
+          "https://www.enuygun.com/ucak-bileti/"
+        ],
+        "rcb": [
+          "19"
+        ],
+        "frm": [
+          "0"
+        ],
+        "tiba": [
+          "Uçak Bileti Al, Ucuz Uçak Bileti Fiyatları | ENUYGUN"
+        ],
+        "did": [
+          "dY2E1Nz"
+        ],
+        "gdid": [
+          "dY2E1Nz.dNzQzZD"
+        ],
+        "hn": [
+          "www.googleadservices.com"
+        ],
+        "npa": [
+          "0"
+        ],
+        "pscdl": [
+          "noapi"
+        ],
+        "auid": [
+          "147324003.1793822079"
+        ],
+        "uaa": [
+          "x86"
+        ],
+        "uab": [
+          "64"
+        ],
+        "uafvl": [
+          "Not%3AA-Brand;8.0.0.0|Chromium;156.0.8078.81|Google%20Chrome;156.0.8078.81"
+        ],
+        "uamb": [
+          "0"
+        ],
+        "uap": [
+          "Windows"
+        ],
+        "uapv": [
+          "8.0.0"
+        ],
+        "uaw": [
+          "0"
+        ],
+        "gtb": [
+          "2"
+        ],
+        "data": [
+          "event=gtag.config"
+        ],
+        "gap.gtb": [
+          "2"
+        ],
+        "ept": [
+          "68"
+        ],
+        "gcp": [
+          "5"
+        ]
+      },
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.enuygun.com/ucak-bileti/",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": null,
+      "response_sample": "",
+      "response_truncated": false
+    },
+    {
+      "id": 8,
+      "timestamp": "2026-11-06T18:26:41.586815+00:00",
+      "method": "POST",
+      "url": "https://www.google.com/rmkt/collect/997102531/",
+      "full_url": "https://www.google.com/rmkt/collect/997102531/?random=1793989599656&cv=11&fst=1793989599656&fmt=8&bg=ffffff&guid=ON&async=1&en=gtag.config&gtm=45892e6b41v880850000za20szb76734383zd76734383xecxf4&gcd=13t3t3t3t5l1&dma=0&tag_exp=115938466~115938469~118897920~118897930~120213116~120385422~120412528~120420416~120469145~120469153~121191153~121246026~121246034~123814183&u_w=1280&u_h=720&url=https%3A%2F%2Fwww.enuygun.com%2Fucak-bileti%2F&rcb=15&frm=0&tiba=U%C3%A7ak%20Bileti%20Al%2C%20Ucuz%20U%C3%A7ak%20Bileti%20Fiyatlar%C4%B1%20%7C%20ENUYGUN&did=dY2E1Nz&gdid=dY2E1Nz.dNzQzZD&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=147324003.1793822079&uaa=x86&uab=64&uafvl=Not%253AA-Brand%3B8.0.0.0%7CChromium%3B156.0.8078.81%7CGoogle%2520Chrome%3B156.0.8078.81&uamb=0&uam=&uap=Windows&uapv=8.0.0&uaw=0&gtb=2&data=event%3Dgtag.config&gap.gtb=2&ept=68&gcp=5",
+      "domain": "www.google.com",
+      "path": "/rmkt/collect/997102531/",
+      "status_code": 200,
+      "resource_type": "fetch",
+      "query_params": {
+        "random": [
+          "1793989599656"
+        ],
+        "cv": [
+          "11"
+        ],
+        "fst": [
+          "1793989599656"
+        ],
+        "fmt": [
+          "8"
+        ],
+        "bg": [
+          "ffffff"
+        ],
+        "guid": [
+          "ON"
+        ],
+        "async": [
+          "1"
+        ],
+        "en": [
+          "gtag.config"
+        ],
+        "gtm": [
+          "45892e6b41v880850000za20szb76734383zd76734383xecxf4"
+        ],
+        "gcd": [
+          "13t3t3t3t5l1"
+        ],
+        "dma": [
+          "0"
+        ],
+        "tag_exp": [
+          "115938466~115938469~118897920~118897930~120213116~120385422~120412528~120420416~120469145~120469153~121191153~121246026~121246034~123814183"
+        ],
+        "u_w": [
+          "1280"
+        ],
+        "u_h": [
+          "720"
+        ],
+        "url": [
+          "https://www.enuygun.com/ucak-bileti/"
+        ],
+        "rcb": [
+          "15"
+        ],
+        "frm": [
+          "0"
+        ],
+        "tiba": [
+          "Uçak Bileti Al, Ucuz Uçak Bileti Fiyatları | ENUYGUN"
+        ],
+        "did": [
+          "dY2E1Nz"
+        ],
+        "gdid": [
+          "dY2E1Nz.dNzQzZD"
+        ],
+        "hn": [
+          "www.googleadservices.com"
+        ],
+        "npa": [
+          "0"
+        ],
+        "pscdl": [
+          "noapi"
+        ],
+        "auid": [
+          "147324003.1793822079"
+        ],
+        "uaa": [
+          "x86"
+        ],
+        "uab": [
+          "64"
+        ],
+        "uafvl": [
+          "Not%3AA-Brand;8.0.0.0|Chromium;156.0.8078.81|Google%20Chrome;156.0.8078.81"
+        ],
+        "uamb": [
+          "0"
+        ],
+        "uap": [
+          "Windows"
+        ],
+        "uapv": [
+          "8.0.0"
+        ],
+        "uaw": [
+          "0"
+        ],
+        "gtb": [
+          "2"
+        ],
+        "data": [
+          "event=gtag.config"
+        ],
+        "gap.gtb": [
+          "2"
+        ],
+        "ept": [
+          "68"
+        ],
+        "gcp": [
+          "5"
+        ]
+      },
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.enuygun.com/ucak-bileti/",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": null,
+      "response_sample": "",
+      "response_truncated": false
+    },
+    {
+      "id": 9,
+      "timestamp": "2026-11-06T18:26:41.586815+00:00",
+      "method": "POST",
+      "url": "https://www.google.com/rmkt/collect/11199412406/",
+      "full_url": "https://www.google.com/rmkt/collect/11199412406/?random=1793989599813&cv=11&fst=1793989599813&fmt=8&bg=ffffff&guid=ON&async=1&en=gtag.config&gtm=45892e6b41v9165532247za20szb76734383zd76734383xecxf4&gcd=13t3t3t3t5l1&dma=0&tag_exp=115616985~115938466~115938468~118897920~118897930~120213116~120385422~120412528~120420416~120469145~120469153~121191153~121246026~121246034~123814185~124013662&u_w=1280&u_h=720&url=https%3A%2F%2Fwww.enuygun.com%2Fucak-bileti%2F&rcb=0&frm=0&tiba=U%C3%A7ak%20Bileti%20Al%2C%20Ucuz%20U%C3%A7ak%20Bileti%20Fiyatlar%C4%B1%20%7C%20ENUYGUN&did=dY2E1Nz&gdid=dY2E1Nz.dNzQzZD&hn=www.googleadservices.com&npa=0&pscdl=noapi&auid=147324003.1793822079&uaa=x86&uab=64&uafvl=Not%253AA-Brand%3B8.0.0.0%7CChromium%3B156.0.8078.81%7CGoogle%2520Chrome%3B156.0.8078.81&uamb=0&uam=&uap=Windows&uapv=8.0.0&uaw=0&gtb=2&data=event%3Dgtag.config&gap.gtb=2&ept=68&gcp=5",
+      "domain": "www.google.com",
+      "path": "/rmkt/collect/11199412406/",
+      "status_code": 200,
+      "resource_type": "fetch",
+      "query_params": {
+        "random": [
+          "1793989599813"
+        ],
+        "cv": [
+          "11"
+        ],
+        "fst": [
+          "1793989599813"
+        ],
+        "fmt": [
+          "8"
+        ],
+        "bg": [
+          "ffffff"
+        ],
+        "guid": [
+          "ON"
+        ],
+        "async": [
+          "1"
+        ],
+        "en": [
+          "gtag.config"
+        ],
+        "gtm": [
+          "45892e6b41v9165532247za20szb76734383zd76734383xecxf4"
+        ],
+        "gcd": [
+          "13t3t3t3t5l1"
+        ],
+        "dma": [
+          "0"
+        ],
+        "tag_exp": [
+          "115616985~115938466~115938468~118897920~118897930~120213116~120385422~120412528~120420416~120469145~120469153~121191153~121246026~121246034~123814185~124013662"
+        ],
+        "u_w": [
+          "1280"
+        ],
+        "u_h": [
+          "720"
+        ],
+        "url": [
+          "https://www.enuygun.com/ucak-bileti/"
+        ],
+        "rcb": [
+          "0"
+        ],
+        "frm": [
+          "0"
+        ],
+        "tiba": [
+          "Uçak Bileti Al, Ucuz Uçak Bileti Fiyatları | ENUYGUN"
+        ],
+        "did": [
+          "dY2E1Nz"
+        ],
+        "gdid": [
+          "dY2E1Nz.dNzQzZD"
+        ],
+        "hn": [
+          "www.googleadservices.com"
+        ],
+        "npa": [
+          "0"
+        ],
+        "pscdl": [
+          "noapi"
+        ],
+        "auid": [
+          "147324003.1793822079"
+        ],
+        "uaa": [
+          "x86"
+        ],
+        "uab": [
+          "64"
+        ],
+        "uafvl": [
+          "Not%3AA-Brand;8.0.0.0|Chromium;156.0.8078.81|Google%20Chrome;156.0.8078.81"
+        ],
+        "uamb": [
+          "0"
+        ],
+        "uap": [
+          "Windows"
+        ],
+        "uapv": [
+          "8.0.0"
+        ],
+        "uaw": [
+          "0"
+        ],
+        "gtb": [
+          "2"
+        ],
+        "data": [
+          "event=gtag.config"
+        ],
+        "gap.gtb": [
+          "2"
+        ],
+        "ept": [
+          "68"
+        ],
+        "gcp": [
+          "5"
+        ]
+      },
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.enuygun.com/ucak-bileti/",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": null,
+      "response_sample": "",
+      "response_truncated": false
+    },
+    {
+      "id": 10,
+      "timestamp": "2026-11-06T18:26:44.134673+00:00",
+      "method": "POST",
+      "url": "https://www.enuygun.com/6wz7af34h/ag/g/c",
+      "full_url": "https://www.enuygun.com/6wz7af34h/ag/g/c?v=2&tid=G-VNWQY32CGH&gtm=45g92e6b41v871943099za20szb76734383zd76734383xf4&_p=1793989599060&_gaz=1&gcs=G111&gcd=13t3t3t3t5l1&npa=0&dma=0&gdid=dY2E1Nz.dNzQzZD&_eu=AAAAAGQC&_platinum_request_status=ok&_uip=%3A%3A&cid=1688610352.1793822081&fp=1&frm=0&pscdl=noapi&rcb=16&sr=1280x720&uaa=x86&uab=64&uafvl=Not%253AA-Brand%3B8.0.0.0%7CChromium%3B156.0.8078.81%7CGoogle%2520Chrome%3B156.0.8078.81&uam=&uamb=0&uap=Windows&uapv=8.0.0&uaw=0&ul=tr-tr&ur=TR-27&_gsid=oyLy0qmyewIS0jxaB2cgURwVMS3ajoHnNA&gaf=2&_s=1&tag_exp=115616986~115938466~115938469~118897920~118897930~120213116~120385422~120412526~120420414~120469145~120469153~121191153~121246026~121246034~123814183&sid=1793989597&sct=2&seg=0&dl=https%3A%2F%2Fwww.enuygun.com%2Fucak-bileti%2F&dt=U%C3%A7ak%20Bileti%20Al%2C%20Ucuz%20U%C3%A7ak%20Bileti%20Fiyatlar%C4%B1%20%7C%20ENUYGUN&gtb=2&en=page_view&_ss=2&gap.gtb=2&ep.content_group=U%C3%A7ak%20Bileti&ep.debug_view=true&ep.cci=cci2_1793822069708_1fc5fcf6-6db8-4a01-951c-b68691608635&epn.corporate_user=0&upn.user_corporate=0&up.session_id=ASV1.G-VNWQY32CGH%3A1793822081&up.session_number=ASV1.G-VNWQY32CGH%3A1&up.client_id=1688610352.1793822081&tfd=10440",
+      "domain": "www.enuygun.com",
+      "path": "/6wz7af34h/ag/g/c",
+      "status_code": 204,
+      "resource_type": "fetch",
+      "query_params": {
+        "v": [
+          "2"
+        ],
+        "tid": [
+          "G-VNWQY32CGH"
+        ],
+        "gtm": [
+          "45g92e6b41v871943099za20szb76734383zd76734383xf4"
+        ],
+        "_p": [
+          "1793989599060"
+        ],
+        "_gaz": [
+          "1"
+        ],
+        "gcs": [
+          "G111"
+        ],
+        "gcd": [
+          "13t3t3t3t5l1"
+        ],
+        "npa": [
+          "0"
+        ],
+        "dma": [
+          "0"
+        ],
+        "gdid": [
+          "dY2E1Nz.dNzQzZD"
+        ],
+        "_eu": [
+          "AAAAAGQC"
+        ],
+        "_platinum_request_status": [
+          "ok"
+        ],
+        "_uip": [
+          "::"
+        ],
+        "cid": [
+          "1688610352.1793822081"
+        ],
+        "fp": [
+          "1"
+        ],
+        "frm": [
+          "0"
+        ],
+        "pscdl": [
+          "noapi"
+        ],
+        "rcb": [
+          "16"
+        ],
+        "sr": [
+          "1280x720"
+        ],
+        "uaa": [
+          "x86"
+        ],
+        "uab": [
+          "64"
+        ],
+        "uafvl": [
+          "Not%3AA-Brand;8.0.0.0|Chromium;156.0.8078.81|Google%20Chrome;156.0.8078.81"
+        ],
+        "uamb": [
+          "0"
+        ],
+        "uap": [
+          "Windows"
+        ],
+        "uapv": [
+          "8.0.0"
+        ],
+        "uaw": [
+          "0"
+        ],
+        "ul": [
+          "tr-tr"
+        ],
+        "ur": [
+          "TR-27"
+        ],
+        "_gsid": [
+          "oyLy0qmyewIS0jxaB2cgURwVMS3ajoHnNA"
+        ],
+        "gaf": [
+          "2"
+        ],
+        "_s": [
+          "1"
+        ],
+        "tag_exp": [
+          "115616986~115938466~115938469~118897920~118897930~120213116~120385422~120412526~120420414~120469145~120469153~121191153~121246026~121246034~123814183"
+        ],
+        "sid": [
+          "1793989597"
+        ],
+        "sct": [
+          "2"
+        ],
+        "seg": [
+          "0"
+        ],
+        "dl": [
+          "https://www.enuygun.com/ucak-bileti/"
+        ],
+        "dt": [
+          "Uçak Bileti Al, Ucuz Uçak Bileti Fiyatları | ENUYGUN"
+        ],
+        "gtb": [
+          "2"
+        ],
+        "en": [
+          "page_view"
+        ],
+        "_ss": [
+          "2"
+        ],
+        "gap.gtb": [
+          "2"
+        ],
+        "ep.content_group": [
+          "Uçak Bileti"
+        ],
+        "ep.debug_view": [
+          "true"
+        ],
+        "ep.cci": [
+          "cci2_1793822069708_1fc5fcf6-6db8-4a01-951c-b68691608635"
+        ],
+        "epn.corporate_user": [
+          "0"
+        ],
+        "upn.user_corporate": [
+          "0"
+        ],
+        "up.session_id": [
+          "ASV1.G-VNWQY32CGH:1793822081"
+        ],
+        "up.session_number": [
+          "ASV1.G-VNWQY32CGH:1"
+        ],
+        "up.client_id": [
+          "1688610352.1793822081"
+        ],
+        "tfd": [
+          "10440"
+        ]
+      },
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.enuygun.com/ucak-bileti/",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": null,
+      "response_sample": "",
+      "response_truncated": false
+    },
+    {
+      "id": 11,
+      "timestamp": "2026-11-06T18:26:44.134673+00:00",
+      "method": "POST",
+      "url": "https://www.google.com/ccm/collect",
+      "full_url": "https://www.google.com/ccm/collect?rcb=4&frm=0&apvc=1&auid=147324003.1793822079&dt=U%C3%A7ak%20Bileti%20Al%2C%20Ucuz%20U%C3%A7ak%20Bileti%20Fiyatlar%C4%B1%20%7C%20ENUYGUN&tid=AW-385830129&en=page_view&dl=https%3A%2F%2Fwww.enuygun.com%2Fucak-bileti%2F&scrsrc=www.enuygun.com&rnd=507512040.1793989599&navt=n&npa=0&did=dY2E1Nz&gdid=dY2E1Nz.dNzQzZD&gtb=2&gtm=45892e6b41v897896685za20szb76734383zd76734383xecxf4&gcs=G111&gcd=13t3t3t3t5l1&dma=0&tag_exp=115938466~115938468~118897920~118897930~120213116~120385423~120412528~120420414~120469145~120469153~121191153~121246026~121246034~123814183&tft=1793989600247&tfd=10606&gap.gtb=2&tids=AW-385830129&fmt=8",
+      "domain": "www.google.com",
+      "path": "/ccm/collect",
+      "status_code": 200,
+      "resource_type": "fetch",
+      "query_params": {
+        "rcb": [
+          "4"
+        ],
+        "frm": [
+          "0"
+        ],
+        "apvc": [
+          "1"
+        ],
+        "auid": [
+          "147324003.1793822079"
+        ],
+        "dt": [
+          "Uçak Bileti Al, Ucuz Uçak Bileti Fiyatları | ENUYGUN"
+        ],
+        "tid": [
+          "AW-385830129"
+        ],
+        "en": [
+          "page_view"
+        ],
+        "dl": [
+          "https://www.enuygun.com/ucak-bileti/"
+        ],
+        "scrsrc": [
+          "www.enuygun.com"
+        ],
+        "rnd": [
+          "507512040.1793989599"
+        ],
+        "navt": [
+          "n"
+        ],
+        "npa": [
+          "0"
+        ],
+        "did": [
+          "dY2E1Nz"
+        ],
+        "gdid": [
+          "dY2E1Nz.dNzQzZD"
+        ],
+        "gtb": [
+          "2"
+        ],
+        "gtm": [
+          "45892e6b41v897896685za20szb76734383zd76734383xecxf4"
+        ],
+        "gcs": [
+          "G111"
+        ],
+        "gcd": [
+          "13t3t3t3t5l1"
+        ],
+        "dma": [
+          "0"
+        ],
+        "tag_exp": [
+          "115938466~115938468~118897920~118897930~120213116~120385423~120412528~120420414~120469145~120469153~121191153~121246026~121246034~123814183"
+        ],
+        "tft": [
+          "1793989600247"
+        ],
+        "tfd": [
+          "10606"
+        ],
+        "gap.gtb": [
+          "2"
+        ],
+        "tids": [
+          "AW-385830129"
+        ],
+        "fmt": [
+          "8"
+        ]
+      },
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.enuygun.com/ucak-bileti/",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": null,
+      "response_sample": "",
+      "response_truncated": false
+    },
+    {
+      "id": 12,
+      "timestamp": "2026-11-06T18:26:44.134673+00:00",
+      "method": "POST",
+      "url": "https://www.google.com/ccm/collect",
+      "full_url": "https://www.google.com/ccm/collect?rcb=10&frm=0&apvc=0&auid=147324003.1793822079&dt=U%C3%A7ak%20Bileti%20Al%2C%20Ucuz%20U%C3%A7ak%20Bileti%20Fiyatlar%C4%B1%20%7C%20ENUYGUN&tid=AW-997262965&en=page_view&dl=https%3A%2F%2Fwww.enuygun.com%2Fucak-bileti%2F&scrsrc=www.enuygun.com&rnd=507512040.1793989599&navt=n&npa=0&did=dY2E1Nz&gdid=dY2E1Nz.dNzQzZD&gtb=2&gtm=45892e6b41v892763840za20szb76734383zd76734383xecxf4&gcs=G111&gcd=13t3t3t3t5l1&dma=0&tag_exp=115616986~115938466~115938469~118897920~118897930~120213116~120385422~120412526~120420416~120469145~120469153~121191153~121246026~121246034~123814183~124013660&tft=1793989600257&tfd=10616&gap.gtb=2&tids=AW-997262965&fmt=8",
+      "domain": "www.google.com",
+      "path": "/ccm/collect",
+      "status_code": 200,
+      "resource_type": "fetch",
+      "query_params": {
+        "rcb": [
+          "10"
+        ],
+        "frm": [
+          "0"
+        ],
+        "apvc": [
+          "0"
+        ],
+        "auid": [
+          "147324003.1793822079"
+        ],
+        "dt": [
+          "Uçak Bileti Al, Ucuz Uçak Bileti Fiyatları | ENUYGUN"
+        ],
+        "tid": [
+          "AW-997262965"
+        ],
+        "en": [
+          "page_view"
+        ],
+        "dl": [
+          "https://www.enuygun.com/ucak-bileti/"
+        ],
+        "scrsrc": [
+          "www.enuygun.com"
+        ],
+        "rnd": [
+          "507512040.1793989599"
+        ],
+        "navt": [
+          "n"
+        ],
+        "npa": [
+          "0"
+        ],
+        "did": [
+          "dY2E1Nz"
+        ],
+        "gdid": [
+          "dY2E1Nz.dNzQzZD"
+        ],
+        "gtb": [
+          "2"
+        ],
+        "gtm": [
+          "45892e6b41v892763840za20szb76734383zd76734383xecxf4"
+        ],
+        "gcs": [
+          "G111"
+        ],
+        "gcd": [
+          "13t3t3t3t5l1"
+        ],
+        "dma": [
+          "0"
+        ],
+        "tag_exp": [
+          "115616986~115938466~115938469~118897920~118897930~120213116~120385422~120412526~120420416~120469145~120469153~121191153~121246026~121246034~123814183~124013660"
+        ],
+        "tft": [
+          "1793989600257"
+        ],
+        "tfd": [
+          "10616"
+        ],
+        "gap.gtb": [
+          "2"
+        ],
+        "tids": [
+          "AW-997262965"
+        ],
+        "fmt": [
+          "8"
+        ]
+      },
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.enuygun.com/ucak-bileti/",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": null,
+      "response_sample": "",
+      "response_truncated": false
+    },
+    {
+      "id": 13,
+      "timestamp": "2026-11-06T18:26:44.134673+00:00",
+      "method": "POST",
+      "url": "https://www.google.com/ccm/collect",
+      "full_url": "https://www.google.com/ccm/collect?rcb=13&frm=0&apvc=0&auid=147324003.1793822079&dt=U%C3%A7ak%20Bileti%20Al%2C%20Ucuz%20U%C3%A7ak%20Bileti%20Fiyatlar%C4%B1%20%7C%20ENUYGUN&tid=AW-746017722&en=page_view&dl=https%3A%2F%2Fwww.enuygun.com%2Fucak-bileti%2F&scrsrc=www.enuygun.com&rnd=507512040.1793989599&navt=n&npa=0&did=dY2E1Nz&gdid=dY2E1Nz.dNzQzZD&gtb=2&gtm=45892e6b41v9216811576za20szb76734383zd76734383xecxf4&gcs=G111&gcd=13t3t3t3t5l1&dma=0&tag_exp=115938466~115938469~118897920~118897930~120213116~120385422~120412528~120420416~120469145~120469153~121191153~121246026~121246034~123814185~124013660&tft=1793989600253&tfd=10612&gap.gtb=2&tids=AW-746017722&fmt=8",
+      "domain": "www.google.com",
+      "path": "/ccm/collect",
+      "status_code": 200,
+      "resource_type": "fetch",
+      "query_params": {
+        "rcb": [
+          "13"
+        ],
+        "frm": [
+          "0"
+        ],
+        "apvc": [
+          "0"
+        ],
+        "auid": [
+          "147324003.1793822079"
+        ],
+        "dt": [
+          "Uçak Bileti Al, Ucuz Uçak Bileti Fiyatları | ENUYGUN"
+        ],
+        "tid": [
+          "AW-746017722"
+        ],
+        "en": [
+          "page_view"
+        ],
+        "dl": [
+          "https://www.enuygun.com/ucak-bileti/"
+        ],
+        "scrsrc": [
+          "www.enuygun.com"
+        ],
+        "rnd": [
+          "507512040.1793989599"
+        ],
+        "navt": [
+          "n"
+        ],
+        "npa": [
+          "0"
+        ],
+        "did": [
+          "dY2E1Nz"
+        ],
+        "gdid": [
+          "dY2E1Nz.dNzQzZD"
+        ],
+        "gtb": [
+          "2"
+        ],
+        "gtm": [
+          "45892e6b41v9216811576za20szb76734383zd76734383xecxf4"
+        ],
+        "gcs": [
+          "G111"
+        ],
+        "gcd": [
+          "13t3t3t3t5l1"
+        ],
+        "dma": [
+          "0"
+        ],
+        "tag_exp": [
+          "115938466~115938469~118897920~118897930~120213116~120385422~120412528~120420416~120469145~120469153~121191153~121246026~121246034~123814185~124013660"
+        ],
+        "tft": [
+          "1793989600253"
+        ],
+        "tfd": [
+          "10612"
+        ],
+        "gap.gtb": [
+          "2"
+        ],
+        "tids": [
+          "AW-746017722"
+        ],
+        "fmt": [
+          "8"
+        ]
+      },
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.enuygun.com/ucak-bileti/",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": null,
+      "response_sample": "",
+      "response_truncated": false
+    },
+    {
+      "id": 14,
+      "timestamp": "2026-11-06T18:26:44.134673+00:00",
+      "method": "POST",
+      "url": "https://www.google.com/ccm/collect",
+      "full_url": "https://www.google.com/ccm/collect?rcb=19&frm=0&apvc=0&auid=147324003.1793822079&dt=U%C3%A7ak%20Bileti%20Al%2C%20Ucuz%20U%C3%A7ak%20Bileti%20Fiyatlar%C4%B1%20%7C%20ENUYGUN&tid=AW-962408946&en=page_view&dl=https%3A%2F%2Fwww.enuygun.com%2Fucak-bileti%2F&scrsrc=www.enuygun.com&rnd=507512040.1793989599&navt=n&npa=0&did=dY2E1Nz&gdid=dY2E1Nz.dNzQzZD&gtb=2&gtm=45892e6b41v868536350za20szb76734383zd76734383xecxf4&gcs=G111&gcd=13t3t3t3t5l1&dma=0&tag_exp=115938466~115938468~118897920~118897930~120213116~120385422~120412528~120420416~120469145~120469153~121191153~121246026~121246034~123814185~124013662&tft=1793989600264&tfd=10623&gap.gtb=2&tids=AW-962408946&fmt=8",
+      "domain": "www.google.com",
+      "path": "/ccm/collect",
+      "status_code": 200,
+      "resource_type": "fetch",
+      "query_params": {
+        "rcb": [
+          "19"
+        ],
+        "frm": [
+          "0"
+        ],
+        "apvc": [
+          "0"
+        ],
+        "auid": [
+          "147324003.1793822079"
+        ],
+        "dt": [
+          "Uçak Bileti Al, Ucuz Uçak Bileti Fiyatları | ENUYGUN"
+        ],
+        "tid": [
+          "AW-962408946"
+        ],
+        "en": [
+          "page_view"
+        ],
+        "dl": [
+          "https://www.enuygun.com/ucak-bileti/"
+        ],
+        "scrsrc": [
+          "www.enuygun.com"
+        ],
+        "rnd": [
+          "507512040.1793989599"
+        ],
+        "navt": [
+          "n"
+        ],
+        "npa": [
+          "0"
+        ],
+        "did": [
+          "dY2E1Nz"
+        ],
+        "gdid": [
+          "dY2E1Nz.dNzQzZD"
+        ],
+        "gtb": [
+          "2"
+        ],
+        "gtm": [
+          "45892e6b41v868536350za20szb76734383zd76734383xecxf4"
+        ],
+        "gcs": [
+          "G111"
+        ],
+        "gcd": [
+          "13t3t3t3t5l1"
+        ],
+        "dma": [
+          "0"
+        ],
+        "tag_exp": [
+          "115938466~115938468~118897920~118897930~120213116~120385422~120412528~120420416~120469145~120469153~121191153~121246026~121246034~123814185~124013662"
+        ],
+        "tft": [
+          "1793989600264"
+        ],
+        "tfd": [
+          "10623"
+        ],
+        "gap.gtb": [
+          "2"
+        ],
+        "tids": [
+          "AW-962408946"
+        ],
+        "fmt": [
+          "8"
+        ]
+      },
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.enuygun.com/ucak-bileti/",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": null,
+      "response_sample": "",
+      "response_truncated": false
+    },
+    {
+      "id": 15,
+      "timestamp": "2026-11-06T18:26:44.134673+00:00",
+      "method": "POST",
+      "url": "https://www.google.com/ccm/collect",
+      "full_url": "https://www.google.com/ccm/collect?rcb=15&frm=0&apvc=0&auid=147324003.1793822079&dt=U%C3%A7ak%20Bileti%20Al%2C%20Ucuz%20U%C3%A7ak%20Bileti%20Fiyatlar%C4%B1%20%7C%20ENUYGUN&tid=AW-997102531&en=page_view&dl=https%3A%2F%2Fwww.enuygun.com%2Fucak-bileti%2F&scrsrc=www.enuygun.com&rnd=507512040.1793989599&navt=n&npa=0&did=dY2E1Nz&gdid=dY2E1Nz.dNzQzZD&gtb=2&gtm=45892e6b41v880850000za20szb76734383zd76734383xecxf4&gcs=G111&gcd=13t3t3t3t5l1&dma=0&tag_exp=115938466~115938469~118897920~118897930~120213116~120385422~120412528~120420416~120469145~120469153~121191153~121246026~121246034~123814183&tft=1793989600268&tfd=10627&gap.gtb=2&tids=AW-997102531&fmt=8",
+      "domain": "www.google.com",
+      "path": "/ccm/collect",
+      "status_code": 200,
+      "resource_type": "fetch",
+      "query_params": {
+        "rcb": [
+          "15"
+        ],
+        "frm": [
+          "0"
+        ],
+        "apvc": [
+          "0"
+        ],
+        "auid": [
+          "147324003.1793822079"
+        ],
+        "dt": [
+          "Uçak Bileti Al, Ucuz Uçak Bileti Fiyatları | ENUYGUN"
+        ],
+        "tid": [
+          "AW-997102531"
+        ],
+        "en": [
+          "page_view"
+        ],
+        "dl": [
+          "https://www.enuygun.com/ucak-bileti/"
+        ],
+        "scrsrc": [
+          "www.enuygun.com"
+        ],
+        "rnd": [
+          "507512040.1793989599"
+        ],
+        "navt": [
+          "n"
+        ],
+        "npa": [
+          "0"
+        ],
+        "did": [
+          "dY2E1Nz"
+        ],
+        "gdid": [
+          "dY2E1Nz.dNzQzZD"
+        ],
+        "gtb": [
+          "2"
+        ],
+        "gtm": [
+          "45892e6b41v880850000za20szb76734383zd76734383xecxf4"
+        ],
+        "gcs": [
+          "G111"
+        ],
+        "gcd": [
+          "13t3t3t3t5l1"
+        ],
+        "dma": [
+          "0"
+        ],
+        "tag_exp": [
+          "115938466~115938469~118897920~118897930~120213116~120385422~120412528~120420416~120469145~120469153~121191153~121246026~121246034~123814183"
+        ],
+        "tft": [
+          "1793989600268"
+        ],
+        "tfd": [
+          "10627"
+        ],
+        "gap.gtb": [
+          "2"
+        ],
+        "tids": [
+          "AW-997102531"
+        ],
+        "fmt": [
+          "8"
+        ]
+      },
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.enuygun.com/ucak-bileti/",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": null,
+      "response_sample": "",
+      "response_truncated": false
+    },
+    {
+      "id": 16,
+      "timestamp": "2026-11-06T18:26:44.142674+00:00",
+      "method": "POST",
+      "url": "https://www.google.com/ccm/collect",
+      "full_url": "https://www.google.com/ccm/collect?rcb=0&frm=0&apvc=0&auid=147324003.1793822079&dt=U%C3%A7ak%20Bileti%20Al%2C%20Ucuz%20U%C3%A7ak%20Bileti%20Fiyatlar%C4%B1%20%7C%20ENUYGUN&tid=AW-11199412406&en=page_view&dl=https%3A%2F%2Fwww.enuygun.com%2Fucak-bileti%2F&scrsrc=www.enuygun.com&rnd=507512040.1793989599&navt=n&npa=0&did=dY2E1Nz&gdid=dY2E1Nz.dNzQzZD&gtb=2&gtm=45892e6b41v9165532247za20szb76734383zd76734383xecxf4&gcs=G111&gcd=13t3t3t3t5l1&dma=0&tag_exp=115616985~115938466~115938468~118897920~118897930~120213116~120385422~120412528~120420416~120469145~120469153~121191153~121246026~121246034~123814185~124013662&tft=1793989600272&tfd=10631&gap.gtb=2&tids=AW-11199412406&fmt=8",
+      "domain": "www.google.com",
+      "path": "/ccm/collect",
+      "status_code": 200,
+      "resource_type": "fetch",
+      "query_params": {
+        "rcb": [
+          "0"
+        ],
+        "frm": [
+          "0"
+        ],
+        "apvc": [
+          "0"
+        ],
+        "auid": [
+          "147324003.1793822079"
+        ],
+        "dt": [
+          "Uçak Bileti Al, Ucuz Uçak Bileti Fiyatları | ENUYGUN"
+        ],
+        "tid": [
+          "AW-11199412406"
+        ],
+        "en": [
+          "page_view"
+        ],
+        "dl": [
+          "https://www.enuygun.com/ucak-bileti/"
+        ],
+        "scrsrc": [
+          "www.enuygun.com"
+        ],
+        "rnd": [
+          "507512040.1793989599"
+        ],
+        "navt": [
+          "n"
+        ],
+        "npa": [
+          "0"
+        ],
+        "did": [
+          "dY2E1Nz"
+        ],
+        "gdid": [
+          "dY2E1Nz.dNzQzZD"
+        ],
+        "gtb": [
+          "2"
+        ],
+        "gtm": [
+          "45892e6b41v9165532247za20szb76734383zd76734383xecxf4"
+        ],
+        "gcs": [
+          "G111"
+        ],
+        "gcd": [
+          "13t3t3t3t5l1"
+        ],
+        "dma": [
+          "0"
+        ],
+        "tag_exp": [
+          "115616985~115938466~115938468~118897920~118897930~120213116~120385422~120412528~120420416~120469145~120469153~121191153~121246026~121246034~123814185~124013662"
+        ],
+        "tft": [
+          "1793989600272"
+        ],
+        "tfd": [
+          "10631"
+        ],
+        "gap.gtb": [
+          "2"
+        ],
+        "tids": [
+          "AW-11199412406"
+        ],
+        "fmt": [
+          "8"
+        ]
+      },
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.enuygun.com/ucak-bileti/",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": null,
+      "response_sample": "",
+      "response_truncated": false
+    },
+    {
+      "id": 17,
+      "timestamp": "2026-11-06T18:26:44.142674+00:00",
+      "method": "GET",
+      "url": "https://www.google.com/measurement/1p-conversion/",
+      "full_url": "https://www.google.com/measurement/1p-conversion/?random=352428963&cv=11&tid=G-VNWQY32CGH&fst=1793989597056&fmt=8&en=session_start&gtm=45g92e6b41v871943099za20szb76734383zd76734383xecxf4&gcs=G111&gcd=13t3t3t3t5l1&dma=0&tag_exp=115616986~115938466~115938469~118897920~118897930~120213116~120385422~120412526~120420414~120469145~120469153~121191153~121246026~121246034~123814183&u_w=1280&u_h=720&url=https%3A%2F%2Fwww.enuygun.com%2Fucak-bileti%2F&gacid=1688610352.1793822081&hn=www.googleadservices.com&frm=0&tiba=U%C3%A7ak%20Bileti%20Al%2C%20Ucuz%20U%C3%A7ak%20Bileti%20Fiyatlar%C4%B1%20%7C%20ENUYGUN&gdid=dY2E1Nz&npa=0&pscdl=noapi&auid=147324003.1793822079&uaa=x86&uab=64&uafvl=Not%253AA-Brand%3B8.0.0.0%7CChromium%3B156.0.8078.81%7CGoogle%2520Chrome%3B156.0.8078.81&uamb=0&uam=&uap=Windows&uapv=8.0.0&uaw=0&rcb=16&ct_cookie_present=false&crd=CLTesQII8t-xAgit4bECCK_hsQIIobixAgixwbECCLDBsQIIscOxAgiKxbECCMLJsQII1-ixAgi0xrECCIfbsQII08WxAgjrzLECCO3OsQII1c-xAgiK8rECCPTasQII4uqxAgjo7rECCLjysQIIkuuxAgiX1LECCMnbsQIIpt2xAgiw3rECCIDbsQI&cerd=CgEA&fsk=ChEIgJK21wYQ3tfDrqmLg6H2ARIsAMce10Ib7uQHKX4fHsdPdf0oq_PitBMx-egstT5u46FVVkXeW1YDwboonbAaAklP&pscrd=IhMIneuPhvzzlwMV2CpVCB0zBQ-_OiRodHRwczovL3d3dy5lbnV5Z3VuLmNvbS91Y2FrLWJpbGV0aS9CV0NoRUlnSksyMXdZUW41WDFxdURsdUo2aEFSSXNBSUFvRUk5N0tsVnlfRkl6U0YwSHBtNUVFQmtfXzNxU1FMaF9XcUx4bDNSNjg3Sk5PQzdDbWoyN1Nyb3oMCAliCAgAEAAYACAA",
+      "domain": "www.google.com",
+      "path": "/measurement/1p-conversion/",
+      "status_code": 200,
+      "resource_type": "fetch",
+      "query_params": {
+        "random": [
+          "352428963"
+        ],
+        "cv": [
+          "11"
+        ],
+        "tid": [
+          "G-VNWQY32CGH"
+        ],
+        "fst": [
+          "1793989597056"
+        ],
+        "fmt": [
+          "8"
+        ],
+        "en": [
+          "session_start"
+        ],
+        "gtm": [
+          "45g92e6b41v871943099za20szb76734383zd76734383xecxf4"
+        ],
+        "gcs": [
+          "G111"
+        ],
+        "gcd": [
+          "13t3t3t3t5l1"
+        ],
+        "dma": [
+          "0"
+        ],
+        "tag_exp": [
+          "115616986~115938466~115938469~118897920~118897930~120213116~120385422~120412526~120420414~120469145~120469153~121191153~121246026~121246034~123814183"
+        ],
+        "u_w": [
+          "1280"
+        ],
+        "u_h": [
+          "720"
+        ],
+        "url": [
+          "https://www.enuygun.com/ucak-bileti/"
+        ],
+        "gacid": [
+          "1688610352.1793822081"
+        ],
+        "hn": [
+          "www.googleadservices.com"
+        ],
+        "frm": [
+          "0"
+        ],
+        "tiba": [
+          "Uçak Bileti Al, Ucuz Uçak Bileti Fiyatları | ENUYGUN"
+        ],
+        "gdid": [
+          "dY2E1Nz"
+        ],
+        "npa": [
+          "0"
+        ],
+        "pscdl": [
+          "noapi"
+        ],
+        "auid": [
+          "147324003.1793822079"
+        ],
+        "uaa": [
+          "x86"
+        ],
+        "uab": [
+          "64"
+        ],
+        "uafvl": [
+          "Not%3AA-Brand;8.0.0.0|Chromium;156.0.8078.81|Google%20Chrome;156.0.8078.81"
+        ],
+        "uamb": [
+          "0"
+        ],
+        "uap": [
+          "Windows"
+        ],
+        "uapv": [
+          "8.0.0"
+        ],
+        "uaw": [
+          "0"
+        ],
+        "rcb": [
+          "16"
+        ],
+        "ct_cookie_present": [
+          "false"
+        ],
+        "crd": [
+          "CLTesQII8t-xAgit4bECCK_hsQIIobixAgixwbECCLDBsQIIscOxAgiKxbECCMLJsQII1-ixAgi0xrECCIfbsQII08WxAgjrzLECCO3OsQII1c-xAgiK8rECCPTasQII4uqxAgjo7rECCLjysQIIkuuxAgiX1LECCMnbsQIIpt2xAgiw3rECCIDbsQI"
+        ],
+        "cerd": [
+          "CgEA"
+        ],
+        "fsk": [
+          "ChEIgJK21wYQ3tfDrqmLg6H2ARIsAMce10Ib7uQHKX4fHsdPdf0oq_PitBMx-egstT5u46FVVkXeW1YDwboonbAaAklP"
+        ],
+        "pscrd": [
+          "IhMIneuPhvzzlwMV2CpVCB0zBQ-_OiRodHRwczovL3d3dy5lbnV5Z3VuLmNvbS91Y2FrLWJpbGV0aS9CV0NoRUlnSksyMXdZUW41WDFxdURsdUo2aEFSSXNBSUFvRUk5N0tsVnlfRkl6U0YwSHBtNUVFQmtfXzNxU1FMaF9XcUx4bDNSNjg3Sk5PQzdDbWoyN1Nyb3oMCAliCAgAEAAYACAA"
+        ]
+      },
+      "headers": {
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "referer": "https://www.enuygun.com/ucak-bileti/"
+      },
+      "request_payload": null,
+      "response_sample": "",
+      "response_truncated": false
+    },
+    {
+      "id": 18,
+      "timestamp": "2026-11-06T18:26:44.148575+00:00",
+      "method": "GET",
+      "url": "https://www.enuygun.com/napi/v1/flights/populars",
+      "full_url": "https://www.enuygun.com/napi/v1/flights/populars?referer=https://www.enuygun.com/ucak-bileti",
+      "domain": "www.enuygun.com",
+      "path": "/napi/v1/flights/populars",
+      "status_code": 200,
+      "resource_type": "xhr",
+      "query_params": {
+        "referer": [
+          "https://www.enuygun.com/ucak-bileti"
+        ]
+      },
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.enuygun.com/ucak-bileti/",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "accept": "application/json, text/plain, */*",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": null,
+      "response_sample": "{\"popular_options\":{\"origin\":[{\"label\":\"ISTA, İstanbul, Türkiye - Tüm havalimanları\",\"slug\":\"istanbul\",\"id\":\"ISTA\",\"country_code\":\"TR\",\"latitude\":\"41.199958\",\"longitude\":\"28.969458\",\"city_name\":\"İstanbul\",\"city_code\":\"IST\",\"country_name\":\"Türkiye\",\"airport_name\":\"Tüm havalimanları\",\"is_city\":true,\"type\":\"city\",\"alternative_label\":\"Tüm havalimanları\",\"time_zone\":\"Europe/Istanbul\"},{\"label\":\"ADB, İzmir, Türkiye - Adnan Menderes Havalimanı\",\"slug\":\"izmir-adnan-menderes-havalimani\",\"id\":\"ADB\",\"country_code\":\"TR\",\"latitude\":\"38.294403\",\"longitude\":\"27.147594\",\"city_name\":\"İzmir\",\"city_code\":\"IZM\",\"country_name\":\"Türkiye\",\"airport_name\":\"Adnan Menderes Havalimanı\",\"is_city\":false,\"type\":\"airport\",\"alternative_label\":\"İzmir, Türkiye\",\"time_zone\":\"Europe/Istanbul\",\"popularity\":0},{\"label\":\"ESB, Ankara, Türkiye - Esenboğa Havalimanı\",\"slug\":\"ankara-esenboga-havalimani\",\"id\":\"ESB\",\"country_code\":\"TR\",\"latitude\":\"40.114940\",\"longitude\":\"32.993145\",\"city_name\":\"Ankara\",\"city_code\":\"ANK\",\"country_name\":\"Türkiye\",\"airport_name\":\"Esenboğa Havalimanı\",\"is_city\":false,\"type\":\"airport\",\"alternative_label\":\"Ankara, Türkiye\",\"time_zone\":\"Europe/Istanbul\",\"popularity\":0},{\"label\":\"AYT, Antalya, Türkiye - Antalya Havalimanı\",\"slug\":\"antalya-havalimani\",\"id\":\"AYT\",\"country_code\":\"TR\",\"latitude\":\"36.899280\",\"longitude\":\"30.801350\",\"city_name\":\"Antalya\",\"city_code\":\"AYT\",\"country_name\":\"Türkiye\",\"airport_name\":\"Antalya Havalimanı\",\"is_city\":false,\"type\":\"airport\",\"alternative_label\":\"Antalya, Türkiye\",\"time_zone\":\"Europe/Istanbul\",\"popularity\":0},{\"label\":\"ADAA, Adana, Türkiye - Tüm havalimanları\",\"slug\":\"adana\",\"id\":\"ADAA\",\"country_code\":\"TR\",\"latitude\":\"37.000000\",\"longitude\":\"35.321333\",\"city_name\":\"Adana\",\"city_code\":\"ADA\",\"country_name\":\"Türkiye\",\"airport_name\":\"Tüm havalimanları\",\"is_city\":true,\"type\":\"city\",\"alternative_label\":\"Tüm havalimanları\",\"time_zone\":\"Europe/Istanbul\"},{\"label\":\"GZT, Gaziantep, Türkiye - Oğuzeli Havalimanı\",\"slug\":\"gaziantep-oguzeli-havalimani\",\"id\":\"GZT\",\"country_code\":\"TR\",\"latitude\":\"36.944935\",\"longitude\":\"37.473747\",\"city_name\":\"Gaziantep\",\"city_code\":\"GZT\",\"country_name\":\"Türkiye\",\"airport_name\":\"Oğuzeli Havalimanı\",\"is_city\":false,\"type\":\"airport\",\"alternative_label\":\"Gaziantep, Türkiye\",\"time_zone\":\"Europe/Istanbul\",\"popularity\":0},{\"label\":\"DIY, Diyarbakır, Türkiye - Diyarbakır Havalimanı\",\"slug\":\"diyarbakir-havalimani\",\"id\":\"DIY\",\"country_code\":\"TR\",\"latitude\":\"37.903873\",\"longitude\":\"40.204580\",\"city_name\":\"Diyarbakır\",\"city_code\":\"DIY\",\"country_name\":\"Türkiye\",\"airport_name\":\"Diyarbakır Havalimanı\",\"is_city\":false,\"type\":\"airport\",\"alternative_label\":\"Diyarbakır, Türkiye\",\"time_zone\":\"Europe/Istanbul\",\"popularity\":0},{\"label\":\"TZX, Trabzon, Türkiye - Trabzon Havalimanı\",\"slug\":\"trabzon-havalimani\",\"id\":\"TZX\",\"country_code\":\"TR\",\"latitude\":\"40.994190\",\"longitude\":\"39.781680\",\"city_name\":\"Trabzon\",\"city_code\":\"TZX\",\"country_name\":\"Türkiye\",\"airport_name\":\"Trabzon Havalimanı\",\"is_city\":false,\"type\":\"airport\",\"alternative_label\":\"T",
+      "response_truncated": true
+    },
+    {
+      "id": 19,
+      "timestamp": "2026-11-06T18:26:44.150442+00:00",
+      "method": "GET",
+      "url": "https://www.enuygun.com/napi/v1/dates/tr/tr",
+      "full_url": "https://www.enuygun.com/napi/v1/dates/tr/tr",
+      "domain": "www.enuygun.com",
+      "path": "/napi/v1/dates/tr/tr",
+      "status_code": 200,
+      "resource_type": "xhr",
+      "query_params": {},
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.enuygun.com/ucak-bileti/",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "accept": "application/json, text/plain, */*",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": null,
+      "response_sample": "{\"status\":true,\"dates\":{\"01.01.2026\":{\"description\":\"1 Ocak Yılbaşı\"},\"19.01.2026\":{\"description\":\"Sömestr Tatili\"},\"20.01.2026\":{\"mark\":true},\"21.01.2026\":{\"mark\":true},\"22.01.2026\":{\"mark\":true},\"23.01.2026\":{\"mark\":true},\"24.01.2026\":{\"mark\":true},\"25.01.2026\":{\"mark\":true},\"26.01.2026\":{\"mark\":true},\"27.01.2026\":{\"mark\":true},\"28.01.2026\":{\"mark\":true},\"29.01.2026\":{\"mark\":true},\"30.01.2026\":{\"mark\":true},\"16.03.2026\":{\"description\":\"16-20 Mart MEB 2. Ara Dönem Tatili\"},\"17.03.2026\":{\"mark\":true},\"18.03.2026\":{\"mark\":true},\"19.03.2026\":{\"description\":\"19 Mart Ramazan Bayramı Arifesi\"},\"20.03.2026\":{\"description\":\"20 - 22 Mart Ramazan Bayramı\"},\"21.03.2026\":{\"mark\":true},\"22.03.2026\":{\"mark\":true},\"23.04.2026\":{\"description\":\"23 Nisan Ulusal Egemenlik ve Çocuk Bayramı\"},\"01.05.2026\":{\"description\":\"1 Mayıs Emek ve Dayanışma Günü\"},\"19.05.2026\":{\"description\":\"19 Mayıs Atatürk'ü Anma, Gençlik ve Spor Bayramı\"},\"26.05.2026\":{\"description\":\"26 Mayıs Kurban Bayramı Arifesi\"},\"27.05.2026\":{\"description\":\"27 - 30 Mayıs Kurban Bayramı\"},\"28.05.2026\":{\"mark\":true},\"29.05.2026\":{\"mark\":true},\"30.05.2026\":{\"mark\":true},\"26.06.2026\":{\"description\":\"Karne Tatili (Yaz Tatili Başlangıcı)\"},\"15.07.2026\":{\"description\":\"15 Temmuz Demokrasi ve Milli Birlik Günü\"},\"30.08.2026\":{\"description\":\"30 Ağustos Zafer Bayramı\"},\"28.10.2026\":{\"description\":\"28 Ekim Cumhuriyet Bayramı Arifesi\"},\"29.10.2026\":{\"description\":\"29 Ekim Cumhuriyet Bayramı\"},\"01.01.2027\":{\"description\":\"1 Ocak Yılbaşı\"},\"08.03.2027\":{\"description\":\"8 Mart Ramazan Bayramı Arifesi\"},\"09.03.2027\":{\"description\":\"9 - 11  Mart Ramazan Bayramı\"},\"10.03.2027\":{\"mark\":true},\"11.03.2027\":{\"mark\":true},\"23.04.2027\":{\"description\":\"23 Nisan Ulusal Egemenlik ve Çocuk Bayramı\"},\"01.05.2027\":{\"description\":\"1 Mayıs Emek ve Dayanışma Günü\"},\"15.05.2027\":{\"description\":\"15 Mayıs Kurban Bayramı Arifesi\"},\"16.05.2027\":{\"description\":\"16 - 19 Mayıs Kurban Bayramı\"},\"17.05.2027\":{\"mark\":true},\"18.05.2027\":{\"mark\":true},\"19.05.2027\":{\"description\":\"19 Mayıs Atatürk’ü Anma, Gençlik ve Spor Bayramı\"},\"15.07.2027\":{\"description\":\"15 Temmuz Demokrasi ve Milli Birlik Günü\"},\"30.08.2027\":{\"description\":\"30 Ağustos Zafer Bayramı\"},\"28.10.2027\":{\"description\":\"28 Ekim Cumhuriyet Bayramı Arifesi\"},\"29.10.2027\":{\"description\":\"29 Ekim Cumhuriyet Bayramı\"}},\"version\":\"13\",\"sortedDates\":[{\"date\":\"01.01.2026\",\"description\":\"1 Ocak Yılbaşı\"},{\"date\":\"19.01.2026\",\"description\":\"Sömestr Tatili\"},{\"date\":\"20.01.2026\",\"mark\":true},{\"date\":\"21.01.2026\",\"mark\":true},{\"date\":\"22.01.2026\",\"mark\":true},{\"date\":\"23.01.2026\",\"mark\":true},{\"date\":\"24.01.2026\",\"mark\":true},{\"date\":\"25.01.2026\",\"mark\":true},{\"date\":\"26.01.2026\",\"mark\":true},{\"date\":\"27.01.2026\",\"mark\":true},{\"date\":\"28.01.2026\",\"mark\":true},{\"date\":\"29.01.2026\",\"mark\":true},{\"date\":\"30.01.2026\",\"mark\":true},{\"date\":\"16.03.2026\",\"description\":\"16-20 Mart MEB 2. Ara Dönem Tatili\"},{\"date\":\"17.03.2026\",\"mark\":true},{\"date\":\"18.03.2026\",\"mark\":true},{\"date\":\"19.03.2026\",\"descripti",
+      "response_truncated": true
+    },
+    {
+      "id": 20,
+      "timestamp": "2026-11-06T18:26:44.205398+00:00",
+      "method": "GET",
+      "url": "https://www.enuygun.com/napi/v1/auth/me",
+      "full_url": "https://www.enuygun.com/napi/v1/auth/me",
+      "domain": "www.enuygun.com",
+      "path": "/napi/v1/auth/me",
+      "status_code": 200,
+      "resource_type": "xhr",
+      "query_params": {},
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.enuygun.com/ucak-bileti/",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "accept": "application/json, text/plain, */*",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": null,
+      "response_sample": "{\"isAuthenticated\":false,\"error\":\"Not authenticated\",\"user_info\":{\"country\":\"TR\",\"city\":\"Gaziantep\",\"region\":\"Gaziantep\",\"timezone\":\"Europe/Istanbul\"}}",
+      "response_truncated": false
+    },
+    {
+      "id": 21,
+      "timestamp": "2026-11-06T18:26:44.205398+00:00",
+      "method": "GET",
+      "url": "https://www.enuygun.com/api/workers/v1/experiments",
+      "full_url": "https://www.enuygun.com/api/workers/v1/experiments",
+      "domain": "www.enuygun.com",
+      "path": "/api/workers/v1/experiments",
+      "status_code": 200,
+      "resource_type": "fetch",
+      "query_params": {},
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.enuygun.com/ucak-bileti/",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": null,
+      "response_sample": "",
+      "response_truncated": false
+    },
+    {
+      "id": 22,
+      "timestamp": "2026-11-06T18:26:44.205398+00:00",
+      "method": "GET",
+      "url": "https://cdn-cookieyes.com/client_data/e1546ffbdccd0ccbc77dfae48279e76d/0K79Vsmc.json",
+      "full_url": "https://cdn-cookieyes.com/client_data/e1546ffbdccd0ccbc77dfae48279e76d/0K79Vsmc.json",
+      "domain": "cdn-cookieyes.com",
+      "path": "/client_data/e1546ffbdccd0ccbc77dfae48279e76d/0K79Vsmc.json",
+      "status_code": 200,
+      "resource_type": "fetch",
+      "query_params": {},
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.enuygun.com/ucak-bileti/",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": null,
+      "response_sample": "",
+      "response_truncated": false
+    },
+    {
+      "id": 23,
+      "timestamp": "2026-11-06T18:26:44.205398+00:00",
+      "method": "GET",
+      "url": "https://cdn-cookieyes.com/client_data/e1546ffbdccd0ccbc77dfae48279e76d/config/4wD3UyPP.json",
+      "full_url": "https://cdn-cookieyes.com/client_data/e1546ffbdccd0ccbc77dfae48279e76d/config/4wD3UyPP.json",
+      "domain": "cdn-cookieyes.com",
+      "path": "/client_data/e1546ffbdccd0ccbc77dfae48279e76d/config/4wD3UyPP.json",
+      "status_code": 200,
+      "resource_type": "fetch",
+      "query_params": {},
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.enuygun.com/ucak-bileti/",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": null,
+      "response_sample": "",
+      "response_truncated": false
+    },
+    {
+      "id": 24,
+      "timestamp": "2026-11-06T18:26:44.205398+00:00",
+      "method": "GET",
+      "url": "https://cdn-cookieyes.com/client_data/e1546ffbdccd0ccbc77dfae48279e76d/translations/K3hAcv0o.json",
+      "full_url": "https://cdn-cookieyes.com/client_data/e1546ffbdccd0ccbc77dfae48279e76d/translations/K3hAcv0o.json",
+      "domain": "cdn-cookieyes.com",
+      "path": "/client_data/e1546ffbdccd0ccbc77dfae48279e76d/translations/K3hAcv0o.json",
+      "status_code": 200,
+      "resource_type": "fetch",
+      "query_params": {},
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.enuygun.com/ucak-bileti/",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": null,
+      "response_sample": "",
+      "response_truncated": false
+    },
+    {
+      "id": 25,
+      "timestamp": "2026-11-06T18:26:44.205398+00:00",
+      "method": "GET",
+      "url": "https://cdn-cookieyes.com/client_data/e1546ffbdccd0ccbc77dfae48279e76d/audit-table/Z37f1gj_.json",
+      "full_url": "https://cdn-cookieyes.com/client_data/e1546ffbdccd0ccbc77dfae48279e76d/audit-table/Z37f1gj_.json",
+      "domain": "cdn-cookieyes.com",
+      "path": "/client_data/e1546ffbdccd0ccbc77dfae48279e76d/audit-table/Z37f1gj_.json",
+      "status_code": 200,
+      "resource_type": "fetch",
+      "query_params": {},
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.enuygun.com/ucak-bileti/",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": null,
+      "response_sample": "",
+      "response_truncated": false
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "service_name": "ucak_bileti",
+  "target_url": "https://www.obilet.com/ucak-bileti",
+  "goal": "İki şehir ve tarih arasında uçak bileti seferlerini ve fiyatlarını sorgula",
+  "function_name": "search_flight_offers",
+  "explanation": "Kullanıcının hedefi iki şehir ve tarih arasında uçak bileti seferlerini ve fiyatlarını sorgulamak olduğundan, '/json/ucuslar/async/250_0-1912_170/20270707-20270714/2a-1c-1s/economy' uç noktası bu amaca en uygun olanıdır. Bu uç nokta, belirli bir rota ve tarih aralığında uçuş araması yapmaktadır.",
+  "method": "POST",
+  "endpoint_url": "https://www.obilet.com/json/ucuslar/async/250_0-1912_170/20270707-20270714/2a-1c-1s/economy",
+  "dynamic_params": [
+    {
+      "name": "origin_id",
+      "original_key": "origin-id",
+      "location": "path",
+      "param_type": "str",
+      "default_value": "250_0",
+      "description": "Kalkış şehrinin ve havaalanının ID'si."
+    },
+    {
+      "name": "destination_id",
+      "original_key": "destination-id",
+      "location": "path",
+      "param_type": "str",
+      "default_value": "1912_170",
+      "description": "Varış şehrinin ve havaalanının ID'si."
+    },
+    {
+      "name": "departure_date",
+      "original_key": "departure",
+      "location": "path",
+      "param_type": "str",
+      "default_value": "20270707",
+      "description": "Kalkış tarihi (YYYYMMDD formatında)."
+    },
+    {
+      "name": "return_date",
+      "original_key": "return",
+      "location": "path",
+      "param_type": "str",
+      "default_value": "20270714",
+      "description": "Dönüş tarihi (YYYYMMDD formatında)."
+    }
+  ],
+  "created_at": "2026-10-31T22:19:17.567346+00:00",
+  "validation_status": "BAŞARISIZ",
+  "validation_passed_runs": 0,
+  "last_validated_at": "2026-11-06T19:34:38.312611+00:00"
+}

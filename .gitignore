@@ -1,0 +1,11 @@
+﻿venv/
+.venv/
+env/
+__pycache__/
+.sessions/
+.browser_profile/
+**/ .browser_profile/
+*.pyc
+*.pyo
+*.pyd
+.DS_Store

@@ -1,0 +1,3 @@
+[console_scripts]
+own-api = cli:main
+shadow-api = cli:main

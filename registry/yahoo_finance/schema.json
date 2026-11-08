@@ -1,0 +1,22 @@
+{
+  "service_name": "yahoo_finance",
+  "target_url": "https://finance.yahoo.com/",
+  "goal": "Real-time stock and index quote lookup (price, daily change, 52-week range) on Yahoo Finance",
+  "function_name": "get_stock_quote",
+  "explanation": "Yahoo Finance real-time stock & index quote endpoint returning live market price, previous close, change percentage, and 52-week high/low.",
+  "method": "GET",
+  "endpoint_url": "https://query1.finance.yahoo.com/v8/finance/chart/NVDA",
+  "dynamic_params": [
+    {
+      "name": "symbol",
+      "original_key": "symbol",
+      "location": "path",
+      "param_type": "str",
+      "default_value": "NVDA",
+      "description": "Ticker symbol (e.g. NVDA, AAPL, TSLA, MSFT, BTC-USD)"
+    }
+  ],
+  "created_at": "2026-11-06T17:48:00+00:00",
+  "validation_status": "BAŞARILI",
+  "validation_passed_runs": 3
+}

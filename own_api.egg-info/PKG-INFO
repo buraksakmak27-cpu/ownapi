@@ -1,0 +1,136 @@
+Metadata-Version: 2.4
+Name: own-api
+Version: 1.0.0
+Summary: OwnAPI — Enterprise User-Delegated Browser Middleware, Auto-Validated API Compiler, and MCP Engine
+Author: Ali
+License: MIT
+Keywords: own-api,user-delegated,browser-middleware,plaid-style,playwright,mcp,fastmcp
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+Requires-Dist: playwright>=1.40.0
+Requires-Dist: pydantic>=2.0.0
+Requires-Dist: mcp>=1.0.0
+Requires-Dist: typer>=0.9.0
+Requires-Dist: rich>=13.0.0
+Requires-Dist: python-dotenv>=1.0.0
+Requires-Dist: openai>=1.0.0
+Requires-Dist: fastapi>=0.100.0
+Requires-Dist: uvicorn>=0.23.0
+
+# OwnAPI (`own-api`) — Enterprise User-Delegated Browser Middleware & Auto-Validated API Engine
+
+**OwnAPI (`own-api`)**, web uygulamalarındaki kullanıcı işlemlerini **Plaid tarzı Kullanıcı Delegasyonu (User-Delegated Browser Middleware)** modeliyle anında doğrulanmış Python SDK modüllerine ve **Model Context Protocol (MCP)** araçlarına dönüştüren kurumsal ara katman (middleware) altyapısıdır.
+
+Gizli bir bot veya sunucu taraflı scraper **değildir**. Tüm çağrılar kullanıcının açık rızası (`Terms of Service Agreement / User Delegation Disclaimer`) ile kullanıcının kendi tarayıcı oturumu (`page.evaluate("fetch(...)")`), kendi kimlik bilgileri ve kendi IP adresi üzerinden vekaleten yürütülür.
+
+---
+
+## Temel Kurumsal Özellikler
+
+1. **Plaid-Style User-Delegated Browser Middleware (`BaseOwnClient` & `SessionHealer`)**
+   - Harici TLS taklidi veya proxy havuzları yerine, tüm istekleri doğrudan kullanıcının gerçek tarayıcı oturumu içinden (`execute_in_browser`) yürütür.
+2. **ToS / Kullanıcı Delegasyon Onay Mekanizması (`core/consent.py`)**
+   - Yeni site eklenirken (`own-api add`) veya bir servis ilk kez çağrıldığında (`own-api call`), kullanıcının kendi tarayıcısı/hesabıyla bağlandığını onaylayan yasal beyanı sunar ve `.sessions/{tenant_id}/consent_audit.json` denetim günlüğüne SHA-256 özetiyle kaydeder.
+3. **Compiler + Validator Loop (3x Auto-Test & GPT-4o Self-Repair — `core/onboarding.py`)**
+   - GPT-4o `client.py` ürettikten sonra sistem otomatik olarak **3 kez ardışık test çağrısı** yapar.
+   - 3 çağrının 3'ü de geçerli JSON döndürürse servisi `"BAŞARILI"` olarak kaydeder; hata alınırsa hatayı GPT-4o'ya geri besleyip kodu otomatik onarır.
+4. **Hazır Enterprise Registry Kütüphanesi (Moat — `registry/`)**
+   - Repo içerisinde kutudan çıktığı gibi çalışmaya hazır 6 ana servis:
+     - **THY (`thy`)**: `search_flights()` — Türk Hava Yolları uçuş ve ücret sınıfı sorgulama
+     - **Trendyol (`trendyol`)**: `search_products()` — Ürün, marka, fiyat ve puan arama
+     - **Pegasus (`pegasus`)**: `get_flight_availability()` — Pegasus uçuş ve sefer müsaitliği
+     - **Enuygun (`enuygun`)**: `get_popular_flights()` — Havalimanı ve popüler uçuş rotaları
+     - **Wikipedia (`wikipedia`)**: `search_wikipedia()` — Wikipedia REST arama servisi
+     - **HackerNews (`hackernews`)**: `search_hacker_news_articles()` — Algolia HN makale arama
+5. **2 Modlu Çalışma Altyapısı (`mode="local"` vs `mode="cloud"`)**
+   - `mode="local"` *(varsayılan)*: Kullanıcının yerel Google Chrome tarayıcısı üzerinden çalışır.
+   - `mode="cloud"`: Bulut tabanlı Docker / Remote Browser (`OWNAPI_CLOUD_CDP_URL` / CDP WebSocket veya izole konteyner) üzerinden çalışır.
+
+---
+
+## Kurulum
+
+```bash
+pip install -e .
+playwright install chrome
+```
+
+---
+
+## Python SDK (`OwnAPIClient`) Kullanımı
+
+```python
+from own_api import OwnAPIClient
+
+# 1. Yerel veya Bulut modunda istemciyi başlatın (Multi-Tenant + ToS Audit destekli)
+client = OwnAPIClient(tenant_id="kurumsal_musteri_1", mode="local")
+
+# 2. Hazır Moat Registry servislerini listeleyin
+services = client.list_services()
+print("Kayıtlı Servisler:", [s["service_name"] for s in services])
+
+# 3. Kayıtlı bir servisi çağırın
+trendyol_sonuc = client.call("trendyol", query="kablosuz kulaklık", max_results=5)
+print(trendyol_sonuc)
+
+enuygun_sonuc = client.call("enuygun")
+print(enuygun_sonuc)
+
+# 4. Kod yazmadan yeni bir siteyi sisteme ekleyin (Onboarding + 3x Auto-Test Loop)
+client.onboard(
+    service_name="biletix",
+    start_url="https://www.biletix.com/anasayfa/TURKIYE/tr",
+    description="Etkinlik ve konser arama servisi",
+    validation_runs=3,
+)
+
+# 5. Doğal dil ajanıyla çoklu servis sorgusu yapın
+yanit = client.ask("Trendyol'da en uygun laptop fiyatlarını ve Enuygun popüler uçuşları özetle.")
+print(yanit)
+```
+
+---
+
+## CLI (`own-api`) Komutları
+
+```bash
+# Enterprise Web Dashboard, Live Playground & REST API Sunucusunu başlat (http://localhost:8000)
+own-api serve --port 8000
+
+# Hazır Registry (Moat) envanterini, Auto-Test ve ToS durumlarını listele
+own-api list
+
+# Yeni bir web sitesini dinleyip otomatik derle ve 3x Auto-Test döngüsünden geçir
+own-api add enuygun https://www.enuygun.com/ucak-bileti/ --desc "Uçuş arama servisi"
+
+# Mevcut bir servisi 3x Auto-Test (Compiler + Validator Loop) doğrulamasına sok
+own-api validate enuygun --runs 3
+
+# Self-Healing 2.0: Tüm kayıtlı servisleri tek seferde tara ve bozuk olanları otomatik tamir et
+own-api validate --all
+
+# Self-Healing 2.0: Her gece 03:00'te çalışan otomatik bakım ve tamir servisini başlat
+own-api daemon --time 03:00
+
+# Human-in-the-Loop (HITL): Onay bekleyen (PENDING_USER_ACTION) ve tamamlanan görevleri listele
+own-api queue
+
+# HITL kuyruğunda bekleyen bir görevi tarayıcıda onaylayıp kaldığı yerden devam ettir
+own-api resume <task_id>
+own-api approve <task_id>
+
+# Herhangi bir servisi yerel (local) veya bulut (cloud) modunda çağır
+own-api call trendyol -p query=laptop -p max_results=3 --mode local
+own-api call thy --non-interactive
+own-api call wikipedia -p query="artificial intelligence" --mode cloud
+
+# ToS / Kullanıcı Delegasyon Onay denetim kayıtlarını (audit log) görüntüle
+own-api consent --tenant default
+
+# Doğal dil ajanına soru sor
+own-api ask "Wikipedia'da Peter Thiel hakkında bilgi bul"
+
+# Master MCP sunucusunu başlat veya Cursor/Claude Desktop'a kur
+own-api mcp
+own-api install-mcp --name own-api-master
+```

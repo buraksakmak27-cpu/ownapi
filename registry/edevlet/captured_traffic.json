@@ -1,0 +1,25 @@
+{
+  "target_url": "https://www.turkiye.gov.tr",
+  "recorded_at": "2026-11-06T19:25:08.103501+00:00",
+  "total_endpoints": 1,
+  "endpoints": [
+    {
+      "id": 1,
+      "timestamp": "2026-11-06T19:25:07.251609+00:00",
+      "method": "GET",
+      "url": "https://www.turkiye.gov.tr/",
+      "full_url": "https://www.turkiye.gov.tr",
+      "domain": "www.turkiye.gov.tr",
+      "path": "/",
+      "status_code": 200,
+      "resource_type": "fetch",
+      "query_params": {},
+      "headers": {
+        "accept": "application/json, text/plain, */*"
+      },
+      "request_payload": null,
+      "response_sample": "İçeriğe Git Ana Sayfa\ne-Devlet Kapısı\nAna Bölümler\n Hızlı Çözüm\nAranan Terim\nGiriş Yap \nKurum Hizmetleri\n \nBelediye Hizmetleri\n \nFirma Hizmetleri\n \nÜniversiteler\n \nDiğer Kurum Portallerine Giriş\n \nYeni Eklenen Hizmetler\n \nÇok Kullanılanlar\nKişisel Bilgiler\n\nDevlet kurumlarında bulunan varlık, borç, sağlık, eğitim vb. kişisel bilgilerinize göz atın.\n\nA\nB\nC\nÇ\nD\nE\nF\nG\nH\nI\nİ\nK\nL\nM\nN\nO\nP\nS\nT\nU\nÜ\nV\nY\n \nAcıbadem Mehmet Ali Aydınlar Üniversitesi\n2 Hizmet\nSertifika Sorgulama\nSertifika Doğrulama\nAdalet Bakanlığı\n9 Hizmet\nAdli Sicil ve İstatistik Genel Müdürlüğü Hizmetleri\nAdli Sicil Kaydı Sorgulama\nAdli Sicil Kaydı Doğrulama\nAdli Sicil Kaydı Sorgulama (Çocuğunuz Adına / Vasisi Olduğunuz Çocuk Adına)\nBilgi İşlem Genel Müdürlüğü (UYAP) Hizmetleri\nDava Dosyası Sorgulama\nKısıtlının Taraf Olduğu Hukuk Dava Dosyası Sorgulama (Vasisi Olduğunuz Kişi Adına)\nKısıtlının Taraf Olduğu İdari Dava Dosyası Sorgulama (Vasisi Olduğunuz Kişi Adına)\nKısıtlının Taraf Olduğu İcra Dosyası Sorgulama (Vasisi Olduğunuz Kişi Adına)\nVeraset İlamı Sorgulama\n2000 TL Altı İcra Dava Dosyalarına Ait Afları Sorgulama\nAfet ve Acil Durum Yönetimi Başkanlığı\n4 Hizmet\nDeprem Bağış Kampanyası\nAfetzede Barınma Desteği Başvurusu\nHak Sahipliği için Talep ve Taahhütname Başvurusu\nHak Sahipliği Kura Sonucu Sorgulama\nAfyon Kocatepe Üniversitesi\n2 Hizmet\nSertifika Sorgulama\nSertifika Doğrulama\nAile ve Sosyal Hizmetler Bakanlığı\n20 Hizmet\n2828 Sayılı Sosyal Hizmetler Kanunu Kapsamında İşe Yerleştirme Tercih İşlemleri\nBakım İhtiyacı",
+      "response_truncated": false
+    }
+  ]
+}

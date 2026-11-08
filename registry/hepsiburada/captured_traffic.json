@@ -1,0 +1,1865 @@
+{
+  "target_url": "https://www.hepsiburada.com",
+  "recorded_at": "2026-11-04T20:05:55.073984+00:00",
+  "total_endpoints": 37,
+  "endpoints": [
+    {
+      "id": 1,
+      "timestamp": "2026-11-04T20:05:18.943952+00:00",
+      "method": "POST",
+      "url": "https://www.hepsiburada.com/tp85CVo3/IOuS42J/5VSVkyO/Rd/kiiuLJ8VJQfftt/UApRcXVcJg/UQp9FT/ZZREA",
+      "full_url": "https://www.hepsiburada.com/tp85CVo3/IOuS42J/5VSVkyO/Rd/kiiuLJ8VJQfftt/UApRcXVcJg/UQp9FT/ZZREA",
+      "domain": "www.hepsiburada.com",
+      "path": "/tp85CVo3/IOuS42J/5VSVkyO/Rd/kiiuLJ8VJQfftt/UApRcXVcJg/UQp9FT/ZZREA",
+      "status_code": 201,
+      "resource_type": "xhr",
+      "query_params": {},
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.hepsiburada.com/",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "content-type": "text/plain;charset=UTF-8",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": {
+        "sensor_data": "3;0;1;0;4538948;ghw2CIYdpNCY08HE4PRABur6ayRKpSayw1SGBq605Rs=;126,0,0,4,9,0;t(eRjkVl\"2.\"H%#L =B5j\"v^ PQ\"{?\"1;Y\"Qrk[#\"DLk\"_P|jq\"^L~\".\"WL1(?\"r8C\"v@X4D\"<\"SkT_gLm1oj#\"^6\"%}R!#a\"vvm%JZ\"\"&\"~,%\"/\"K057Y\"kP7\"X7;\"-\"4>D%aVMfl_V JZZMYQJ?fe@GooK&LqeJj0Jq@cl!w`%[\"d\" b5\"b(PzX5tsJDPDf@0Cu\",s;\",\"\"DaA\"VL@\"[\"\"[\"(@2\"Q=p/3J=KTVls/Vzf0yP^RW4\"6\"dns\"@@6@iJ]dR*@3W[|>S\"lh2\"p =}GR:\"9KN\"wtB3A\"5{k}\"*H[99\"^kZ@\"9}LWK\"Rkz,\"V7a0I\"m(1V\"t0Vj))lSHf}fUF\"[W\"`xo[B+&E4/3:j}\"#Cg\" 2x|(\"-.F6\">Y\"x&0\"_-P\"sz5k5dgy\"Uf7\"N\"\".&(\"FfI\">%\"3BqN\"?YaJo\"uU3\"K\".O$FJ:O0[qIY-e@?2nPOXPn$^M oRzrT[(^6%pNk0I?;mv9 4v:VgN|`H3mj%qV1FH <C(TrD% f@i8QWTSx%Tt}lh?>v`4il{*~/6w&,Z?vAk8\"F2l\"2]#\")\"o\"B>`\"@Z3\"nd2AzCpcq8t{?|k,=UM\"|ia\"}hF\"zH#\"c];\"/vN\"Cf0RZ\"9O}\"WT5\"w(r\"rU_6p\"+4s\"^+|@64f+E42[dd0\"y%+\"JL,L$?Cg\"6\"?my-h^;{,^O\"W2.\"7\"G\"D\"<ph\"*+z\"T.p\"|yJT \",L\"!\"zra\"d\"^v!\"K3U9%\"Zn\"x\"\"U\",!l\"10wf0\"jx~;\"<\"i+oRa:uwGT=G.B\"5\"L&Y\"=qQCJN\"muPO\"-\"_;JaAjqV^Tpb{\"Y\"X^v\"^]Gry\"<#J\"gs?/=\" Pd\"*~(%5\"{O\"y\"{M^tY|Y9Xm9u(mTF5}WJ!mo-+tUeU7ZQA--l-D!An9>?a=]E_`BGy&3\"a\"Nd<\"2C1{4\"^/)\",;Wx&\"Q~BG\"__|m8N0\"9\"q@_\">SZ\"<\"9zGt,TTDs8-}7>\"qGK\"$ l\"tdz\"*?.Q\",r9]9[ZX!\"8(\" \"`8F 0LEE\"5D?\"iK#\"z\"\"g\"2D?\"qldv>y<\"\"a\"l}t\"T\"\".\"vG4\"<q;k:\"EyO\"%BYAbGcNaixs\"#GOm\"_Xx\";qp\";\")qJUcTE+N?kgn&<V\"8\"<yU\"H\"50ik\"Z|v\">^i\")\"\"qNv\"mw)\"3;P\"<7%\"D\"\"s\"l#Q\"S.Y\"I=q\"jWwSIwY\"`!X\"a\":|\"2\"CBD\":\";X0_N2)eI%fs@8!Qv\"1\"wv$\"A\"|k\"NI5\"rQs$\"(dT jz\"||W \"y~j_tv:\"\"n\"UJQ\"l\"|\"X`3\"gJ`\"lh9aD?;\"HAn\"7,|Iz#%M|vVV@4.~\"+t-\"l\"\"j\"ISh\"dgs\"N#]]\"n4|Xk\"P;\"R\"xH\"ZD`\"Rfr?\";7W\"/q9\"9e8\"a]R\":2~}?0:\"xRPWi(S\"X]#PUQPg _=7s7~\"7D*\"5\"UwfFP~i$UhBV$#%vVz9zw,-0yW4gAn)<1m8C7Z^FMAI,<eK[\"d1q\"TQX\"Z\"R][M 4R_?c)K&W\"r\"Hd \"x\"A88xp\"oIA\"YlY\"Ag^\"Fb=\"l\"g8o|\"2\"$e^\"*%G\"vyV\"?\"\"<Ko\"vO\"W\"fSz^p96;g=:$=T}@w\"Z\"Z^]\"%yqH\"(WMz\"l\"\"*\"eD\""
+      },
+      "response_sample": "{\"success\": true}\n",
+      "response_truncated": false
+    },
+    {
+      "id": 2,
+      "timestamp": "2026-11-04T20:05:20.264545+00:00",
+      "method": "POST",
+      "url": "https://www.google.com/ccm/collect",
+      "full_url": "https://www.google.com/ccm/collect?rcb=8&frm=0&apvc=1&ae=g&auid=1823583134.1793822718&dt=T%C3%BCrkiye%27nin%20En%20%C3%87ok%20Tavsiye%20Edilen%20E-ticaret%20Markas%C4%B1%20Hepsiburada&en=page_view&dl=https%3A%2F%2Fwww.hepsiburada.com%2F&scrsrc=www.hepsiburada.com&rnd=1310834079.1793822718&navt=n&npa=0&ep.ads_data_redaction=0&gdid=dYzZiYj.dNWVlNT&gtb=1&gtm=45E92e6b31h2v71656108za204zd71656108xeaxf4&gcd=13l3l3l3l1l1&dma=0&tag_exp=115938465~115938468~118897920~118897930~120385423~120412526~120420414~120469145~120469153~121049589~121191153~121246026~121246034~123691370~123814185~123814944&tft=1793822717977&tfd=3615&gap.gtb=1&fmt=8",
+      "domain": "www.google.com",
+      "path": "/ccm/collect",
+      "status_code": 200,
+      "resource_type": "fetch",
+      "query_params": {
+        "rcb": [
+          "8"
+        ],
+        "frm": [
+          "0"
+        ],
+        "apvc": [
+          "1"
+        ],
+        "ae": [
+          "g"
+        ],
+        "auid": [
+          "1823583134.1793822718"
+        ],
+        "dt": [
+          "Türkiye'nin En Çok Tavsiye Edilen E-ticaret Markası Hepsiburada"
+        ],
+        "en": [
+          "page_view"
+        ],
+        "dl": [
+          "https://www.hepsiburada.com/"
+        ],
+        "scrsrc": [
+          "www.hepsiburada.com"
+        ],
+        "rnd": [
+          "1310834079.1793822718"
+        ],
+        "navt": [
+          "n"
+        ],
+        "npa": [
+          "0"
+        ],
+        "ep.ads_data_redaction": [
+          "0"
+        ],
+        "gdid": [
+          "dYzZiYj.dNWVlNT"
+        ],
+        "gtb": [
+          "1"
+        ],
+        "gtm": [
+          "45E92e6b31h2v71656108za204zd71656108xeaxf4"
+        ],
+        "gcd": [
+          "13l3l3l3l1l1"
+        ],
+        "dma": [
+          "0"
+        ],
+        "tag_exp": [
+          "115938465~115938468~118897920~118897930~120385423~120412526~120420414~120469145~120469153~121049589~121191153~121246026~121246034~123691370~123814185~123814944"
+        ],
+        "tft": [
+          "1793822717977"
+        ],
+        "tfd": [
+          "3615"
+        ],
+        "gap.gtb": [
+          "1"
+        ],
+        "fmt": [
+          "8"
+        ]
+      },
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.hepsiburada.com/",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": null,
+      "response_sample": "",
+      "response_truncated": false
+    },
+    {
+      "id": 3,
+      "timestamp": "2026-11-04T20:05:23.325120+00:00",
+      "method": "GET",
+      "url": "https://loyalty-voltran.hepsiburada.com/loyaltytouchpoint",
+      "full_url": "https://loyalty-voltran.hepsiburada.com/loyaltytouchpoint?isHidden=true",
+      "domain": "loyalty-voltran.hepsiburada.com",
+      "path": "/loyaltytouchpoint",
+      "status_code": 200,
+      "resource_type": "xhr",
+      "query_params": {
+        "isHidden": [
+          "true"
+        ]
+      },
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.hepsiburada.com/",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+        "accept": "application/json, text/plain, */*",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": null,
+      "response_sample": "{\"html\":\"\\n    <div>\\n      <style data-styled=\\\"true\\\" data-styled-version=\\\"5.1.0\\\"></style>\\n      <script type='text/javascript'>\\n  window.LOYALTY = window.LOYALTY || {};\\n\\n  window.LOYALTY.LOYALTYTOUCHPOINT = Object.assign(window.LOYALTY.LOYALTYTOUCHPOINT || {}, {\\n    '24d6b42f-66ee-41ca-9073-e2804bdc743b': {\\n      'STATE': {\\\"data\\\":{},\\\"location\\\":{\\\"path\\\":\\\"/\\\",\\\"query\\\":{\\\"isHidden\\\":\\\"true\\\"},\\\"url\\\":\\\"/?isHidden=true\\\",\\\"userAgent\\\":\\\"TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzE1Ni4wLjAuMCBTYWZhcmkvNTM3LjM2\\\",\\\"isWithoutState\\\":false},\\\"id\\\":\\\"24d6b42f-66ee-41ca-9073-e2804bdc743b\\\"}\\n    }\\n  })</script>\\n      <div\\n        id='loyaltytouchpoint_24d6b42f-66ee-41ca-9073-e2804bdc743b'\\n        style=\\\"pointer-events: none;\\\"\\n        class=\\\"loyalty-voltran-body voltran-body  loyaltytouchpoint\\\">\\n        <div></div>\\n      </div>\\n      \\n      \\n\\n      \\n      \\n    </div>\",\"scripts\":[{\"src\":\"https://loyalty-voltran.hepsiburada.com/project/assets/client-780bea176094fed1af7d.js\",\"isAsync\":false},{\"src\":\"https://loyalty-voltran.hepsiburada.com/project/assets/loyaltytouchpoint-780bea176094fed1af7d.js\",\"isAsync\":false}],\"style\":[],\"activeComponent\":{\"resultPath\":\"/loyaltytouchpoint\",\"componentName\":\"loyaltytouchpoint\",\"url\":\"/loyaltytouchpoint\"},\"seoState\":{}}",
+      "response_truncated": false
+    },
+    {
+      "id": 4,
+      "timestamp": "2026-11-04T20:05:23.325120+00:00",
+      "method": "POST",
+      "url": "https://www.hepsiburada.com/metrics/gs/ccm/collect",
+      "full_url": "https://www.hepsiburada.com/metrics/gs/ccm/collect?rcb=10&frm=0&apvc=0&tid=DC-10578444&en=page_view&dl=https%3A%2F%2Fwww.hepsiburada.com%2F&scrsrc=www.hepsiburada.com&rnd=1310834079.1793822718&navt=n&npa=1&gtb=2&gtm=45c92e6b31h2v9190141989za20szb71656108zd71656108xecxf4&gcs=G100&gcd=13p3p3p3p5l1&dma_cps=-&dma=0&tag_exp=115938465~115938468~118897920~118897930~120213116~120385422~120412526~120420416~120469145~120469153~121246026~121246034~123691370~123814185~123814944&tft=1793822720085&tfd=5723&gap.gtb=2&tids=DC-10578444&fmt=8",
+      "domain": "www.hepsiburada.com",
+      "path": "/metrics/gs/ccm/collect",
+      "status_code": 200,
+      "resource_type": "fetch",
+      "query_params": {
+        "rcb": [
+          "10"
+        ],
+        "frm": [
+          "0"
+        ],
+        "apvc": [
+          "0"
+        ],
+        "tid": [
+          "DC-10578444"
+        ],
+        "en": [
+          "page_view"
+        ],
+        "dl": [
+          "https://www.hepsiburada.com/"
+        ],
+        "scrsrc": [
+          "www.hepsiburada.com"
+        ],
+        "rnd": [
+          "1310834079.1793822718"
+        ],
+        "navt": [
+          "n"
+        ],
+        "npa": [
+          "1"
+        ],
+        "gtb": [
+          "2"
+        ],
+        "gtm": [
+          "45c92e6b31h2v9190141989za20szb71656108zd71656108xecxf4"
+        ],
+        "gcs": [
+          "G100"
+        ],
+        "gcd": [
+          "13p3p3p3p5l1"
+        ],
+        "dma_cps": [
+          "-"
+        ],
+        "dma": [
+          "0"
+        ],
+        "tag_exp": [
+          "115938465~115938468~118897920~118897930~120213116~120385422~120412526~120420416~120469145~120469153~121246026~121246034~123691370~123814185~123814944"
+        ],
+        "tft": [
+          "1793822720085"
+        ],
+        "tfd": [
+          "5723"
+        ],
+        "gap.gtb": [
+          "2"
+        ],
+        "tids": [
+          "DC-10578444"
+        ],
+        "fmt": [
+          "8"
+        ]
+      },
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.hepsiburada.com/",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": null,
+      "response_sample": "",
+      "response_truncated": false
+    },
+    {
+      "id": 5,
+      "timestamp": "2026-11-04T20:05:23.842771+00:00",
+      "method": "POST",
+      "url": "https://www.hepsiburada.com/metrics/gs/measurement/conversion",
+      "full_url": "https://www.hepsiburada.com/metrics/gs/measurement/conversion?random=1793822722640&cv=11&tid=G-44CSPTX731&fst=1793822722640&fmt=8&en=session_start&gtm=45g92e6b31h2v873064230za20szb71656108zd71656108xecxf4&gcs=G100&gcd=13p3p3p3p5l1&dma_cps=-&dma=0&tag_exp=115938465~115938469~118897920~118897930~120213116~120385423~120412526~120420414~120469145~120469153~121246026~121246034~123691370~123692834~123814183~123814946&u_w=1280&u_h=720&url=https%3A%2F%2Fwww.hepsiburada.com%2F&gacid=1309453987.1793822723&hn=www.googleadservices.com&frm=0&tiba=T%C3%BCrkiye%27nin%20En%20%C3%87ok%20Tavsiye%20Edilen%20E-ticaret%20Markas%C4%B1%20Hepsiburada&npa=1&pscdl=denied&uaa=x86&uab=64&uafvl=Not%253AA-Brand%3B8.0.0.0%7CChromium%3B156.0.8078.73%7CGoogle%2520Chrome%3B156.0.8078.73&uamb=0&uam=&uap=Windows&uapv=8.0.0&uaw=0&rcb=7",
+      "domain": "www.hepsiburada.com",
+      "path": "/metrics/gs/measurement/conversion",
+      "status_code": 204,
+      "resource_type": "fetch",
+      "query_params": {
+        "random": [
+          "1793822722640"
+        ],
+        "cv": [
+          "11"
+        ],
+        "tid": [
+          "G-44CSPTX731"
+        ],
+        "fst": [
+          "1793822722640"
+        ],
+        "fmt": [
+          "8"
+        ],
+        "en": [
+          "session_start"
+        ],
+        "gtm": [
+          "45g92e6b31h2v873064230za20szb71656108zd71656108xecxf4"
+        ],
+        "gcs": [
+          "G100"
+        ],
+        "gcd": [
+          "13p3p3p3p5l1"
+        ],
+        "dma_cps": [
+          "-"
+        ],
+        "dma": [
+          "0"
+        ],
+        "tag_exp": [
+          "115938465~115938469~118897920~118897930~120213116~120385423~120412526~120420414~120469145~120469153~121246026~121246034~123691370~123692834~123814183~123814946"
+        ],
+        "u_w": [
+          "1280"
+        ],
+        "u_h": [
+          "720"
+        ],
+        "url": [
+          "https://www.hepsiburada.com/"
+        ],
+        "gacid": [
+          "1309453987.1793822723"
+        ],
+        "hn": [
+          "www.googleadservices.com"
+        ],
+        "frm": [
+          "0"
+        ],
+        "tiba": [
+          "Türkiye'nin En Çok Tavsiye Edilen E-ticaret Markası Hepsiburada"
+        ],
+        "npa": [
+          "1"
+        ],
+        "pscdl": [
+          "denied"
+        ],
+        "uaa": [
+          "x86"
+        ],
+        "uab": [
+          "64"
+        ],
+        "uafvl": [
+          "Not%3AA-Brand;8.0.0.0|Chromium;156.0.8078.73|Google%20Chrome;156.0.8078.73"
+        ],
+        "uamb": [
+          "0"
+        ],
+        "uap": [
+          "Windows"
+        ],
+        "uapv": [
+          "8.0.0"
+        ],
+        "uaw": [
+          "0"
+        ],
+        "rcb": [
+          "7"
+        ]
+      },
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.hepsiburada.com/",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": null,
+      "response_sample": "",
+      "response_truncated": false
+    },
+    {
+      "id": 6,
+      "timestamp": "2026-11-04T20:05:23.850773+00:00",
+      "method": "POST",
+      "url": "https://www.hepsiburada.com/metrics/gs/measurement/conversion",
+      "full_url": "https://www.hepsiburada.com/metrics/gs/measurement/conversion?random=1793822722640&cv=11&tid=G-44CSPTX731&fst=1793822722640&fmt=8&en=first_visit&gtm=45g92e6b31h2v873064230za20szb71656108zd71656108xecxf4&gcs=G100&gcd=13p3p3p3p5l1&dma_cps=-&dma=0&tag_exp=115938465~115938469~118897920~118897930~120213116~120385423~120412526~120420414~120469145~120469153~121246026~121246034~123691370~123692834~123814183~123814946&u_w=1280&u_h=720&url=https%3A%2F%2Fwww.hepsiburada.com%2F&gacid=1309453987.1793822723&hn=www.googleadservices.com&frm=0&tiba=T%C3%BCrkiye%27nin%20En%20%C3%87ok%20Tavsiye%20Edilen%20E-ticaret%20Markas%C4%B1%20Hepsiburada&npa=1&pscdl=denied&uaa=x86&uab=64&uafvl=Not%253AA-Brand%3B8.0.0.0%7CChromium%3B156.0.8078.73%7CGoogle%2520Chrome%3B156.0.8078.73&uamb=0&uam=&uap=Windows&uapv=8.0.0&uaw=0&rcb=7",
+      "domain": "www.hepsiburada.com",
+      "path": "/metrics/gs/measurement/conversion",
+      "status_code": 204,
+      "resource_type": "fetch",
+      "query_params": {
+        "random": [
+          "1793822722640"
+        ],
+        "cv": [
+          "11"
+        ],
+        "tid": [
+          "G-44CSPTX731"
+        ],
+        "fst": [
+          "1793822722640"
+        ],
+        "fmt": [
+          "8"
+        ],
+        "en": [
+          "first_visit"
+        ],
+        "gtm": [
+          "45g92e6b31h2v873064230za20szb71656108zd71656108xecxf4"
+        ],
+        "gcs": [
+          "G100"
+        ],
+        "gcd": [
+          "13p3p3p3p5l1"
+        ],
+        "dma_cps": [
+          "-"
+        ],
+        "dma": [
+          "0"
+        ],
+        "tag_exp": [
+          "115938465~115938469~118897920~118897930~120213116~120385423~120412526~120420414~120469145~120469153~121246026~121246034~123691370~123692834~123814183~123814946"
+        ],
+        "u_w": [
+          "1280"
+        ],
+        "u_h": [
+          "720"
+        ],
+        "url": [
+          "https://www.hepsiburada.com/"
+        ],
+        "gacid": [
+          "1309453987.1793822723"
+        ],
+        "hn": [
+          "www.googleadservices.com"
+        ],
+        "frm": [
+          "0"
+        ],
+        "tiba": [
+          "Türkiye'nin En Çok Tavsiye Edilen E-ticaret Markası Hepsiburada"
+        ],
+        "npa": [
+          "1"
+        ],
+        "pscdl": [
+          "denied"
+        ],
+        "uaa": [
+          "x86"
+        ],
+        "uab": [
+          "64"
+        ],
+        "uafvl": [
+          "Not%3AA-Brand;8.0.0.0|Chromium;156.0.8078.73|Google%20Chrome;156.0.8078.73"
+        ],
+        "uamb": [
+          "0"
+        ],
+        "uap": [
+          "Windows"
+        ],
+        "uapv": [
+          "8.0.0"
+        ],
+        "uaw": [
+          "0"
+        ],
+        "rcb": [
+          "7"
+        ]
+      },
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.hepsiburada.com/",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": null,
+      "response_sample": "",
+      "response_truncated": false
+    },
+    {
+      "id": 7,
+      "timestamp": "2026-11-04T20:05:23.866767+00:00",
+      "method": "POST",
+      "url": "https://www.hepsiburada.com/metrics/ga/g/c",
+      "full_url": "https://www.hepsiburada.com/metrics/ga/g/c?v=2&tid=G-44CSPTX731&gtm=45g92e6b31h2v873064230za20szb71656108zd71656108xf4&_p=1793822715209&gcs=G100&gcd=13p3p3p3p5l1&npa=1&dma_cps=-&dma=0&_eu=AAAAAGAC&_prs=ok&_uip=%3A%3A&cid=1309453987.1793822723&fp=1&frm=0&pscdl=denied&rcb=7&sr=1280x720&uaa=x86&uab=64&uafvl=Not%253AA-Brand%3B8.0.0.0%7CChromium%3B156.0.8078.73%7CGoogle%2520Chrome%3B156.0.8078.73&uam=&uamb=0&uap=Windows&uapv=8.0.0&uaw=0&ul=tr-tr&ur=TR&_gsid=fiseifBsEaKp9aI535Z0sUgxAAzHjU-uJg&gaf=2&_s=1&tag_exp=115938465~115938469~118897920~118897930~120213116~120385423~120412526~120420414~120469145~120469153~121246026~121246034~123691370~123692834~123814183~123814946&sid=1793822722&sct=1&seg=0&dl=https%3A%2F%2Fwww.hepsiburada.com%2F&dt=T%C3%BCrkiye%27nin%20En%20%C3%87ok%20Tavsiye%20Edilen%20E-ticaret%20Markas%C4%B1%20Hepsiburada&gtb=2&en=page_view&_fv=2&_nsi=1&_ss=2&gap.gtb=2&tfd=8384",
+      "domain": "www.hepsiburada.com",
+      "path": "/metrics/ga/g/c",
+      "status_code": 204,
+      "resource_type": "fetch",
+      "query_params": {
+        "v": [
+          "2"
+        ],
+        "tid": [
+          "G-44CSPTX731"
+        ],
+        "gtm": [
+          "45g92e6b31h2v873064230za20szb71656108zd71656108xf4"
+        ],
+        "_p": [
+          "1793822715209"
+        ],
+        "gcs": [
+          "G100"
+        ],
+        "gcd": [
+          "13p3p3p3p5l1"
+        ],
+        "npa": [
+          "1"
+        ],
+        "dma_cps": [
+          "-"
+        ],
+        "dma": [
+          "0"
+        ],
+        "_eu": [
+          "AAAAAGAC"
+        ],
+        "_prs": [
+          "ok"
+        ],
+        "_uip": [
+          "::"
+        ],
+        "cid": [
+          "1309453987.1793822723"
+        ],
+        "fp": [
+          "1"
+        ],
+        "frm": [
+          "0"
+        ],
+        "pscdl": [
+          "denied"
+        ],
+        "rcb": [
+          "7"
+        ],
+        "sr": [
+          "1280x720"
+        ],
+        "uaa": [
+          "x86"
+        ],
+        "uab": [
+          "64"
+        ],
+        "uafvl": [
+          "Not%3AA-Brand;8.0.0.0|Chromium;156.0.8078.73|Google%20Chrome;156.0.8078.73"
+        ],
+        "uamb": [
+          "0"
+        ],
+        "uap": [
+          "Windows"
+        ],
+        "uapv": [
+          "8.0.0"
+        ],
+        "uaw": [
+          "0"
+        ],
+        "ul": [
+          "tr-tr"
+        ],
+        "ur": [
+          "TR"
+        ],
+        "_gsid": [
+          "fiseifBsEaKp9aI535Z0sUgxAAzHjU-uJg"
+        ],
+        "gaf": [
+          "2"
+        ],
+        "_s": [
+          "1"
+        ],
+        "tag_exp": [
+          "115938465~115938469~118897920~118897930~120213116~120385423~120412526~120420414~120469145~120469153~121246026~121246034~123691370~123692834~123814183~123814946"
+        ],
+        "sid": [
+          "1793822722"
+        ],
+        "sct": [
+          "1"
+        ],
+        "seg": [
+          "0"
+        ],
+        "dl": [
+          "https://www.hepsiburada.com/"
+        ],
+        "dt": [
+          "Türkiye'nin En Çok Tavsiye Edilen E-ticaret Markası Hepsiburada"
+        ],
+        "gtb": [
+          "2"
+        ],
+        "en": [
+          "page_view"
+        ],
+        "_fv": [
+          "2"
+        ],
+        "_nsi": [
+          "1"
+        ],
+        "_ss": [
+          "2"
+        ],
+        "gap.gtb": [
+          "2"
+        ],
+        "tfd": [
+          "8384"
+        ]
+      },
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.hepsiburada.com/",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": null,
+      "response_sample": "",
+      "response_truncated": false
+    },
+    {
+      "id": 8,
+      "timestamp": "2026-11-04T20:05:23.866767+00:00",
+      "method": "POST",
+      "url": "https://www.hepsiburada.com/metrics/gs/ccm/collect",
+      "full_url": "https://www.hepsiburada.com/metrics/gs/ccm/collect?rcb=7&frm=0&apvc=0&tid=AW-866272902&en=page_view&dl=https%3A%2F%2Fwww.hepsiburada.com%2F&scrsrc=www.hepsiburada.com&rnd=1310834079.1793822718&navt=n&npa=1&gtb=2&gtm=45g92e6b31h2v873064230za20szb71656108zd71656108xecxf4&gcs=G100&gcd=13p3p3p3p5l1&dma_cps=-&dma=0&tag_exp=115938465~115938469~118897920~118897930~120213116~120385423~120412526~120420414~120469145~120469153~121246026~121246034~123691370~123692834~123814183~123814946&tft=1793822722814&tfd=8452&gap.gtb=2&tids=AW-866272902~AW-1002636620&fmt=8",
+      "domain": "www.hepsiburada.com",
+      "path": "/metrics/gs/ccm/collect",
+      "status_code": 200,
+      "resource_type": "fetch",
+      "query_params": {
+        "rcb": [
+          "7"
+        ],
+        "frm": [
+          "0"
+        ],
+        "apvc": [
+          "0"
+        ],
+        "tid": [
+          "AW-866272902"
+        ],
+        "en": [
+          "page_view"
+        ],
+        "dl": [
+          "https://www.hepsiburada.com/"
+        ],
+        "scrsrc": [
+          "www.hepsiburada.com"
+        ],
+        "rnd": [
+          "1310834079.1793822718"
+        ],
+        "navt": [
+          "n"
+        ],
+        "npa": [
+          "1"
+        ],
+        "gtb": [
+          "2"
+        ],
+        "gtm": [
+          "45g92e6b31h2v873064230za20szb71656108zd71656108xecxf4"
+        ],
+        "gcs": [
+          "G100"
+        ],
+        "gcd": [
+          "13p3p3p3p5l1"
+        ],
+        "dma_cps": [
+          "-"
+        ],
+        "dma": [
+          "0"
+        ],
+        "tag_exp": [
+          "115938465~115938469~118897920~118897930~120213116~120385423~120412526~120420414~120469145~120469153~121246026~121246034~123691370~123692834~123814183~123814946"
+        ],
+        "tft": [
+          "1793822722814"
+        ],
+        "tfd": [
+          "8452"
+        ],
+        "gap.gtb": [
+          "2"
+        ],
+        "tids": [
+          "AW-866272902~AW-1002636620"
+        ],
+        "fmt": [
+          "8"
+        ]
+      },
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.hepsiburada.com/",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": null,
+      "response_sample": "",
+      "response_truncated": false
+    },
+    {
+      "id": 9,
+      "timestamp": "2026-11-04T20:05:24.716732+00:00",
+      "method": "GET",
+      "url": "https://ct.pinterest.com/user/",
+      "full_url": "https://ct.pinterest.com/user/?tid=2613288542965&pd=%7B%22np%22%3A%22gtm%22%2C%22gtm_version%22%3A%22legacy%22%7D&cb=1793822723024&dep=2%2CPAGE_LOAD",
+      "domain": "ct.pinterest.com",
+      "path": "/user/",
+      "status_code": 200,
+      "resource_type": "xhr",
+      "query_params": {
+        "tid": [
+          "2613288542965"
+        ],
+        "pd": [
+          "{\"np\":\"gtm\",\"gtm_version\":\"legacy\"}"
+        ],
+        "cb": [
+          "1793822723024"
+        ],
+        "dep": [
+          "2,PAGE_LOAD"
+        ]
+      },
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.hepsiburada.com/",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": null,
+      "response_sample": "{\"aemEnabled\":false,\"aemFnLnEnabled\":false,\"aemPhEnabled\":false,\"aemGeEnabled\":false,\"aemDbEnabled\":false,\"aemLocEnabled\":false,\"aemExternalIdEnabled\":false,\"aemProductMetadataEnabled\":false,\"ctEpikIframeEnabled\":true,\"chromeNewUserAgentEnabled\":true,\"isEu\":false,\"isUtilizingAdvertiser1pEnabled\":true,\"aemStorageEnabled\":true,\"isRestrictedRegion\":false,\"gaClientIdEnabled\":false,\"mdFrequency\":0.0,\"piaaEndPoint\":\"\",\"noCodeCapiDomains\":[]}",
+      "response_truncated": false
+    },
+    {
+      "id": 10,
+      "timestamp": "2026-11-04T20:05:24.716732+00:00",
+      "method": "GET",
+      "url": "https://ct.pinterest.com/user/",
+      "full_url": "https://ct.pinterest.com/user/?event=pagevisit&ed=%7B%22np%22%3A%22gtm%22%2C%22gtm_version%22%3A%22legacy%22%7D&tid=2613288542965&cb=1793822723031&dep=5%2CEVENT_TAGS_ABSENT",
+      "domain": "ct.pinterest.com",
+      "path": "/user/",
+      "status_code": 200,
+      "resource_type": "xhr",
+      "query_params": {
+        "event": [
+          "pagevisit"
+        ],
+        "ed": [
+          "{\"np\":\"gtm\",\"gtm_version\":\"legacy\"}"
+        ],
+        "tid": [
+          "2613288542965"
+        ],
+        "cb": [
+          "1793822723031"
+        ],
+        "dep": [
+          "5,EVENT_TAGS_ABSENT"
+        ]
+      },
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.hepsiburada.com/",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": null,
+      "response_sample": "{\"aemEnabled\":false,\"aemFnLnEnabled\":false,\"aemPhEnabled\":false,\"aemGeEnabled\":false,\"aemDbEnabled\":false,\"aemLocEnabled\":false,\"aemExternalIdEnabled\":false,\"aemProductMetadataEnabled\":false,\"ctEpikIframeEnabled\":true,\"chromeNewUserAgentEnabled\":true,\"isEu\":false,\"isUtilizingAdvertiser1pEnabled\":true,\"aemStorageEnabled\":true,\"isRestrictedRegion\":false,\"gaClientIdEnabled\":false,\"mdFrequency\":0.0,\"piaaEndPoint\":\"\",\"noCodeCapiDomains\":[]}",
+      "response_truncated": false
+    },
+    {
+      "id": 11,
+      "timestamp": "2026-11-04T20:05:24.732730+00:00",
+      "method": "GET",
+      "url": "https://ct.pinterest.com/v3/",
+      "full_url": "https://ct.pinterest.com/v3/?tid=2613288542965&pd=%7B%22np%22%3A%22gtm%22%2C%22gtm_version%22%3A%22legacy%22%7D&event=init&ad=%7B%22loc%22%3A%22https%3A%2F%2Fwww.hepsiburada.com%2F%22%2C%22ref%22%3A%22%22%2C%22if%22%3Afalse%2C%22sh%22%3A720%2C%22sw%22%3A1280%2C%22mh%22%3A%2280c2b6ae%22%2C%22is_eu%22%3Atrue%2C%22architecture%22%3A%22x86%22%2C%22bitness%22%3A%2264%22%2C%22brands%22%3A%5B%7B%22brand%22%3A%22Not%3AA-Brand%22%2C%22version%22%3A%228%22%7D%2C%7B%22brand%22%3A%22Chromium%22%2C%22version%22%3A%22156%22%7D%2C%7B%22brand%22%3A%22Google%20Chrome%22%2C%22version%22%3A%22156%22%7D%5D%2C%22mobile%22%3Afalse%2C%22model%22%3A%22%22%2C%22platform%22%3A%22Windows%22%2C%22platformVersion%22%3A%228.0.0%22%2C%22uaFullVersion%22%3A%22156.0.8078.73%22%7D&cb=1793822723350",
+      "domain": "ct.pinterest.com",
+      "path": "/v3/",
+      "status_code": 200,
+      "resource_type": "fetch",
+      "query_params": {
+        "tid": [
+          "2613288542965"
+        ],
+        "pd": [
+          "{\"np\":\"gtm\",\"gtm_version\":\"legacy\"}"
+        ],
+        "event": [
+          "init"
+        ],
+        "ad": [
+          "{\"loc\":\"https://www.hepsiburada.com/\",\"ref\":\"\",\"if\":false,\"sh\":720,\"sw\":1280,\"mh\":\"80c2b6ae\",\"is_eu\":true,\"architecture\":\"x86\",\"bitness\":\"64\",\"brands\":[{\"brand\":\"Not:A-Brand\",\"version\":\"8\"},{\"brand\":\"Chromium\",\"version\":\"156\"},{\"brand\":\"Google Chrome\",\"version\":\"156\"}],\"mobile\":false,\"model\":\"\",\"platform\":\"Windows\",\"platformVersion\":\"8.0.0\",\"uaFullVersion\":\"156.0.8078.73\"}"
+        ],
+        "cb": [
+          "1793822723350"
+        ]
+      },
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.hepsiburada.com/",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": null,
+      "response_sample": "",
+      "response_truncated": false
+    },
+    {
+      "id": 12,
+      "timestamp": "2026-11-04T20:05:25.016175+00:00",
+      "method": "POST",
+      "url": "https://www.hepsiburada.com/metrics/gs/ccm/collect",
+      "full_url": "https://www.hepsiburada.com/metrics/gs/ccm/collect?rcb=7&frm=0&apvc=0&ae=g&tid=AW-866272902&en=page_view&dl=https%3A%2F%2Fwww.hepsiburada.com%2F&scrsrc=www.hepsiburada.com&rnd=1310834079.1793822718&navt=n&npa=1&ep.hbGenderId=2&ep.ecomm_pagetype=home&gdid=dYzZiYj.dNWVlNT&_tu=CA&gtb=2&gtm=45g92e6b31h2v873064230z871656108za20kzb71656108zd71656108xeaxf4&gcs=G100&gcd=13p3p3p3p5l1&dma_cps=-&dma=0&tag_exp=115938465~115938469~118897920~118897930~120213116~120385423~120412526~120420414~120469145~120469153~121246026~121246034~123691370~123692834~123814183~123814946&tft=1793822723809&tfd=9447&gap.gtb=2&tids=AW-866272902&fmt=8",
+      "domain": "www.hepsiburada.com",
+      "path": "/metrics/gs/ccm/collect",
+      "status_code": 200,
+      "resource_type": "fetch",
+      "query_params": {
+        "rcb": [
+          "7"
+        ],
+        "frm": [
+          "0"
+        ],
+        "apvc": [
+          "0"
+        ],
+        "ae": [
+          "g"
+        ],
+        "tid": [
+          "AW-866272902"
+        ],
+        "en": [
+          "page_view"
+        ],
+        "dl": [
+          "https://www.hepsiburada.com/"
+        ],
+        "scrsrc": [
+          "www.hepsiburada.com"
+        ],
+        "rnd": [
+          "1310834079.1793822718"
+        ],
+        "navt": [
+          "n"
+        ],
+        "npa": [
+          "1"
+        ],
+        "ep.hbGenderId": [
+          "2"
+        ],
+        "ep.ecomm_pagetype": [
+          "home"
+        ],
+        "gdid": [
+          "dYzZiYj.dNWVlNT"
+        ],
+        "_tu": [
+          "CA"
+        ],
+        "gtb": [
+          "2"
+        ],
+        "gtm": [
+          "45g92e6b31h2v873064230z871656108za20kzb71656108zd71656108xeaxf4"
+        ],
+        "gcs": [
+          "G100"
+        ],
+        "gcd": [
+          "13p3p3p3p5l1"
+        ],
+        "dma_cps": [
+          "-"
+        ],
+        "dma": [
+          "0"
+        ],
+        "tag_exp": [
+          "115938465~115938469~118897920~118897930~120213116~120385423~120412526~120420414~120469145~120469153~121246026~121246034~123691370~123692834~123814183~123814946"
+        ],
+        "tft": [
+          "1793822723809"
+        ],
+        "tfd": [
+          "9447"
+        ],
+        "gap.gtb": [
+          "2"
+        ],
+        "tids": [
+          "AW-866272902"
+        ],
+        "fmt": [
+          "8"
+        ]
+      },
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.hepsiburada.com/",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": null,
+      "response_sample": "",
+      "response_truncated": false
+    },
+    {
+      "id": 13,
+      "timestamp": "2026-11-04T20:05:25.016175+00:00",
+      "method": "POST",
+      "url": "https://www.hepsiburada.com/tp85CVo3/IOuS42J/5VSVkyO/Rd/kiiuLJ8VJQfftt/UApRcXVcJg/UQp9FT/ZZREA",
+      "full_url": "https://www.hepsiburada.com/tp85CVo3/IOuS42J/5VSVkyO/Rd/kiiuLJ8VJQfftt/UApRcXVcJg/UQp9FT/ZZREA",
+      "domain": "www.hepsiburada.com",
+      "path": "/tp85CVo3/IOuS42J/5VSVkyO/Rd/kiiuLJ8VJQfftt/UApRcXVcJg/UQp9FT/ZZREA",
+      "status_code": 201,
+      "resource_type": "xhr",
+      "query_params": {},
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.hepsiburada.com/",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "content-type": "text/plain;charset=UTF-8",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": {
+        "sensor_data": "3;0;1;0;4538948;ghw2CIYdpNCY08HE4PRABur6ayRKpSayw1SGBq605Rs=;114,384,0,1,24,5043;t~lJPwH\"g(2\"H\"x\"i5@\"[{p\"GX7~OM\".dwj\"tz_}wWtC>76hBk&ZOjCV4tp\"=\"1Y$\"O?ZcAFC62 .%%LFU\"iI}\"/\"T\"mR5\"+^op]\"o\"\"*&)\"x*y\"v1b`H^A(TEa^n+*\"w:>\".\"@(55\"?\"0SG9\";\"q3\"W\"#%*p\"W=\"|\"jZ5#\"-@+\"//F\"S\"O\"S\":E..\"#e_B+\"tq/\"^\"uc\" ,O-iSZTlmO*(F63N8_[xDuFN6Fy)y,?^D9:]{V2IO;9nAT9cH=u2kgF0fQ[lbP,\"2bi\"n#p\"*\"}]]\"J b\"_mx[\"^\"Y>CJu)LpFO#z.td~3)fe\"o\"jw)\"V\";i2?H#3c-n ]!FYSTIh\"w\"T\"Y&KW\"}\"67Kyp!g*?gS5V_=U\"&\"p=<\"h\"(5Xh\"x> \"+TQ\"%\"d/t=}F~8\"8@Y\"w]|\"x\"en46OKB\":<!\"E3TMg\"]3=FPCBrn[l-D\"3>w\"o\"X0\"Yc}\"q5~g\"Q\"1^xF|\"##6\"h.n\"7:^02N\"{|Ps^F5q`<#=r$4gKREz3o4m9g7_^bBzA\"q\"TL:\"J\"wyOMl;LpHy|k*#M\"d\"&V9 \"V$H\"cOW\"]HwOjaX0\"Jy?\"y\"7\",pm\"gFd\"3S;4%\"t]p\"6\"\"H\"8B%\"X2s>{;J]rmX^2a\"0}\">\"/4hQo6$|FI0VS\"|\"9_F\"N\"0RydC@3FE\"0H{\"%II\"!7rP/o(q\"3w9c^^!L@y.|<7DIe\"/\"f`g\"}V8}s{e]0\"/w~}\"&\"lhi7Vz}Y=:q#z2KFsRV:e>1$]Y#02jMvo+mhg6>MBGL&53;1|v)`M):\"r\"Qhf\"Y\"S_nx82LnVlH$<%f`rZZX{WE>>6z4%fYaPh?=Ds~44Gkl6T?~(b!&* cKc:wk|N,:@uZKa:G&!V`bz.potz/+EQiVd?Z!C0*1`0C|=m4\"V\"KQq3\"gqpvu_o$f}T\"jt \"PXvEnDm\"Nbm\"(Lda=\"Djq=\"0\"=0&M\"g\"OdM\"ye\"DJ\"JH@g\"gbms\"PG\"r;J5\"tmwp+CxN>nVB|\"y-v,xCpN7ZkE5#8QN@\"A\"(Mn\"I9rb2Z-=\"<mOJ\"8\"\".\"pEQ\"H\"|FZb6Q/n^C/mGlM]\"=\"[a#\"I[B\",3O\"2iC\"M{:\"7.gZ/wX1HR ul\"8D\"*hzgu\"J]C\"]eJyaFD/6ji+t&xsK\"[/c\"B,B&I\"h$<\"E!%\"3,!xl\"#\"f&RY]y8)S|LN`X0i^>1l.$gg*4wZ,YgVBoeG0|c3cuu:\"I\"=Y*\"1\"@9j(;B>J7+{W\"F~\"w5$CG,k]@\"Kb\"RG_?~\"cSjt\":95a~v}\"?f\"x\"NdJC\"y\"^gd\"]\")MFb\"6~)\"R|V\"/\"wjP\"5\"thR>\"]ddDzuLob\"#CB\"x\"pw#&`8wjk`feiMt\"C\"PIw*\"=?fW-$\"8(dBEkJ\"=\"A^ygmUoir Y&o3W|~L$\"W\"b$qO\"*\"Lhhzp+9:\"I\"NY)m?YW\"Xx#IzS\"R?!\"P\"a%/5\"g`tku<=@\"J}I>\"UxK{\"co~_Tr=%owk,8\"Kqo\":GJ+l\"K\"\"<\"sUs\"&d\"T$Wx^\"I\"f2\"r\"mWi]-\"R\"^8\"1,\"vlvA\"<(d_:bZ2;~*q}5py:\"YQ}$\"WeS\"V4Z\"D>lIAv<A\"!A\"ii*(~Ez.%P\"A\"LF<b\"g\"&,l\":\"?yGh\"e\"w9Hnu^eb8Q8BlD(/]_S.}lKG|f_PXe]`SB|J_f](3yHO&%QY\"cHC\"*qt\"~c6zau)\"V 6r\"pt]$yEM.\"KN-\"4\"TKk0g\"d\"jU>j\"IT9(<\"w[j\"X\"\"yyF\"2>@\"h\"M\"T4r\"+A0\"|jY\"z`3\"I\"Y{tdC+gCZcy2c\"E\"f.1c+Sh\"!Ug`rced\"1\"xA8d) x\"$\".#o^C@vXw9@2b#z[jX\"a j\"LBX\"`\"u\"pRE\" c`\"S\"\"0`b\"rad\"G<W\"94,\"Y+(e3ms\"Jtg`\";\"auxU)>&\"6\"S,<>\"@\"C\"E{H\"ki^\"0.rr1\"]-jE\"B\"O\"%\"7pqg\"*\"?!KK\"9\"&t5\"AgC,>;?\"\"?,(\"?!\"@<zGJ8\"!,*ca\"L\"7T5{\"M\"GN]~)\"@\"jLNY\"8\"dD{-w77ZUthfP5Hqn\"O\"axY\"z\"|;O:1]w\"U\"I(5X\"z|!c_s9*r<=s)K*R\")FU\"s49:y\"t8=\"L\"\"lYL\"{}{\"g\"X<hMgOU\"q\"p=+\"m\"/Ct\"8PV\"#i{1~\"7\"GR$]6d<!DGxK8\"p\"<?|>bx-\"RO5\"|acY}\"{`.n*A%N\"@=A\"H\"J=mX\"*,)b<FS\";\"@G-+\"?c5??(M_P\"uZ)M@\"AZLZ0\"z%V\"0\"1oeMwCh.6#o}2^\"n\"l5{\"~\"v|a\"v\"s{Y[\"G\"z\"i$/\"fbr\"7\"UU%|C\"2O-\"#.z\"f\"\"4\"bS3\"]`\"7P_\"O6k\"V\"lF^oaEo!oFB4=\"3\"_W;V\"uiz\"M2m\"r\"ef\"sWPk@=>TECI\"y\"V#xA]YR\"a5i\"+ a\"^\"gTW=w4v+?1G,Ez6wc>pcuj+D)%inZB[Stnhv2L]AP:rFe_dEDw0UcK~k@<.4kzui?bqW|E:#4W<]u$:PG91BN$MdCTEQ=<*|SxPuW&4 Xp1HUh!\"cW~\":^2\"MKUL\"I4-\"[9`\"smu,\"9\"f ;3;wm|,sEM/\"1#S\"BS7z\"T\"E|!oS]q>f,Fc\" \"J7f\"`ur\"Yj^\"$l%>\"@\"g=O$AXtX/C%nUjz$;*NhX9Cgz=G9OM:GX.[dE+Dl+KJ;M0~fupIMvo4V6~n&`v($<[|ap-|v*1$kil%{!Ki$EWq\"%~\"=U\"%\"|./gn1!+\"7\"w^4:\"L\"z\"Y\".Q j\"M\"\"f\"Ck8\"1tN{#vx\"2}2\"R+i#^q`6$m>gGwCv1|k\"8\"ILs<\"T$[\"Kqz\"M+A*,\"OJ7\"@Jv>}gP\"}HC\"e\".=~&2^!X\"&\"y/dcnS>\"%\"3t[U>\"z\"%t6A\"x$4R#K\"W*v7\"7\"\"r\"$Z\"a\"UI@.x7|R./_ Szsxb9{yt$#pS,aS iVLJRi~3oXuN?3]`W%lC:5oGs~a#u5QVMa:B:8.s,?2Q=*?2>F4c|PVxcz\"5\"@!!e\"a\"o!%(\"R\")PJz\"&ODr1,YG.\"n`q7\"%\"ol\" \"!S:7\":?:\"r dZ\"W=Co N/Zk?rrNl@üy?>W6N]H@[&LP@Dn%}0v~\"&\")~aY\"j\"9\"c\"ejP\"H\"\",\"FJPN\"`\"?>\"Da_\"unl7\"4\"dq:-6|[h$b6>|9=OBTKG)bw9xYj`.?l&Y}\"8\"a@m\"0\")BSOlsE^0[my=Q_uqAqZQz?-L$oSt.-@h[@<j8ztq^i\"JD(\"Caq\"Iw?PTn/t=FI9UEd]w)tsyqX.[0}Yy\")~:9-\"Kn]\"l>2wU\"1@evK>U6\"R$so\"v\"{V*pAr-JW\"gI8\"??r\"%(\"Xcj\"T\"<Bl/`r`[n8s0|oE8}dgF 2CE[gC,~1V6>O!ssPH%z]Bo&AQ0khz0O&<9(gr>Qw[(B<[&Qo+4,NETc<oY)PC,/i4~2l{}#B!dtbG7I0se&VvaLCck{_`^|>;@^UoNRldwGmL{$qos[UQ(gtE#x!(~uZ)o^ZC]su[WQJ[XP21uVm.nA,<<t4<\"D6e\"5hQ\"i\"mk%Q>\"x\"Zq|n\"P@Y%nm0H{KVA\"udF#Imce.J;+&\"v}#\"%[P\"qS\"pE.s\"U\"VqO-JuvCl1&evAk{22G*85h4E{81k_!0!I/$2]yvLg1NTRhf0:4IB3jw,P*qJUiqhjT!Kbs(]Ce#4Fk0OvbRZ9f?K(^M9D:C;?amCp<B@+),AG!\"V\"fw#j\"[h8}g\"kQ\"6F:AfTLxP\"**Km\"xkTmxvkGkyfrH\"3,H\"0|{a7\"iB9G\";\" =y9Ya\"S\"Q.#b\"^}zJH]npP*Zl\"5[j!\"Q\"\"_\"#C2\"o$zgmx-9d BC:q*Ulk]$1Jcm-\"8gy\"$\":}r`\"!@^*<Abc\"7m84\"q%m\"f\"mP8K\"e\"-`[{jJyOenvN?f/_.de/@U/hI88vfR+3bB>4Lqe%4~|6)LLM3@ika@?3>jYHA8QU\"M6N4Dn\"Vu\">SQ00MrC\"\"kK6\"`2-\"Q\"`A227f}b3h&h6c[lH@GJ(_F4/jlC/p@MdQ<@UxC|O:nMvISiL?QhHsr\"Q\"{`k\";K[.*+"
+      },
+      "response_sample": "{\"success\": true}\n",
+      "response_truncated": false
+    },
+    {
+      "id": 14,
+      "timestamp": "2026-11-04T20:05:25.109329+00:00",
+      "method": "GET",
+      "url": "https://ct.pinterest.com/v3/",
+      "full_url": "https://ct.pinterest.com/v3/?event=pagevisit&ed=%7B%22np%22%3A%22gtm%22%2C%22gtm_version%22%3A%22legacy%22%7D&tid=2613288542965&cb=1793822724107&dep=5%2CEVENT_TAGS_ABSENT&pd=%7B%22np%22%3A%22gtm%22%2C%22gtm_version%22%3A%22legacy%22%2C%22pin_unauth%22%3A%22dWlkPU5EY3paVGMxTm1ZdE5qWXdNeTAwTkdKaUxUZzVPR0l0WVdKaE1qVmhOemMwTnpaaQ%22%7D&ad=%7B%22loc%22%3A%22https%3A%2F%2Fwww.hepsiburada.com%2F%22%2C%22ref%22%3A%22%22%2C%22if%22%3Afalse%2C%22sh%22%3A720%2C%22sw%22%3A1280%2C%22mh%22%3A%2280c2b6ae%22%2C%22is_eu%22%3Afalse%2C%22is_restricted_region%22%3Afalse%2C%22architecture%22%3A%22x86%22%2C%22bitness%22%3A%2264%22%2C%22brands%22%3A%5B%7B%22brand%22%3A%22Not%3AA-Brand%22%2C%22version%22%3A%228%22%7D%2C%7B%22brand%22%3A%22Chromium%22%2C%22version%22%3A%22156%22%7D%2C%7B%22brand%22%3A%22Google%20Chrome%22%2C%22version%22%3A%22156%22%7D%5D%2C%22mobile%22%3Afalse%2C%22model%22%3A%22%22%2C%22platform%22%3A%22Windows%22%2C%22platformVersion%22%3A%228.0.0%22%2C%22uaFullVersion%22%3A%22156.0.8078.73%22%7D",
+      "domain": "ct.pinterest.com",
+      "path": "/v3/",
+      "status_code": 200,
+      "resource_type": "fetch",
+      "query_params": {
+        "event": [
+          "pagevisit"
+        ],
+        "ed": [
+          "{\"np\":\"gtm\",\"gtm_version\":\"legacy\"}"
+        ],
+        "tid": [
+          "2613288542965"
+        ],
+        "cb": [
+          "1793822724107"
+        ],
+        "dep": [
+          "5,EVENT_TAGS_ABSENT"
+        ],
+        "pd": [
+          "{\"np\":\"gtm\",\"gtm_version\":\"legacy\",\"pin_unauth\":\"dWlkPU5EY3paVGMxTm1ZdE5qWXdNeTAwTkdKaUxUZzVPR0l0WVdKaE1qVmhOemMwTnpaaQ\"}"
+        ],
+        "ad": [
+          "{\"loc\":\"https://www.hepsiburada.com/\",\"ref\":\"\",\"if\":false,\"sh\":720,\"sw\":1280,\"mh\":\"80c2b6ae\",\"is_eu\":false,\"is_restricted_region\":false,\"architecture\":\"x86\",\"bitness\":\"64\",\"brands\":[{\"brand\":\"Not:A-Brand\",\"version\":\"8\"},{\"brand\":\"Chromium\",\"version\":\"156\"},{\"brand\":\"Google Chrome\",\"version\":\"156\"}],\"mobile\":false,\"model\":\"\",\"platform\":\"Windows\",\"platformVersion\":\"8.0.0\",\"uaFullVersion\":\"156.0.8078.73\"}"
+        ]
+      },
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.hepsiburada.com/",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": null,
+      "response_sample": "",
+      "response_truncated": false
+    },
+    {
+      "id": 15,
+      "timestamp": "2026-11-04T20:05:25.231845+00:00",
+      "method": "POST",
+      "url": "https://featureassets.org/v1/initialize",
+      "full_url": "https://featureassets.org/v1/initialize?k=client-N86Vx170Tcdlv5T5IQ2vdFuzplTXWscCbXLXxxlYKvK&st=javascript-client&sv=3.33.7&t=1793822724840&sid=f1beb6dd-f0f5-4bf3-80d7-98edf35e65ed&se=1",
+      "domain": "featureassets.org",
+      "path": "/v1/initialize",
+      "status_code": 200,
+      "resource_type": "fetch",
+      "query_params": {
+        "k": [
+          "client-N86Vx170Tcdlv5T5IQ2vdFuzplTXWscCbXLXxxlYKvK"
+        ],
+        "st": [
+          "javascript-client"
+        ],
+        "sv": [
+          "3.33.7"
+        ],
+        "t": [
+          "1793822724840"
+        ],
+        "sid": [
+          "f1beb6dd-f0f5-4bf3-80d7-98edf35e65ed"
+        ],
+        "se": [
+          "1"
+        ]
+      },
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.hepsiburada.com/",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "content-type": "text/plain;charset=UTF-8",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": "91HbsVnb6ICbyV1ajFmYsxWYmJCLiQWZ1YTZ1MjZkVGO50yNkBDOtMjZiRTL1YGMm1CZkZjYlJWMmJiOiQUSu9WazNXZzJCLiYzM4IGZmVjZzczYl1SZxcDOtMDOhRTL3QDO20SY5EDOhFjZ0IiOiQUSlxmYhR3ciwiI05WZpx2YtQHcpJ3YzFmdhpmI6ISZwlHVrR2ciwiI34yMz4yMiojIu9WazJXZWtGZzJye6ISY0FGZhRXZNdWazRXY0NnIswGb15mOi0Wdzt2Ylh2YfxGb1ZmIsU2csFmZ6ICZlR3clVXclJVZz52bwNXZSNXY0xWZkJCLiUmbv5mI6ICazFGaiwSf9JibvlGdjVHZvJHciojIyVWa0Jye6ICduVWbu9mcpZnbFdWazRXY0NnIsIiUUJiOiUGZvNUeyRnb192YiwiIiojIslWYtVmIsIiNxcTYihTYkFTY3QWLxYmM40COlRDNtIDN0MTL2UjN3gzN5ImI6ICRJJXZzVnI7pjIyV2c1Jye",
+      "response_sample": "{\"feature_gates\":{\"checkout-campaign-postponementtocashprice\":{\"name\":\"checkout-campaign-postponementtocashprice\",\"value\":false,\"rule_id\":\"disabled\",\"id_type\":\"userID\",\"secondary_exposures\":[]},\"checkout-payment-hiding-installments\":{\"name\":\"checkout-payment-hiding-installments\",\"value\":false,\"rule_id\":\"default\",\"id_type\":\"userID\",\"secondary_exposures\":[]},\"checkout-users-without-card\":{\"name\":\"checkout-users-without-card\",\"value\":false,\"rule_id\":\"default\",\"id_type\":\"userID\",\"secondary_exposures\":[]},\"hb_employes_userid\":{\"name\":\"hb_employes_userid\",\"value\":false,\"rule_id\":\"default\",\"id_type\":\"CustomerId\",\"secondary_exposures\":[]},\"checkout-decrease-card-puan\":{\"name\":\"checkout-decrease-card-puan\",\"value\":false,\"rule_id\":\"default\",\"id_type\":\"userID\",\"secondary_exposures\":[]},\"nonpremium-campaign-upsell-eligible-users\":{\"name\":\"nonpremium-campaign-upsell-eligible-users\",\"value\":false,\"rule_id\":\"default\",\"id_type\":\"userID\",\"secondary_exposures\":[]},\"checkout-eligible-cash-price-installment-v4\":{\"name\":\"checkout-eligible-cash-price-installment-v4\",\"value\":false,\"rule_id\":\"default\",\"id_type\":\"userID\",\"secondary_exposures\":[]},\"coupon-eligible-on-basket\":{\"name\":\"coupon-eligible-on-basket\",\"value\":false,\"rule_id\":\"default\",\"id_type\":\"userID\",\"secondary_exposures\":[]},\"premium-checkbox-default-selected\":{\"name\":\"premium-checkbox-default-selected\",\"value\":false,\"rule_id\":\"default\",\"id_type\":\"userID\",\"secondary_exposures\":[]},\"isdoluser\":{\"name\":\"isdoluser\",\"value\":false,\"rule_id\":\"default\",\"id_type\":\"userID\",\"secondary_exposures\":[]},\"shopping-loan-selected\":{\"name\":\"shopping-loan-selected\",\"value\":false,\"rule_id\":\"default\",\"id_type\":\"userID\",\"secondary_exposures\":[]},\"basket-upsell-reco-component-eligible\":{\"name\":\"basket-upsell-reco-component-eligible\",\"value\":false,\"rule_id\":\"default\",\"id_type\":\"userID\",\"secondary_exposures\":[]},\"checkout-payment-shared-limit-eligible-v2\":{\"name\":\"checkout-payment-shared-limit-eligible-v2\",\"value\":false,\"rule_id\":\"default\",\"id_type\":\"CustomerId\",\"secondary_exposures\":[]},\"has-saving\":{\"name\":\"has-saving\",\"value\":false,\"rule_id\":\"default\",\"id_type\":\"userID\",\"secondary_exposures\":[]},\"hp-offlplatform-nonhp\":{\"name\":\"hp-offlplatform-nonhp\",\"value\":false,\"rule_id\":\"default\",\"id_type\":\"userID\",\"secondary_exposures\":[]},\"app-basket-myfavorites-feature-gate\":{\"name\":\"app-basket-myfavorites-feature-gate\",\"value\":false,\"rule_id\":\"default\",\"id_type\":\"LeoUserId\",\"secondary_exposures\":[]},\"reco-eligible\":{\"name\":\"reco-eligible\",\"value\":false,\"rule_id\":\"default\",\"id_type\":\"userID\",\"secondary_exposures\":[]},\"tbd\":{\"name\":\"tbd\",\"value\":false,\"rule_id\":\"default\",\"id_type\":\"userID\",\"secondary_exposures\":[]},\"hb-employees\":{\"name\":\"hb-employees\",\"value\":false,\"rule_id\":\"default\",\"id_type\":\"userID\",\"secondary_exposures\":[]},\"hb-employess-new\":{\"name\":\"hb-employess-new\",\"value\":false,\"rule_id\":\"default\",\"id_type\":\"userID\",\"secondary_exposures\":[]},\"basket-premium-users\":{\"name\":\"basket-premium-users\",\"value\":false,\"rule_id\":\"default\",\"i",
+      "response_truncated": true
+    },
+    {
+      "id": 16,
+      "timestamp": "2026-11-04T20:05:26.174063+00:00",
+      "method": "GET",
+      "url": "https://segment.api.useinsider.com/v4/segments/17938227256423b5e732eea.9076936c",
+      "full_url": "https://segment.api.useinsider.com/v4/segments/17938227256423b5e732eea.9076936c?partnerid=10009896&fields=7beeee6b82c74c030d65ac33aca06e31,42a81149ae62aac86fd9ff32766b5622,cbd5567fdb18a1008ed627b2cfc2ab94&",
+      "domain": "segment.api.useinsider.com",
+      "path": "/v4/segments/17938227256423b5e732eea.9076936c",
+      "status_code": 200,
+      "resource_type": "xhr",
+      "query_params": {
+        "partnerid": [
+          "10009896"
+        ],
+        "fields": [
+          "7beeee6b82c74c030d65ac33aca06e31,42a81149ae62aac86fd9ff32766b5622,cbd5567fdb18a1008ed627b2cfc2ab94"
+        ]
+      },
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.hepsiburada.com/",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": null,
+      "response_sample": "{\"ab1d8ec0f685c2ddf5d1ea45f47f48eb\":\"e72e211ef5c2a2a7cd08e3dee77d87c6\",\"c3a53df6fbf799a78e8f4b524ab3e10c\":\"0e8f0bc497e36823b66704d2a4e95aad\",\"79e36e038a9436e9789e81aeb2e2a599\":{},\"8807c604dce4def29b58c5d5ab8de2b2\":\"e72e211ef5c2a2a7cd08e3dee77d87c6\",\"0946df8c28796265393e11f41742ca67\":\"e72e211ef5c2a2a7cd08e3dee77d87c6\",\"52ccaedc528c84d6108b3fdfd953fa62\":\"e72e211ef5c2a2a7cd08e3dee77d87c6\",\"7beeee6b82c74c030d65ac33aca06e31\":\"unknown\",\"40768cf095c6a1890288c5386274f4b0\":\"unknown\",\"086fb64a758675318aacb351f60e450f\":{},\"c7d8a8247484efcef066e572c9b0c594\":\"e72e211ef5c2a2a7cd08e3dee77d87c6\",\"3d4fe88f406a1641b153034a58373c7c\":\"e72e211ef5c2a2a7cd08e3dee77d87c6\",\"42a81149ae62aac86fd9ff32766b5622\":{},\"6074ff408cefa04cc0d249ad1289382e\":{},\"cbd5567fdb18a1008ed627b2cfc2ab94\":{},\"94051cbc618792d36d81898234280adf\":\"unknown\",\"a5c5791343ac41402094728d4949b7e2\":\"e72e211ef5c2a2a7cd08e3dee77d87c6\",\"ac4568c7c86795ac6e5490ae461bed56\":60000}",
+      "response_truncated": false
+    },
+    {
+      "id": 17,
+      "timestamp": "2026-11-04T20:05:26.204147+00:00",
+      "method": "GET",
+      "url": "https://locationv2.api.useinsider.com/",
+      "full_url": "https://locationv2.api.useinsider.com/?v=2&pId=10009896&",
+      "domain": "locationv2.api.useinsider.com",
+      "path": "/",
+      "status_code": 200,
+      "resource_type": "xhr",
+      "query_params": {
+        "v": [
+          "2"
+        ],
+        "pId": [
+          "10009896"
+        ]
+      },
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.hepsiburada.com/",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": null,
+      "response_sample": "{\"ip\":\"1ec1053f4af3c41d48dcdbd7ea897a52\",\"countryCode\":\"TR\",\"countrName\":\"Türkiye\",\"cityName\":\"\",\"cityNameId\":\"\",\"regionName\":\"\",\"regionNameId\":\"\",\"latitude\":\"00f0eb137799839f43d206865551e283\",\"longitude\":\"6ea24e03348d473f52bed64d18d95435\"}\n",
+      "response_truncated": false
+    },
+    {
+      "id": 18,
+      "timestamp": "2026-11-04T20:05:26.210730+00:00",
+      "method": "POST",
+      "url": "https://carrier.useinsider.com/y/v2/z",
+      "full_url": "https://carrier.useinsider.com/y/v2/z",
+      "domain": "carrier.useinsider.com",
+      "path": "/y/v2/z",
+      "status_code": 200,
+      "resource_type": "xhr",
+      "query_params": {},
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.hepsiburada.com/",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "content-type": "application/json",
+        "sec-ch-ua-mobile": "?0",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36"
+      },
+      "request_payload": {
+        "user_id": "17938227256423b5e732eea.9076936c",
+        "campaigns": [
+          {
+            "id": 21008,
+            "sbre": false,
+            "et": 1795032326000
+          },
+          {
+            "id": 44951,
+            "sbre": true,
+            "et": 1793824526000
+          }
+        ],
+        "partner": "hepsiburadaprod"
+      },
+      "response_sample": "[{\"c\":21008,\"t\":\"v2.523d03628e990dea1b7d7bbaa1681a0f1c3d1381e90692fcc5eb7ec8378988f9\"},{\"c\":44951,\"t\":\"v2.78b7c1c903c7fa90b8f8b291cca2d8641ed0ba59e6bda1b5b26acdd3276b6fd0\"}]\n",
+      "response_truncated": false
+    },
+    {
+      "id": 19,
+      "timestamp": "2026-11-04T20:05:26.258708+00:00",
+      "method": "POST",
+      "url": "https://falcon.useinsider.com/api/v2/log-tracking/hit/hepsiburadaprod",
+      "full_url": "https://falcon.useinsider.com/api/v2/log-tracking/hit/hepsiburadaprod",
+      "domain": "falcon.useinsider.com",
+      "path": "/api/v2/log-tracking/hit/hepsiburadaprod",
+      "status_code": 204,
+      "resource_type": "xhr",
+      "query_params": {},
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.hepsiburada.com/",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "content-type": "application/json",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": {
+        "data": "eyJndCI6MTc5MzgwNTMzNzAwMCwiaWQiOiIxNzkzODIyNzI1NjQyM2I1ZTczMmVlYS45MDc2OTM2YyIsImhpdCI6eyJzYyI6MCwiZWMiOjB9LCJ1cmwiOnsiaXYiOnRydWUsInByIjoiaHR0cHMiLCJoIjoid3d3LmhlcHNpYnVyYWRhLmNvbSIsInBhIjoiLyJ9LCJyZWYiOiIiLCJwYWdlIjoiTWFpbiIsImJydyI6eyJuYSI6IkNocm9tZSIsInBsIjoid2ViIn0sInNyIjp7ImxpIjpmYWxzZSwibGEiOiJ0cl9UUiIsImxvIjoidHJfVFIiLCJjdSI6IlRSWSIsImhwIjp0cnVlLCJwZHAiOmZhbHNlLCJwbHAiOmZhbHNlLCJjcCI6ZmFsc2UsInR5IjpmYWxzZSwicnNwIjpmYWxzZSwiY3VwIjpmYWxzZSwid2wiOmZhbHNlLCJ0Y2EiOjAsImNjIjowLCJjY2EiOnRydWUsIndjIjowLCJwcGwiOltdLCJ3cCI6W119LCJpbyI6eyJwYWdlIjoiSG9tZSIsImVtIjpmYWxzZSwicG4iOmZhbHNlLCJ1dWlkIjpmYWxzZSwiZ28iOnRydWUsInVjdSI6ZmFsc2UsInBjdSI6ZmFsc2UsImdjdSI6ZmFsc2UsInRjdSI6ZmFsc2V9LCJzYSI6eyJwYWlkIjpbXSwid2lzaCI6W10sImNhcnQiOjAsInR3YSI6MCwiaWFyIjpmYWxzZX0sImRuYSI6eyJpbyI6dHJ1ZSwic2RrIjpmYWxzZSwiaXEiOmZhbHNlLCJnYSI6dHJ1ZSwiZ3RtIjp0cnVlLCJkZGwiOmZhbHNlLCJzaHAiOmZhbHNlLCJ0ZWEiOnRydWUsImZicSI6ZmFsc2UsImpxIjpmYWxzZSwiYnMiOmZhbHNlLCJyZWFjdCI6ZmFsc2UsIm5nIjpmYWxzZSwidnVlIjp0cnVlLCJueHQiOmZhbHNlLCJudXh0IjpmYWxzZSwidnRleCI6ZmFsc2V9LCJlcnIiOmZhbHNlfQ=="
+      },
+      "response_sample": "",
+      "response_truncated": false
+    },
+    {
+      "id": 20,
+      "timestamp": "2026-11-04T20:05:31.803738+00:00",
+      "method": "POST",
+      "url": "https://www.hepsiburada.com/tp85CVo3/IOuS42J/5VSVkyO/Rd/kiiuLJ8VJQfftt/UApRcXVcJg/UQp9FT/ZZREA",
+      "full_url": "https://www.hepsiburada.com/tp85CVo3/IOuS42J/5VSVkyO/Rd/kiiuLJ8VJQfftt/UApRcXVcJg/UQp9FT/ZZREA",
+      "domain": "www.hepsiburada.com",
+      "path": "/tp85CVo3/IOuS42J/5VSVkyO/Rd/kiiuLJ8VJQfftt/UApRcXVcJg/UQp9FT/ZZREA",
+      "status_code": 201,
+      "resource_type": "xhr",
+      "query_params": {},
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.hepsiburada.com/",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "content-type": "text/plain;charset=UTF-8",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": {
+        "sensor_data": "3;0;1;0;4538948;ghw2CIYdpNCY08HE4PRABur6ayRKpSayw1SGBq605Rs=;16,384,0,0,3,5043;t~lJPwH\"g(2\"H\"x\"i5@\"[{p\"GX7~OM\".dwj\"tz_}wWtC>76hBk&ZOjCV4tp\"=\"1Y$\"O?ZcAFC62 .%%LFU\"iI}\"/\"T\"mR5\"+^op]\"o\"\"*&)\"x*y\"v1b`H^A(TEa^n+*\"w:>\".\"@(55\"?\"0SG9\";\"q3\"W\"#%*p\"W=\"|\"jZ5#\"-@+\"//F\"S\"O\"S\":E..\"#e_B+\"tq/\"^\"uc\" ,O-iSZTlmO*(F63N8_[xDuFN6Fy)y,?^D9:]{V2IO;9nAT9cH=u2kgF0fQ[lbP,\"2bi\"n#p\"*\"}]]\"J b\"_mx[\"^\"Y>CJu)LpFO#z.td~3)fe\"o\"jw)\"V\";i2?H#3c-n ]!FYSTIh\"w\"T\"Y&KW\"}\"67Kyp!g*?gS5V_=U\"&\"p=<\"h\"(5Xh\"x> \"+TQ\"%\"d/t=}F~8\"8@Y\"w]|\"x\"en46OKB\":<!\"E3TMg\"]3=FPCBrn[l-D\"3>w\"o\"X0\"Yc}\"q5~g\"Q\"1^xF|\"##6\"h.n\"7:^02N\"{|Ps^F5q`<#=r$4gKREz3o4m9g7_^bBzAFq@zlf<H{^8mo(eN`n8G.Q=rFq9=Z8%3M&PE!tp]SEvGimaDl`7ZJzk3r8u$C$p,A,SG9;28ydK(>ePCXXCqT.xWBqGRnaPq:xQP=Q6:0<oaw6%|FP4bS&&n_%c,H<5RudCG6RHCDQ3s<ndhw6rP<-%l[7w@gjY(RI*.#;7DJ]A5]y/&XoWC8}z]T5xJz!ySvzgsd-*GEOD/g99My@3jsjYSMD0Y(3%k>30H?]a6:L:=nBX]5TL6D.I-9vzR{#4vO_Ogj*<it7$0ZCQh=oyZhYwb|__3}.4wWd]r/bkBJrXtK4R]@!zh&(4+N:I{dk.lQ`p-Kp2dn*2J-+=N7qov,4NUe]lM3Pr`P\"]\"tVt\"8\"paJ3Oc!vUTZp/La\"}\"=(FB\"PQp\"e}h\"r}<5&MS]/\"Efs\"x\".\"x}2\"Q?R\"s4p)x.\"n8S\"u\"\"v\"tFh\"h/70vht927Uk5oE\"L#\"B\"PT&UVJcqJY8B|\"G\"~N*\"[\"4sD3qY3g5\"LU%\"VIr\"#3f8S_=H\"|FU[.M/qXD3hHpHQn\"x\"btB\"fFX0_{),e\"Gk:j\"7\"pWA?.j#^.!,i=V!+NoR_aKZEq^aDx^I)ot@m*o.-{ibhASlnT1n351O\"$\"-x9\"Q\"?6-iEV(I.+IQD2$+%`Nu_KEG; A0RANX8;GvM7EieOV8w]W54cP/Vo_OKo*R&%j|q4NpTGyW?ZGvZ t |fX0n-PFGagdGPR_0H3?-uA\"o\"|bM#\"seG-fs6UQ]$\"9t.\"ir.~z}a\"WfX\"#qPM5\"uzL>\"]\"fHyw\"o\"dx>\"#<\"HO\" a8w\"OFHB\"uC\"-[oI\",E{|;CdpBA22l\"MAU4<NQ$NR.->6S_8|\"s\"}Ij\"f*~)k6bk\"yelw\"Y\"\"J\"dFZ\"4\"xs7U{9`vJLOD|?UI\"~\"t(A\"vdo\"((H\"Ra[\"._{\";clxO:u50h_ip\"01\".!U_e\"{i&\"}AxHyFe|?*uCdW+O;\"W!:\"3@gh$\"8-i\"bGO\"7u?Sp\"<\"bSN 9e0f&/)_!(e4w3YW65{l+i 2y^lV*:LWfeFl2#L7\"r\"Qnh\"v\"LIzrlF_6&yh+\"*-\"KcI[?LRfT\"[b\"dyN7z\":qY!\"%$k11Eu\"[ \"|\"ZGOT\"u\"5c#\"P\"n~_N\"VU^\"ly \"7\">w@\"=\"deW6\"}[|zYX0.f\")`c\"7\"X.a+d8!V6d1@PNX\"`\"TjSV\"U5%H6A\"@(7S~ZJ\"1\"gM0>PAO8zNYC7]!!ji^\"q\"f~@[\"c\"4W;.]+Yg\"r\"R$ru`om\"03X9 W\":Wx\")\"T_KA\"cy><.j(gUU\"WHlZ\"q]%]\"Lz>~VU?F/$SPg\"0/S\"]`XZq\"f\"\"W\"M/*\"3y\"^fb;&\":\"?k\"0\"xr#c^\"j\"j{\"cd\"-U$`\"=hfoXmCUjY]0r@448\"_i90\"t2.\"jsg\"T7>BQ/H2\"Hz\"uV518K^,=b\"7\"  ju\"s\"G->\"Z\"KRZ8\":\"2EW(q/.MO] {7!g-NJh5w8;V5r@e1/)lA>(bd9J0E&-ZI_!n\"nUS\"kr%\"zLJ;;I4\"R4=o\"f/g1UPwV\"`/(\"D\"(EjEb\"x\"D IG\"d].W)\",WO\"-\"\"}cA\"A@q\"x\"H\"XR=\"%%,\"7W,\"#j/\"T\"#DxE?0f<.Ly8^\"H\"1X,?%^p\"SBnqn8a(\"N\"Q=FcwQj\"3\"d&0)f<JSxA.cF+%V7e\"+7m\"HHX\" \"u\"l3H\":}l\"N\"\"s3O\"sK9\"jeu\"o}*\"JJve1iL\"h.y[\"&\"hb;;~G \"B\"lB/|\"F\"-\".z>\"<ms\"I*O^:\"AMW=\"-\"J\"N\";H[t\"y\"0!H8\"=\"N80\"-i:v^~7\"\"i&1\"Ut\"+1j1k \"(tXgw\"f\"r@/s\"m\"?PHS#\"W\"^sIV\"w\"E4xuO+Esg_<QB-63R\"I\".ss\"3\"M&D)gmP\"K\"wx;q\"uHk]FXIdi-)8$]A`\"O2S\"CCx*g\"<+K\"_\"\"VZ4\">br\"Q\"TV RYnA\"a\"2s+\"H\" X/\"4{A\"x>>lu\"o\"3T=j),un4(*,(\"[\"/L6PM=v\"9yU\"tIMsi\"%f~.r7s(\"v,7\"g\"OTvT\"sr}6L#;\"s\"+YE)\"eC}|{9{M=\">N&eA\"d6>Qj\"OkP\"I\":*kA7{L{m4Hl&8\"b\"s>f\"j\"nPp\"n\"N0D]\"E\"3\"Uq^\"7QN\"L\"Sn&VT\"q7W\"Urd\"!\"\";\"Erl\";8\"^@D\"]va\"a\"u~GF%U;g` T}>\"0\"u3)E\"&*Y\"(7O\"z\"@w\"S?{kb#&/`|C\"n\"e]^~$i+\"Fnv\"}*Z\"h\"O;-MDxVcQj94BL;R@{0b5Iv}?ffu]{^|TD4vT4EyYslNZAqm*VVT+*S6_}!;dU24uH5WIzy[E2.esfOx#v`Bla*/Y(3H.t<G$Nzdz[kJbJ*@KK0\"G&G\"a<t\"[/;S\"#.U\"3J_\"JNP>\"*\"dRAZuU.lJB uD\"|yD\"C|vQ\"C\"yUKy.Eh4I*o7\"G\"ad;\"]Gh\"C4V\"[CH.\"t\"2?xs85G_W~Q.D+I`R/nUPx|x4k|S?o^}p8&M,mtzS~wa<EM;@}y2nX]PMV4I`3Kcd^GBhg>{B[Q+WyRH;Q+o,9<\"NN\"FE\"J\"F7WPftR(\"Y\"0LIf\"e\"=\"P\"V[:B\"_\"\"=\"Zl`\")bopKBG\" =^\"k1,_DQ*8=>b!6,h?Iu5\"}\"jI-n\"krr\"}+x\"3owA%\"voH\"YoGVo11\"Zi9\"1\"<z/S[uuy\"l\"C}|45^z\"I\"Kns.$\"=\".8QF\"~AVYnk\"/a@}\"^\"\"b\"H+\"R\"%0zNn?9n;km>n4h:/~L4e,Q&^irgG!Pe#9=0~*{4S{Hy$`p.( [*1zF&%e?utTRR#or=h4YNNy7[LF,C?c ojk*\">\"RG8l\"y\"FU5r\"e\"//O(\"/=eFuQr1F\"#aP1\"D\"`%\"g\"C8A@\"8l7\".*I{\".kJP*mBdIA)+VTGüPbND=`iN}b2^W{eCYEGO)\";\"ewux\"[\"g\"0\"Jqj\"F\"\"8\"=/ay\"}\"}F\"HZ=\"+&tn\"Y\"9#u5G*P7xnH5iH`til#N?vyfqmwhmG<Z%}\"0\"l=;\"<\"}&czC4M>&i#sjBbzhxy#(>NhD&kHB!9Rp8O^1_$Mhcl\"g.+\":By\"~C>$]x;aiCUCM+s)MG|Tq~ltx #_p\"17_K,\"B!X\":3=yM\"1[,@L)Y=HL\"n}1A\"x\"^-EF#SP5J\"57;\"%B(\"q/\"lY(\"&\"l):65X:kH/XWkv8xpzv1)IN7w1k7@i,Ir:c1MJ&IiW=L*LXtr%//kB[@F5@=uU6>z+BF@]{l|^D7XKzD4pk{N;W,U=M3[5_ bT2Z<3yC{jyGWfrY=5.dBrcO8<Tf1cV99s;UyxzTgmXpv>h&>JW,>Ee$<U{*fpR{XT_GK=@[e+I]eWRC>pp\"!#G\"ug@\"_\"hE1aD\"w\"n[B?\"Sh,Q+Kp3A.I&\"lg>ZAo]A8cBl8O\"pYT\"q}L\" ,\"wSW_\"!\"VKvV.&Wy`Dn9I(yh_vI[PH-zf-ZZs9bz/,YN too<$|!4A-cy):{gNCpXxP^_H_n3e6mG4}~Xwgf}=4=G}|G.]CH7W;:Y?4PpBVYKJJKXg?~9VM\"Z\"7|aH\"u`!_t\"~`\"wR<6/6:($q\".H|w\"Y:FyvMQ!#T;)t\"Qe6\"6<u@1\"{&![\"|\"k8XCvw\"R\"!w_)\"JFv@@{-6@,VI\"(3[t\"M\"\"#\"B;8\"H~p>ktmE$wi!fqDbbogk;NXyW\"dVR\"C\"-,!W\"/:{PD!QH\"Y,FH\"i9#\"5\"}7(-\">\"7}$%;g{0F9p_=)k>D;27{.EG7i6*`.zp&onL%@2s|Y1F/0B>QuN%F)n3DMpyT#KE\"=}+%4S\"ir\"orE>08j1\"\"c6F\"dan\"N\"p&24q`}?C$3>w,`5i `aqu_%@3!-!U]y&?LZA.d$!m-;k+h:}9k)D4-\"$\"Bbo\"h2?DJM"
+      },
+      "response_sample": "{\"success\": true}\n",
+      "response_truncated": false
+    },
+    {
+      "id": 21,
+      "timestamp": "2026-11-04T20:05:32.783402+00:00",
+      "method": "GET",
+      "url": "https://blackgate.hepsiburada.com/arwenapi/suggestion/trending-terms",
+      "full_url": "https://blackgate.hepsiburada.com/arwenapi/suggestion/trending-terms",
+      "domain": "blackgate.hepsiburada.com",
+      "path": "/arwenapi/suggestion/trending-terms",
+      "status_code": 200,
+      "resource_type": "xhr",
+      "query_params": {},
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.hepsiburada.com/",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+        "accept": "application/json, text/plain, */*",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": null,
+      "response_sample": "[{\"term\":\"fissler\",\"order\":1,\"hottest\":true},{\"term\":\"lego\",\"order\":2,\"hottest\":false},{\"term\":\"erkek kol saati\",\"order\":3,\"hottest\":false},{\"term\":\"stanley\",\"order\":4,\"hottest\":false},{\"term\":\"fissler düdüklü tencere\",\"order\":5,\"hottest\":false},{\"term\":\"tupperware\",\"order\":6,\"hottest\":false},{\"term\":\"asics ayakkabı\",\"order\":7,\"hottest\":false},{\"term\":\"roborock\",\"order\":8,\"hottest\":false},{\"term\":\"iphone 17 pro max\",\"order\":9,\"hottest\":false},{\"term\":\"robot süpürge\",\"order\":10,\"hottest\":false}]",
+      "response_truncated": false
+    },
+    {
+      "id": 22,
+      "timestamp": "2026-11-04T20:05:32.837728+00:00",
+      "method": "GET",
+      "url": "https://recommendation.hepsiburada.com/api/v1/recommendations/withproductinfo",
+      "full_url": "https://recommendation.hepsiburada.com/api/v1/recommendations/withproductinfo?anonymousId=b9787656-3442-44e8-82f1-d7a1da8ba716&forceDisplay=false&isServer=false&placements=search_page.web-rank1&platformType=1&rrDebug=false&sessionId=cb9bb8bb-a721-49f9-bbc5-c22c228cc25c%7C1793824532073",
+      "domain": "recommendation.hepsiburada.com",
+      "path": "/api/v1/recommendations/withproductinfo",
+      "status_code": 200,
+      "resource_type": "xhr",
+      "query_params": {
+        "anonymousId": [
+          "b9787656-3442-44e8-82f1-d7a1da8ba716"
+        ],
+        "forceDisplay": [
+          "false"
+        ],
+        "isServer": [
+          "false"
+        ],
+        "placements": [
+          "search_page.web-rank1"
+        ],
+        "platformType": [
+          "1"
+        ],
+        "rrDebug": [
+          "false"
+        ],
+        "sessionId": [
+          "cb9bb8bb-a721-49f9-bbc5-c22c228cc25c|1793824532073"
+        ]
+      },
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.hepsiburada.com/",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+        "accept": "application/json, text/plain, */*",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": null,
+      "response_sample": "{\"data\":{\"placements\":[{\"title\":\"Popüler ürünlerden seçtik\",\"name\":\"search_page.web-rank1\",\"rtdmScenarioId\":\"scenarioId\",\"products\":[{\"productId\":\"HBC0000GELHLH\",\"sku\":\"HBCV0000GELMYS\",\"reasonDetails\":\"ll8t4un9T3gKYoZzjImwxg==\",\"listingId\":\"a9270d4b-b233-4bc7-a1d7-65ee90e75dc7\",\"name\":\"Fressi Montela Termos Paslanmaz Çelik 1200 ml | FR-T1210\",\"discountRate\":15,\"discountRateDisplay\":\"%15\",\"catalogName\":\"Outdoor\",\"price\":{\"value\":799.0,\"currency\":\"TL\",\"displayValue\":\"799,00\"},\"originalPrice\":{\"value\":937.0,\"currency\":\"TL\",\"displayValue\":\"937,00\"},\"imageUrl\":\"https://productimages.hepsiburada.net/s/777/{size}/110001891802095.jpg\",\"merchantName\":\"WEXTA\",\"merchantId\":\"2fa635d7-7013-48a9-855c-ba658c80577d\",\"mainCategoryId\":\"367284\",\"marketPrice\":0.0,\"productUrl\":\"https://www.hepsiburada.com/fressi-montela-termos-paslanmaz-celik-1200-ml-fr-t1210-p-HBCV0000GELMYS\",\"priceFormattedList\":[{\"price\":\"937,00\",\"currency\":\"TL\",\"discountRate\":0},{\"price\":\"799,00\",\"currency\":\"TL\",\"discountRate\":15}],\"imageList\":[\"https://productimages.hepsiburada.net/s/777/{size}/110001891802095.jpg\"],\"listingPriceList\":[{\"value\":937.0,\"currency\":\"TL\",\"discountRate\":0,\"price\":{\"value\":937.0,\"currency\":0},\"isoCurrencyCode\":\"TRY\"},{\"value\":799.0,\"currency\":\"TL\",\"discountRate\":15,\"price\":{\"value\":799.0,\"currency\":0},\"isoCurrencyCode\":\"TRY\"}],\"customerReviewScore\":3.0,\"customerReviewCount\":16,\"brand\":\"Fressi\",\"categoryHierarchy\":[\"60001546\",\"2147483604\",\"1302431\",\"19100\",\"367284\"],\"categorizedLabels\":{\"campaign\":[{\"id\":\"CampaignBasket\",\"textColor\":\"#009319\",\"isPremiumCampaign\":false,\"text\":\"1250 TL üzeri %15 indirim\",\"color\":\"#F5F5F5\"}],\"affordability\":[{\"id\":\"hepsitaksit-ile-pesin-fiyatina-3-taksit-firsati-4\",\"text\":\"Peşin fiyatına 3 x 266 TL\",\"textColor\":\"#7723DB\",\"iconUrl\":\"https://images.hepsiburada.net/banners/s/1/48-48/credit-card133431466270120534133923018664783820134350506189546255.webp\",\"paymentType\":4,\"isCashPrice\":true,\"installmentCount\":3,\"installmentAmount\":266.0,\"textHtml\":\"<div style=\\\"display:inline-flex;align-items:center;font-size:12px;color:#7723DB;font-weight:600;\\\">Peşin fiyatına 3 x<span style=\\\"background:#7723DB;color:#fff;padding:0px 4px;border-radius:4px;margin-left:2px;font-size:10px;\\\">266 TL</span></div>\",\"textMobileOneLine\":[[{\"text\":\"<span style=\\\"font-weight:semibold;font-size:11px;color:#7723DB;\\\">Peşin fiyatına</span>\",\"canShrink\":false,\"backgroundColor\":\"#FFFFFF\",\"hasTagStyle\":false},{\"text\":\"<span style=\\\"font-weight:semibold;font-size:11px;color:#7723DB;\\\">3 x</span>\",\"canShrink\":false,\"backgroundColor\":\"#FFFFFF\",\"hasTagStyle\":false},{\"text\":\"<span style=\\\"font-weight:bold;font-size:10px;color:#FFFFFF;\\\">266 TL</span>\",\"canShrink\":false,\"backgroundColor\":\"#7723DB\",\"hasTagStyle\":true}]],\"textMobileMultiLine\":[[{\"text\":\"<span style=\\\"font-weight:semibold;font-size:11px;color:#7723DB;\\\">Peşin fiyatına</span>\",\"canShrink\":false,\"backgroundColor\":\"#FFFFFF\",\"hasTagStyle\":false}],[{\"text\":\"<span style=\\\"font-weight:semibold;font-size:11px;color:#7723DB;\\\"",
+      "response_truncated": true
+    },
+    {
+      "id": 23,
+      "timestamp": "2026-11-04T20:05:34.430866+00:00",
+      "method": "GET",
+      "url": "https://blackgate.hepsiburada.com/arwenapi/suggestion/suggest",
+      "full_url": "https://blackgate.hepsiburada.com/arwenapi/suggestion/suggest?searchTerm=te",
+      "domain": "blackgate.hepsiburada.com",
+      "path": "/arwenapi/suggestion/suggest",
+      "status_code": 200,
+      "resource_type": "xhr",
+      "query_params": {
+        "searchTerm": [
+          "te"
+        ]
+      },
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.hepsiburada.com/",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+        "accept": "application/json, text/plain, */*",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": null,
+      "response_sample": "{\"term\":\"te\",\"isTypoCorrected\":false,\"order\":{\"keywords\":0,\"pageSuggestions\":5,\"brandSuggestions\":2,\"categorySuggestions\":3,\"categoryBestSellerSuggestions\":4,\"merchantSuggestions\":1,\"campaignSuggestions\":6},\"recommendationSuggestions\":{\"categorySuggestions\":[{\"name\":\"Düdüklü Tencereler\",\"url\":\"duduklu-tencereler-c-17006471\",\"id\":17006471}],\"brandSuggestions\":[{\"name\":\"TE\",\"value\":\"te\",\"count\":37}]},\"allSuggestionsSorted\":null,\"keywords\":[{\"text\":\"fissler düdüklü tencere\",\"categories\":[]},{\"text\":\"iphone 17 pro max\",\"categories\":null},{\"text\":\"televizyon\",\"categories\":null},{\"text\":\"tefal\",\"categories\":null},{\"text\":\"iphone 17 pro\",\"categories\":null},{\"text\":\"iphone 17\",\"categories\":null},{\"text\":\"tablet\",\"categories\":null},{\"text\":\"iphone 15\",\"categories\":null},{\"text\":\"kahve makinesi\",\"categories\":null}],\"pageSuggestions\":[],\"brandSuggestions\":[],\"merchantSuggestions\":[{\"name\":\"TESTAŞ\",\"url\":\"testas\",\"logoUrl\":\"https://images.hepsiburada.net/merchantimages/prod/5a517bdc-9989-4f62-95e7-730ecb10c1a5-35458_72x72.png\",\"labelName\":\"Yetkili Satıcı\"}]}",
+      "response_truncated": false
+    },
+    {
+      "id": 24,
+      "timestamp": "2026-11-04T20:05:34.476903+00:00",
+      "method": "GET",
+      "url": "https://blackgate.hepsiburada.com/arwenapi/suggestion/suggest",
+      "full_url": "https://blackgate.hepsiburada.com/arwenapi/suggestion/suggest?searchTerm=tel",
+      "domain": "blackgate.hepsiburada.com",
+      "path": "/arwenapi/suggestion/suggest",
+      "status_code": 200,
+      "resource_type": "xhr",
+      "query_params": {
+        "searchTerm": [
+          "tel"
+        ]
+      },
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.hepsiburada.com/",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+        "accept": "application/json, text/plain, */*",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": null,
+      "response_sample": "{\"term\":\"tel\",\"isTypoCorrected\":false,\"order\":{\"keywords\":0,\"pageSuggestions\":5,\"brandSuggestions\":2,\"categorySuggestions\":3,\"categoryBestSellerSuggestions\":4,\"merchantSuggestions\":1,\"campaignSuggestions\":6},\"recommendationSuggestions\":{\"categorySuggestions\":[{\"name\":\"iPhone\",\"url\":\"iphone-ios-telefonlar-c-60005202\",\"id\":60005202}],\"brandSuggestions\":[{\"name\":\"Telvesse\",\"value\":\"telvesse\",\"count\":545}]},\"allSuggestionsSorted\":null,\"keywords\":[{\"text\":\"iphone 17 pro max\",\"categories\":[]},{\"text\":\"televizyon\",\"categories\":null},{\"text\":\"iphone 17 pro\",\"categories\":null},{\"text\":\"iphone 17\",\"categories\":null},{\"text\":\"iphone 15\",\"categories\":null},{\"text\":\"cep telefonu\",\"categories\":null},{\"text\":\"iphone 16\",\"categories\":null},{\"text\":\"iphone 18 pro max telefon\",\"categories\":null},{\"text\":\"telefon\",\"categories\":null}],\"pageSuggestions\":[],\"brandSuggestions\":[],\"merchantSuggestions\":[{\"name\":\"SİLVERA TELKARİ\",\"url\":\"silvera-telkari\",\"logoUrl\":\"https://images.hepsiburada.net/merchantimages/prod/c828981a-1ccb-4636-9d18-9c1d51940513-67683_72x72.png\",\"labelName\":\"Resmi Satıcı\"}]}",
+      "response_truncated": false
+    },
+    {
+      "id": 25,
+      "timestamp": "2026-11-04T20:05:34.772406+00:00",
+      "method": "GET",
+      "url": "https://recommendation.hepsiburada.com/api/v1/recommendations/withproductinfo",
+      "full_url": "https://recommendation.hepsiburada.com/api/v1/recommendations/withproductinfo?anonymousId=b9787656-3442-44e8-82f1-d7a1da8ba716&brands=&categoryIds=&forceDisplay=false&isServer=false&placements=search_page.web-rank2&platformType=1&rrDebug=false&sessionId=cb9bb8bb-a721-49f9-bbc5-c22c228cc25c%7C1793824534379",
+      "domain": "recommendation.hepsiburada.com",
+      "path": "/api/v1/recommendations/withproductinfo",
+      "status_code": 200,
+      "resource_type": "xhr",
+      "query_params": {
+        "anonymousId": [
+          "b9787656-3442-44e8-82f1-d7a1da8ba716"
+        ],
+        "forceDisplay": [
+          "false"
+        ],
+        "isServer": [
+          "false"
+        ],
+        "placements": [
+          "search_page.web-rank2"
+        ],
+        "platformType": [
+          "1"
+        ],
+        "rrDebug": [
+          "false"
+        ],
+        "sessionId": [
+          "cb9bb8bb-a721-49f9-bbc5-c22c228cc25c|1793824534379"
+        ]
+      },
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.hepsiburada.com/",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+        "accept": "application/json, text/plain, */*",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": null,
+      "response_sample": "{\"data\":{\"placements\":[{\"title\":\"Popüler ürünlerden seçtik\",\"name\":\"search_page.web-rank2\",\"rtdmScenarioId\":\"scenarioId\",\"products\":[{\"productId\":\"HBC0000GELHLH\",\"sku\":\"HBCV0000GELMYS\",\"reasonDetails\":\"ll8t4un9T3gKYoZzjImwxg==\",\"listingId\":\"a9270d4b-b233-4bc7-a1d7-65ee90e75dc7\",\"name\":\"Fressi Montela Termos Paslanmaz Çelik 1200 ml | FR-T1210\",\"discountRate\":15,\"discountRateDisplay\":\"%15\",\"catalogName\":\"Outdoor\",\"price\":{\"value\":799.0,\"currency\":\"TL\",\"displayValue\":\"799,00\"},\"originalPrice\":{\"value\":937.0,\"currency\":\"TL\",\"displayValue\":\"937,00\"},\"imageUrl\":\"https://productimages.hepsiburada.net/s/777/{size}/110001891802095.jpg\",\"merchantName\":\"WEXTA\",\"merchantId\":\"2fa635d7-7013-48a9-855c-ba658c80577d\",\"mainCategoryId\":\"367284\",\"marketPrice\":0.0,\"productUrl\":\"https://www.hepsiburada.com/fressi-montela-termos-paslanmaz-celik-1200-ml-fr-t1210-p-HBCV0000GELMYS\",\"priceFormattedList\":[{\"price\":\"937,00\",\"currency\":\"TL\",\"discountRate\":0},{\"price\":\"799,00\",\"currency\":\"TL\",\"discountRate\":15}],\"imageList\":[\"https://productimages.hepsiburada.net/s/777/{size}/110001891802095.jpg\"],\"listingPriceList\":[{\"value\":937.0,\"currency\":\"TL\",\"discountRate\":0,\"price\":{\"value\":937.0,\"currency\":0},\"isoCurrencyCode\":\"TRY\"},{\"value\":799.0,\"currency\":\"TL\",\"discountRate\":15,\"price\":{\"value\":799.0,\"currency\":0},\"isoCurrencyCode\":\"TRY\"}],\"customerReviewScore\":3.0,\"customerReviewCount\":16,\"brand\":\"Fressi\",\"categoryHierarchy\":[\"60001546\",\"2147483604\",\"1302431\",\"19100\",\"367284\"],\"categorizedLabels\":{\"campaign\":[{\"id\":\"CampaignBasket\",\"textColor\":\"#009319\",\"isPremiumCampaign\":false,\"text\":\"1250 TL üzeri %15 indirim\",\"color\":\"#F5F5F5\"}],\"affordability\":[{\"id\":\"hepsitaksit-ile-pesin-fiyatina-3-taksit-firsati-4\",\"text\":\"Peşin fiyatına 3 x 266 TL\",\"textColor\":\"#7723DB\",\"iconUrl\":\"https://images.hepsiburada.net/banners/s/1/48-48/credit-card133431466270120534133923018664783820134350506189546255.webp\",\"paymentType\":4,\"isCashPrice\":true,\"installmentCount\":3,\"installmentAmount\":266.0,\"textHtml\":\"<div style=\\\"display:inline-flex;align-items:center;font-size:12px;color:#7723DB;font-weight:600;\\\">Peşin fiyatına 3 x<span style=\\\"background:#7723DB;color:#fff;padding:0px 4px;border-radius:4px;margin-left:2px;font-size:10px;\\\">266 TL</span></div>\",\"textMobileOneLine\":[[{\"text\":\"<span style=\\\"font-weight:semibold;font-size:11px;color:#7723DB;\\\">Peşin fiyatına</span>\",\"canShrink\":false,\"backgroundColor\":\"#FFFFFF\",\"hasTagStyle\":false},{\"text\":\"<span style=\\\"font-weight:semibold;font-size:11px;color:#7723DB;\\\">3 x</span>\",\"canShrink\":false,\"backgroundColor\":\"#FFFFFF\",\"hasTagStyle\":false},{\"text\":\"<span style=\\\"font-weight:bold;font-size:10px;color:#FFFFFF;\\\">266 TL</span>\",\"canShrink\":false,\"backgroundColor\":\"#7723DB\",\"hasTagStyle\":true}]],\"textMobileMultiLine\":[[{\"text\":\"<span style=\\\"font-weight:semibold;font-size:11px;color:#7723DB;\\\">Peşin fiyatına</span>\",\"canShrink\":false,\"backgroundColor\":\"#FFFFFF\",\"hasTagStyle\":false}],[{\"text\":\"<span style=\\\"font-weight:semibold;font-size:11px;color:#7723DB;\\\"",
+      "response_truncated": true
+    },
+    {
+      "id": 26,
+      "timestamp": "2026-11-04T20:05:34.875142+00:00",
+      "method": "GET",
+      "url": "https://recommendation.hepsiburada.com/api/v1/recommendations/withproductinfo",
+      "full_url": "https://recommendation.hepsiburada.com/api/v1/recommendations/withproductinfo?anonymousId=b9787656-3442-44e8-82f1-d7a1da8ba716&brands=&categoryIds=&forceDisplay=false&isServer=false&placements=search_page.web-rank2&platformType=1&rrDebug=false&sessionId=cb9bb8bb-a721-49f9-bbc5-c22c228cc25c%7C1793824534454",
+      "domain": "recommendation.hepsiburada.com",
+      "path": "/api/v1/recommendations/withproductinfo",
+      "status_code": 200,
+      "resource_type": "xhr",
+      "query_params": {
+        "anonymousId": [
+          "b9787656-3442-44e8-82f1-d7a1da8ba716"
+        ],
+        "forceDisplay": [
+          "false"
+        ],
+        "isServer": [
+          "false"
+        ],
+        "placements": [
+          "search_page.web-rank2"
+        ],
+        "platformType": [
+          "1"
+        ],
+        "rrDebug": [
+          "false"
+        ],
+        "sessionId": [
+          "cb9bb8bb-a721-49f9-bbc5-c22c228cc25c|1793824534454"
+        ]
+      },
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.hepsiburada.com/",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+        "accept": "application/json, text/plain, */*",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": null,
+      "response_sample": "{\"data\":{\"placements\":[{\"title\":\"Popüler ürünlerden seçtik\",\"name\":\"search_page.web-rank2\",\"rtdmScenarioId\":\"scenarioId\",\"products\":[{\"productId\":\"HBC0000GELHLH\",\"sku\":\"HBCV0000GELMYS\",\"reasonDetails\":\"ll8t4un9T3gKYoZzjImwxg==\",\"listingId\":\"a9270d4b-b233-4bc7-a1d7-65ee90e75dc7\",\"name\":\"Fressi Montela Termos Paslanmaz Çelik 1200 ml | FR-T1210\",\"discountRate\":15,\"discountRateDisplay\":\"%15\",\"catalogName\":\"Outdoor\",\"price\":{\"value\":799.0,\"currency\":\"TL\",\"displayValue\":\"799,00\"},\"originalPrice\":{\"value\":937.0,\"currency\":\"TL\",\"displayValue\":\"937,00\"},\"imageUrl\":\"https://productimages.hepsiburada.net/s/777/{size}/110001891802095.jpg\",\"merchantName\":\"WEXTA\",\"merchantId\":\"2fa635d7-7013-48a9-855c-ba658c80577d\",\"mainCategoryId\":\"367284\",\"marketPrice\":0.0,\"productUrl\":\"https://www.hepsiburada.com/fressi-montela-termos-paslanmaz-celik-1200-ml-fr-t1210-p-HBCV0000GELMYS\",\"priceFormattedList\":[{\"price\":\"937,00\",\"currency\":\"TL\",\"discountRate\":0},{\"price\":\"799,00\",\"currency\":\"TL\",\"discountRate\":15}],\"imageList\":[\"https://productimages.hepsiburada.net/s/777/{size}/110001891802095.jpg\"],\"listingPriceList\":[{\"value\":937.0,\"currency\":\"TL\",\"discountRate\":0,\"price\":{\"value\":937.0,\"currency\":0},\"isoCurrencyCode\":\"TRY\"},{\"value\":799.0,\"currency\":\"TL\",\"discountRate\":15,\"price\":{\"value\":799.0,\"currency\":0},\"isoCurrencyCode\":\"TRY\"}],\"customerReviewScore\":3.0,\"customerReviewCount\":16,\"brand\":\"Fressi\",\"categoryHierarchy\":[\"60001546\",\"2147483604\",\"1302431\",\"19100\",\"367284\"],\"categorizedLabels\":{\"campaign\":[{\"id\":\"CampaignBasket\",\"textColor\":\"#009319\",\"isPremiumCampaign\":false,\"text\":\"1250 TL üzeri %15 indirim\",\"color\":\"#F5F5F5\"}],\"affordability\":[{\"id\":\"hepsitaksit-ile-pesin-fiyatina-3-taksit-firsati-4\",\"text\":\"Peşin fiyatına 3 x 266 TL\",\"textColor\":\"#7723DB\",\"iconUrl\":\"https://images.hepsiburada.net/banners/s/1/48-48/credit-card133431466270120534133923018664783820134350506189546255.webp\",\"paymentType\":4,\"isCashPrice\":true,\"installmentCount\":3,\"installmentAmount\":266.0,\"textHtml\":\"<div style=\\\"display:inline-flex;align-items:center;font-size:12px;color:#7723DB;font-weight:600;\\\">Peşin fiyatına 3 x<span style=\\\"background:#7723DB;color:#fff;padding:0px 4px;border-radius:4px;margin-left:2px;font-size:10px;\\\">266 TL</span></div>\",\"textMobileOneLine\":[[{\"text\":\"<span style=\\\"font-weight:semibold;font-size:11px;color:#7723DB;\\\">Peşin fiyatına</span>\",\"canShrink\":false,\"backgroundColor\":\"#FFFFFF\",\"hasTagStyle\":false},{\"text\":\"<span style=\\\"font-weight:semibold;font-size:11px;color:#7723DB;\\\">3 x</span>\",\"canShrink\":false,\"backgroundColor\":\"#FFFFFF\",\"hasTagStyle\":false},{\"text\":\"<span style=\\\"font-weight:bold;font-size:10px;color:#FFFFFF;\\\">266 TL</span>\",\"canShrink\":false,\"backgroundColor\":\"#7723DB\",\"hasTagStyle\":true}]],\"textMobileMultiLine\":[[{\"text\":\"<span style=\\\"font-weight:semibold;font-size:11px;color:#7723DB;\\\">Peşin fiyatına</span>\",\"canShrink\":false,\"backgroundColor\":\"#FFFFFF\",\"hasTagStyle\":false}],[{\"text\":\"<span style=\\\"font-weight:semibold;font-size:11px;color:#7723DB;\\\"",
+      "response_truncated": true
+    },
+    {
+      "id": 27,
+      "timestamp": "2026-11-04T20:05:34.875142+00:00",
+      "method": "GET",
+      "url": "https://blackgate.hepsiburada.com/arwenapi/suggestion/suggest",
+      "full_url": "https://blackgate.hepsiburada.com/arwenapi/suggestion/suggest?searchTerm=tele",
+      "domain": "blackgate.hepsiburada.com",
+      "path": "/arwenapi/suggestion/suggest",
+      "status_code": 200,
+      "resource_type": "xhr",
+      "query_params": {
+        "searchTerm": [
+          "tele"
+        ]
+      },
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.hepsiburada.com/",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+        "accept": "application/json, text/plain, */*",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": null,
+      "response_sample": "{\"term\":\"tele\",\"isTypoCorrected\":false,\"order\":{\"keywords\":0,\"pageSuggestions\":5,\"brandSuggestions\":2,\"categorySuggestions\":3,\"categoryBestSellerSuggestions\":4,\"merchantSuggestions\":1,\"campaignSuggestions\":6},\"recommendationSuggestions\":{\"categorySuggestions\":[{\"name\":\"iPhone\",\"url\":\"iphone-ios-telefonlar-c-60005202\",\"id\":60005202}],\"brandSuggestions\":[{\"name\":\"Tele\",\"value\":\"tele\",\"count\":14}]},\"allSuggestionsSorted\":null,\"keywords\":[{\"text\":\"iphone 17 pro max\",\"categories\":[]},{\"text\":\"televizyon\",\"categories\":null},{\"text\":\"iphone 17\",\"categories\":null},{\"text\":\"iphone 17 pro\",\"categories\":null},{\"text\":\"iphone 15\",\"categories\":null},{\"text\":\"cep telefonu\",\"categories\":null},{\"text\":\"iphone 16\",\"categories\":null},{\"text\":\"iphone 18 pro max telefon\",\"categories\":null},{\"text\":\"telefon\",\"categories\":null}],\"pageSuggestions\":[],\"brandSuggestions\":[],\"merchantSuggestions\":[{\"name\":\"SİLVERA TELKARİ\",\"url\":\"silvera-telkari\",\"logoUrl\":\"https://images.hepsiburada.net/merchantimages/prod/c828981a-1ccb-4636-9d18-9c1d51940513-67683_72x72.png\",\"labelName\":\"Resmi Satıcı\"}]}",
+      "response_truncated": false
+    },
+    {
+      "id": 28,
+      "timestamp": "2026-11-04T20:05:35.048263+00:00",
+      "method": "GET",
+      "url": "https://blackgate.hepsiburada.com/arwenapi/suggestion/suggest",
+      "full_url": "https://blackgate.hepsiburada.com/arwenapi/suggestion/suggest?searchTerm=telef",
+      "domain": "blackgate.hepsiburada.com",
+      "path": "/arwenapi/suggestion/suggest",
+      "status_code": 200,
+      "resource_type": "xhr",
+      "query_params": {
+        "searchTerm": [
+          "telef"
+        ]
+      },
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.hepsiburada.com/",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+        "accept": "application/json, text/plain, */*",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": null,
+      "response_sample": "{\"term\":\"telef\",\"isTypoCorrected\":false,\"order\":{\"keywords\":0,\"pageSuggestions\":5,\"brandSuggestions\":2,\"categorySuggestions\":3,\"categoryBestSellerSuggestions\":4,\"merchantSuggestions\":1,\"campaignSuggestions\":6},\"recommendationSuggestions\":{\"categorySuggestions\":[{\"name\":\"iPhone\",\"url\":\"iphone-ios-telefonlar-c-60005202\",\"id\":60005202}],\"brandSuggestions\":[{\"name\":\"Telefon Kulübesi\",\"value\":\"telefonkulubesi\",\"count\":10378}]},\"allSuggestionsSorted\":null,\"keywords\":[{\"text\":\"iphone 17 pro max\",\"categories\":[]},{\"text\":\"televizyon\",\"categories\":null},{\"text\":\"iphone 17\",\"categories\":null},{\"text\":\"iphone 17 pro\",\"categories\":null},{\"text\":\"iphone 15\",\"categories\":null},{\"text\":\"cep telefonu\",\"categories\":null},{\"text\":\"iphone 16\",\"categories\":null},{\"text\":\"iphone 18 pro max telefon\",\"categories\":null},{\"text\":\"telefon\",\"categories\":null}],\"pageSuggestions\":[],\"brandSuggestions\":[],\"merchantSuggestions\":[{\"name\":\"Telefonkulübesi\",\"url\":\"telefonkulubesi\",\"logoUrl\":\"https://images.hepsiburada.net/assets/marketplace/9bc35a5b-1624-4f36-9f3e-9aa652780c37-76048_72x72.png\",\"labelName\":null}]}",
+      "response_truncated": false
+    },
+    {
+      "id": 29,
+      "timestamp": "2026-11-04T20:05:35.212890+00:00",
+      "method": "GET",
+      "url": "https://recommendation.hepsiburada.com/api/v1/recommendations/withproductinfo",
+      "full_url": "https://recommendation.hepsiburada.com/api/v1/recommendations/withproductinfo?anonymousId=b9787656-3442-44e8-82f1-d7a1da8ba716&brands=&categoryIds=&forceDisplay=false&isServer=false&placements=search_page.web-rank2&platformType=1&rrDebug=false&sessionId=cb9bb8bb-a721-49f9-bbc5-c22c228cc25c%7C1793824534845",
+      "domain": "recommendation.hepsiburada.com",
+      "path": "/api/v1/recommendations/withproductinfo",
+      "status_code": 200,
+      "resource_type": "xhr",
+      "query_params": {
+        "anonymousId": [
+          "b9787656-3442-44e8-82f1-d7a1da8ba716"
+        ],
+        "forceDisplay": [
+          "false"
+        ],
+        "isServer": [
+          "false"
+        ],
+        "placements": [
+          "search_page.web-rank2"
+        ],
+        "platformType": [
+          "1"
+        ],
+        "rrDebug": [
+          "false"
+        ],
+        "sessionId": [
+          "cb9bb8bb-a721-49f9-bbc5-c22c228cc25c|1793824534845"
+        ]
+      },
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.hepsiburada.com/",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+        "accept": "application/json, text/plain, */*",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": null,
+      "response_sample": "{\"data\":{\"placements\":[{\"title\":\"Popüler ürünlerden seçtik\",\"name\":\"search_page.web-rank2\",\"rtdmScenarioId\":\"scenarioId\",\"products\":[{\"productId\":\"HBC0000GELHLH\",\"sku\":\"HBCV0000GELMYS\",\"reasonDetails\":\"ll8t4un9T3gKYoZzjImwxg==\",\"listingId\":\"a9270d4b-b233-4bc7-a1d7-65ee90e75dc7\",\"name\":\"Fressi Montela Termos Paslanmaz Çelik 1200 ml | FR-T1210\",\"discountRate\":15,\"discountRateDisplay\":\"%15\",\"catalogName\":\"Outdoor\",\"price\":{\"value\":799.0,\"currency\":\"TL\",\"displayValue\":\"799,00\"},\"originalPrice\":{\"value\":937.0,\"currency\":\"TL\",\"displayValue\":\"937,00\"},\"imageUrl\":\"https://productimages.hepsiburada.net/s/777/{size}/110001891802095.jpg\",\"merchantName\":\"WEXTA\",\"merchantId\":\"2fa635d7-7013-48a9-855c-ba658c80577d\",\"mainCategoryId\":\"367284\",\"marketPrice\":0.0,\"productUrl\":\"https://www.hepsiburada.com/fressi-montela-termos-paslanmaz-celik-1200-ml-fr-t1210-p-HBCV0000GELMYS\",\"priceFormattedList\":[{\"price\":\"937,00\",\"currency\":\"TL\",\"discountRate\":0},{\"price\":\"799,00\",\"currency\":\"TL\",\"discountRate\":15}],\"imageList\":[\"https://productimages.hepsiburada.net/s/777/{size}/110001891802095.jpg\"],\"listingPriceList\":[{\"value\":937.0,\"currency\":\"TL\",\"discountRate\":0,\"price\":{\"value\":937.0,\"currency\":0},\"isoCurrencyCode\":\"TRY\"},{\"value\":799.0,\"currency\":\"TL\",\"discountRate\":15,\"price\":{\"value\":799.0,\"currency\":0},\"isoCurrencyCode\":\"TRY\"}],\"customerReviewScore\":3.0,\"customerReviewCount\":16,\"brand\":\"Fressi\",\"categoryHierarchy\":[\"60001546\",\"2147483604\",\"1302431\",\"19100\",\"367284\"],\"categorizedLabels\":{\"campaign\":[{\"id\":\"CampaignBasket\",\"textColor\":\"#009319\",\"isPremiumCampaign\":false,\"text\":\"1250 TL üzeri %15 indirim\",\"color\":\"#F5F5F5\"}],\"affordability\":[{\"id\":\"hepsitaksit-ile-pesin-fiyatina-3-taksit-firsati-4\",\"text\":\"Peşin fiyatına 3 x 266 TL\",\"textColor\":\"#7723DB\",\"iconUrl\":\"https://images.hepsiburada.net/banners/s/1/48-48/credit-card133431466270120534133923018664783820134350506189546255.webp\",\"paymentType\":4,\"isCashPrice\":true,\"installmentCount\":3,\"installmentAmount\":266.0,\"textHtml\":\"<div style=\\\"display:inline-flex;align-items:center;font-size:12px;color:#7723DB;font-weight:600;\\\">Peşin fiyatına 3 x<span style=\\\"background:#7723DB;color:#fff;padding:0px 4px;border-radius:4px;margin-left:2px;font-size:10px;\\\">266 TL</span></div>\",\"textMobileOneLine\":[[{\"text\":\"<span style=\\\"font-weight:semibold;font-size:11px;color:#7723DB;\\\">Peşin fiyatına</span>\",\"canShrink\":false,\"backgroundColor\":\"#FFFFFF\",\"hasTagStyle\":false},{\"text\":\"<span style=\\\"font-weight:semibold;font-size:11px;color:#7723DB;\\\">3 x</span>\",\"canShrink\":false,\"backgroundColor\":\"#FFFFFF\",\"hasTagStyle\":false},{\"text\":\"<span style=\\\"font-weight:bold;font-size:10px;color:#FFFFFF;\\\">266 TL</span>\",\"canShrink\":false,\"backgroundColor\":\"#7723DB\",\"hasTagStyle\":true}]],\"textMobileMultiLine\":[[{\"text\":\"<span style=\\\"font-weight:semibold;font-size:11px;color:#7723DB;\\\">Peşin fiyatına</span>\",\"canShrink\":false,\"backgroundColor\":\"#FFFFFF\",\"hasTagStyle\":false}],[{\"text\":\"<span style=\\\"font-weight:semibold;font-size:11px;color:#7723DB;\\\"",
+      "response_truncated": true
+    },
+    {
+      "id": 30,
+      "timestamp": "2026-11-04T20:05:35.464945+00:00",
+      "method": "GET",
+      "url": "https://recommendation.hepsiburada.com/api/v1/recommendations/withproductinfo",
+      "full_url": "https://recommendation.hepsiburada.com/api/v1/recommendations/withproductinfo?anonymousId=b9787656-3442-44e8-82f1-d7a1da8ba716&brands=&categoryIds=&forceDisplay=false&isServer=false&placements=search_page.web-rank2&platformType=1&rrDebug=false&sessionId=cb9bb8bb-a721-49f9-bbc5-c22c228cc25c%7C1793824535034",
+      "domain": "recommendation.hepsiburada.com",
+      "path": "/api/v1/recommendations/withproductinfo",
+      "status_code": 200,
+      "resource_type": "xhr",
+      "query_params": {
+        "anonymousId": [
+          "b9787656-3442-44e8-82f1-d7a1da8ba716"
+        ],
+        "forceDisplay": [
+          "false"
+        ],
+        "isServer": [
+          "false"
+        ],
+        "placements": [
+          "search_page.web-rank2"
+        ],
+        "platformType": [
+          "1"
+        ],
+        "rrDebug": [
+          "false"
+        ],
+        "sessionId": [
+          "cb9bb8bb-a721-49f9-bbc5-c22c228cc25c|1793824535034"
+        ]
+      },
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.hepsiburada.com/",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+        "accept": "application/json, text/plain, */*",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": null,
+      "response_sample": "{\"data\":{\"placements\":[{\"title\":\"Popüler ürünlerden seçtik\",\"name\":\"search_page.web-rank2\",\"rtdmScenarioId\":\"scenarioId\",\"products\":[{\"productId\":\"HBC0000GELHLH\",\"sku\":\"HBCV0000GELMYS\",\"reasonDetails\":\"ll8t4un9T3gKYoZzjImwxg==\",\"listingId\":\"a9270d4b-b233-4bc7-a1d7-65ee90e75dc7\",\"name\":\"Fressi Montela Termos Paslanmaz Çelik 1200 ml | FR-T1210\",\"discountRate\":15,\"discountRateDisplay\":\"%15\",\"catalogName\":\"Outdoor\",\"price\":{\"value\":799.0,\"currency\":\"TL\",\"displayValue\":\"799,00\"},\"originalPrice\":{\"value\":937.0,\"currency\":\"TL\",\"displayValue\":\"937,00\"},\"imageUrl\":\"https://productimages.hepsiburada.net/s/777/{size}/110001891802095.jpg\",\"merchantName\":\"WEXTA\",\"merchantId\":\"2fa635d7-7013-48a9-855c-ba658c80577d\",\"mainCategoryId\":\"367284\",\"marketPrice\":0.0,\"productUrl\":\"https://www.hepsiburada.com/fressi-montela-termos-paslanmaz-celik-1200-ml-fr-t1210-p-HBCV0000GELMYS\",\"priceFormattedList\":[{\"price\":\"937,00\",\"currency\":\"TL\",\"discountRate\":0},{\"price\":\"799,00\",\"currency\":\"TL\",\"discountRate\":15}],\"imageList\":[\"https://productimages.hepsiburada.net/s/777/{size}/110001891802095.jpg\"],\"listingPriceList\":[{\"value\":937.0,\"currency\":\"TL\",\"discountRate\":0,\"price\":{\"value\":937.0,\"currency\":0},\"isoCurrencyCode\":\"TRY\"},{\"value\":799.0,\"currency\":\"TL\",\"discountRate\":15,\"price\":{\"value\":799.0,\"currency\":0},\"isoCurrencyCode\":\"TRY\"}],\"customerReviewScore\":3.0,\"customerReviewCount\":16,\"brand\":\"Fressi\",\"categoryHierarchy\":[\"60001546\",\"2147483604\",\"1302431\",\"19100\",\"367284\"],\"categorizedLabels\":{\"campaign\":[{\"id\":\"CampaignBasket\",\"textColor\":\"#009319\",\"isPremiumCampaign\":false,\"text\":\"1250 TL üzeri %15 indirim\",\"color\":\"#F5F5F5\"}],\"affordability\":[{\"id\":\"hepsitaksit-ile-pesin-fiyatina-3-taksit-firsati-4\",\"text\":\"Peşin fiyatına 3 x 266 TL\",\"textColor\":\"#7723DB\",\"iconUrl\":\"https://images.hepsiburada.net/banners/s/1/48-48/credit-card133431466270120534133923018664783820134350506189546255.webp\",\"paymentType\":4,\"isCashPrice\":true,\"installmentCount\":3,\"installmentAmount\":266.0,\"textHtml\":\"<div style=\\\"display:inline-flex;align-items:center;font-size:12px;color:#7723DB;font-weight:600;\\\">Peşin fiyatına 3 x<span style=\\\"background:#7723DB;color:#fff;padding:0px 4px;border-radius:4px;margin-left:2px;font-size:10px;\\\">266 TL</span></div>\",\"textMobileOneLine\":[[{\"text\":\"<span style=\\\"font-weight:semibold;font-size:11px;color:#7723DB;\\\">Peşin fiyatına</span>\",\"canShrink\":false,\"backgroundColor\":\"#FFFFFF\",\"hasTagStyle\":false},{\"text\":\"<span style=\\\"font-weight:semibold;font-size:11px;color:#7723DB;\\\">3 x</span>\",\"canShrink\":false,\"backgroundColor\":\"#FFFFFF\",\"hasTagStyle\":false},{\"text\":\"<span style=\\\"font-weight:bold;font-size:10px;color:#FFFFFF;\\\">266 TL</span>\",\"canShrink\":false,\"backgroundColor\":\"#7723DB\",\"hasTagStyle\":true}]],\"textMobileMultiLine\":[[{\"text\":\"<span style=\\\"font-weight:semibold;font-size:11px;color:#7723DB;\\\">Peşin fiyatına</span>\",\"canShrink\":false,\"backgroundColor\":\"#FFFFFF\",\"hasTagStyle\":false}],[{\"text\":\"<span style=\\\"font-weight:semibold;font-size:11px;color:#7723DB;\\\"",
+      "response_truncated": true
+    },
+    {
+      "id": 31,
+      "timestamp": "2026-11-04T20:05:35.597901+00:00",
+      "method": "GET",
+      "url": "https://blackgate.hepsiburada.com/arwenapi/suggestion/suggest",
+      "full_url": "https://blackgate.hepsiburada.com/arwenapi/suggestion/suggest?searchTerm=telefon",
+      "domain": "blackgate.hepsiburada.com",
+      "path": "/arwenapi/suggestion/suggest",
+      "status_code": 200,
+      "resource_type": "xhr",
+      "query_params": {
+        "searchTerm": [
+          "telefon"
+        ]
+      },
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.hepsiburada.com/",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+        "accept": "application/json, text/plain, */*",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": null,
+      "response_sample": "{\"term\":\"telefon\",\"isTypoCorrected\":false,\"order\":{\"keywords\":0,\"pageSuggestions\":5,\"brandSuggestions\":2,\"categorySuggestions\":3,\"categoryBestSellerSuggestions\":4,\"merchantSuggestions\":1,\"campaignSuggestions\":6},\"recommendationSuggestions\":{\"categorySuggestions\":[{\"name\":\"Android Telefonlar\",\"url\":\"android-telefonlar-c-60005201\",\"id\":60005201}],\"brandSuggestions\":[{\"name\":\"Telefon Kulübesi\",\"value\":\"telefonkulubesi\",\"count\":10378}]},\"allSuggestionsSorted\":null,\"keywords\":[{\"text\":\"telefon\",\"categories\":[]},{\"text\":\"iphone 17 pro max\",\"categories\":null},{\"text\":\"iphone 17 pro\",\"categories\":null},{\"text\":\"iphone 17\",\"categories\":null},{\"text\":\"iphone 15\",\"categories\":null},{\"text\":\"cep telefonu\",\"categories\":null},{\"text\":\"iphone 16\",\"categories\":null},{\"text\":\"iphone 18 pro max telefon\",\"categories\":null},{\"text\":\"iphone 13\",\"categories\":null}],\"pageSuggestions\":[],\"brandSuggestions\":[],\"merchantSuggestions\":[{\"name\":\"Telefonkulübesi\",\"url\":\"telefonkulubesi\",\"logoUrl\":\"https://images.hepsiburada.net/assets/marketplace/9bc35a5b-1624-4f36-9f3e-9aa652780c37-76048_72x72.png\",\"labelName\":null}]}",
+      "response_truncated": false
+    },
+    {
+      "id": 32,
+      "timestamp": "2026-11-04T20:05:36.017737+00:00",
+      "method": "GET",
+      "url": "https://recommendation.hepsiburada.com/api/v1/recommendations/withproductinfo",
+      "full_url": "https://recommendation.hepsiburada.com/api/v1/recommendations/withproductinfo?anonymousId=b9787656-3442-44e8-82f1-d7a1da8ba716&brands=&categoryIds=&forceDisplay=false&isServer=false&placements=search_page.web-rank2&platformType=1&rrDebug=false&sessionId=cb9bb8bb-a721-49f9-bbc5-c22c228cc25c%7C1793824535563",
+      "domain": "recommendation.hepsiburada.com",
+      "path": "/api/v1/recommendations/withproductinfo",
+      "status_code": 200,
+      "resource_type": "xhr",
+      "query_params": {
+        "anonymousId": [
+          "b9787656-3442-44e8-82f1-d7a1da8ba716"
+        ],
+        "forceDisplay": [
+          "false"
+        ],
+        "isServer": [
+          "false"
+        ],
+        "placements": [
+          "search_page.web-rank2"
+        ],
+        "platformType": [
+          "1"
+        ],
+        "rrDebug": [
+          "false"
+        ],
+        "sessionId": [
+          "cb9bb8bb-a721-49f9-bbc5-c22c228cc25c|1793824535563"
+        ]
+      },
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.hepsiburada.com/",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+        "accept": "application/json, text/plain, */*",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": null,
+      "response_sample": "{\"data\":{\"placements\":[{\"title\":\"Popüler ürünlerden seçtik\",\"name\":\"search_page.web-rank2\",\"rtdmScenarioId\":\"scenarioId\",\"products\":[{\"productId\":\"HBC0000GELHLH\",\"sku\":\"HBCV0000GELMYS\",\"reasonDetails\":\"ll8t4un9T3gKYoZzjImwxg==\",\"listingId\":\"a9270d4b-b233-4bc7-a1d7-65ee90e75dc7\",\"name\":\"Fressi Montela Termos Paslanmaz Çelik 1200 ml | FR-T1210\",\"discountRate\":15,\"discountRateDisplay\":\"%15\",\"catalogName\":\"Outdoor\",\"price\":{\"value\":799.0,\"currency\":\"TL\",\"displayValue\":\"799,00\"},\"originalPrice\":{\"value\":937.0,\"currency\":\"TL\",\"displayValue\":\"937,00\"},\"imageUrl\":\"https://productimages.hepsiburada.net/s/777/{size}/110001891802095.jpg\",\"merchantName\":\"WEXTA\",\"merchantId\":\"2fa635d7-7013-48a9-855c-ba658c80577d\",\"mainCategoryId\":\"367284\",\"marketPrice\":0.0,\"productUrl\":\"https://www.hepsiburada.com/fressi-montela-termos-paslanmaz-celik-1200-ml-fr-t1210-p-HBCV0000GELMYS\",\"priceFormattedList\":[{\"price\":\"937,00\",\"currency\":\"TL\",\"discountRate\":0},{\"price\":\"799,00\",\"currency\":\"TL\",\"discountRate\":15}],\"imageList\":[\"https://productimages.hepsiburada.net/s/777/{size}/110001891802095.jpg\"],\"listingPriceList\":[{\"value\":937.0,\"currency\":\"TL\",\"discountRate\":0,\"price\":{\"value\":937.0,\"currency\":0},\"isoCurrencyCode\":\"TRY\"},{\"value\":799.0,\"currency\":\"TL\",\"discountRate\":15,\"price\":{\"value\":799.0,\"currency\":0},\"isoCurrencyCode\":\"TRY\"}],\"customerReviewScore\":3.0,\"customerReviewCount\":16,\"brand\":\"Fressi\",\"categoryHierarchy\":[\"60001546\",\"2147483604\",\"1302431\",\"19100\",\"367284\"],\"categorizedLabels\":{\"campaign\":[{\"id\":\"CampaignBasket\",\"textColor\":\"#009319\",\"isPremiumCampaign\":false,\"text\":\"1250 TL üzeri %15 indirim\",\"color\":\"#F5F5F5\"}],\"affordability\":[{\"id\":\"hepsitaksit-ile-pesin-fiyatina-3-taksit-firsati-4\",\"text\":\"Peşin fiyatına 3 x 266 TL\",\"textColor\":\"#7723DB\",\"iconUrl\":\"https://images.hepsiburada.net/banners/s/1/48-48/credit-card133431466270120534133923018664783820134350506189546255.webp\",\"paymentType\":4,\"isCashPrice\":true,\"installmentCount\":3,\"installmentAmount\":266.0,\"textHtml\":\"<div style=\\\"display:inline-flex;align-items:center;font-size:12px;color:#7723DB;font-weight:600;\\\">Peşin fiyatına 3 x<span style=\\\"background:#7723DB;color:#fff;padding:0px 4px;border-radius:4px;margin-left:2px;font-size:10px;\\\">266 TL</span></div>\",\"textMobileOneLine\":[[{\"text\":\"<span style=\\\"font-weight:semibold;font-size:11px;color:#7723DB;\\\">Peşin fiyatına</span>\",\"canShrink\":false,\"backgroundColor\":\"#FFFFFF\",\"hasTagStyle\":false},{\"text\":\"<span style=\\\"font-weight:semibold;font-size:11px;color:#7723DB;\\\">3 x</span>\",\"canShrink\":false,\"backgroundColor\":\"#FFFFFF\",\"hasTagStyle\":false},{\"text\":\"<span style=\\\"font-weight:bold;font-size:10px;color:#FFFFFF;\\\">266 TL</span>\",\"canShrink\":false,\"backgroundColor\":\"#7723DB\",\"hasTagStyle\":true}]],\"textMobileMultiLine\":[[{\"text\":\"<span style=\\\"font-weight:semibold;font-size:11px;color:#7723DB;\\\">Peşin fiyatına</span>\",\"canShrink\":false,\"backgroundColor\":\"#FFFFFF\",\"hasTagStyle\":false}],[{\"text\":\"<span style=\\\"font-weight:semibold;font-size:11px;color:#7723DB;\\\"",
+      "response_truncated": true
+    },
+    {
+      "id": 33,
+      "timestamp": "2026-11-04T20:05:45.763657+00:00",
+      "method": "POST",
+      "url": "https://www.google.com/ccm/collect",
+      "full_url": "https://www.google.com/ccm/collect?rcb=1&frm=0&apvc=1&ae=g&auid=1823583134.1793822718&dt=%C4%B0phone%2017%20Fiyatlar%C4%B1%2C%20Modelleri%20%257%27ye%20Varan%20%C4%B0ndirim&en=page_view&dl=https%3A%2F%2Fwww.hepsiburada.com%2Fara%3Fq%3Diphone%2B17&dr=https%3A%2F%2Fwww.hepsiburada.com%2F&scrsrc=www.hepsiburada.com&rnd=1854997060.1793822745&navt=n&npa=0&ep.ads_data_redaction=0&gdid=dYzZiYj.dNWVlNT&gtb=1&gtm=45E92e6b31h2v71656108za204zd71656108xeaxf4&gcd=13l3l3l3l1l1&dma=0&tag_exp=115616986~115938466~115938469~118897920~118897930~120385422~120412528~120420416~120469145~120469153~121049589~121191153~121246026~121246034~123691370~123814183~123814946&tft=1793822745320&tfd=7116&gap.gtb=1&fmt=8",
+      "domain": "www.google.com",
+      "path": "/ccm/collect",
+      "status_code": 200,
+      "resource_type": "fetch",
+      "query_params": {
+        "rcb": [
+          "1"
+        ],
+        "frm": [
+          "0"
+        ],
+        "apvc": [
+          "1"
+        ],
+        "ae": [
+          "g"
+        ],
+        "auid": [
+          "1823583134.1793822718"
+        ],
+        "dt": [
+          "İphone 17 Fiyatları, Modelleri %7'ye Varan İndirim"
+        ],
+        "en": [
+          "page_view"
+        ],
+        "dl": [
+          "https://www.hepsiburada.com/ara?q=iphone+17"
+        ],
+        "dr": [
+          "https://www.hepsiburada.com/"
+        ],
+        "scrsrc": [
+          "www.hepsiburada.com"
+        ],
+        "rnd": [
+          "1854997060.1793822745"
+        ],
+        "navt": [
+          "n"
+        ],
+        "npa": [
+          "0"
+        ],
+        "ep.ads_data_redaction": [
+          "0"
+        ],
+        "gdid": [
+          "dYzZiYj.dNWVlNT"
+        ],
+        "gtb": [
+          "1"
+        ],
+        "gtm": [
+          "45E92e6b31h2v71656108za204zd71656108xeaxf4"
+        ],
+        "gcd": [
+          "13l3l3l3l1l1"
+        ],
+        "dma": [
+          "0"
+        ],
+        "tag_exp": [
+          "115616986~115938466~115938469~118897920~118897930~120385422~120412528~120420416~120469145~120469153~121049589~121191153~121246026~121246034~123691370~123814183~123814946"
+        ],
+        "tft": [
+          "1793822745320"
+        ],
+        "tfd": [
+          "7116"
+        ],
+        "gap.gtb": [
+          "1"
+        ],
+        "fmt": [
+          "8"
+        ]
+      },
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.hepsiburada.com/ara?q=iphone+17",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": null,
+      "response_sample": "",
+      "response_truncated": false
+    },
+    {
+      "id": 34,
+      "timestamp": "2026-11-04T20:05:47.704196+00:00",
+      "method": "POST",
+      "url": "https://www.hepsiburada.com/metrics/gs/ccm/collect",
+      "full_url": "https://www.hepsiburada.com/metrics/gs/ccm/collect?rcb=7&frm=0&apvc=0&tid=DC-10578444&en=page_view&dl=https%3A%2F%2Fwww.hepsiburada.com%2Fara%3Fq%3Diphone%2B17&dr=https%3A%2F%2Fwww.hepsiburada.com%2F&scrsrc=www.hepsiburada.com&rnd=1854997060.1793822745&navt=n&npa=1&gtb=2&gtm=45c92e6b31h2v9190141989za20szb71656108zd71656108xecxf4&gcs=G100&gcd=13p3p3p3p5l1&dma_cps=-&dma=0&tag_exp=115616985~115938466~115938468~118897920~118897930~120213116~120385423~120412528~120420416~120469145~120469153~121246026~121246034~123691370~123814183~123814946&tft=1793822745602&tfd=7398&gap.gtb=2&tids=DC-10578444&fmt=8",
+      "domain": "www.hepsiburada.com",
+      "path": "/metrics/gs/ccm/collect",
+      "status_code": 200,
+      "resource_type": "fetch",
+      "query_params": {
+        "rcb": [
+          "7"
+        ],
+        "frm": [
+          "0"
+        ],
+        "apvc": [
+          "0"
+        ],
+        "tid": [
+          "DC-10578444"
+        ],
+        "en": [
+          "page_view"
+        ],
+        "dl": [
+          "https://www.hepsiburada.com/ara?q=iphone+17"
+        ],
+        "dr": [
+          "https://www.hepsiburada.com/"
+        ],
+        "scrsrc": [
+          "www.hepsiburada.com"
+        ],
+        "rnd": [
+          "1854997060.1793822745"
+        ],
+        "navt": [
+          "n"
+        ],
+        "npa": [
+          "1"
+        ],
+        "gtb": [
+          "2"
+        ],
+        "gtm": [
+          "45c92e6b31h2v9190141989za20szb71656108zd71656108xecxf4"
+        ],
+        "gcs": [
+          "G100"
+        ],
+        "gcd": [
+          "13p3p3p3p5l1"
+        ],
+        "dma_cps": [
+          "-"
+        ],
+        "dma": [
+          "0"
+        ],
+        "tag_exp": [
+          "115616985~115938466~115938468~118897920~118897930~120213116~120385423~120412528~120420416~120469145~120469153~121246026~121246034~123691370~123814183~123814946"
+        ],
+        "tft": [
+          "1793822745602"
+        ],
+        "tfd": [
+          "7398"
+        ],
+        "gap.gtb": [
+          "2"
+        ],
+        "tids": [
+          "DC-10578444"
+        ],
+        "fmt": [
+          "8"
+        ]
+      },
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.hepsiburada.com/ara?q=iphone+17",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": null,
+      "response_sample": "",
+      "response_truncated": false
+    },
+    {
+      "id": 35,
+      "timestamp": "2026-11-04T20:05:49.953577+00:00",
+      "method": "GET",
+      "url": "https://arf-user-interest.hepsiburada.com/api/v1/favorite-categories",
+      "full_url": "https://arf-user-interest.hepsiburada.com/api/v1/favorite-categories?anonId=b9787656-3442-44e8-82f1-d7a1da8ba716",
+      "domain": "arf-user-interest.hepsiburada.com",
+      "path": "/api/v1/favorite-categories",
+      "status_code": 200,
+      "resource_type": "xhr",
+      "query_params": {
+        "anonId": [
+          "b9787656-3442-44e8-82f1-d7a1da8ba716"
+        ]
+      },
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.hepsiburada.com/ara?q=iphone+17",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+        "accept": "application/json, text/plain, */*",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": null,
+      "response_sample": "[]",
+      "response_truncated": false
+    },
+    {
+      "id": 36,
+      "timestamp": "2026-11-04T20:05:49.954919+00:00",
+      "method": "GET",
+      "url": "https://loyalty-voltran.hepsiburada.com/loyaltytouchpoint",
+      "full_url": "https://loyalty-voltran.hepsiburada.com/loyaltytouchpoint?isHidden=true",
+      "domain": "loyalty-voltran.hepsiburada.com",
+      "path": "/loyaltytouchpoint",
+      "status_code": 200,
+      "resource_type": "xhr",
+      "query_params": {
+        "isHidden": [
+          "true"
+        ]
+      },
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.hepsiburada.com/ara?q=iphone+17",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+        "accept": "application/json, text/plain, */*",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": null,
+      "response_sample": "{\"html\":\"\\n    <div>\\n      <style data-styled=\\\"true\\\" data-styled-version=\\\"5.1.0\\\"></style>\\n      <script type='text/javascript'>\\n  window.LOYALTY = window.LOYALTY || {};\\n\\n  window.LOYALTY.LOYALTYTOUCHPOINT = Object.assign(window.LOYALTY.LOYALTYTOUCHPOINT || {}, {\\n    '2c00c4c1-4f45-410f-6724-cbf119df5f2e': {\\n      'STATE': {\\\"data\\\":{},\\\"location\\\":{\\\"path\\\":\\\"/\\\",\\\"query\\\":{\\\"isHidden\\\":\\\"true\\\"},\\\"url\\\":\\\"/?isHidden=true\\\",\\\"userAgent\\\":\\\"TW96aWxsYS81LjAgKFdpbmRvd3MgTlQgMTAuMDsgV2luNjQ7IHg2NCkgQXBwbGVXZWJLaXQvNTM3LjM2IChLSFRNTCwgbGlrZSBHZWNrbykgQ2hyb21lLzE1Ni4wLjAuMCBTYWZhcmkvNTM3LjM2\\\",\\\"isWithoutState\\\":false},\\\"id\\\":\\\"2c00c4c1-4f45-410f-6724-cbf119df5f2e\\\"}\\n    }\\n  })</script>\\n      <div\\n        id='loyaltytouchpoint_2c00c4c1-4f45-410f-6724-cbf119df5f2e'\\n        style=\\\"pointer-events: none;\\\"\\n        class=\\\"loyalty-voltran-body voltran-body  loyaltytouchpoint\\\">\\n        <div></div>\\n      </div>\\n      \\n      \\n\\n      \\n      \\n    </div>\",\"scripts\":[{\"src\":\"https://loyalty-voltran.hepsiburada.com/project/assets/client-780bea176094fed1af7d.js\",\"isAsync\":false},{\"src\":\"https://loyalty-voltran.hepsiburada.com/project/assets/loyaltytouchpoint-780bea176094fed1af7d.js\",\"isAsync\":false}],\"style\":[],\"activeComponent\":{\"resultPath\":\"/loyaltytouchpoint\",\"componentName\":\"loyaltytouchpoint\",\"url\":\"/loyaltytouchpoint\"},\"seoState\":{}}",
+      "response_truncated": false
+    },
+    {
+      "id": 37,
+      "timestamp": "2026-11-04T20:05:50.393593+00:00",
+      "method": "GET",
+      "url": "https://checkout.hepsiburada.com/api/basket/count",
+      "full_url": "https://checkout.hepsiburada.com/api/basket/count",
+      "domain": "checkout.hepsiburada.com",
+      "path": "/api/basket/count",
+      "status_code": 200,
+      "resource_type": "xhr",
+      "query_params": {},
+      "headers": {
+        "sec-ch-ua-platform": "\"Windows\"",
+        "referer": "https://www.hepsiburada.com/ara?q=iphone+17",
+        "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/156.0.0.0 Safari/537.36",
+        "accept": "application/json, text/plain, */*",
+        "sec-ch-ua": "\"Not:A-Brand\";v=\"8\", \"Chromium\";v=\"156\", \"Google Chrome\";v=\"156\"",
+        "sec-ch-ua-mobile": "?0"
+      },
+      "request_payload": null,
+      "response_sample": "{\"cartItemCount\":0,\"basketId\":\"\"}\n",
+      "response_truncated": false
+    }
+  ]
+}

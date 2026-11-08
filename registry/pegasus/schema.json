@@ -1,0 +1,76 @@
+{
+  "service_name": "pegasus",
+  "target_url": "https://www.flypgs.com/tr",
+  "goal": "İstanbul'dan Ankara'ya uçuş seferlerini ve fiyatlarını sorgula",
+  "function_name": "get_flight_availability",
+  "explanation": "İstanbul'dan Ankara'ya uçuş seferlerini ve fiyatlarını sorgulamak için en uygun uç nokta, uçuş arama ve fiyat bilgilerini içeren '/pegasus/availability' uç noktasıdır. Bu uç nokta, kullanıcı tarafından belirtilen kalkış ve varış noktaları ile tarihleri içeren bir arama yapar ve uçuş bilgilerini döndürür.",
+  "method": "POST",
+  "endpoint_url": "https://web.flypgs.com/pegasus/availability",
+  "dynamic_params": [
+    {
+      "name": "departure_port",
+      "original_key": "departurePort",
+      "location": "body",
+      "param_type": "str",
+      "default_value": "SAW",
+      "description": "Kalkış yapılacak havaalanı kodu."
+    },
+    {
+      "name": "arrival_port",
+      "original_key": "arrivalPort",
+      "location": "body",
+      "param_type": "str",
+      "default_value": "ESB",
+      "description": "Varış yapılacak havaalanı kodu."
+    },
+    {
+      "name": "departure_date",
+      "original_key": "departureDate",
+      "location": "body",
+      "param_type": "str",
+      "default_value": "2027-03-03",
+      "description": "Kalkış tarihi."
+    },
+    {
+      "name": "return_date",
+      "original_key": "returnDate",
+      "location": "body",
+      "param_type": "str",
+      "default_value": "2027-03-08",
+      "description": "Dönüş tarihi."
+    },
+    {
+      "name": "adult_count",
+      "original_key": "adultCount",
+      "location": "body",
+      "param_type": "int",
+      "default_value": 1,
+      "description": "Yetişkin yolcu sayısı."
+    },
+    {
+      "name": "child_count",
+      "original_key": "childCount",
+      "location": "body",
+      "param_type": "int",
+      "default_value": 0,
+      "description": "Çocuk yolcu sayısı."
+    },
+    {
+      "name": "infant_count",
+      "original_key": "infantCount",
+      "location": "body",
+      "param_type": "int",
+      "default_value": 0,
+      "description": "Bebek yolcu sayısı."
+    },
+    {
+      "name": "currency",
+      "original_key": "currency",
+      "location": "body",
+      "param_type": "str",
+      "default_value": "TRY",
+      "description": "Para birimi."
+    }
+  ],
+  "created_at": "2026-11-01T12:39:07.722926+00:00"
+}

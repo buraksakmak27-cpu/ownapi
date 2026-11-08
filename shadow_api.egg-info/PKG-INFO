@@ -1,0 +1,46 @@
+Metadata-Version: 2.4
+Name: shadow-api
+Version: 0.2.0
+Summary: User-Delegated Browser Middleware and Dynamic MCP Server Engine
+Author: Ali
+License: MIT
+Keywords: browser-middleware,user-delegated,playwright,mcp,fastmcp
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+Requires-Dist: playwright>=1.40.0
+Requires-Dist: pydantic>=2.0.0
+Requires-Dist: mcp>=1.0.0
+Requires-Dist: typer>=0.9.0
+Requires-Dist: rich>=13.0.0
+Requires-Dist: python-dotenv>=1.0.0
+Requires-Dist: openai>=1.0.0
+
+# Shadow-API
+
+Kullanıcı delegasyonlu (**User-Delegated / Plaid-style Browser Middleware**) tarayıcı otomasyonu ve dinamik MCP (Model Context Protocol) sunucu motoru.
+
+## Özellikler
+- **User-Delegated In-Browser Fetch (`healer.py`)**: Gizli sunucu/bot istekleri yerine tüm API çağrılarını kullanıcının kendi gerçek Chrome oturumu (`page.evaluate("fetch(...)")`) ve kendi IP'si üzerinden güvenli ve yasal olarak yürütür.
+- **Çok Kiracılı Oturum İzolasyonu (`TokenStore`)**: Her tenant ve servis için `.sessions/{tenant_id}/{service}_tokens.json` altında izole çerez saklama ve sonraki çağrılarda tarayıcıya otomatik enjeksiyon.
+- **Otomatik Onboarding (`core/onboarding.py`)**: Yeni siteleri kod yazmadan tarayıcı dinlemesi ve LLM ile tek seferde modüle dönüştürme.
+- **Birleşik SDK (`ShadowClient`)**: Tüm servisleri ve AI ajanını tek satırla yönetebilme.
+
+## Kurulum
+```bash
+pip install -e .
+```
+
+## CLI Kullanımı
+```bash
+# Kayıtlı servisleri listele
+shadow-api list
+
+# Yeni site ekle (Onboarding)
+shadow-api add enuygun https://www.enuygun.com/ucak-bileti/ --desc "Havalimanı ve uçuş arama servisi"
+
+# Servis çağır
+shadow-api call trendyol -p query=laptop -p max_results=5
+
+# Ajan ile doğal dil sorgusu
+shadow-api ask "İstanbul'dan Ankara'ya en ucuz uçuşu ve Trendyol'da en popüler laptopları bul"
+```

@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "hackernews": {
+      "command": "C:\\Users\\Ali\\AppData\\Local\\Programs\\Python\\Python310\\python.exe",
+      "args": [
+        "C:\\Users\\Ali\\Desktop\\shadow-api\\generated_mcp.py"
+      ],
+      "env": {
+        "PYTHONIOENCODING": "utf-8"
+      }
+    }
+  }
+}

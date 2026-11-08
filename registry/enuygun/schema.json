@@ -1,0 +1,13 @@
+{
+  "service_name": "enuygun",
+  "target_url": "https://www.enuygun.com/ucak-bileti/",
+  "goal": "Havalimanı ve uçuş arama servisi",
+  "function_name": "get_popular_flights",
+  "explanation": "Kullanıcının havalimanı ve uçuş arama servisi için en uygun veri uç noktası, popüler uçuşları getiren uç noktadır.",
+  "method": "GET",
+  "endpoint_url": "https://www.enuygun.com/napi/v1/flights/populars",
+  "dynamic_params": [],
+  "created_at": "2026-11-04T19:20:41.707370+00:00",
+  "validation_status": "BAŞARILI",
+  "last_validated_at": "2026-11-06T19:30:40.085796+00:00"
+}

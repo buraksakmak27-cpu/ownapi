@@ -1,0 +1,11 @@
+agent_demo
+cli
+compiler
+core
+healer
+master_mcp
+own_api
+recorder
+registry
+server
+shadow_api

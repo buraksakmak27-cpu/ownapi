@@ -1,0 +1,38 @@
+{
+  "service_name": "hackernews",
+  "target_url": "https://hn.algolia.com",
+  "goal": "Hacker News üzerinde makale araması yap",
+  "function_name": "search_hacker_news_articles",
+  "explanation": "Hacker News (Algolia) arama API uç noktası. Sorgu kelimesine göre makaleleri, puanlarını, yazarlarını ve bağlantıları döndürür.",
+  "method": "POST",
+  "endpoint_url": "https://uj5wyc0l7x-dsn.algolia.net/1/indexes/Item_dev/query",
+  "dynamic_params": [
+    {
+      "name": "query",
+      "original_key": "query",
+      "location": "body",
+      "param_type": "str",
+      "default_value": "startup",
+      "description": "Aranacak makale başlığı, anahtar kelime veya konu"
+    },
+    {
+      "name": "page",
+      "original_key": "page",
+      "location": "body",
+      "param_type": "int",
+      "default_value": 0,
+      "description": "Getirilecek sayfa numarası (0'dan başlar)"
+    },
+    {
+      "name": "hits_per_page",
+      "original_key": "hitsPerPage",
+      "location": "body",
+      "param_type": "int",
+      "default_value": 30,
+      "description": "Sayfa başına döndürülecek maksimum makale sayısı"
+    }
+  ],
+  "created_at": "2026-10-31T21:50:00+00:00",
+  "validation_status": "BAŞARILI",
+  "last_validated_at": "2026-11-06T19:30:56.720008+00:00"
+}
