@@ -1043,42 +1043,20 @@ class SessionHealer:
                 or (not (eval_result.get("ok") if isinstance(eval_result, dict) else True) and await self._detect_challenge(page))
             )
 
-            # 2. EÄŸer PerimeterX / Akamai / Cloudflare doÄŸrulamasÄ± geldiyse
+            from core.hitl_queue import HITLQueueManager
+
+            hitl_mgr = HITLQueueManager()
+            active_hitl_task_id: str | None = None
+            is_resuming_hitl = os.getenv("OWNAPI_HITL_RESUMING", "0").strip() == "1"
+            pause_and_wait = (
+                not is_resuming_hitl
+                and os.getenv("OWNAPI_HITL_PAUSE_AND_WAIT", "1").strip().lower() not in ("0", "false", "no")
+            )
+            pause_timeout_sec = float(os.getenv("OWNAPI_HITL_PAUSE_TIMEOUT", "300"))
+
+            # 2. Eğer PerimeterX / Akamai / Cloudflare doğrulaması geldiyse
             if is_challenge:
-                console.print("[bold yellow]âš ï¸ GÃ¼venlik / Ä°nsan doÄŸrulamasÄ± tespit edildi![/bold yellow]")
-                if active_non_interactive:
-                    try:
-                        await context.close()
-                    except Exception:
-                        pass
-                    if remote_browser is not None:
-                        try:
-                            await remote_browser.close()
-                        except Exception:
-                            pass
-                    from core.hitl_queue import HITLQueueManager
-
-                    hitl_mgr = HITLQueueManager()
-                    hitl_task = hitl_mgr.enqueue_task(
-                        tenant_id=active_tenant,
-                        service=self.service,
-                        method=method.upper(),
-                        url=url,
-                        params=req_params,
-                        headers=req_headers,
-                        json_payload=req_payload,
-                        target_url=visit_url,
-                        reason=f"Captcha / WAF / PerimeterX doÄŸrulamasÄ± algÄ±landÄ± (HTTP {resp_status})",
-                    )
-                    return {
-                        "status": "PENDING_USER_APPROVAL",
-                        "task_id": hitl_task["task_id"],
-                        "service": self.service,
-                        "tenant_id": active_tenant,
-                        "reason": hitl_task["reason"],
-                        "message": "KullanÄ±cÄ± doÄŸrulamasÄ± bekleniyor",
-                    }
-
+                console.print("[bold yellow]⚠️  Güvenlik / İnsan doğrulaması tespit edildi![/bold yellow]")
                 try:
                     await page.evaluate(
                         """(text) => {
@@ -1098,11 +1076,81 @@ class SessionHealer:
                 except Exception:
                     pass
 
-                await asyncio.to_thread(
-                    input,
-                    "\nâš ï¸ GÃ¼venlik doÄŸrulamasÄ± istendi! TarayÄ±cÄ±daki doÄŸrulamayÄ± tamamlayÄ±n ve ardÄ±ndan ENTER'a basÄ±n...\n"
-                )
-                console.print("[bold green]âœ” ENTER alÄ±ndÄ±, aynÄ± aÃ§Ä±k sekmeden istek yeniden gÃ¶nderiliyor...[/bold green]")
+                if not is_resuming_hitl:
+                    hitl_task = hitl_mgr.enqueue_task(
+                        tenant_id=active_tenant,
+                        service=self.service,
+                        method=method.upper(),
+                        url=url,
+                        params=req_params,
+                        headers=req_headers,
+                        json_payload=req_payload,
+                        target_url=visit_url,
+                        reason=f"Captcha / WAF / PerimeterX doğrulaması algılandı (HTTP {resp_status})",
+                        in_place_paused=pause_and_wait,
+                    )
+                    active_hitl_task_id = hitl_task["task_id"]
+
+                    if not pause_and_wait:
+                        try:
+                            await context.close()
+                        except Exception:
+                            pass
+                        if remote_browser is not None:
+                            try:
+                                await remote_browser.close()
+                            except Exception:
+                                pass
+                        return ResponseDict(
+                            {
+                                "status": "PAUSED",
+                                "legacy_status": "PENDING_USER_APPROVAL",
+                                "agent_state": "paused",
+                                "task_id": hitl_task["task_id"],
+                                "service": self.service,
+                                "tenant_id": active_tenant,
+                                "reason": hitl_task["reason"],
+                                "message": "Ajan PAUSED durumuna alındı; Web Dashboard üzerinden onay bekleniyor",
+                            }
+                        )
+
+                    console.print(
+                        f"[bold yellow]⏸️  [HITL PAUSED] Ajan görevi ({hitl_task['task_id']}) öldürülmedi, 'PAUSED' durumuna alındı.[/bold yellow]\n"
+                        f"[cyan]👉 Web Dashboard üzerinden onay verildiğinde kaldığı yerden ('resume') devam edecek...[/cyan]"
+                    )
+                    resumed_task = await hitl_mgr.await_task_resume(
+                        task_id=hitl_task["task_id"],
+                        poll_interval=0.5,
+                        timeout_sec=pause_timeout_sec,
+                    )
+                    if resumed_task is None:
+                        try:
+                            await context.close()
+                        except Exception:
+                            pass
+                        if remote_browser is not None:
+                            try:
+                                await remote_browser.close()
+                            except Exception:
+                                pass
+                        return ResponseDict(
+                            {
+                                "status": "PAUSED",
+                                "legacy_status": "PENDING_USER_APPROVAL",
+                                "agent_state": "paused",
+                                "task_id": hitl_task["task_id"],
+                                "service": self.service,
+                                "tenant_id": active_tenant,
+                                "reason": hitl_task["reason"],
+                                "message": "Kullanıcı doğrulaması bekleniyor (.sessions/hitl_state.json)",
+                            }
+                        )
+
+                    console.print(
+                        f"[bold green]▶️  [HITL RESUMED] Kullanıcı onayı alındı ({hitl_task['task_id']}), ajan kaldığı yerden devam ediyor...[/bold green]"
+                    )
+                else:
+                    await asyncio.sleep(2.0)
 
                 eval_result = await page.evaluate(
                     fetch_js,
@@ -1116,7 +1164,7 @@ class SessionHealer:
                     },
                 )
 
-            # 3. THY Ã–zel KontrolÃ¼: EÄŸer Error-DS-30006 dÃ¶nerse veya availabilityInfoResponse boÅŸ ([[], []]) geldiyse
+            # 3. THY Özel Kontrolü: Eğer Error-DS-30006 dönerse veya availabilityInfoResponse boş ([[], []]) geldiyse
             if is_thy_availability:
                 resp_text = _extract_response_text(eval_result)
                 is_empty_air = False
@@ -1133,58 +1181,99 @@ class SessionHealer:
                 is_ds_error = (
                     "Error-DS-30006" in resp_text
                     or "DS-30006" in resp_text
-                    or "iÅŸleminizi gerÃ§ekleÅŸtiremiyoruz" in resp_text
+                    or "işleminizi gerçekleştiremiyoruz" in resp_text
                     or (is_empty_air and not is_populated)
                 )
 
                 if is_ds_error or not is_populated:
                     if is_empty_air:
-                        console.print("\n[bold yellow]âš ï¸ BoÅŸ availabilityInfoResponse: [[], []] alÄ±ndÄ± (oturum durumu henÃ¼z hazÄ±r deÄŸil).[/bold yellow]")
+                        console.print("\n[bold yellow]⚠️  Boş availabilityInfoResponse: [[], []] alındı (oturum durumu henüz hazır değil).[/bold yellow]")
                     else:
-                        console.print("\n[bold yellow]âš ï¸ Backend oturum/ÅŸema uyarÄ±sÄ± alÄ±ndÄ±.[/bold yellow]")
+                        console.print("\n[bold yellow]⚠️  Backend oturum/şema uyarısı alındı.[/bold yellow]")
 
-                    if active_non_interactive:
-                        try:
-                            await context.close()
-                        except Exception:
-                            pass
-                        if remote_browser is not None:
+                    if not is_resuming_hitl:
+                        if active_hitl_task_id is None:
+                            hitl_task = hitl_mgr.enqueue_task(
+                                tenant_id=active_tenant,
+                                service=self.service,
+                                method=method.upper(),
+                                url=url,
+                                params=req_params,
+                                headers=req_headers,
+                                json_payload=req_payload,
+                                target_url=visit_url,
+                                reason="THY oturum/müsaitlik ön etkileşimi veya WAF doğrulaması gerekiyor",
+                                in_place_paused=pause_and_wait,
+                            )
+                            active_hitl_task_id = hitl_task["task_id"]
+                        else:
+                            hitl_task, _ = hitl_mgr.get_task(active_hitl_task_id, tenant_id=active_tenant)
+                            hitl_task = hitl_task or {"task_id": active_hitl_task_id, "reason": "THY doğrulaması gerekiyor"}
+
+                        if not pause_and_wait:
                             try:
-                                await remote_browser.close()
+                                await context.close()
                             except Exception:
                                 pass
-                        from core.hitl_queue import HITLQueueManager
+                            if remote_browser is not None:
+                                try:
+                                    await remote_browser.close()
+                                except Exception:
+                                    pass
+                            return ResponseDict(
+                                {
+                                    "status": "PAUSED",
+                                    "legacy_status": "PENDING_USER_APPROVAL",
+                                    "agent_state": "paused",
+                                    "task_id": hitl_task["task_id"],
+                                    "service": self.service,
+                                    "tenant_id": active_tenant,
+                                    "reason": hitl_task["reason"],
+                                    "message": "Ajan PAUSED durumuna alındı; Web Dashboard üzerinden onay bekleniyor",
+                                }
+                            )
 
-                        hitl_mgr = HITLQueueManager()
-                        hitl_task = hitl_mgr.enqueue_task(
-                            tenant_id=active_tenant,
-                            service=self.service,
-                            method=method.upper(),
-                            url=url,
-                            params=req_params,
-                            headers=req_headers,
-                            json_payload=req_payload,
-                            target_url=visit_url,
-                            reason="THY oturum/mÃ¼saitlik Ã¶n etkileÅŸimi veya doÄŸrulama gerekiyor",
+                        console.print(
+                            f"[bold yellow]⏸️  [HITL PAUSED] THY görevi ({hitl_task['task_id']}) 'PAUSED' durumuna alındı.[/bold yellow]\n"
+                            f"[cyan]👉 Web Dashboard üzerinden onay verildiğinde kaldığı yerden ('resume') devam edecek...[/cyan]"
                         )
-                        return {
-                            "status": "PENDING_USER_APPROVAL",
-                            "task_id": hitl_task["task_id"],
-                            "service": self.service,
-                            "tenant_id": active_tenant,
-                            "reason": hitl_task["reason"],
-                            "message": "KullanÄ±cÄ± doÄŸrulamasÄ± bekleniyor",
-                        }
+                        resumed_task = await hitl_mgr.await_task_resume(
+                            task_id=hitl_task["task_id"],
+                            poll_interval=0.5,
+                            timeout_sec=pause_timeout_sec,
+                        )
+                        if resumed_task is None:
+                            try:
+                                await context.close()
+                            except Exception:
+                                pass
+                            if remote_browser is not None:
+                                try:
+                                    await remote_browser.close()
+                                except Exception:
+                                    pass
+                            return ResponseDict(
+                                {
+                                    "status": "PAUSED",
+                                    "legacy_status": "PENDING_USER_APPROVAL",
+                                    "agent_state": "paused",
+                                    "task_id": hitl_task["task_id"],
+                                    "service": self.service,
+                                    "tenant_id": active_tenant,
+                                    "reason": hitl_task["reason"],
+                                    "message": "Kullanıcı doğrulaması bekleniyor (.sessions/hitl_state.json)",
+                                }
+                            )
 
-                    await asyncio.to_thread(
-                        input,
-                        "\nâš ï¸ TarayÄ±cÄ±da THY sayfasÄ± Ã¼zerinden 1 kez Ã¶rnek uÃ§uÅŸ aramasÄ± baÅŸlatÄ±n ve sonuÃ§ sayfasÄ±/doÄŸrulama geldikten sonra ENTER'a basÄ±n...\n"
-                    )
-                    console.print("[bold green]âœ” ENTER alÄ±ndÄ±, yakalanan trafik veya taze oturumla istek yeniden yÃ¼rÃ¼tÃ¼lÃ¼yor...[/bold green]")
+                        console.print(
+                            f"[bold green]▶️  [HITL RESUMED] Kullanıcı onayı alındı ({hitl_task['task_id']}), THY görevi kaldığı yerden devam ediyor...[/bold green]"
+                        )
+                    else:
+                        await asyncio.sleep(2.0)
 
                     captured_text = captured_browser_response.get("text", "")
                     if captured_text and _is_populated_availability(captured_text):
-                        console.print("[bold green]âœ” TarayÄ±cÄ± trafiÄŸinden dolu uÃ§uÅŸ yanÄ±tÄ± baÅŸarÄ±yla yakalandÄ± ve kullanÄ±lÄ±yor![/bold green]")
+                        console.print("[bold green]✔ Tarayıcı trafiğinden dolu uçuş yanıtı başarıyla yakalandı ve kullanılıyor![/bold green]")
                         eval_result = {
                             "status": captured_browser_response.get("status", 200),
                             "ok": True,
@@ -1215,7 +1304,7 @@ class SessionHealer:
                             },
                         )
 
-            # 4. Taze Ã§erezleri ve User-Agent'Ä± TokenStore'a (.sessions/{tenant_id}/{service}_tokens.json) kaydet
+            # 4. Taze çerezleri ve User-Agent'ı TokenStore'a (.sessions/{tenant_id}/{service}_tokens.json) kaydet
             try:
                 cookies = await context.cookies()
                 user_agent = await page.evaluate("() => navigator.userAgent")
@@ -1260,9 +1349,12 @@ class SessionHealer:
                 except Exception:
                     pass
 
-        # DÃ¶nen yanÄ±tÄ± parse et ve dÃ¶ndÃ¼r (dict ise .text aramaya kalkmadan doÄŸrudan iÅŸle)
+        # Dönen yanıtı parse et ve döndür (dict ise .text aramaya kalkmadan doğrudan işle)
         if isinstance(eval_result, dict) and "text" not in eval_result and "status" not in eval_result:
-            return ResponseDict(eval_result)
+            final_res_obj: Any = ResponseDict(eval_result)
+            if active_hitl_task_id:
+                hitl_mgr.update_task_state(active_hitl_task_id, status="COMPLETED", response=dict(final_res_obj))
+            return final_res_obj
 
         final_text = _extract_response_text(eval_result)
         status_val = eval_result.get("status", 200) if isinstance(eval_result, dict) else 200
@@ -1271,11 +1363,16 @@ class SessionHealer:
         try:
             parsed_json = json.loads(final_text)
             if isinstance(parsed_json, dict):
-                return ResponseDict(parsed_json)
+                final_res_obj = ResponseDict(parsed_json)
+                if active_hitl_task_id:
+                    hitl_mgr.update_task_state(active_hitl_task_id, status="COMPLETED", response=dict(final_res_obj))
+                return final_res_obj
+            if active_hitl_task_id:
+                hitl_mgr.update_task_state(active_hitl_task_id, status="COMPLETED", response=parsed_json)
             return parsed_json
         except Exception:
             if is_ok and final_text and not (isinstance(eval_result, dict) and eval_result.get("error")):
-                return ResponseDict(
+                final_res_obj = ResponseDict(
                     {
                         "success": True,
                         "status_code": status_val,
@@ -1284,15 +1381,22 @@ class SessionHealer:
                         "response_sample": final_text[:3000],
                     }
                 )
-            return ResponseDict(
+                if active_hitl_task_id:
+                    hitl_mgr.update_task_state(active_hitl_task_id, status="COMPLETED", response=dict(final_res_obj))
+                return final_res_obj
+            final_res_obj = ResponseDict(
                 {
                     "status_code": status_val,
                     "text": final_text,
                     "response_sample": final_text[:3000],
                     "error": (eval_result.get("error") if isinstance(eval_result, dict) else None)
-                    or "YanÄ±t JSON formatÄ±nda ayrÄ±ÅŸtÄ±rÄ±lamadÄ±",
+                    or "Yanıt JSON formatında ayrıştırılamadı",
                 }
             )
+            if active_hitl_task_id:
+                hitl_mgr.update_task_state(active_hitl_task_id, status="COMPLETED", response=dict(final_res_obj))
+            return final_res_obj
+
 
     def execute_in_browser(
         self,

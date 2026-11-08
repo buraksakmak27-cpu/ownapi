@@ -39,12 +39,30 @@ def _wrap_tool_with_stderr_redirect(fn: Callable[..., Any]) -> Callable[..., Any
     """
     MCP aracı çalışırken alt modüllerden (`healer`, `client.py` vb.) gelebilecek tüm
     `sys.stdout` çıktılarını `sys.stderr` kanalına yönlendirerek JSON-RPC `stdio` hattını korur.
+    Ayrıca WAF/Captcha engeline takılan ajan görevlerinin öldürülmek yerine `.sessions/hitl_state.json`
+    üzerinden 'PAUSED' durumuna alınıp kullanıcı onayından sonra kaldığı yerden ('resume')
+    devam etmesini garanti altına alır.
     """
     if inspect.iscoroutinefunction(fn):
         @functools.wraps(fn)
         async def _async_wrapper(*args: Any, **kwargs: Any) -> Any:
             with contextlib.redirect_stdout(sys.stderr):
-                return await fn(*args, **kwargs)
+                os.environ.setdefault("OWNAPI_HITL_PAUSE_AND_WAIT", "1")
+                result = await fn(*args, **kwargs)
+                if isinstance(result, dict) and result.get("status") in ("PAUSED", "PENDING_USER_APPROVAL", "PENDING_USER_ACTION") and result.get("task_id"):
+                    from core.hitl_queue import HITLQueueManager
+
+                    mgr = HITLQueueManager()
+                    resumed = await mgr.await_task_resume(
+                        str(result["task_id"]),
+                        poll_interval=0.5,
+                        timeout_sec=float(os.getenv("OWNAPI_HITL_PAUSE_TIMEOUT", "300")),
+                    )
+                    if resumed is not None:
+                        if resumed.get("response") is not None:
+                            return resumed["response"]
+                        return await fn(*args, **kwargs)
+                return result
 
         _async_wrapper.__signature__ = inspect.signature(fn)  # type: ignore[attr-defined]
         return _async_wrapper
@@ -52,7 +70,25 @@ def _wrap_tool_with_stderr_redirect(fn: Callable[..., Any]) -> Callable[..., Any
     @functools.wraps(fn)
     def _sync_wrapper(*args: Any, **kwargs: Any) -> Any:
         with contextlib.redirect_stdout(sys.stderr):
-            return fn(*args, **kwargs)
+            os.environ.setdefault("OWNAPI_HITL_PAUSE_AND_WAIT", "1")
+            result = fn(*args, **kwargs)
+            if isinstance(result, dict) and result.get("status") in ("PAUSED", "PENDING_USER_APPROVAL", "PENDING_USER_ACTION") and result.get("task_id"):
+                import asyncio
+                from core.hitl_queue import HITLQueueManager
+
+                mgr = HITLQueueManager()
+                resumed = asyncio.run(
+                    mgr.await_task_resume(
+                        str(result["task_id"]),
+                        poll_interval=0.5,
+                        timeout_sec=float(os.getenv("OWNAPI_HITL_PAUSE_TIMEOUT", "300")),
+                    )
+                )
+                if resumed is not None:
+                    if resumed.get("response") is not None:
+                        return resumed["response"]
+                    return fn(*args, **kwargs)
+            return result
 
     _sync_wrapper.__signature__ = inspect.signature(fn)  # type: ignore[attr-defined]
     return _sync_wrapper

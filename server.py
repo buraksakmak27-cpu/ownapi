@@ -396,32 +396,66 @@ async def get_auto_repair_report() -> dict[str, Any]:
         return {"success": False, "error": str(exc), "history": []}
 
 
+@app.get("/api/hitl/pending")
+@app.get("/api/v1/hitl/pending")
+async def get_hitl_pending(
+    tenant_id: str | None = Query(default=None, description="Kiracı filtresi (boş ise tüm kiracılar)"),
+) -> dict[str, Any]:
+    """
+    Proje kök dizinindeki `.sessions/hitl_state.json` dosyasından bekleyen (`PAUSED` / `PENDING_USER_ACTION`)
+    HITL onay isteklerini diskten okuyarak döndürür. Sayfa yenilendiğinde (F5) veya 2 saniyelik
+    polling sırasında bekleyen onayların kaybolmadan anında ekrana gelmesini sağlar.
+    """
+    mgr = HITLQueueManager()
+    all_tasks = mgr.list_tasks(tenant_id=tenant_id, status_filter=None)
+    pending_tasks = [t for t in all_tasks if mgr.is_pending_status(t.get("status"))]
+    completed_tasks = [t for t in all_tasks if str(t.get("status", "")).upper() == "COMPLETED"]
+    return {
+        "success": True,
+        "state_file": ".sessions/hitl_state.json",
+        "total_tasks": len(all_tasks),
+        "pending_count": len(pending_tasks),
+        "paused_count": len(pending_tasks),
+        "completed_count": len(completed_tasks),
+        "pending_tasks": list(reversed(pending_tasks)),
+        "tasks": list(reversed(all_tasks)),
+    }
+
+
+@app.get("/api/hitl/queue")
 @app.get("/api/v1/hitl/queue")
 async def get_hitl_queue(
     tenant_id: str | None = Query(default=None, description="Kiracı filtresi (boş ise tüm kiracılar)"),
-    status: str | None = Query(default=None, description="PENDING_USER_ACTION veya COMPLETED"),
+    status: str | None = Query(default=None, description="PAUSED, PENDING_USER_ACTION veya COMPLETED"),
 ) -> dict[str, Any]:
-    """`HITLQueueManager` üzerinden bekleyen (`PENDING_USER_ACTION`) ve tamamlanan görevleri listeler."""
+    """`HITLQueueManager` (`.sessions/hitl_state.json`) üzerinden bekleyen (`PAUSED`) ve tamamlanan görevleri listeler."""
     mgr = HITLQueueManager()
     tasks = mgr.list_tasks(tenant_id=tenant_id, status_filter=status)
-    pending_count = sum(1 for t in tasks if t.get("status") == "PENDING_USER_ACTION")
-    completed_count = sum(1 for t in tasks if t.get("status") == "COMPLETED")
+    pending_count = sum(1 for t in tasks if mgr.is_pending_status(t.get("status")))
+    completed_count = sum(1 for t in tasks if str(t.get("status", "")).upper() == "COMPLETED")
     return {
         "success": True,
+        "state_file": ".sessions/hitl_state.json",
         "total_tasks": len(tasks),
         "pending_count": pending_count,
+        "paused_count": pending_count,
         "completed_count": completed_count,
         "tasks": list(reversed(tasks)),
     }
 
 
+@app.post("/api/hitl/approve/{task_id}")
+@app.post("/api/hitl/resume/{task_id}")
 @app.post("/api/v1/hitl/approve/{task_id}")
 @app.post("/api/v1/hitl/resume/{task_id}")
 async def approve_hitl_task(
     task_id: str,
     tenant_id: str | None = Query(default=None),
 ) -> dict[str, Any]:
-    """Bekleyen HITL görevini tarayıcıda onaylayıp (`resume_task`) sonucu döndürür."""
+    """
+    `.sessions/hitl_state.json` içindeki bekleyen (`PAUSED`) HITL görevini onaylar
+    ve duraklatılmış ajanın kaldığı yerden (`resume_task`) devam etmesini sağlar.
+    """
     mgr = HITLQueueManager()
     task, _ = mgr.get_task(task_id, tenant_id=tenant_id)
     if not task:

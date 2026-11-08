@@ -1,7 +1,9 @@
 from __future__ import annotations
 
+import asyncio
 import json
 import os
+import time
 import urllib.request
 import uuid
 from datetime import datetime, timezone
@@ -14,17 +16,27 @@ from rich.panel import Panel
 from rich.table import Table
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
+HITL_STATE_FILE = PROJECT_ROOT / ".sessions" / "hitl_state.json"
+PENDING_HITL_STATUSES = {
+    "PAUSED",
+    "PENDING_USER_ACTION",
+    "PENDING_USER_APPROVAL",
+    "APPROVED_TO_RESUME",
+    "RESUMING",
+}
+
 console = Console(stderr=True, legacy_windows=False)
 
 
 class HITLQueueManager:
     """
-    Human-in-the-Loop (HITL) Asenkron Onay Kuyruğu Yöneticisi.
-    Arka planda veya gece çalışan ajanlar Captcha / PerimeterX / Akamai / 2FA doğrulamasına
-    takıldığında terminalde `input()` ile kilitlenmek yerine görevi
-    `.sessions/{tenant_id}/hitl_queue.json` dosyasına kaydeder, opsiyonel olarak
-    `OWNAPI_WEBHOOK_URL` adresine bildirim gönderir ve kullanıcı `own-api resume <task_id>`
-    (veya `own-api approve <task_id>`) çalıştırdığında tarayıcıyı açıp görevi kaldığı yerden tamamlar.
+    Human-in-the-Loop (HITL) Kalıcı Disk Tabanlı Onay ve Pause/Resume Yöneticisi.
+    WAF / Captcha / PerimeterX / Akamai / 2FA engeline takılan ajanların görevlerini
+    öldürmek yerine 'PAUSED' durumuna alır ve proje kök dizinindeki
+    `.sessions/hitl_state.json` dosyasına kalıcı olarak kaydeder.
+    Sayfa yenilense (F5) veya sunucu yeniden başlasa dahi bekleyen onaylar
+    `.sessions/hitl_state.json` üzerinden okunur; kullanıcı arayüzünden onay verildiğinde
+    ajan kaldığı yerden ('resume') çalışmaya devam eder.
     """
 
     def __init__(
@@ -35,40 +47,172 @@ class HITLQueueManager:
         load_dotenv(override=False)
         self.sessions_root = Path(sessions_root)
         self.sessions_root.mkdir(parents=True, exist_ok=True)
+        self.state_file = self.sessions_root / "hitl_state.json"
         self.webhook_url = (webhook_url or os.getenv("OWNAPI_WEBHOOK_URL", "")).strip() or None
+        self._ensure_state_file()
 
     @staticmethod
     def _sanitize(value: str) -> str:
-        clean = "".join(c if (c.isalnum() or c in ("-", "_")) else "_" for c in value.strip())
+        clean = "".join(c if (c.isalnum() or c in ("-", "_")) else "_" for c in str(value or "").strip())
         return clean or "default"
+
+    @staticmethod
+    def is_pending_status(status: str | None) -> bool:
+        return str(status or "").strip().upper() in PENDING_HITL_STATUSES
 
     def _queue_file_path(self, tenant_id: str = "default") -> Path:
         t_dir = self.sessions_root / self._sanitize(tenant_id)
         t_dir.mkdir(parents=True, exist_ok=True)
         return t_dir / "hitl_queue.json"
 
-    def _load_queue_data(self, tenant_id: str = "default") -> dict[str, Any]:
-        q_file = self._queue_file_path(tenant_id)
-        if not q_file.exists():
-            return {"tenant_id": self._sanitize(tenant_id), "tasks": []}
+    def _ensure_state_file(self) -> None:
+        """
+        `.sessions/hitl_state.json` dosyası henüz yoksa mevcut kiracı kuyruklarını
+        (`.sessions/*/hitl_queue.json`) tarayarak kalıcı state dosyasını oluşturur.
+        """
+        if self.state_file.exists():
+            return
+        migrated_tasks: list[dict[str, Any]] = []
+        seen_ids: set[str] = set()
         try:
-            data = json.loads(q_file.read_text(encoding="utf-8"))
-            if isinstance(data, dict) and isinstance(data.get("tasks"), list):
-                return data
+            for t_dir in sorted(self.sessions_root.iterdir()):
+                if not t_dir.is_dir():
+                    continue
+                q_file = t_dir / "hitl_queue.json"
+                if not q_file.exists():
+                    continue
+                try:
+                    raw = json.loads(q_file.read_text(encoding="utf-8"))
+                    for item in raw.get("tasks", []):
+                        tid = str(item.get("task_id", "")).strip()
+                        if tid and tid not in seen_ids:
+                            seen_ids.add(tid)
+                            migrated_tasks.append(item)
+                except Exception:
+                    continue
         except Exception:
             pass
-        return {"tenant_id": self._sanitize(tenant_id), "tasks": []}
+        self._save_global_state(migrated_tasks)
 
-    def _save_queue_data(self, tenant_id: str, tasks: list[dict[str, Any]]) -> None:
-        q_file = self._queue_file_path(tenant_id)
-        payload = {
-            "tenant_id": self._sanitize(tenant_id),
+    def _load_global_state(self) -> dict[str, Any]:
+        """
+        Proje kök dizinindeki `.sessions/hitl_state.json` dosyasından tüm HITL görevlerini okur.
+        Kiracı klasörlerindeki `.sessions/{tenant_id}/hitl_queue.json` dosyalarında olup
+        henüz ana state dosyasına yazılmamış görevler varsa onları da birleştirir.
+        """
+        tasks_by_id: dict[str, dict[str, Any]] = {}
+        ordered_ids: list[str] = []
+
+        if self.state_file.exists():
+            try:
+                data = json.loads(self.state_file.read_text(encoding="utf-8"))
+                if isinstance(data, dict) and isinstance(data.get("tasks"), list):
+                    for t in data["tasks"]:
+                        if isinstance(t, dict) and t.get("task_id"):
+                            tid = str(t["task_id"])
+                            if tid not in tasks_by_id:
+                                ordered_ids.append(tid)
+                            tasks_by_id[tid] = t
+            except Exception:
+                pass
+
+        # Kiracı bazlı dosyalardaki görevleri de senkronize et
+        try:
+            for t_dir in sorted(self.sessions_root.iterdir()):
+                if not t_dir.is_dir():
+                    continue
+                q_file = t_dir / "hitl_queue.json"
+                if not q_file.exists():
+                    continue
+                try:
+                    q_data = json.loads(q_file.read_text(encoding="utf-8"))
+                    for t in q_data.get("tasks", []):
+                        if isinstance(t, dict) and t.get("task_id"):
+                            tid = str(t["task_id"])
+                            if tid not in tasks_by_id:
+                                ordered_ids.append(tid)
+                                tasks_by_id[tid] = t
+                except Exception:
+                    continue
+        except Exception:
+            pass
+
+        tasks = [tasks_by_id[tid] for tid in ordered_ids if tid in tasks_by_id]
+        pending_count = sum(1 for t in tasks if self.is_pending_status(t.get("status")))
+        completed_count = sum(1 for t in tasks if str(t.get("status", "")).upper() == "COMPLETED")
+        return {
+            "state_file": str(self.state_file),
             "updated_at": datetime.now(timezone.utc).isoformat(),
             "total_tasks": len(tasks),
-            "pending_count": sum(1 for t in tasks if t.get("status") == "PENDING_USER_ACTION"),
+            "pending_count": pending_count,
+            "paused_count": pending_count,
+            "completed_count": completed_count,
             "tasks": tasks,
         }
-        q_file.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+    def _save_global_state(self, tasks: list[dict[str, Any]]) -> None:
+        """
+        Tüm görevleri hem `.sessions/hitl_state.json` dosyasına hem de ilgili kiracıların
+        `.sessions/{tenant_id}/hitl_queue.json` dosyalarına kalıcı olarak yazar.
+        """
+        self.sessions_root.mkdir(parents=True, exist_ok=True)
+        now_iso = datetime.now(timezone.utc).isoformat()
+        pending_count = sum(1 for t in tasks if self.is_pending_status(t.get("status")))
+        completed_count = sum(1 for t in tasks if str(t.get("status", "")).upper() == "COMPLETED")
+
+        global_payload = {
+            "updated_at": now_iso,
+            "total_tasks": len(tasks),
+            "pending_count": pending_count,
+            "paused_count": pending_count,
+            "completed_count": completed_count,
+            "tasks": tasks,
+        }
+        tmp_file = self.state_file.with_suffix(".json.tmp")
+        try:
+            tmp_file.write_text(json.dumps(global_payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+            tmp_file.replace(self.state_file)
+        except Exception:
+            self.state_file.write_text(json.dumps(global_payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+        # Kiracı bazlı dosyaları da senkronize güncelle
+        by_tenant: dict[str, list[dict[str, Any]]] = {}
+        for t in tasks:
+            ten = self._sanitize(str(t.get("tenant_id", "default")))
+            by_tenant.setdefault(ten, []).append(t)
+
+        for ten, t_list in by_tenant.items():
+            q_file = self._queue_file_path(ten)
+            t_payload = {
+                "tenant_id": ten,
+                "updated_at": now_iso,
+                "total_tasks": len(t_list),
+                "pending_count": sum(1 for x in t_list if self.is_pending_status(x.get("status"))),
+                "tasks": t_list,
+            }
+            try:
+                q_file.write_text(json.dumps(t_payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+            except Exception:
+                pass
+
+    def _load_queue_data(self, tenant_id: str = "default") -> dict[str, Any]:
+        clean_tenant = self._sanitize(tenant_id)
+        global_data = self._load_global_state()
+        tenant_tasks = [
+            t for t in global_data.get("tasks", [])
+            if self._sanitize(str(t.get("tenant_id", "default"))) == clean_tenant
+        ]
+        return {"tenant_id": clean_tenant, "tasks": tenant_tasks}
+
+    def _save_queue_data(self, tenant_id: str, tasks: list[dict[str, Any]]) -> None:
+        clean_tenant = self._sanitize(tenant_id)
+        global_data = self._load_global_state()
+        other_tasks = [
+            t for t in global_data.get("tasks", [])
+            if self._sanitize(str(t.get("tenant_id", "default"))) != clean_tenant
+        ]
+        merged = other_tasks + tasks
+        self._save_global_state(merged)
 
     def _resolve_session_target_url(self, service: str, url: str, target_url: str | None = None) -> str:
         """
@@ -112,10 +256,11 @@ class HITLQueueManager:
         json_payload: Any = None,
         target_url: str | None = None,
         reason: str = "Captcha / WAF / 2FA doğrulaması gerekiyor",
+        in_place_paused: bool = False,
     ) -> dict[str, Any]:
         """
-        Doğrulama gerektiren isteği kuyruğa (`PENDING_USER_ACTION`) ekler ve
-        varsa `OWNAPI_WEBHOOK_URL` adresine HTTP POST bildirimi atar.
+        WAF/Captcha doğrulaması gerektiren ajan görevini öldürmek yerine 'PAUSED' (`PENDING_USER_ACTION`)
+        durumuna alarak `.sessions/hitl_state.json` dosyasına kalıcı olarak kaydeder.
         """
         clean_tenant = self._sanitize(tenant_id)
         clean_svc = self._sanitize(service)
@@ -147,35 +292,105 @@ class HITLQueueManager:
             "headers": req_headers,
             "json_payload": req_payload,
             "reason": reason,
-            "status": "PENDING_USER_ACTION",
+            "status": "PAUSED",
+            "legacy_status": "PENDING_USER_ACTION",
+            "agent_state": "paused",
+            "in_place_paused": bool(in_place_paused),
             "created_at": now_iso,
+            "paused_at": now_iso,
             "updated_at": now_iso,
+            "approved_at": None,
             "completed_at": None,
             "webhook_notified": False,
+            "response": None,
         }
 
-        q_data = self._load_queue_data(clean_tenant)
-        tasks: list[dict[str, Any]] = q_data.get("tasks", [])
+        state = self._load_global_state()
+        tasks: list[dict[str, Any]] = state.get("tasks", [])
         tasks.append(task_record)
 
         if self.webhook_url:
             task_record["webhook_notified"] = self._send_webhook_notification(task_record)
 
-        self._save_queue_data(clean_tenant, tasks)
+        self._save_global_state(tasks)
 
         console.print(
             Panel.fit(
-                f"[bold yellow]⏸️ Non-Interactive HITL Kuyruğuna Eklendi![/bold yellow]\n"
+                f"[bold yellow]⏸️ Ajan Görevi PAUSED Durumuna Alındı (.sessions/hitl_state.json)![/bold yellow]\n"
                 f"[white]Görev ID (task_id):[/white] [bold cyan]{task_id}[/bold cyan]\n"
                 f"[white]Servis / Tenant:[/white] [magenta]{service}[/magenta] ([cyan]{clean_tenant}[/cyan])\n"
                 f"[white]Neden:[/white] [yellow]{reason}[/yellow]\n"
-                f"[white]Durum:[/white] [bold red]PENDING_USER_ACTION[/bold red]\n"
-                f"[dim]Onaylayıp devam ettirmek için:[/dim] [bold green]own-api resume {task_id}[/bold green]",
-                title="OwnAPI Human-in-the-Loop (HITL) Queue",
+                f"[white]Durum:[/white] [bold red]PAUSED (PENDING_USER_ACTION)[/bold red]\n"
+                f"[dim]Web Dashboard üzerinden veya CLI ile onaylandığında kaldığı yerden devam eder:[/dim] [bold green]own-api resume {task_id}[/bold green]",
+                title="OwnAPI Human-in-the-Loop (HITL) Persistent State Store",
                 border_style="yellow",
             )
         )
         return task_record
+
+    def update_task_state(
+        self,
+        task_id: str,
+        status: str,
+        response: Any = None,
+        extra_fields: dict[str, Any] | None = None,
+    ) -> dict[str, Any] | None:
+        """`.sessions/hitl_state.json` içindeki görevin durumunu ve yanıtını günceller."""
+        clean_id = task_id.strip()
+        state = self._load_global_state()
+        tasks: list[dict[str, Any]] = state.get("tasks", [])
+        now_iso = datetime.now(timezone.utc).isoformat()
+        updated_task: dict[str, Any] | None = None
+
+        for item in tasks:
+            if item.get("task_id") == clean_id:
+                item["status"] = status
+                item["updated_at"] = now_iso
+                if status.upper() == "COMPLETED":
+                    item["agent_state"] = "resumed"
+                    item["completed_at"] = now_iso
+                    item["in_place_paused"] = False
+                elif status.upper() in ("APPROVED_TO_RESUME", "RESUMING"):
+                    item["agent_state"] = "resuming"
+                    item["approved_at"] = item.get("approved_at") or now_iso
+                elif self.is_pending_status(status):
+                    item["agent_state"] = "paused"
+
+                if response is not None:
+                    item["response"] = response
+                    if isinstance(response, dict):
+                        item["response_keys"] = list(response.keys())[:10]
+
+                if extra_fields:
+                    item.update(extra_fields)
+
+                updated_task = dict(item)
+                break
+
+        if updated_task is not None:
+            self._save_global_state(tasks)
+        return updated_task
+
+    async def await_task_resume(
+        self,
+        task_id: str,
+        poll_interval: float = 0.5,
+        timeout_sec: float = 300.0,
+    ) -> dict[str, Any] | None:
+        """
+        PAUSED durumuna alınan bir ajanın öldürülmeden `.sessions/hitl_state.json` dosyasını
+        dinleyerek kullanıcı onayını (`APPROVED_TO_RESUME` veya `COMPLETED`) beklemesini sağlar.
+        """
+        deadline = time.monotonic() + max(1.0, timeout_sec)
+        while time.monotonic() < deadline:
+            task, _ = self.get_task(task_id, tenant_id=None)
+            if not task:
+                return None
+            st = str(task.get("status", "")).upper()
+            if st in ("APPROVED_TO_RESUME", "RESUMING", "COMPLETED", "RESUMED"):
+                return task
+            await asyncio.sleep(poll_interval)
+        return None
 
     def _send_webhook_notification(self, task_record: dict[str, Any]) -> bool:
         """OWNAPI_WEBHOOK_URL tanımlıysa görevi JSON POST olarak bildirir."""
@@ -183,7 +398,7 @@ class HITLQueueManager:
             return False
         try:
             webhook_payload = {
-                "event": "OWNAPI_HITL_PENDING_USER_ACTION",
+                "event": "OWNAPI_HITL_PAUSED",
                 "task_id": task_record["task_id"],
                 "tenant_id": task_record["tenant_id"],
                 "service": task_record["service"],
@@ -209,52 +424,74 @@ class HITLQueueManager:
 
     def list_tasks(
         self,
-        tenant_id: str | None = "default",
+        tenant_id: str | None = None,
         status_filter: str | None = None,
     ) -> list[dict[str, Any]]:
         """
-        Belirtilen kiracının (veya tenant_id=None ise tüm kiracıların) HITL kuyruğundaki görevleri listeler.
+        `.sessions/hitl_state.json` üzerinden bekleyen (`PAUSED` / `PENDING_USER_ACTION`)
+        ve tamamlanan (`COMPLETED`) görevleri listeler.
         """
-        all_tasks: list[dict[str, Any]] = []
+        state = self._load_global_state()
+        all_tasks: list[dict[str, Any]] = list(state.get("tasks", []))
+
         if tenant_id:
-            q_data = self._load_queue_data(tenant_id)
-            all_tasks.extend(q_data.get("tasks", []))
-        else:
-            for t_dir in sorted(self.sessions_root.iterdir()):
-                if t_dir.is_dir() and (t_dir / "hitl_queue.json").exists():
-                    q_data = self._load_queue_data(t_dir.name)
-                    all_tasks.extend(q_data.get("tasks", []))
+            clean_tenant = self._sanitize(tenant_id)
+            all_tasks = [
+                t for t in all_tasks
+                if self._sanitize(str(t.get("tenant_id", "default"))) == clean_tenant
+            ]
 
         if status_filter:
             sf = status_filter.strip().upper()
-            all_tasks = [t for t in all_tasks if str(t.get("status", "")).upper() == sf]
+            if sf in ("PENDING", "PAUSED", "PENDING_USER_ACTION", "PENDING_USER_APPROVAL"):
+                all_tasks = [t for t in all_tasks if self.is_pending_status(t.get("status"))]
+            else:
+                all_tasks = [t for t in all_tasks if str(t.get("status", "")).upper() == sf]
         return all_tasks
 
+    def get_pending_tasks(self, tenant_id: str | None = None) -> list[dict[str, Any]]:
+        """`.sessions/hitl_state.json` içindeki onay bekleyen (`PAUSED` / `PENDING_USER_ACTION`) görevleri döndürür."""
+        return self.list_tasks(tenant_id=tenant_id, status_filter="PAUSED")
+
     def get_task(self, task_id: str, tenant_id: str | None = None) -> tuple[dict[str, Any] | None, str]:
-        """task_id ile görevi ve ait olduğu tenant_id'yi bulur."""
+        """task_id ile görevi ve ait olduğu tenant_id'yi `.sessions/hitl_state.json` üzerinden bulur."""
         clean_id = task_id.strip()
         if tenant_id:
             for t in self.list_tasks(tenant_id=tenant_id):
                 if t.get("task_id") == clean_id:
-                    return t, tenant_id
+                    return t, self._sanitize(str(t.get("tenant_id", tenant_id)))
         for t in self.list_tasks(tenant_id=None):
             if t.get("task_id") == clean_id:
-                return t, str(t.get("tenant_id", "default"))
-        return None, tenant_id or "default"
+                return t, self._sanitize(str(t.get("tenant_id", "default")))
+        return None, self._sanitize(tenant_id or "default")
 
     def resume_task(self, task_id: str, tenant_id: str | None = None) -> dict[str, Any]:
         """
-        Bekleyen (`PENDING_USER_ACTION`) bir görevi bulur, kullanıcının yerel tarayıcısını
-        etkileşimli (`non_interactive=False`, `mode="local"`) olarak açar, doğrulama çözüldükten
-        sonra isteği kaldığı yerden yürütür ve görevi `COMPLETED` olarak günceller.
+        Bekleyen (`PAUSED` / `PENDING_USER_ACTION`) bir görevi onaylar ve kaldığı yerden (`resume`) devam ettirir:
+        1. Eğer ajan şu an bellekte/arka planda `in_place_paused` olarak `.sessions/hitl_state.json` dosyasını
+           dinliyorsa, durumu `APPROVED_TO_RESUME` yaparak ajanın kendi oturumu içinde kaldığı yerden
+           devam etmesini tetikler.
+        2. Eğer ajan süreci kapanmış veya sayfa/sunucu yeniden başlatılmışsa, isteği `.sessions/hitl_state.json`
+           kaydından yeniden çalıştırarak tamamlar ve durumu `COMPLETED` olarak kaydeder.
         """
         task, found_tenant = self.get_task(task_id, tenant_id=tenant_id)
         if not task:
             raise ValueError(f"Görev bulunamadı: '{task_id}'")
 
+        if str(task.get("status", "")).upper() == "COMPLETED" and task.get("response") is not None:
+            return {
+                "status": "COMPLETED",
+                "agent_state": "resumed",
+                "task_id": task["task_id"],
+                "service": task["service"],
+                "tenant_id": found_tenant,
+                "completed_at": task.get("completed_at"),
+                "response": task.get("response"),
+            }
+
         console.print(
             Panel.fit(
-                f"[bold cyan]▶️ HITL Görevi Devam Ettiriliyor (Resume)[/bold cyan]\n"
+                f"[bold cyan]▶️ HITL Görevi Onaylandı — Kaldığı Yerden Devam Ettiriliyor (Resume)[/bold cyan]\n"
                 f"[white]Görev ID:[/white] [bold yellow]{task['task_id']}[/bold yellow]\n"
                 f"[white]Servis / Tenant:[/white] [magenta]{task['service']}[/magenta] ([cyan]{found_tenant}[/cyan])\n"
                 f"[white]Uç Nokta:[/white] [green]{task['method']} {task['url']}[/green]\n"
@@ -264,6 +501,29 @@ class HITLQueueManager:
             )
         )
 
+        # 1. Durumu APPROVED_TO_RESUME olarak işaretle (canlı bekleyen ajan varsa anında uyanır)
+        self.update_task_state(task["task_id"], status="APPROVED_TO_RESUME")
+
+        if task.get("in_place_paused"):
+            wait_deadline = time.monotonic() + 10.0
+            while time.monotonic() < wait_deadline:
+                fresh_task, _ = self.get_task(task["task_id"], tenant_id=found_tenant)
+                if fresh_task and str(fresh_task.get("status", "")).upper() == "COMPLETED":
+                    console.print(
+                        f"[bold green]✔ Duraklatılmış ajan '{task['task_id']}' onay sinyalini aldı ve kaldığı yerden tamamlandı![/bold green]"
+                    )
+                    return {
+                        "status": "COMPLETED",
+                        "agent_state": "resumed",
+                        "task_id": fresh_task["task_id"],
+                        "service": fresh_task["service"],
+                        "tenant_id": found_tenant,
+                        "completed_at": fresh_task.get("completed_at"),
+                        "response": fresh_task.get("response"),
+                    }
+                time.sleep(0.4)
+
+        # 2. Ajan canlı beklemiyorsa veya devralınması gerekiyorsa doğrudan yürüt
         from healer import SessionHealer
 
         resolved_target_url = self._resolve_session_target_url(
@@ -284,46 +544,49 @@ class HITLQueueManager:
                 except Exception:
                     pass
 
-        healer = SessionHealer(
-            target_url=resolved_target_url,
-            tenant_id=found_tenant,
-            service=task["service"],
-            mode="local",
-            non_interactive=False,
+        self.update_task_state(task["task_id"], status="RESUMING")
+
+        prev_resuming = os.environ.get("OWNAPI_HITL_RESUMING")
+        os.environ["OWNAPI_HITL_RESUMING"] = "1"
+        try:
+            healer = SessionHealer(
+                target_url=resolved_target_url,
+                tenant_id=found_tenant,
+                service=task["service"],
+                mode=str(task.get("mode") or "local"),
+                non_interactive=False,
+            )
+
+            response = healer.execute_in_browser(
+                method=task["method"],
+                url=task["url"],
+                headers=req_headers,
+                params=task.get("params") or {},
+                json_payload=req_payload,
+                target_url=resolved_target_url,
+                tenant_id=found_tenant,
+                mode=str(task.get("mode") or "local"),
+                non_interactive=False,
+            )
+        finally:
+            if prev_resuming is None:
+                os.environ.pop("OWNAPI_HITL_RESUMING", None)
+            else:
+                os.environ["OWNAPI_HITL_RESUMING"] = prev_resuming
+
+        updated = self.update_task_state(
+            task["task_id"],
+            status="COMPLETED",
+            response=response,
         )
-
-        response = healer.execute_in_browser(
-            method=task["method"],
-            url=task["url"],
-            headers=req_headers,
-            params=task.get("params") or {},
-            json_payload=req_payload,
-            target_url=resolved_target_url,
-            tenant_id=found_tenant,
-            mode="local",
-            non_interactive=False,
-        )
-
-        # Kuyruk durumunu COMPLETED olarak güncelle
-        q_data = self._load_queue_data(found_tenant)
-        tasks = q_data.get("tasks", [])
-        now_iso = datetime.now(timezone.utc).isoformat()
-        for item in tasks:
-            if item.get("task_id") == task["task_id"]:
-                item["status"] = "COMPLETED"
-                item["updated_at"] = now_iso
-                item["completed_at"] = now_iso
-                if isinstance(response, dict):
-                    item["response_keys"] = list(response.keys())[:10]
-                break
-
-        self._save_queue_data(found_tenant, tasks)
+        now_iso = (updated or {}).get("completed_at") or datetime.now(timezone.utc).isoformat()
 
         console.print(
-            f"[bold green]✔ Görev '{task['task_id']}' başarıyla onaylandı ve tamamlandı (COMPLETED)![/bold green]"
+            f"[bold green]✔ Görev '{task['task_id']}' başarıyla onaylandı ve kaldığı yerden tamamlandı (COMPLETED)![/bold green]"
         )
         return {
             "status": "COMPLETED",
+            "agent_state": "resumed",
             "task_id": task["task_id"],
             "service": task["service"],
             "tenant_id": found_tenant,
@@ -331,11 +594,11 @@ class HITLQueueManager:
             "response": response,
         }
 
-    def print_queue_table(self, tenant_id: str | None = "default", status_filter: str | None = None) -> None:
+    def print_queue_table(self, tenant_id: str | None = None, status_filter: str | None = None) -> None:
         """Kuyruktaki bekleyen ve tamamlanan görevleri Rich tablosu olarak ekrana basar."""
         tasks = self.list_tasks(tenant_id=tenant_id, status_filter=status_filter)
         if not tasks:
-            console.print("[yellow]HITL onay kuyruğunda kayıtlı görev bulunmuyor.[/yellow]")
+            console.print("[yellow]HITL onay kuyruğunda (.sessions/hitl_state.json) kayıtlı görev bulunmuyor.[/yellow]")
             return
 
         table = Table(
@@ -352,9 +615,9 @@ class HITLQueueManager:
         table.add_column("Oluşturulma / Tamamlanma", style="dim")
 
         for t in tasks:
-            st = str(t.get("status", "PENDING_USER_ACTION"))
-            if st == "PENDING_USER_ACTION":
-                badge = "[bold red]⏳ PENDING_USER_ACTION[/bold red]"
+            st = str(t.get("status", "PAUSED")).upper()
+            if self.is_pending_status(st):
+                badge = f"[bold red]⏸️ {st}[/bold red]"
             elif st == "COMPLETED":
                 badge = "[bold green]✔ COMPLETED[/bold green]"
             else:

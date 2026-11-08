@@ -315,7 +315,9 @@ class AutoRepairEngine:
 
         # Arka plan taramasında input() kilitlenmesini önlemek için OWNAPI_NON_INTERACTIVE=1 aç
         prev_ni = os.environ.get("OWNAPI_NON_INTERACTIVE")
+        prev_pw = os.environ.get("OWNAPI_HITL_PAUSE_AND_WAIT")
         os.environ["OWNAPI_NON_INTERACTIVE"] = "1"
+        os.environ["OWNAPI_HITL_PAUSE_AND_WAIT"] = "0"
 
         service_reports: list[dict[str, Any]] = []
         healthy_count = 0
@@ -360,10 +362,10 @@ class AutoRepairEngine:
                             tenant_id=self.tenant_id,
                             mode=self.mode,
                         )
-                        if isinstance(res, dict) and res.get("status") == "PENDING_USER_APPROVAL":
+                        if isinstance(res, dict) and str(res.get("status", "")).upper() in ("PAUSED", "PENDING_USER_APPROVAL", "PENDING_USER_ACTION"):
                             is_pending_hitl = True
                             hitl_task_id = res.get("task_id")
-                            last_detail = f"HITL Kuyruğunda Onay Bekliyor (task_id={hitl_task_id})"
+                            last_detail = f"HITL Kuyruğunda PAUSED / Onay Bekliyor (task_id={hitl_task_id})"
                             break
 
                         ok, detail = _is_valid_json_response(res)
@@ -512,6 +514,10 @@ class AutoRepairEngine:
                 os.environ.pop("OWNAPI_NON_INTERACTIVE", None)
             else:
                 os.environ["OWNAPI_NON_INTERACTIVE"] = prev_ni
+            if prev_pw is None:
+                os.environ.pop("OWNAPI_HITL_PAUSE_AND_WAIT", None)
+            else:
+                os.environ["OWNAPI_HITL_PAUSE_AND_WAIT"] = prev_pw
 
         summary_report = {
             "timestamp": datetime.now(timezone.utc).isoformat(),

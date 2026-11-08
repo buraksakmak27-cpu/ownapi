@@ -212,6 +212,23 @@
       <button onclick="document.getElementById('statusToast').classList.add('hidden')" class="text-gray-400 hover:text-white text-xs">✕</button>
     </div>
 
+    <!-- CANLI HITL ONAY BANDI (.sessions/hitl_state.json — 2sn Polling ile F5 Sonrası Anında Görünür) -->
+    <div id="liveHitlBanner" class="hidden rounded-xl p-4 border border-amber-500/50 bg-amber-950/30 space-y-3 shadow-lg shadow-amber-950/20">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+        <div class="flex items-center gap-2.5">
+          <span class="inline-flex h-3 w-3 rounded-full bg-amber-400 animate-ping"></span>
+          <span class="text-xs font-bold uppercase tracking-wider text-amber-300">
+            ⏸️ Bekleyen HITL Ajan Onayları (.sessions/hitl_state.json)
+          </span>
+          <span id="liveHitlBannerCount" class="px-2 py-0.5 text-[11px] font-mono rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/40">0 PAUSED</span>
+        </div>
+        <button onclick="switchTab('hitl')" class="text-xs text-amber-300 hover:text-white underline font-medium text-left sm:text-right">
+          HITL Onay Kuyruğu Sekmesine Git →
+        </button>
+      </div>
+      <div id="liveHitlBannerList" class="space-y-2"></div>
+    </div>
+
     <!-- ========================================================= -->
     <!-- SEKME 1: REGISTRY MARKETPLACE                             -->
     <!-- ========================================================= -->
@@ -1069,26 +1086,76 @@ print(response)`;
       }
     }
 
-    async function loadHitlQueue() {
-      const res = await fetch('/api/v1/hitl/queue');
-      const data = await res.json();
-      const tbody = document.getElementById('hitlTableBody');
+    const PENDING_HITL_SET = new Set(['PAUSED', 'PENDING_USER_ACTION', 'PENDING_USER_APPROVAL', 'APPROVED_TO_RESUME', 'RESUMING']);
+    let lastHitlSignature = '';
+
+    function renderHitlTasksUI(data) {
       const tasks = data.tasks || [];
+      const pendingTasks = data.pending_tasks || tasks.filter(t => PENDING_HITL_SET.has(String(t.status || '').toUpperCase()));
+      const pendingCount = data.pending_count ?? pendingTasks.length;
+
+      const kpiEl = document.getElementById('kpiPendingHitl');
+      if (kpiEl) kpiEl.textContent = pendingCount;
+
+      const hitlBadge = document.getElementById('tabHitlBadge');
+      if (hitlBadge) {
+        if (pendingCount > 0) {
+          hitlBadge.textContent = pendingCount;
+          hitlBadge.classList.remove('hidden');
+        } else {
+          hitlBadge.classList.add('hidden');
+        }
+      }
+
+      // Üst canlı HITL onay bandını güncelle (F5 sonrasında hangi sekmede olunursa olunsun anında görünür)
+      const banner = document.getElementById('liveHitlBanner');
+      const bannerCount = document.getElementById('liveHitlBannerCount');
+      const bannerList = document.getElementById('liveHitlBannerList');
+      if (banner && bannerList) {
+        if (pendingTasks.length > 0) {
+          banner.classList.remove('hidden');
+          if (bannerCount) bannerCount.textContent = `${pendingTasks.length} PAUSED`;
+          bannerList.innerHTML = pendingTasks.map(t => `
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 bg-bgBase/90 border border-amber-500/30 rounded-lg px-3.5 py-2.5 text-xs">
+              <div class="space-y-0.5">
+                <div class="flex items-center gap-2 flex-wrap">
+                  <span class="font-mono font-bold text-cyan-400">${t.task_id}</span>
+                  <span class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 font-mono text-[10px]">⏸️ ${t.status || 'PAUSED'}</span>
+                  <span class="font-semibold text-white">${t.service}</span>
+                  <span class="text-gray-400">(${t.tenant_id || 'default'})</span>
+                </div>
+                <div class="text-amber-200/90 text-[11px]">${t.reason || 'WAF / Captcha doğrulaması bekleniyor'} — <span class="font-mono text-gray-400">${t.method} ${t.url}</span></div>
+              </div>
+              <button onclick="approveHitlTask('${t.task_id}')"
+                class="px-3.5 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs transition shadow whitespace-nowrap flex items-center gap-1.5">
+                <span>▶️</span> Onayla & Kaldığı Yerden Devam Et (Resume)
+              </button>
+            </div>
+          `).join('');
+        } else {
+          banner.classList.add('hidden');
+          bannerList.innerHTML = '';
+        }
+      }
+
+      const tbody = document.getElementById('hitlTableBody');
+      if (!tbody) return;
 
       if (!tasks.length) {
-        tbody.innerHTML = `<tr><td colspan="7" class="py-6 text-center text-gray-500">HITL kuyruğunda bekleyen veya tamamlanan görev bulunmuyor.</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="7" class="py-6 text-center text-gray-500">HITL kuyruğunda (.sessions/hitl_state.json) bekleyen veya tamamlanan görev bulunmuyor.</td></tr>`;
         return;
       }
 
       tbody.innerHTML = tasks.map(t => {
-        const isPending = t.status === 'PENDING_USER_ACTION';
+        const st = String(t.status || 'PAUSED').toUpperCase();
+        const isPending = PENDING_HITL_SET.has(st);
         const badge = isPending
-          ? `<span class="px-2 py-0.5 rounded-full bg-rose-500/20 text-rose-400 border border-rose-500/30 font-mono text-[10px]">⏳ PENDING_USER_ACTION</span>`
+          ? `<span class="px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/40 font-mono text-[10px]">⏸️ ${st}</span>`
           : `<span class="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 font-mono text-[10px]">✔ COMPLETED</span>`;
 
         const actionBtn = isPending
-          ? `<button onclick="approveHitlTask('${t.task_id}')" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs transition shadow">✅ Tarayıcıda Onayla & Devam Et</button>`
-          : `<span class="text-gray-500 text-[11px]">Tamamlandı</span>`;
+          ? `<button onclick="approveHitlTask('${t.task_id}')" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs transition shadow">▶️ Onayla & Devam Et (Resume)</button>`
+          : `<span class="text-emerald-400/80 font-mono text-[11px]">✔ Kaldığı Yerden Tamamlandı</span>`;
 
         return `
           <tr class="hover:bg-bgElevated/50 transition">
@@ -1104,16 +1171,40 @@ print(response)`;
       }).join('');
     }
 
-    async function approveHitlTask(taskId) {
-      showToast(`🌐 <b>${taskId}</b> görevi için yerel Chrome penceresi açılıyor. Lütfen doğrulamayı tamamlayın...`);
+    async function loadHitlQueue() {
       try {
-        const res = await fetch(`/api/v1/hitl/approve/${encodeURIComponent(taskId)}`, { method: 'POST' });
+        const res = await fetch('/api/hitl/pending', { cache: 'no-store' });
+        const data = await res.json();
+        renderHitlTasksUI(data);
+      } catch (err) {
+        console.warn('HITL state okuma uyarısı:', err);
+      }
+    }
+
+    async function pollHitlPending() {
+      try {
+        const res = await fetch('/api/hitl/pending', { cache: 'no-store' });
+        if (!res.ok) return;
+        const data = await res.json();
+        const sig = JSON.stringify((data.tasks || []).map(t => `${t.task_id}:${t.status}:${t.updated_at}`));
+        if (sig !== lastHitlSignature) {
+          lastHitlSignature = sig;
+          renderHitlTasksUI(data);
+        }
+      } catch (_) {}
+    }
+
+    async function approveHitlTask(taskId) {
+      showToast(`▶️ <b>${taskId}</b> görevi için onay sinyali gönderildi. Duraklatılan ajan kaldığı yerden ('resume') devam ettiriliyor...`);
+      try {
+        const res = await fetch(`/api/hitl/approve/${encodeURIComponent(taskId)}`, { method: 'POST' });
         const data = await res.json();
         if (res.ok && data.success) {
-          showToast(`✅ Görev <b>${taskId}</b> başarıyla onaylandı ve tamamlandı!`);
+          showToast(`✅ Görev <b>${taskId}</b> başarıyla onaylandı ve kaldığı yerden tamamlandı (COMPLETED)!`);
         } else {
           showToast(`✖ Görev onaylama hatası: ${data.detail || data.error}`, true);
         }
+        lastHitlSignature = '';
         await refreshAllData();
       } catch (err) {
         showToast(`✖ Hata: ${err}`, true);
@@ -1297,7 +1388,10 @@ print(response)`;
     }
 
     window.addEventListener('DOMContentLoaded', () => {
+      pollHitlPending();
       refreshAllData();
+      // Her 2 saniyede bir .sessions/hitl_state.json üzerinden bekleyen HITL onaylarını sorgula
+      setInterval(pollHitlPending, 2000);
     });
   </script>
 </body>
