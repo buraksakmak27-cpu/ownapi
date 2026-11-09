@@ -7,6 +7,7 @@ from typing import Any
 from urllib.parse import urljoin
 
 from core.consent import ConsentManager
+from core.form_automation import GenericFormAutomator, extract_semantic_form_params
 from core.token_store import TokenStore
 
 logger = logging.getLogger("own_api.base_client")
@@ -49,6 +50,7 @@ class BaseOwnClient(ABC):
         )
         self.token_store = token_store or TokenStore()
         self.consent_manager = consent_manager or ConsentManager()
+        self.form_automator = GenericFormAutomator()
 
         from healer import SessionHealer
 
@@ -87,11 +89,15 @@ class BaseOwnClient(ABC):
         target_url: str | None = None,
         mode: str | None = None,
         non_interactive: bool | None = None,
+        form_params: dict[str, Any] | None = None,
+        auto_fill_form: bool | None = None,
         **kwargs: Any,
     ) -> dict[str, Any]:
         """
         İsteği ilk çağrıda ToS / Kullanıcı Delegasyon Onay kaydını doğrulayarak
         kullanıcının gerçek tarayıcı oturumu (In-Browser Fetch) üzerinden yürütür.
+        Sayfa yüklendiğinde Generic Form Automation katmanı ile semantik input'ları
+        (origin/destination, departure/return date, autocomplete ve arama butonu) otonom doldurur.
         TokenStore'daki izole çerezler tarayıcıya otomatik enjekte edilir ve işlem sonunda güncellenir.
         """
         active_mode = (mode or self.mode or "local").strip().lower()
@@ -127,6 +133,13 @@ class BaseOwnClient(ABC):
                 req_headers["user-agent"] = stored_ua
 
         payload = json_payload if json_payload is not None else data
+        resolved_form_params = extract_semantic_form_params(
+            json_payload=payload,
+            params=params,
+            url=full_url,
+            target_url=target_url or self.base_url,
+            explicit_form_params=form_params,
+        )
 
         from healer import ResponseDict
 
@@ -140,6 +153,8 @@ class BaseOwnClient(ABC):
             tenant_id=self.tenant_id,
             mode=active_mode,
             non_interactive=active_non_interactive,
+            form_params=resolved_form_params,
+            auto_fill_form=auto_fill_form,
         )
         if isinstance(res, dict) and not isinstance(res, ResponseDict):
             return ResponseDict(res)

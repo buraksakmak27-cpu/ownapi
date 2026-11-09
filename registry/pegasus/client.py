@@ -95,6 +95,12 @@ class PegasusClient(BaseOwnClient):
             headers=headers,
             params=params,
             json_payload=payload,
+            form_params={
+                "origin": departure_port,
+                "destination": arrival_port,
+                "departure_date": departure_date,
+                "return_date": return_date,
+            },
         )
 
 

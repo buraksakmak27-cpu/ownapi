@@ -618,6 +618,8 @@ class SessionHealer:
         tenant_id: str | None = None,
         mode: str | None = None,
         non_interactive: bool | None = None,
+        form_params: dict[str, Any] | None = None,
+        auto_fill_form: bool | None = None,
     ) -> dict[str, Any]:
         """
         OwnAPI User-Delegated Browser Middleware:
@@ -1153,7 +1155,13 @@ class SessionHealer:
                 except Exception:
                     pass
 
-                # Adım 2: İlgili gidiş-dönüş arama URL'sine (search_state_url) giderek sayfa state'ini oluştur
+                # Adım 2: Sayfada arama formu varsa Generic Form Automation ile otonom doldur
+                try:
+                    await _run_smart_form_automation(page_obj, p_load)
+                except Exception:
+                    pass
+
+                # Adım 3: İlgili gidiş-dönüş arama URL'sine (search_state_url) giderek sayfa state'ini oluştur
                 console.print(
                     f"[bold cyan]🧭 THY arama URL'sine gidilerek sayfa state'i oluşturuluyor:[/bold cyan] [white]{search_state_url}[/white]"
                 )
@@ -1168,6 +1176,55 @@ class SessionHealer:
 
                 await asyncio.sleep(3.0)
                 return search_state_url
+
+            async def _run_smart_form_automation(
+                page_obj: Any,
+                p_load: Any = None,
+            ) -> dict[str, Any]:
+                """
+                Genel Amaçlı Akıllı Form Otomasyonu (Generic Form Automation):
+                1. Sayfa yüklendiğinde origin/destination ve departure/return date input'larını
+                   semantik olarak (placeholder, name, aria-label, id, label) bulup otonom doldurur.
+                2. Autocomplete listesi çıkarsa ilk eşleşen sonuca tıklar.
+                3. Arama / uçuş bul butonunu otomatik tespit edip tıklayarak SPA state'ini oluşturur.
+                """
+                if auto_fill_form is False:
+                    return {"executed": False}
+                try:
+                    from core.form_automation import (
+                        extract_semantic_form_params,
+                        run_generic_form_automation,
+                    )
+
+                    active_body = p_load if p_load is not None else req_payload
+                    sem_params = extract_semantic_form_params(
+                        json_payload=active_body,
+                        params=req_params,
+                        url=full_req_url,
+                        target_url=raw_visit_url,
+                        explicit_form_params=form_params,
+                    )
+                    has_route_or_date = bool(
+                        sem_params.get("origin")
+                        or sem_params.get("destination")
+                        or sem_params.get("departure_date")
+                        or sem_params.get("return_date")
+                    )
+                    if not has_route_or_date and not auto_fill_form and not form_params:
+                        return {"executed": False}
+
+                    return await run_generic_form_automation(
+                        page=page_obj,
+                        form_params=sem_params,
+                        json_payload=active_body,
+                        params=req_params,
+                        url=full_req_url,
+                        target_url=raw_visit_url,
+                        submit_form=True,
+                    )
+                except Exception as fa_exc:
+                    console.print(f"[dim]Generic Form Automation uyarısı: {fa_exc}[/dim]")
+                    return {"executed": False}
 
             console.print(f"[bold cyan]🌐 Tarayıcı açılıyor:[/bold cyan] [white]{visit_url}[/white]")
             try:
@@ -1200,6 +1257,10 @@ class SessionHealer:
                     cid=req_headers.get("x-client-id") or req_headers.get("x-clientid"),
                 )
                 val_payload = _build_validate_payload(req_payload)
+            elif not is_thy_availability and (is_resuming_hitl or not await self._detect_challenge(page)):
+                # Diğer tüm siteler (Pegasus, Enuygun, Obilet veya yeni eklenen siteler) için
+                # Generic Form Automation katmanını çalıştırarak SPA state'ini oluştur!
+                await _run_smart_form_automation(page, req_payload)
 
             # Eğer arama URL'sine gidildiğinde sayfa kendi başına dolu /api/v1/availability yanıtı aldıysa onu kullan
             pre_captured = captured_browser_response.get("text", "")
@@ -1364,7 +1425,7 @@ class SessionHealer:
                     await asyncio.sleep(2.0)
 
                 # WAF/Captcha geçildikten ve HITL onayı alındıktan sonra:
-                # Doğrudan /api/v1/availability isteği atmadan ÖNCE ilgili arama URL'sine gidip sayfa state'ini oluştur!
+                # Doğrudan API isteği atmadan ÖNCE Generic Form Automation ve arama URL'si ile sayfa state'ini oluştur!
                 if is_thy_availability:
                     fresh_waf_cid = str(uuid.uuid4())
                     await _prepare_thy_search_page_state(
@@ -1374,6 +1435,8 @@ class SessionHealer:
                         cid=fresh_waf_cid,
                     )
                     val_payload = _build_validate_payload(req_payload)
+                else:
+                    await _run_smart_form_automation(page, req_payload)
 
                 captured_after_waf = captured_browser_response.get("text", "")
                 if is_thy_availability and captured_after_waf and _is_populated_availability(captured_after_waf):
@@ -1655,11 +1718,13 @@ class SessionHealer:
         tenant_id: str | None = None,
         mode: str | None = None,
         non_interactive: bool | None = None,
+        form_params: dict[str, Any] | None = None,
+        auto_fill_form: bool | None = None,
     ) -> dict[str, Any]:
         """
         OwnAPI User-Delegated Browser Middleware:
-        Ä°steÄŸi seÃ§ilen modda ('local' yerel Chrome veya 'cloud' Docker/Remote Browser)
-        doÄŸrudan tarayÄ±cÄ±nÄ±n kendi JavaScript ortamÄ±nda (page.evaluate fetch) Ã§alÄ±ÅŸtÄ±rÄ±r.
+        İsteği seçilen modda ('local' yerel Chrome veya 'cloud' Docker/Remote Browser)
+        doğrudan tarayıcının kendi JavaScript ortamında (page.evaluate fetch) çalıştırır.
         """
         return self._run_sync(
             self.aexecute_in_browser(
@@ -1674,6 +1739,8 @@ class SessionHealer:
                 tenant_id=tenant_id,
                 mode=mode,
                 non_interactive=non_interactive,
+                form_params=form_params,
+                auto_fill_form=auto_fill_form,
             )
         )
 

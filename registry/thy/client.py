@@ -437,8 +437,8 @@ def search_flights(
             break
 
     # User-Delegated Browser Middleware:
-    # Önce tarayıcıda ana sayfaya ve gidiş-dönüş arama URL'sine (search_url) gidip sayfa state'ini oluştur,
-    # ardından fetch tüneli üzerinden /api/v1/availability POST isteğini yürüt.
+    # Önce tarayıcıda ana sayfaya ve gidiş-dönüş arama URL'sine (search_url) gidip Generic Form Automation
+    # ve sayfa state'ini oluştur, ardından fetch tüneli üzerinden /api/v1/availability POST isteğini yürüt.
     raw_response = healer.execute_in_browser(
         method="POST",
         url=THY_AVAILABILITY_URL,
@@ -449,6 +449,12 @@ def search_flights(
         tenant_id=tenant_id,
         mode=mode,
         non_interactive=non_interactive,
+        form_params={
+            "origin": origin_airport_code,
+            "destination": destination_airport_code,
+            "departure_date": departure_date,
+            "return_date": return_date or "",
+        },
     )
 
     # Hata Detayı: Eğer 400 Bad Request dönerse gönderilen payload ve dönen yanıt detayını yazdır

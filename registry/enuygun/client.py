@@ -28,14 +28,38 @@ class EnuygunClient(BaseOwnClient):
             mode=mode,
         )
 
-    def get_popular_flights(self, referer: str = "https://www.enuygun.com/ucak-bileti") -> dict[str, Any]:
+    def get_popular_flights(
+        self,
+        referer: str = "https://www.enuygun.com/ucak-bileti",
+        origin: str | None = None,
+        destination: str | None = None,
+        departure_date: str | None = None,
+        return_date: str | None = None,
+    ) -> dict[str, Any]:
         url = "https://www.enuygun.com/napi/v1/flights/populars"
         headers = {
             "referer": "https://www.enuygun.com/ucak-bileti/",
             "accept": "application/json, text/plain, */*",
         }
         params = {"referer": referer}
-        return self.request(method="GET", url=url, headers=headers, params=params, json_payload=None)
+        form_params = {
+            k: v
+            for k, v in {
+                "origin": origin,
+                "destination": destination,
+                "departure_date": departure_date,
+                "return_date": return_date,
+            }.items()
+            if v
+        }
+        return self.request(
+            method="GET",
+            url=url,
+            headers=headers,
+            params=params,
+            json_payload=None,
+            form_params=form_params or None,
+        )
 
 
 def get_popular_flights(

@@ -1,47 +1,88 @@
-import sys, pathlib; sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[2]))
-import httpx
-from healer import SessionHealer
-import time
+from __future__ import annotations
 
-class BaseOwnClient:
-    def __init__(self, base_url: str):
-        self.base_url = base_url
+import pathlib
+import sys
+import time
+from typing import Any
+
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[2]))
+sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
+
+from core.base_client import BaseOwnClient
+from core.token_store import TokenStore
+
 
 class UcakBiletiClient(BaseOwnClient):
-    def __init__(self, base_url: str = "https://www.obilet.com"):
-        super().__init__(base_url)
+    """Obilet / Uçak Bileti servisi için OwnAPI User-Delegated Browser Middleware + Generic Form Automation istemcisi."""
 
-    def search_flight_offers(self, origin_id: str = "250_0", destination_id: str = "1912_170", departure_date: str = "20270707", return_date: str = "20270714", tenant_id: str = "default", mode: str = "local") -> dict:
+    def __init__(
+        self,
+        base_url: str = "https://www.obilet.com",
+        tenant_id: str = "default",
+        token_store: TokenStore | None = None,
+        mode: str = "local",
+    ) -> None:
+        super().__init__(
+            service_name="ucak_bileti",
+            base_url=base_url,
+            tenant_id=tenant_id,
+            token_store=token_store,
+            mode=mode,
+        )
+
+    def search_flight_offers(
+        self,
+        origin_id: str = "250_0",
+        destination_id: str = "1912_170",
+        departure_date: str = "20270707",
+        return_date: str = "20270714",
+        tenant_id: str | None = None,
+        mode: str | None = None,
+    ) -> dict[str, Any]:
         """
-        İki şehir ve tarih arasında uçak bileti seferlerini ve fiyatlarını sorgular.
-
-        :param origin_id: Kalkış şehrinin ve havaalanının ID'si.
-        :param destination_id: Varış şehrinin ve havaalanının ID'si.
-        :param departure_date: Kalkış tarihi (YYYYMMDD formatında).
-        :param return_date: Dönüş tarihi (YYYYMMDD formatında).
-        :return: Uçuş tekliflerinin JSON yanıtı.
+        İki şehir ve tarih arasında uçak bileti seferlerini ve fiyatlarını
+        Generic Form Automation + In-Browser Fetch katmanı üzerinden sorgular.
         """
         url = f"{self.base_url}/json/ucuslar/async/{origin_id}-{destination_id}/{departure_date}-{return_date}/2a-1c-1s/economy"
         headers = {
             "accept": "application/json",
             "content-type": "application/json",
-            "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",
             "origin": "https://www.obilet.com",
-            "referer": "https://www.obilet.com/ucuslar/250_0-1912_170/20270707-20270714/2a-1c-1s/economy/all"
+            "referer": f"https://www.obilet.com/ucuslar/{origin_id}-{destination_id}/{departure_date}-{return_date}/2a-1c-1s/economy/all",
         }
-        healer = SessionHealer()
-        headers, params = healer.apply_to_request(headers, {})
+        return self.request(
+            method="GET",
+            url=url,
+            headers=headers,
+            target_url="https://www.obilet.com/ucak-bileti",
+            mode=mode or self.mode,
+            form_params={
+                "origin": origin_id,
+                "destination": destination_id,
+                "departure_date": departure_date,
+                "return_date": return_date,
+            },
+        )
 
-        with httpx.Client(timeout=15.0) as client:
-            response = client.get(url, headers=headers)
 
-            if response.status_code in (401, 403, 429):
-                healer.heal()
-                headers, params = healer.apply_to_request(headers, {})
-                response = client.get(url, headers=headers)
+def search_flight_offers(
+    origin_id: str = "250_0",
+    destination_id: str = "1912_170",
+    departure_date: str = "20270707",
+    return_date: str = "20270714",
+    tenant_id: str = "default",
+    mode: str = "local",
+) -> dict[str, Any]:
+    client = UcakBiletiClient(tenant_id=tenant_id, mode=mode)
+    return client.search_flight_offers(
+        origin_id=origin_id,
+        destination_id=destination_id,
+        departure_date=departure_date,
+        return_date=return_date,
+        tenant_id=tenant_id,
+        mode=mode,
+    )
 
-            response.raise_for_status()
-            return response.json()
 
 if __name__ == "__main__":
     client = UcakBiletiClient()
@@ -50,4 +91,4 @@ if __name__ == "__main__":
     end_time = time.perf_counter()
     duration = (end_time - start_time) * 1000
     print(f"Sorgu süresi: {duration:.2f} ms")
-    print("Uçuş teklifleri:", result.get("data", {}).get("result", {}))
+    print("Uçuş teklifleri:", result.get("data", {}).get("result", {}) if isinstance(result, dict) else result)
