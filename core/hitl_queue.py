@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import asyncio
+import base64
+import html
 import json
 import os
 import time
@@ -137,7 +139,7 @@ class HITLQueueManager:
         except Exception:
             pass
 
-        tasks = [tasks_by_id[tid] for tid in ordered_ids if tid in tasks_by_id]
+        tasks = [self._normalize_task_fields(tasks_by_id[tid]) for tid in ordered_ids if tid in tasks_by_id]
         pending_count = sum(1 for t in tasks if self.is_pending_status(t.get("status")))
         completed_count = sum(1 for t in tasks if str(t.get("status", "")).upper() == "COMPLETED")
         return {
@@ -149,6 +151,111 @@ class HITLQueueManager:
             "completed_count": completed_count,
             "tasks": tasks,
         }
+
+    def _resolve_execution_mode(self, tenant_id: str, explicit_mode: str | None = None) -> str:
+        """Görevin çalışma modunu ('local' veya 'cloud') belirler."""
+        cand = str(explicit_mode or "").strip().lower()
+        if cand in ("local", "cloud"):
+            return cand
+        env_mode = os.getenv("OWNAPI_BROWSER_MODE", "").strip().lower()
+        if env_mode in ("local", "cloud"):
+            return env_mode
+        try:
+            from core.api_keys import get_tenant_info
+            info = get_tenant_info(tenant_id)
+            t_mode = str(info.get("mode", "")).strip().lower()
+            if t_mode in ("local", "cloud"):
+                return t_mode
+        except Exception:
+            pass
+        return "local"
+
+    def _normalize_task_fields(self, task: dict[str, Any]) -> dict[str, Any]:
+        """Mevcut alanları bozmadan Cloud HITL önizleme alanlarının varlığını garanti eder."""
+        tid = str(task.get("task_id", "")).strip()
+        exec_mode = str(task.get("execution_mode") or task.get("mode") or "local").strip().lower()
+        if exec_mode not in ("local", "cloud"):
+            exec_mode = "local"
+        task.setdefault("execution_mode", exec_mode)
+        task.setdefault("mode", exec_mode)
+        task.setdefault("screenshot_b64", None)
+        task.setdefault("cloud_preview_url", f"/api/hitl/preview/{tid}" if tid else None)
+        return task
+
+    @staticmethod
+    async def capture_page_screenshot_b64(page: Any) -> str | None:
+        """
+        Açık olan Playwright `page` nesnesinden otomatik olarak ekran görüntüsü
+        (`await page.screenshot()`) alır ve base64 (`screenshot_b64`) olarak döndürür.
+        """
+        if page is None:
+            return None
+        try:
+            raw_bytes = await page.screenshot()
+            if isinstance(raw_bytes, (bytes, bytearray)) and raw_bytes:
+                return base64.b64encode(bytes(raw_bytes)).decode("ascii")
+        except Exception:
+            pass
+        return None
+
+    def _persist_screenshot_file(self, tenant_id: str, task_id: str, screenshot_b64: str | None) -> None:
+        """Varsa base64 ekran görüntüsünü `.sessions/{tenant_id}/{task_id}.png` olarak diske de kaydeder."""
+        if not screenshot_b64:
+            return
+        try:
+            clean_b64 = str(screenshot_b64).strip()
+            if "," in clean_b64 and clean_b64.startswith("data:image/"):
+                clean_b64 = clean_b64.split(",", 1)[1]
+            raw_bytes = base64.b64decode(clean_b64)
+            t_dir = self.sessions_root / self._sanitize(tenant_id)
+            t_dir.mkdir(parents=True, exist_ok=True)
+            (t_dir / f"{task_id}.png").write_bytes(raw_bytes)
+        except Exception:
+            pass
+
+    @staticmethod
+    def _build_default_preview_b64(task: dict[str, Any]) -> str:
+        """
+        Eğer görevde ham PNG ekran görüntüsü yoksa, uzak bulut tarayıcı durumunu
+        gösteren yüksek çözünürlüklü bir SVG ekran önizlemesini base64 olarak üretir.
+        """
+        task_id = html.escape(str(task.get("task_id") or "hitl_task"))
+        service = html.escape(str(task.get("service") or "service").upper())
+        exec_mode = html.escape(str(task.get("execution_mode") or task.get("mode") or "cloud").upper())
+        status = html.escape(str(task.get("status") or "PAUSED").upper())
+        target_url = html.escape(str(task.get("target_url") or task.get("url") or "https://")[0:78])
+        reason = html.escape(str(task.get("reason") or "WAF / Captcha / 2FA doğrulaması bekleniyor")[0:85])
+        updated = html.escape(str(task.get("updated_at") or task.get("created_at") or "")[:19].replace("T", " "))
+
+        svg = (
+            '<svg xmlns="http://www.w3.org/2000/svg" width="840" height="360" viewBox="0 0 840 360">'
+            '<defs>'
+            '<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">'
+            '<stop offset="0%" stop-color="#0b1020"/>'
+            '<stop offset="100%" stop-color="#111827"/>'
+            '</linearGradient>'
+            '</defs>'
+            '<rect width="840" height="360" rx="14" fill="url(#bg)" stroke="#334155" stroke-width="2"/>'
+            '<rect x="0" y="0" width="840" height="46" rx="14" fill="#1e293b"/>'
+            '<circle cx="24" cy="23" r="6" fill="#f43f5e"/>'
+            '<circle cx="44" cy="23" r="6" fill="#f59e0b"/>'
+            '<circle cx="64" cy="23" r="6" fill="#10b981"/>'
+            '<rect x="92" y="10" width="580" height="26" rx="6" fill="#0f172a" stroke="#334155"/>'
+            f'<text x="106" y="27" fill="#38bdf8" font-family="monospace" font-size="12">🔒 {target_url}</text>'
+            f'<rect x="688" y="10" width="134" height="26" rx="6" fill="#0e7490"/>'
+            f'<text x="702" y="27" fill="#ffffff" font-family="monospace" font-weight="bold" font-size="11">☁️ {exec_mode} CDP</text>'
+            '<rect x="48" y="74" width="744" height="248" rx="12" fill="#0f172a" stroke="#f59e0b" stroke-width="1.5" stroke-dasharray="6,4"/>'
+            f'<text x="80" y="116" fill="#fbbf24" font-family="sans-serif" font-weight="bold" font-size="18">🛡️ Uzak Bulut Tarayıcı Güvenlik Doğrulaması ({service})</text>'
+            f'<text x="80" y="148" fill="#e2e8f0" font-family="monospace" font-size="13">Görev ID: {task_id}   |   Durum: {status}   |   Zaman: {updated} UTC</text>'
+            f'<text x="80" y="182" fill="#cbd5e1" font-family="sans-serif" font-size="14">Neden: {reason}</text>'
+            '<rect x="80" y="210" width="360" height="64" rx="10" fill="#1e293b" stroke="#475569"/>'
+            '<rect x="100" y="230" width="24" height="24" rx="5" fill="#10b981"/>'
+            '<text x="106" y="247" fill="#ffffff" font-family="sans-serif" font-weight="bold" font-size="15">✓</text>'
+            '<text x="138" y="247" fill="#f8fafc" font-family="sans-serif" font-weight="bold" font-size="14">Ben insanım (Cloud Interactive Session)</text>'
+            '<text x="470" y="247" fill="#38bdf8" font-family="monospace" font-size="12">Web Dashboard uzerinden Resume bekleniyor...</text>'
+            '</svg>'
+        )
+        return base64.b64encode(svg.encode("utf-8")).decode("ascii")
 
     def _save_global_state(self, tasks: list[dict[str, Any]]) -> None:
         """
@@ -257,6 +364,10 @@ class HITLQueueManager:
         target_url: str | None = None,
         reason: str = "Captcha / WAF / 2FA doğrulaması gerekiyor",
         in_place_paused: bool = False,
+        execution_mode: str | None = None,
+        mode: str | None = None,
+        screenshot_b64: str | None = None,
+        cloud_preview_url: str | None = None,
     ) -> dict[str, Any]:
         """
         WAF/Captcha doğrulaması gerektiren ajan görevini öldürmek yerine 'PAUSED' (`PENDING_USER_ACTION`)
@@ -266,6 +377,8 @@ class HITLQueueManager:
         clean_svc = self._sanitize(service)
         task_id = f"hitl_{uuid.uuid4().hex[:8]}"
         now_iso = datetime.now(timezone.utc).isoformat()
+        resolved_mode = self._resolve_execution_mode(clean_tenant, execution_mode or mode)
+        resolved_preview_url = (cloud_preview_url or "").strip() or f"/api/hitl/preview/{task_id}"
 
         resolved_target_url = self._resolve_session_target_url(clean_svc, url, target_url)
         req_headers = dict(headers or {})
@@ -303,6 +416,10 @@ class HITLQueueManager:
             "legacy_status": "PENDING_USER_ACTION",
             "agent_state": "paused",
             "in_place_paused": bool(in_place_paused),
+            "execution_mode": resolved_mode,
+            "mode": resolved_mode,
+            "screenshot_b64": screenshot_b64,
+            "cloud_preview_url": resolved_preview_url,
             "created_at": now_iso,
             "paused_at": now_iso,
             "updated_at": now_iso,
@@ -319,6 +436,7 @@ class HITLQueueManager:
         if self.webhook_url:
             task_record["webhook_notified"] = self._send_webhook_notification(task_record)
 
+        self._persist_screenshot_file(clean_tenant, task_id, screenshot_b64)
         self._save_global_state(tasks)
 
         console.print(
@@ -326,6 +444,7 @@ class HITLQueueManager:
                 f"[bold yellow]⏸️ Ajan Görevi PAUSED Durumuna Alındı (.sessions/hitl_state.json)![/bold yellow]\n"
                 f"[white]Görev ID (task_id):[/white] [bold cyan]{task_id}[/bold cyan]\n"
                 f"[white]Servis / Tenant:[/white] [magenta]{service}[/magenta] ([cyan]{clean_tenant}[/cyan])\n"
+                f"[white]Çalışma Modu:[/white] [bold cyan]{resolved_mode.upper()}[/bold cyan]\n"
                 f"[white]Neden:[/white] [yellow]{reason}[/yellow]\n"
                 f"[white]Durum:[/white] [bold red]PAUSED (PENDING_USER_ACTION)[/bold red]\n"
                 f"[dim]Web Dashboard üzerinden veya CLI ile onaylandığında kaldığı yerden devam eder:[/dim] [bold green]own-api resume {task_id}[/bold green]",
@@ -341,6 +460,9 @@ class HITLQueueManager:
         status: str,
         response: Any = None,
         extra_fields: dict[str, Any] | None = None,
+        screenshot_b64: str | None = None,
+        cloud_preview_url: str | None = None,
+        execution_mode: str | None = None,
     ) -> dict[str, Any] | None:
         """`.sessions/hitl_state.json` içindeki görevin durumunu ve yanıtını günceller."""
         clean_id = task_id.strip()
@@ -368,15 +490,89 @@ class HITLQueueManager:
                     if isinstance(response, dict):
                         item["response_keys"] = list(response.keys())[:10]
 
+                if screenshot_b64 is not None:
+                    item["screenshot_b64"] = screenshot_b64
+                    self._persist_screenshot_file(str(item.get("tenant_id", "default")), clean_id, screenshot_b64)
+                if cloud_preview_url is not None:
+                    item["cloud_preview_url"] = cloud_preview_url
+                if execution_mode is not None:
+                    clean_exec = str(execution_mode).strip().lower()
+                    if clean_exec in ("local", "cloud"):
+                        item["execution_mode"] = clean_exec
+                        item["mode"] = clean_exec
+
                 if extra_fields:
                     item.update(extra_fields)
 
+                self._normalize_task_fields(item)
                 updated_task = dict(item)
                 break
 
         if updated_task is not None:
             self._save_global_state(tasks)
         return updated_task
+
+    def get_task_preview(self, task_id: str, tenant_id: str | None = None) -> dict[str, Any] | None:
+        """
+        Aktif veya duraklatılmış bir HITL görevi için bulut tarayıcı ekran görüntüsünü (`screenshot_b64`)
+        ve canlı durum önizleme verisini döndürür.
+        """
+        task, found_tenant = self.get_task(task_id, tenant_id=tenant_id)
+        if not task:
+            return None
+
+        normalized = self._normalize_task_fields(dict(task))
+        raw_b64 = normalized.get("screenshot_b64")
+        mime_type = "image/png"
+
+        # Diskte bu göreve ait kaydedilmiş bir ekran görüntüsü varsa oku
+        if not raw_b64:
+            shot_file = self.sessions_root / found_tenant / f"{normalized['task_id']}.png"
+            if shot_file.exists():
+                try:
+                    raw_b64 = base64.b64encode(shot_file.read_bytes()).decode("ascii")
+                    mime_type = "image/png"
+                except Exception:
+                    raw_b64 = None
+
+        if raw_b64:
+            clean_b64 = str(raw_b64).strip()
+            if clean_b64.startswith("data:image/"):
+                data_url = clean_b64
+                if "," in clean_b64:
+                    clean_b64 = clean_b64.split(",", 1)[1]
+            else:
+                # SVG mi PNG mi kontrol et
+                if clean_b64.startswith("PHN2Zy"):
+                    mime_type = "image/svg+xml"
+                data_url = f"data:{mime_type};base64,{clean_b64}"
+        else:
+            clean_b64 = self._build_default_preview_b64(normalized)
+            mime_type = "image/svg+xml"
+            data_url = f"data:{mime_type};base64,{clean_b64}"
+
+        return {
+            "success": True,
+            "task_id": normalized["task_id"],
+            "tenant_id": found_tenant,
+            "service": normalized.get("service"),
+            "status": normalized.get("status", "PAUSED"),
+            "agent_state": normalized.get("agent_state", "paused"),
+            "execution_mode": normalized.get("execution_mode", "local"),
+            "mode": normalized.get("execution_mode", "local"),
+            "method": normalized.get("method", "GET"),
+            "url": normalized.get("url"),
+            "target_url": normalized.get("target_url") or normalized.get("url"),
+            "reason": normalized.get("reason"),
+            "screenshot_b64": clean_b64,
+            "screenshot_mime": mime_type,
+            "screenshot_data_url": data_url,
+            "cloud_preview_url": normalized.get("cloud_preview_url") or f"/api/hitl/preview/{normalized['task_id']}",
+            "has_live_screenshot": bool(normalized.get("screenshot_b64")),
+            "created_at": normalized.get("created_at"),
+            "paused_at": normalized.get("paused_at"),
+            "updated_at": normalized.get("updated_at"),
+        }
 
     async def await_task_resume(
         self,

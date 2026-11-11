@@ -75,13 +75,25 @@
         </div>
       </div>
 
-      <!-- Sağ Kontroller: Tenant Seçici, Mode Switcher (Local vs Cloud), Yenile -->
-      <div class="flex items-center gap-3">
+      <!-- Sağ Kontroller: Canlı Kredi & Mod Göstergesi, Tenant Seçici, Mode Switcher, Yenile -->
+      <div class="flex items-center gap-2.5 flex-wrap justify-end">
+        <!-- Üst Bar Canlı Kredi & Mod Göstergesi -->
+        <div id="topCreditStatusBadge" onclick="switchTab('billing')"
+          title="Paket ve Kredi Detayları için Tıklayın"
+          class="cursor-pointer flex items-center gap-2 bg-bgCard hover:bg-bgElevated border border-emerald-500/40 rounded-lg px-3 py-1.5 text-xs shadow-sm transition">
+          <span id="topStatusDot" class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span id="topStatusConnectionText" class="font-medium text-emerald-300">Bağlı - Bilgisayarın Hazır</span>
+          <span class="text-gray-600">|</span>
+          <span id="topStatusCreditsText" class="font-mono text-gray-200">Kullanılan: 0 / 1.000 Kredi</span>
+          <span class="text-gray-600 hidden sm:inline">|</span>
+          <span id="topStatusPlanText" class="hidden sm:inline font-semibold text-indigo-300">Paket: Free (Local)</span>
+        </div>
+
         <!-- Tenant ID -->
-        <div class="hidden md:flex items-center gap-1.5 bg-bgCard border border-borderSubtle rounded-lg px-2.5 py-1.5 text-xs">
+        <div class="hidden xl:flex items-center gap-1.5 bg-bgCard border border-borderSubtle rounded-lg px-2.5 py-1.5 text-xs">
           <span class="text-gray-400">Tenant:</span>
           <input id="globalTenantInput" type="text" value="default"
-            class="bg-transparent text-cyan-400 font-mono font-medium w-24 focus:outline-none"
+            class="bg-transparent text-cyan-400 font-mono font-medium w-20 focus:outline-none"
             onchange="refreshAllData()" />
         </div>
 
@@ -185,24 +197,32 @@
       </div>
     </section>
 
-    <!-- SEKME MENÜSÜ (4 SEKME) -->
-    <div class="border-b border-borderSubtle flex flex-wrap items-center gap-2">
+    <!-- SEKME MENÜSÜ (6 SEKME: HIZLI BAŞLANGIÇ, API ANAHTARLARIM, BULUTA GEÇ, PLAYGROUND, HITL, TOS) -->
+    <div class="border-b border-borderSubtle flex flex-wrap items-center gap-1.5">
       <button id="tabBtn-marketplace" onclick="switchTab('marketplace')"
-        class="px-4 py-2.5 text-sm font-medium border-b-2 border-indigo-500 text-white transition flex items-center gap-2">
-        <span>🏪</span> 1. Registry Marketplace
+        class="px-3.5 py-2.5 text-sm font-medium border-b-2 border-indigo-500 text-white transition flex items-center gap-2">
+        <span>🚀</span> 1. Site Seç & Hızlı Başlangıç
+      </button>
+      <button id="tabBtn-apikeys" onclick="switchTab('apikeys')"
+        class="px-3.5 py-2.5 text-sm font-medium border-b-2 border-transparent text-gray-400 hover:text-white transition flex items-center gap-2">
+        <span>🔑</span> 2. API Anahtarlarım (`sk-ownapi-...`)
+      </button>
+      <button id="tabBtn-billing" onclick="switchTab('billing')"
+        class="px-3.5 py-2.5 text-sm font-medium border-b-2 border-transparent text-gray-400 hover:text-white transition flex items-center gap-2">
+        <span>☁️</span> 3. Buluta Geç ($10 / $49 Paketler)
       </button>
       <button id="tabBtn-playground" onclick="switchTab('playground')"
-        class="px-4 py-2.5 text-sm font-medium border-b-2 border-transparent text-gray-400 hover:text-white transition flex items-center gap-2">
-        <span>⚡</span> 2. Live API Playground & AI Agent
+        class="px-3.5 py-2.5 text-sm font-medium border-b-2 border-transparent text-gray-400 hover:text-white transition flex items-center gap-2">
+        <span>⚡</span> 4. Live API Playground & AI Agent
       </button>
       <button id="tabBtn-hitl" onclick="switchTab('hitl')"
-        class="px-4 py-2.5 text-sm font-medium border-b-2 border-transparent text-gray-400 hover:text-white transition flex items-center gap-2">
-        <span>🛡️</span> 3. HITL Onay Kuyruğu & Auto-Repair
+        class="px-3.5 py-2.5 text-sm font-medium border-b-2 border-transparent text-gray-400 hover:text-white transition flex items-center gap-2">
+        <span>🛡️</span> 5. HITL Onay Kuyruğu & Auto-Repair
         <span id="tabHitlBadge" class="hidden px-1.5 py-0.5 text-[10px] rounded-full bg-rose-500/20 text-rose-400 border border-rose-500/40 font-mono">0</span>
       </button>
       <button id="tabBtn-consent" onclick="switchTab('consent')"
-        class="px-4 py-2.5 text-sm font-medium border-b-2 border-transparent text-gray-400 hover:text-white transition flex items-center gap-2">
-        <span>⚖️</span> 4. ToS Consent Audit Log
+        class="px-3.5 py-2.5 text-sm font-medium border-b-2 border-transparent text-gray-400 hover:text-white transition flex items-center gap-2">
+        <span>⚖️</span> 6. ToS Consent Audit Log
       </button>
     </div>
 
@@ -230,9 +250,132 @@
     </div>
 
     <!-- ========================================================= -->
-    <!-- SEKME 1: REGISTRY MARKETPLACE                             -->
+    <!-- SEKME 1: SİTE SEÇ & HIZLI BAŞLANGIÇ + REGISTRY MARKETPLACE -->
     <!-- ========================================================= -->
-    <section id="tabContent-marketplace" class="space-y-4">
+    <section id="tabContent-marketplace" class="space-y-6">
+
+      <!-- HIZLI BAŞLANGIÇ (SİTE SEÇ -> SOLDA KOPYALANABİLİR KOD / SAĞDA CANLI TEST ET) -->
+      <div class="glass-card rounded-2xl p-5 border border-indigo-500/30 space-y-5">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-borderSubtle pb-3">
+          <div>
+            <h2 class="text-base font-bold text-white flex items-center gap-2">
+              <span>⚡</span> Site Seç & 30 Saniyede Hızlı Başlangıç (Quickstart)
+            </h2>
+            <p class="text-xs text-gray-400">
+              Bir hazır konektör seçin: Sol taraftan Python kodunu kopyalayın, sağ taraftan <b>[Test Et]</b> ile anında canlı çalıştırın.
+            </p>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="text-[11px] font-mono px-2.5 py-1 rounded-lg bg-indigo-500/15 text-indigo-300 border border-indigo-500/30">
+              pip install -e . &nbsp;|&nbsp; ownapi init
+            </span>
+          </div>
+        </div>
+
+        <!-- Popüler Hazır Site Seçim Kartları -->
+        <div id="quickstartSiteCards" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5">
+          <button onclick="selectQuickstartSite('thy')" id="qsCard-thy"
+            class="qs-site-card text-left p-3 rounded-xl border border-indigo-500 bg-indigo-500/15 transition hover:border-indigo-400">
+            <div class="flex items-center justify-between">
+              <span class="text-base">✈️</span>
+              <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300">Hazır</span>
+            </div>
+            <div class="mt-1.5 font-bold text-xs text-white">THY (Türk Hava Yolları)</div>
+            <div class="text-[10px] font-mono text-indigo-300 truncate">thy.search_flights()</div>
+          </button>
+
+          <button onclick="selectQuickstartSite('trendyol')" id="qsCard-trendyol"
+            class="qs-site-card text-left p-3 rounded-xl border border-borderSubtle bg-bgBase/70 transition hover:border-indigo-400">
+            <div class="flex items-center justify-between">
+              <span class="text-base">🛍️</span>
+              <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300">Hazır</span>
+            </div>
+            <div class="mt-1.5 font-bold text-xs text-white">Trendyol</div>
+            <div class="text-[10px] font-mono text-indigo-300 truncate">trendyol.search()</div>
+          </button>
+
+          <button onclick="selectQuickstartSite('pegasus')" id="qsCard-pegasus"
+            class="qs-site-card text-left p-3 rounded-xl border border-borderSubtle bg-bgBase/70 transition hover:border-indigo-400">
+            <div class="flex items-center justify-between">
+              <span class="text-base">🛫</span>
+              <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300">Hazır</span>
+            </div>
+            <div class="mt-1.5 font-bold text-xs text-white">Pegasus</div>
+            <div class="text-[10px] font-mono text-indigo-300 truncate">pegasus.get_flight_availability()</div>
+          </button>
+
+          <button onclick="selectQuickstartSite('enuygun')" id="qsCard-enuygun"
+            class="qs-site-card text-left p-3 rounded-xl border border-borderSubtle bg-bgBase/70 transition hover:border-indigo-400">
+            <div class="flex items-center justify-between">
+              <span class="text-base">🎫</span>
+              <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300">Hazır</span>
+            </div>
+            <div class="mt-1.5 font-bold text-xs text-white">Enuygun</div>
+            <div class="text-[10px] font-mono text-indigo-300 truncate">enuygun.get_popular_flights()</div>
+          </button>
+
+          <button onclick="selectQuickstartSite('linkedin_jobs')" id="qsCard-linkedin_jobs"
+            class="qs-site-card text-left p-3 rounded-xl border border-borderSubtle bg-bgBase/70 transition hover:border-indigo-400">
+            <div class="flex items-center justify-between">
+              <span class="text-base">💼</span>
+              <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300">Hazır</span>
+            </div>
+            <div class="mt-1.5 font-bold text-xs text-white">LinkedIn Jobs</div>
+            <div class="text-[10px] font-mono text-indigo-300 truncate">linkedin_jobs.search_jobs()</div>
+          </button>
+
+          <button onclick="selectQuickstartSite('wikipedia')" id="qsCard-wikipedia"
+            class="qs-site-card text-left p-3 rounded-xl border border-borderSubtle bg-bgBase/70 transition hover:border-indigo-400">
+            <div class="flex items-center justify-between">
+              <span class="text-base">📚</span>
+              <span class="text-[10px] font-mono px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300">Hazır</span>
+            </div>
+            <div class="mt-1.5 font-bold text-xs text-white">Wikipedia</div>
+            <div class="text-[10px] font-mono text-indigo-300 truncate">wikipedia.search()</div>
+          </button>
+        </div>
+
+        <!-- Sol: Kopyalanabilir Python Kodu | Sağ: Canlı [Test Et] & Yanıt -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 pt-1">
+          <!-- Sol: Kopyalanabilir Python SDK Kodu -->
+          <div class="lg:col-span-6 bg-bgBase border border-borderSubtle rounded-xl p-4 flex flex-col justify-between space-y-3">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="text-xs font-bold text-white">🐍 Kopyalanabilir Python Kodu</span>
+                <span id="qsSelectedServiceBadge" class="text-[11px] font-mono px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300">thy</span>
+              </div>
+              <button onclick="copyQuickstartCode()"
+                class="px-3 py-1 rounded-lg bg-indigo-600/20 hover:bg-indigo-600/40 border border-indigo-500/40 text-indigo-300 text-xs font-medium transition">
+                📋 Kodu Kopyala
+              </button>
+            </div>
+            <pre id="qsPythonCodeBlock" class="text-xs font-mono text-indigo-200 overflow-x-auto leading-relaxed p-3 rounded-lg bg-bgCard border border-borderSubtle"></pre>
+          </div>
+
+          <!-- Sağ: Canlı [Test Et] Butonu ve Sonuç Ekranı -->
+          <div class="lg:col-span-6 bg-bgBase border border-borderSubtle rounded-xl p-4 flex flex-col justify-between space-y-3">
+            <div class="flex items-center justify-between">
+              <div>
+                <span class="text-xs font-bold text-white">⚡ Canlı Konektör Testi</span>
+                <span id="qsTestTimerBadge" class="ml-2 text-[11px] font-mono text-cyan-400">Hazır</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <button id="qsRunTestBtn" onclick="runQuickstartTest()"
+                  class="px-4 py-1.5 rounded-lg bg-gradient-to-r from-emerald-600 to-cyan-600 hover:from-emerald-500 hover:to-cyan-500 text-white font-bold text-xs shadow-lg shadow-emerald-600/25 transition flex items-center gap-1.5">
+                  <span>▶️</span> Test Et
+                </button>
+                <button onclick="openInPlayground(selectedQuickstartService)"
+                  class="px-2.5 py-1.5 rounded-lg bg-bgCard border border-borderSubtle text-gray-300 hover:text-white text-xs transition">
+                  Playground ↗
+                </button>
+              </div>
+            </div>
+            <pre id="qsTestResultViewer" class="h-44 bg-bgCard border border-borderSubtle rounded-lg p-3 text-xs font-mono text-emerald-300 overflow-auto leading-relaxed">{
+  "durum": "Hazır — Sağ üstteki [▶️ Test Et] butonuna basarak seçili siteyi canlı test edin."
+}</pre>
+          </div>
+        </div>
+      </div>
       <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div>
           <h2 class="text-lg font-semibold text-white">Hazır Kurumsal API Kütüphanesi (Moat Registry)</h2>
@@ -257,7 +400,210 @@
     </section>
 
     <!-- ========================================================= -->
-    <!-- SEKME 2: LIVE API PLAYGROUND & AI AGENT                   -->
+    <!-- SEKME 2: API ANAHTARLARIM (sk-ownapi-...)                 -->
+    <!-- ========================================================= -->
+    <section id="tabContent-apikeys" class="hidden space-y-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <!-- Sol: Aktif API Anahtarı & Kredi Kartı -->
+        <div class="lg:col-span-7 glass-card rounded-2xl p-6 space-y-5 border border-indigo-500/30">
+          <div class="flex items-center justify-between border-b border-borderSubtle pb-4">
+            <div>
+              <h2 class="text-base font-bold text-white flex items-center gap-2">
+                <span>🔑</span> API Anahtarlarım (`sk-ownapi-...`)
+              </h2>
+              <p class="text-xs text-gray-400 mt-0.5">
+                Python SDK (<code class="text-indigo-400 font-mono">OwnAPI(api_key=...)</code>) ve MCP sunucunuz için kimlik doğrulama anahtarı.
+              </p>
+            </div>
+            <span id="apiKeyPlanBadge" class="px-3 py-1 rounded-full text-xs font-semibold bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">
+              Free (Local)
+            </span>
+          </div>
+
+          <!-- API Anahtarı Göster / Gizle / Kopyala Kutusu -->
+          <div class="space-y-2">
+            <label class="block text-xs font-medium text-gray-300">Aktif Gizli Anahtar (Secret Key)</label>
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+              <div class="flex-1 bg-bgBase border border-borderSubtle rounded-xl px-4 py-3 flex items-center justify-between gap-2">
+                <code id="apiKeyDisplayValue" class="text-xs sm:text-sm font-mono text-amber-300 select-all truncate">
+                  sk-ownapi-••••••••••••••••••••••
+                </code>
+                <button id="toggleKeyBtn" onclick="toggleApiKeyVisibility()"
+                  class="text-xs text-gray-400 hover:text-white px-2 py-1 rounded bg-bgElevated border border-borderSubtle whitespace-nowrap">
+                  👁️ Göster
+                </button>
+              </div>
+              <button onclick="copyCurrentApiKey()"
+                class="px-4 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs transition shadow flex items-center justify-center gap-1.5 whitespace-nowrap">
+                <span>📋</span> Anahtarı Kopyala
+              </button>
+              <button id="btnGenerateNewKey" onclick="generateNewApiKey()"
+                class="px-4 py-3 rounded-xl bg-bgElevated hover:bg-gray-800 border border-borderSubtle text-gray-200 font-semibold text-xs transition flex items-center justify-center gap-1.5 whitespace-nowrap">
+                <span>🔄</span> Yeni Anahtar Üret
+              </button>
+            </div>
+          </div>
+
+          <!-- Kredi Durumu İlerleme Çubuğu -->
+          <div class="bg-bgBase/80 border border-borderSubtle rounded-xl p-4 space-y-2.5">
+            <div class="flex items-center justify-between text-xs">
+              <span class="text-gray-300 font-medium">Kalan Kredi Bakiyesi</span>
+              <span id="apiKeyCreditSummary" class="font-mono font-bold text-emerald-400">1.000 / 1.000 Kredi</span>
+            </div>
+            <div class="w-full h-2.5 bg-gray-800 rounded-full overflow-hidden">
+              <div id="apiKeyCreditBar" class="h-full bg-gradient-to-r from-indigo-500 to-emerald-400 rounded-full transition-all duration-300" style="width: 100%"></div>
+            </div>
+            <div class="flex items-center justify-between text-[11px] text-gray-400">
+              <span id="apiKeyModeInfo">Çalışma Modu: <b class="text-cyan-300">local (Kendi Bilgisayarın)</b></span>
+              <button onclick="switchTab('billing')" class="text-indigo-400 hover:underline font-medium">
+                ☁️ Bulut Paketine Yükselt ($10 / 10.000 Kredi) →
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sağ: Hızlı SDK ve CLI Kullanım Rehberi -->
+        <div class="lg:col-span-5 glass-card rounded-2xl p-6 space-y-4">
+          <h3 class="text-sm font-bold text-white flex items-center gap-2 border-b border-borderSubtle pb-3">
+            <span>💻</span> Bu Anahtarı Nasıl Kullanırım?
+          </h3>
+          <div class="space-y-3 text-xs">
+            <div>
+              <div class="text-gray-300 font-semibold mb-1">1. Python SDK ile Kullanım:</div>
+              <pre id="apiKeySdkSnippet" class="bg-bgBase border border-borderSubtle rounded-xl p-3 font-mono text-[11px] text-indigo-200 overflow-x-auto leading-relaxed">from ownapi import OwnAPI
+
+api = OwnAPI(api_key="sk-ownapi-...")
+flights = api.thy.search_flights(
+    origin_airport_code="IST",
+    destination_airport_code="ESB"
+)
+print(flights)</pre>
+            </div>
+            <div>
+              <div class="text-gray-300 font-semibold mb-1">2. Tek Komutla Claude Desktop & CLI:</div>
+              <pre class="bg-bgBase border border-borderSubtle rounded-xl p-3 font-mono text-[11px] text-cyan-300 overflow-x-auto leading-relaxed"># Claude Desktop'a otomatik bağla
+ownapi init
+
+# Kalan kredi ve paket durumunu gör
+ownapi status</pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- SEKME 3: BULUTA GEÇ ($10 / $49 PAKETLER)                  -->
+    <!-- ========================================================= -->
+    <section id="tabContent-billing" class="hidden space-y-6">
+      <div class="text-center max-w-2xl mx-auto space-y-2">
+        <span class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-cyan-500/15 text-cyan-300 border border-cyan-500/30">
+          ☁️ OwnAPI Cloud & Local SaaS Paketleri
+        </span>
+        <h2 class="text-xl sm:text-2xl font-bold text-white">
+          Bilgisayarınız Kapalıyken Bile 7/24 Bulutta Çalıştırın
+        </h2>
+        <p class="text-xs sm:text-sm text-gray-400">
+          Bedava yerel modla kendi bilgisayarınızda hemen başlayın; hazır olduğunuzda tek tıkla <b>Bulut Tarayıcı Kümesine (`mode="cloud"`)</b> geçin.
+        </p>
+      </div>
+
+      <!-- 3'lü Paket Karşılaştırma Kartları -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Paket 1: Bedava (Free Local) -->
+        <div class="glass-card rounded-2xl p-6 flex flex-col justify-between border border-borderSubtle">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="text-sm font-bold text-gray-200">💻 Bedava (Free)</span>
+              <span id="planActiveBadge-free" class="px-2.5 py-0.5 rounded-full text-[10px] font-mono bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                Mevcut Paket
+              </span>
+            </div>
+            <div class="flex items-baseline gap-1">
+              <span class="text-3xl font-extrabold text-white">$0</span>
+              <span class="text-xs text-gray-400">/ ay</span>
+            </div>
+            <p class="text-xs text-gray-400">Kendi bilgisayarınız açıkken yerel Chrome oturumu üzerinden çalışır.</p>
+            <ul class="space-y-2 text-xs text-gray-300 pt-2 border-t border-borderSubtle">
+              <li class="flex items-center gap-2"><span class="text-emerald-400">✔</span> <b>1.000 istek / ay</b> ücretsiz kredi</li>
+              <li class="flex items-center gap-2"><span class="text-emerald-400">✔</span> Kendi bilgisayarın (<code class="font-mono text-indigo-300">mode="local"</code>)</li>
+              <li class="flex items-center gap-2"><span class="text-emerald-400">✔</span> Tüm hazır konektörler (THY, Trendyol, Pegasus)</li>
+              <li class="flex items-center gap-2"><span class="text-emerald-400">✔</span> <code class="font-mono text-cyan-300">ownapi init</code> ile Claude MCP bağlantısı</li>
+            </ul>
+          </div>
+          <div class="pt-6">
+            <button onclick="selectFreePlan()"
+              class="w-full py-2.5 px-4 rounded-xl bg-bgElevated hover:bg-gray-800 border border-borderSubtle text-gray-200 font-semibold text-xs transition">
+              Ücretsiz Yerel Modu Kullan ($0)
+            </button>
+          </div>
+        </div>
+
+        <!-- Paket 2: Başlangıç (Starter Cloud - $10/ay) -->
+        <div class="glass-card rounded-2xl p-6 flex flex-col justify-between border-2 border-indigo-500 shadow-2xl shadow-indigo-950/50 relative">
+          <div class="absolute -top-3 right-5 px-3 py-0.5 rounded-full bg-gradient-to-r from-indigo-600 to-cyan-600 text-white text-[10px] font-bold uppercase tracking-wider shadow">
+            🔥 En Popüler
+          </div>
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="text-sm font-bold text-indigo-300">☁️ Başlangıç (Starter Cloud)</span>
+              <span id="planActiveBadge-starter_cloud" class="hidden px-2.5 py-0.5 rounded-full text-[10px] font-mono bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                Aktif Paket
+              </span>
+            </div>
+            <div class="flex items-baseline gap-1">
+              <span class="text-3xl font-extrabold text-white">$10</span>
+              <span class="text-xs text-gray-400">/ ay</span>
+            </div>
+            <p class="text-xs text-gray-300">Bilgisayarınız kapalıyken bile 7/24 bulut tarayıcı kümesinde kesintisiz çalışır.</p>
+            <ul class="space-y-2 text-xs text-gray-200 pt-2 border-t border-borderSubtle">
+              <li class="flex items-center gap-2"><span class="text-cyan-400">✔</span> <b>10.000 istek / ay</b> bulut kredisi</li>
+              <li class="flex items-center gap-2"><span class="text-cyan-400">✔</span> 7/24 Bulut Tarayıcı (<code class="font-mono text-cyan-300">mode="cloud"</code>)</li>
+              <li class="flex items-center gap-2"><span class="text-cyan-400">✔</span> Özel <code class="font-mono text-amber-300">sk-ownapi-...</code> bulut anahtarı</li>
+              <li class="flex items-center gap-2"><span class="text-cyan-400">✔</span> Gece 03:00 Auto-Repair & HITL bildirimleri</li>
+            </ul>
+          </div>
+          <div class="pt-6">
+            <button onclick="openCheckoutModal('starter_cloud', 'Başlangıç Bulut Paketi (Starter Cloud)', 10, '10.000')"
+              class="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-indigo-600 to-cyan-600 hover:from-indigo-500 hover:to-cyan-500 text-white font-bold text-xs shadow-lg shadow-indigo-600/30 transition">
+              🚀 Seç - $10
+            </button>
+          </div>
+        </div>
+
+        <!-- Paket 3: Büyüme (Growth Cloud - $49/ay) -->
+        <div class="glass-card rounded-2xl p-6 flex flex-col justify-between border border-cyan-500/40">
+          <div class="space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="text-sm font-bold text-cyan-300">⚡ Büyüme (Growth Cloud)</span>
+              <span id="planActiveBadge-growth_cloud" class="hidden px-2.5 py-0.5 rounded-full text-[10px] font-mono bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                Aktif Paket
+              </span>
+            </div>
+            <div class="flex items-baseline gap-1">
+              <span class="text-3xl font-extrabold text-white">$49</span>
+              <span class="text-xs text-gray-400">/ ay</span>
+            </div>
+            <p class="text-xs text-gray-400">Yüksek hacimli üretim ortamları ve çoklu AI ajan sürüleri için izole bulut kümesi.</p>
+            <ul class="space-y-2 text-xs text-gray-300 pt-2 border-t border-borderSubtle">
+              <li class="flex items-center gap-2"><span class="text-emerald-400">✔</span> <b>100.000 istek / ay</b> yüksek hacimli kredi</li>
+              <li class="flex items-center gap-2"><span class="text-emerald-400">✔</span> Özel Bulut Kümesi (<code class="font-mono text-cyan-300">mode="cloud"</code>)</li>
+              <li class="flex items-center gap-2"><span class="text-emerald-400">✔</span> Öncelikli GPT-4o Self-Healing 2.0 onarımı</li>
+              <li class="flex items-center gap-2"><span class="text-emerald-400">✔</span> Çoklu Kiracı (Multi-Tenant) & SLA Desteği</li>
+            </ul>
+          </div>
+          <div class="pt-6">
+            <button onclick="openCheckoutModal('growth_cloud', 'Büyüme Bulut Paketi (Growth Cloud)', 49, '100.000')"
+              class="w-full py-2.5 px-4 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-xs shadow-lg shadow-cyan-600/25 transition">
+              ⚡ Seç - $49
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================= -->
+    <!-- SEKME 4: LIVE API PLAYGROUND & AI AGENT                   -->
     <!-- ========================================================= -->
     <section id="tabContent-playground" class="hidden">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
@@ -419,6 +765,38 @@
             class="px-4 py-2.5 rounded-lg bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-400 hover:to-orange-500 text-white font-semibold text-xs shadow-lg shadow-amber-500/20 transition flex items-center gap-2 whitespace-nowrap">
             <span>🔧</span> Tüm Servisleri Şimdi Tara & Onar (Auto-Repair)
           </button>
+        </div>
+      </div>
+
+      <!-- Bulut (Cloud) HITL Uzaktan Çözüm Önizleme Kartları -->
+      <div id="hitlCloudPreviewSection" class="glass-card rounded-xl p-5 border border-cyan-500/30 space-y-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-borderSubtle pb-3">
+          <div>
+            <h3 class="text-sm font-semibold text-white flex items-center gap-2">
+              <span>☁️ Uzak Bulut Tarayıcı Ekranı (Canlı Önizleme)</span>
+              <span class="px-2 py-0.5 text-[10px] font-mono rounded-full bg-cyan-500/15 text-cyan-300 border border-cyan-500/30">
+                Cloud HITL Remote Resolver
+              </span>
+            </h3>
+            <p class="text-xs text-gray-400 mt-0.5">
+              Bulut modunda (<code class="text-cyan-300 font-mono">execution_mode="cloud"</code>) veya önizlemesi mevcut görevlerde uzak tarayıcı ekranını görüntüleyin ve doğrudan Web Dashboard üzerinden doğrulamayı tamamlayın.
+            </p>
+          </div>
+          <button onclick="loadHitlQueue()" class="text-xs text-cyan-400 hover:underline self-start sm:self-center">
+            🔄 Canlı Önizlemeyi Yenile
+          </button>
+        </div>
+
+        <div id="hitlCloudPreviewCards" class="grid grid-cols-1 gap-4">
+          <div class="rounded-xl bg-bgBase/80 border border-borderSubtle p-4 text-xs text-gray-400 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+            <div>
+              <div class="font-semibold text-gray-200">☁️ Uzak Bulut Tarayıcı Ekranı (Canlı Önizleme) Hazır</div>
+              <div class="text-[11px] text-gray-500 mt-0.5">Bekleyen bir Cloud HITL görevi oluştuğunda canlı ekran görüntüsü (`GET /api/hitl/preview/{task_id}`) otomatik olarak burada açılır.</div>
+            </div>
+            <span class="px-3 py-1.5 rounded-lg bg-emerald-600/20 text-emerald-300 border border-emerald-500/30 font-semibold text-[11px]">
+              Doğrulamayı Tamamla & Devam Et (Resume)
+            </span>
+          </div>
         </div>
       </div>
 
@@ -641,6 +1019,103 @@
     </div>
   </div>
 
+  <!-- ========================================================= -->
+  <!-- MODAL: STRIPE / KART ÖDEME SİMÜLASYONU & BULUTA GEÇİŞ     -->
+  <!-- ========================================================= -->
+  <div id="stripeCheckoutModal" class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
+    <div class="glass-card rounded-2xl w-full max-w-md border border-indigo-500/40 shadow-2xl shadow-indigo-950/70 overflow-hidden">
+      <!-- Başlık -->
+      <div class="px-6 py-4 border-b border-borderSubtle bg-bgElevated/90 flex items-center justify-between">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-cyan-500 flex items-center justify-center text-white font-bold text-sm shadow">
+            💳
+          </div>
+          <div>
+            <h3 id="checkoutModalTitle" class="text-sm font-bold text-white">OwnAPI Cloud — Hızlı Kart Ödemesi</h3>
+            <p class="text-[11px] text-gray-400">256-bit SSL • Stripe Checkout Simülasyonu</p>
+          </div>
+        </div>
+        <button onclick="closeCheckoutModal()" class="text-gray-400 hover:text-white text-sm px-2 py-1 rounded-lg hover:bg-white/5 transition">
+          ✕
+        </button>
+      </div>
+
+      <!-- Adım 1: Kart Bilgileri Formu -->
+      <div id="checkoutFormView" class="p-6 space-y-4">
+        <div class="p-3.5 rounded-xl bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-between">
+          <div>
+            <div id="checkoutPlanName" class="text-xs font-bold text-white">Başlangıç Bulut Paketi (Starter Cloud)</div>
+            <div id="checkoutPlanCredits" class="text-[11px] text-cyan-300 font-mono">10.000 Bulut Kredisi • mode="cloud"</div>
+          </div>
+          <div id="checkoutPlanPrice" class="text-xl font-extrabold text-white">$10</div>
+        </div>
+
+        <div class="space-y-3 text-xs">
+          <div>
+            <label class="block text-gray-300 font-medium mb-1">Kart Üzerindeki İsim</label>
+            <input id="cardHolderInput" type="text" value="Mert Yılmaz"
+              class="w-full bg-bgBase border border-borderSubtle rounded-lg px-3 py-2 text-white focus:outline-none focus:border-indigo-500" />
+          </div>
+          <div>
+            <label class="block text-gray-300 font-medium mb-1">Kart Numarası (Test Kartı)</label>
+            <input id="cardNumberInput" type="text" value="4242 •••• •••• 4242"
+              class="w-full bg-bgBase border border-borderSubtle rounded-lg px-3 py-2 text-cyan-300 font-mono focus:outline-none focus:border-indigo-500" />
+          </div>
+          <div class="grid grid-cols-2 gap-3">
+            <div>
+              <label class="block text-gray-300 font-medium mb-1">Son Kullanma</label>
+              <input type="text" value="12/28"
+                class="w-full bg-bgBase border border-borderSubtle rounded-lg px-3 py-2 text-white font-mono focus:outline-none focus:border-indigo-500" />
+            </div>
+            <div>
+              <label class="block text-gray-300 font-medium mb-1">CVC</label>
+              <input type="text" value="424"
+                class="w-full bg-bgBase border border-borderSubtle rounded-lg px-3 py-2 text-white font-mono focus:outline-none focus:border-indigo-500" />
+            </div>
+          </div>
+        </div>
+
+        <button id="checkoutPayBtn" onclick="submitBillingUpgrade()"
+          class="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-emerald-600 to-cyan-600 hover:from-emerald-500 hover:to-cyan-500 text-white font-bold text-sm shadow-lg shadow-emerald-600/30 transition flex items-center justify-center gap-2">
+          <span>🔒</span> <span id="checkoutPayBtnText">Öde - $10</span>
+        </button>
+      </div>
+
+      <!-- Adım 2: Ödeme Başarılı — "Tebrikler! Artık buluttasın" Ekranı -->
+      <div id="checkoutSuccessView" class="hidden p-6 space-y-4 text-center">
+        <div class="w-12 h-12 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 flex items-center justify-center text-2xl mx-auto">
+          🎉
+        </div>
+        <div>
+          <h4 class="text-base font-extrabold text-white">Tebrikler! Artık buluttasın</h4>
+          <p id="checkoutSuccessSubtitle" class="text-xs text-gray-300 mt-1">
+            10.000 bulut krediniz ve <code class="text-cyan-300 font-mono">mode="cloud"</code> erişiminiz anında tanımlandı.
+          </p>
+        </div>
+
+        <div class="bg-bgBase border border-emerald-500/40 rounded-xl p-3.5 text-left space-y-2">
+          <div class="flex items-center justify-between text-[11px] text-gray-400">
+            <span>Yeni Bulut API Anahtarınız:</span>
+            <button onclick="copyUpgradedKey()" class="text-emerald-400 hover:underline font-semibold">📋 Kopyala</button>
+          </div>
+          <code id="checkoutNewApiKey" class="block text-xs font-mono text-amber-300 break-all select-all">
+            sk-ownapi-...
+          </code>
+        </div>
+
+        <div class="bg-bgBase border border-borderSubtle rounded-xl p-3 text-left">
+          <div class="text-[11px] text-gray-400 mb-1">Bulut Modu Python Kodu:</div>
+          <pre id="checkoutCloudSnippet" class="text-[11px] font-mono text-indigo-200 overflow-x-auto leading-relaxed"></pre>
+        </div>
+
+        <button onclick="closeCheckoutModal()"
+          class="w-full py-2.5 px-4 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs transition">
+          Harika, Panelime Dön →
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- JAVASCRIPT UYGULAMA MANTIĞI -->
   <script>
     let allServices = [];
@@ -683,15 +1158,16 @@
     }
 
     function switchTab(tabName) {
-      ['marketplace', 'playground', 'hitl', 'consent'].forEach(t => {
+      ['marketplace', 'apikeys', 'billing', 'playground', 'hitl', 'consent'].forEach(t => {
         const content = document.getElementById(`tabContent-${t}`);
         const btn = document.getElementById(`tabBtn-${t}`);
+        if (!content || !btn) return;
         if (t === tabName) {
           content.classList.remove('hidden');
-          btn.className = 'px-4 py-2.5 text-sm font-medium border-b-2 border-indigo-500 text-white transition flex items-center gap-2';
+          btn.className = 'px-3.5 py-2.5 text-sm font-medium border-b-2 border-indigo-500 text-white transition flex items-center gap-2';
         } else {
           content.classList.add('hidden');
-          btn.className = 'px-4 py-2.5 text-sm font-medium border-b-2 border-transparent text-gray-400 hover:text-white transition flex items-center gap-2';
+          btn.className = 'px-3.5 py-2.5 text-sm font-medium border-b-2 border-transparent text-gray-400 hover:text-white transition flex items-center gap-2';
         }
       });
     }
@@ -1019,6 +1495,7 @@ print(response)`;
         statusBadge.className = data.success
           ? 'text-[11px] font-mono px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400'
           : 'text-[11px] font-mono px-2 py-0.5 rounded bg-rose-500/20 text-rose-400';
+        await loadAccountInfo();
       } catch (err) {
         viewer.textContent = JSON.stringify({ error: String(err) }, null, 2);
       } finally {
@@ -1141,6 +1618,91 @@ print(response)`;
       const tbody = document.getElementById('hitlTableBody');
       if (!tbody) return;
 
+      // Bulut (Cloud) HITL Uzaktan Çözüm Önizleme Kartlarını Güncelle
+      const previewContainer = document.getElementById('hitlCloudPreviewCards');
+      if (previewContainer) {
+        const previewCandidates = pendingTasks.filter(t => {
+          const em = String(t.execution_mode || t.mode || '').toLowerCase();
+          return em === 'cloud' || Boolean(t.screenshot_b64) || Boolean(t.cloud_preview_url) || pendingTasks.length > 0;
+        });
+
+        if (!previewCandidates.length) {
+          previewContainer.innerHTML = `
+            <div class="rounded-xl bg-bgBase/80 border border-borderSubtle p-4 text-xs text-gray-400 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+              <div>
+                <div class="font-semibold text-gray-200">☁️ Uzak Bulut Tarayıcı Ekranı (Canlı Önizleme) — Bekleyen Görev Yok</div>
+                <div class="text-[11px] text-gray-500 mt-0.5">Yeni bir HITL görevi duraklatıldığında uzak tarayıcı önizlemesi otomatik olarak burada görüntülenir.</div>
+              </div>
+              <span class="px-3 py-1.5 rounded-lg bg-gray-800 text-gray-400 border border-gray-700 font-mono text-[11px]">
+                0 Aktif Önizleme
+              </span>
+            </div>
+          `;
+        } else {
+          previewContainer.innerHTML = previewCandidates.map(t => {
+            const execMode = String(t.execution_mode || t.mode || 'local').toUpperCase();
+            const isCloudTask = execMode === 'CLOUD';
+            const modeBadge = isCloudTask
+              ? `<span class="px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 font-mono text-[10px]">☁️ CLOUD MODE</span>`
+              : `<span class="px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 border border-indigo-500/40 font-mono text-[10px]">💻 ${execMode} MODE</span>`;
+            const targetLink = t.target_url || t.url || '';
+            const previewEndpoint = t.cloud_preview_url || `/api/hitl/preview/${encodeURIComponent(t.task_id)}`;
+
+            return `
+              <div id="hitlPreviewCard-${t.task_id}" class="rounded-xl bg-bgBase/95 border border-cyan-500/40 p-4 space-y-3 shadow-lg shadow-cyan-950/20">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 border-b border-borderSubtle pb-3">
+                  <div class="space-y-1">
+                    <div class="flex items-center gap-2 flex-wrap">
+                      <span class="text-xs font-bold text-cyan-300">☁️ Uzak Bulut Tarayıcı Ekranı (Canlı Önizleme)</span>
+                      <span class="font-mono font-bold text-white text-xs">${t.task_id}</span>
+                      ${modeBadge}
+                      <span class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-300 font-mono text-[10px]">⏸️ ${t.status || 'PAUSED'}</span>
+                    </div>
+                    <div class="text-[11px] text-gray-300">
+                      Servis: <b class="text-white">${t.service}</b> (${t.tenant_id || 'default'}) • Neden: <span class="text-amber-300">${t.reason || 'Captcha / WAF doğrulaması'}</span>
+                    </div>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <button onclick="refreshSingleHitlPreview('${t.task_id}')"
+                      class="px-3 py-1.5 rounded-lg bg-bgElevated hover:bg-gray-800 border border-borderSubtle text-cyan-300 text-xs font-medium transition">
+                      🔄 Ekranı Yenile
+                    </button>
+                    <button onclick="approveHitlTask('${t.task_id}')"
+                      class="px-4 py-2 rounded-lg bg-gradient-to-r from-emerald-600 to-cyan-600 hover:from-emerald-500 hover:to-cyan-500 text-white font-bold text-xs shadow-lg shadow-emerald-600/25 transition flex items-center gap-1.5">
+                      <span>✅</span> Doğrulamayı Tamamla & Devam Et (Resume)
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Uzak Tarayıcı Adres Çubuğu & Canlı Ekran Çerçevesi -->
+                <div class="rounded-lg border border-borderSubtle bg-bgCard overflow-hidden">
+                  <div class="px-3 py-1.5 bg-bgElevated border-b border-borderSubtle flex items-center justify-between gap-2 text-[11px] font-mono">
+                    <div class="flex items-center gap-2 truncate">
+                      <span class="inline-block w-2 h-2 rounded-full bg-emerald-400"></span>
+                      <span class="text-gray-400">URL:</span>
+                      <a href="${targetLink}" target="_blank" class="text-cyan-400 hover:underline truncate">${targetLink}</a>
+                    </div>
+                    <span class="text-gray-500 shrink-0">${previewEndpoint}</span>
+                  </div>
+                  <div class="p-3 flex flex-col items-center justify-center bg-black/40 min-h-[180px]">
+                    <img id="hitlPreviewImg-${t.task_id}"
+                      alt="Uzak Bulut Tarayıcı Ekranı (${t.task_id})"
+                      class="max-h-64 w-auto rounded-lg border border-borderSubtle shadow-md object-contain" />
+                    <div id="hitlPreviewMeta-${t.task_id}" class="mt-2 text-[11px] font-mono text-gray-400">
+                      Canlı bulut ekran görüntüsü yükleniyor...
+                    </div>
+                  </div>
+                </div>
+              </div>
+            `;
+          }).join('');
+
+          previewCandidates.forEach(t => {
+            refreshSingleHitlPreview(t.task_id);
+          });
+        }
+      }
+
       if (!tasks.length) {
         tbody.innerHTML = `<tr><td colspan="7" class="py-6 text-center text-gray-500">HITL kuyruğunda (.sessions/hitl_state.json) bekleyen veya tamamlanan görev bulunmuyor.</td></tr>`;
         return;
@@ -1149,12 +1711,16 @@ print(response)`;
       tbody.innerHTML = tasks.map(t => {
         const st = String(t.status || 'PAUSED').toUpperCase();
         const isPending = PENDING_HITL_SET.has(st);
+        const execMode = String(t.execution_mode || t.mode || 'local').toUpperCase();
         const badge = isPending
-          ? `<span class="px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/40 font-mono text-[10px]">⏸️ ${st}</span>`
+          ? `<span class="px-2 py-0.5 rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/40 font-mono text-[10px]">⏸️ ${st} (${execMode})</span>`
           : `<span class="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 font-mono text-[10px]">✔ COMPLETED</span>`;
 
         const actionBtn = isPending
-          ? `<button onclick="approveHitlTask('${t.task_id}')" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs transition shadow">▶️ Onayla & Devam Et (Resume)</button>`
+          ? `<div class="flex items-center justify-end gap-1.5">
+               <button onclick="refreshSingleHitlPreview('${t.task_id}')" class="px-2.5 py-1.5 rounded-lg bg-cyan-500/15 hover:bg-cyan-500/25 border border-cyan-500/30 text-cyan-300 font-medium text-[11px] transition">👁️ Önizleme</button>
+               <button onclick="approveHitlTask('${t.task_id}')" class="px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs transition shadow">▶️ Doğrulamayı Tamamla & Devam Et (Resume)</button>
+             </div>`
           : `<span class="text-emerald-400/80 font-mono text-[11px]">✔ Kaldığı Yerden Tamamlandı</span>`;
 
         return `
@@ -1169,6 +1735,24 @@ print(response)`;
           </tr>
         `;
       }).join('');
+    }
+
+    async function refreshSingleHitlPreview(taskId) {
+      try {
+        const res = await fetch(`/api/hitl/preview/${encodeURIComponent(taskId)}`, { cache: 'no-store' });
+        if (!res.ok) return;
+        const data = await res.json();
+        const imgEl = document.getElementById(`hitlPreviewImg-${taskId}`);
+        const metaEl = document.getElementById(`hitlPreviewMeta-${taskId}`);
+        if (imgEl && data.screenshot_data_url) {
+          imgEl.src = data.screenshot_data_url;
+        }
+        if (metaEl) {
+          metaEl.textContent = `Mod: ${String(data.execution_mode || 'local').toUpperCase()} | Durum: ${data.status} | Son Güncelleme: ${(data.updated_at || '').slice(0, 19).replace('T', ' ')} UTC`;
+        }
+      } catch (err) {
+        console.warn('HITL önizleme yüklenemedi:', err);
+      }
     }
 
     async function loadHitlQueue() {
@@ -1378,8 +1962,354 @@ print(response)`;
       }
     }
 
+    let currentAccount = null;
+    let isApiKeyVisible = false;
+    let selectedQuickstartService = 'thy';
+    let selectedUpgradePlan = 'starter_cloud';
+    let selectedUpgradePrice = 10;
+
+    const QUICKSTART_TEMPLATES = {
+      thy: {
+        fnCall: `thy.search_flights(origin_airport_code="IST", destination_airport_code="ESB", departure_date="02-03-2027", return_date="09-03-2027")`,
+        cloudCall: `api.thy.search_flights(origin_airport_code="IST", destination_airport_code="ESB", departure_date="02-03-2027", return_date="09-03-2027")`,
+        params: { origin_airport_code: "IST", destination_airport_code: "ESB", departure_date: "02-03-2027", return_date: "09-03-2027" }
+      },
+      trendyol: {
+        fnCall: `trendyol.search(query="laptop", max_results=5)`,
+        cloudCall: `api.trendyol.search(query="laptop", max_results=5)`,
+        params: { query: "laptop", max_results: 5 }
+      },
+      pegasus: {
+        fnCall: `pegasus.get_flight_availability(departure_port="SAW", arrival_port="ESB", departure_date="2027-03-03", return_date="2027-03-08")`,
+        cloudCall: `api.pegasus.get_flight_availability(departure_port="SAW", arrival_port="ESB", departure_date="2027-03-03", return_date="2027-03-08")`,
+        params: { departure_port: "SAW", arrival_port: "ESB", departure_date: "2027-03-03", return_date: "2027-03-08" }
+      },
+      enuygun: {
+        fnCall: `enuygun.get_popular_flights()`,
+        cloudCall: `api.enuygun.get_popular_flights()`,
+        params: {}
+      },
+      linkedin_jobs: {
+        fnCall: `linkedin_jobs.search_jobs(keywords="AI Engineer", location="Turkey", limit=5)`,
+        cloudCall: `api.linkedin_jobs.search_jobs(keywords="AI Engineer", location="Turkey", limit=5)`,
+        params: { keywords: "AI Engineer", location: "Turkey", limit: 5 }
+      },
+      wikipedia: {
+        fnCall: `wikipedia.search(query="Artificial intelligence")`,
+        cloudCall: `api.wikipedia.search(query="Artificial intelligence")`,
+        params: { query: "Artificial intelligence" }
+      }
+    };
+
+    function formatNumberTr(n) {
+      return Number(n || 0).toLocaleString('tr-TR');
+    }
+
+    function selectQuickstartSite(serviceName) {
+      selectedQuickstartService = serviceName;
+      document.querySelectorAll('.qs-site-card').forEach(el => {
+        el.className = 'qs-site-card text-left p-3 rounded-xl border border-borderSubtle bg-bgBase/70 transition hover:border-indigo-400';
+      });
+      const activeCard = document.getElementById(`qsCard-${serviceName}`);
+      if (activeCard) {
+        activeCard.className = 'qs-site-card text-left p-3 rounded-xl border border-indigo-500 bg-indigo-500/15 transition hover:border-indigo-400';
+      }
+
+      const badge = document.getElementById('qsSelectedServiceBadge');
+      if (badge) badge.textContent = serviceName;
+
+      const tpl = QUICKSTART_TEMPLATES[serviceName] || {
+        fnCall: `${serviceName}.search()`,
+        cloudCall: `api.${serviceName}.search()`,
+        params: {}
+      };
+      const keyPreview = (currentAccount && currentAccount.api_key) ? currentAccount.api_key : 'sk-ownapi-...';
+      const codeEl = document.getElementById('qsPythonCodeBlock');
+      if (codeEl) {
+        codeEl.textContent =
+`# 1. Bedava Yerel Mod (Kendi bilgisayarın - 1.000 kredi/ay)
+from ownapi import ${serviceName}
+res = ${tpl.fnCall}
+print(res)
+
+# 2. Bulut Modu ($10 Starter Cloud - 7/24 Bulut Tarayıcı)
+from ownapi import OwnAPI
+api = OwnAPI(api_key="${keyPreview}")
+cloud_res = ${tpl.cloudCall}
+print(cloud_res)`;
+      }
+    }
+
+    function copyQuickstartCode() {
+      const codeEl = document.getElementById('qsPythonCodeBlock');
+      if (!codeEl) return;
+      navigator.clipboard.writeText(codeEl.textContent);
+      showToast(`📋 <b>${selectedQuickstartService}</b> Python SDK kodu panoya kopyalandı!`);
+    }
+
+    async function runQuickstartTest() {
+      const svc = selectedQuickstartService || 'thy';
+      const tpl = QUICKSTART_TEMPLATES[svc] || { params: {} };
+      const btn = document.getElementById('qsRunTestBtn');
+      const viewer = document.getElementById('qsTestResultViewer');
+      const timer = document.getElementById('qsTestTimerBadge');
+
+      btn.disabled = true;
+      btn.innerHTML = `<span class="animate-spin">⏳</span> Çalışıyor...`;
+      timer.textContent = `Çalıştırılıyor (${currentMode.toUpperCase()})...`;
+
+      const t0 = performance.now();
+      try {
+        const res = await fetch('/api/v1/call', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            service: svc,
+            params: tpl.params,
+            tenant_id: getTenant(),
+            mode: currentMode,
+            non_interactive: false
+          })
+        });
+        const data = await res.json();
+        const elapsed = data.elapsed_ms || Math.round(performance.now() - t0);
+        timer.textContent = `⏱️ ${elapsed} ms`;
+        viewer.textContent = JSON.stringify(data, null, 2);
+        await loadAccountInfo();
+      } catch (err) {
+        timer.textContent = 'Hata';
+        viewer.textContent = JSON.stringify({ error: String(err) }, null, 2);
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = `<span>▶️</span> Test Et`;
+      }
+    }
+
+    async function loadAccountInfo() {
+      try {
+        const tenant = getTenant();
+        const res = await fetch(`/api/v1/account?tenant_id=${encodeURIComponent(tenant)}`, { cache: 'no-store' });
+        if (!res.ok) return;
+        const acc = await res.json();
+        currentAccount = acc;
+
+        const isCloud = acc.mode === 'cloud';
+        const used = acc.used_credits ?? 0;
+        const maxC = acc.max_credits || 1000;
+        const remC = acc.remaining_credits ?? acc.credits ?? 1000;
+
+        // Üst bar canlı Kredi & Mod göstergesi
+        const topBadge = document.getElementById('topCreditStatusBadge');
+        const topDot = document.getElementById('topStatusDot');
+        const topConn = document.getElementById('topStatusConnectionText');
+        const topCred = document.getElementById('topStatusCreditsText');
+        const topPlan = document.getElementById('topStatusPlanText');
+
+        if (isCloud) {
+          topBadge.className = 'cursor-pointer flex items-center gap-2 bg-bgCard hover:bg-bgElevated border border-cyan-500/50 rounded-lg px-3 py-1.5 text-xs shadow-sm transition';
+          topDot.className = 'inline-block w-2 h-2 rounded-full bg-cyan-400 animate-pulse';
+          topConn.innerHTML = '☁️ Bulut Aktif (Cloud)';
+          topConn.className = 'font-semibold text-cyan-300';
+          topPlan.textContent = `Paket: ${acc.plan === 'growth_cloud' ? 'Growth Cloud ($49)' : 'Starter Cloud ($10)'}`;
+          topPlan.className = 'hidden sm:inline font-semibold text-cyan-300';
+        } else {
+          topBadge.className = 'cursor-pointer flex items-center gap-2 bg-bgCard hover:bg-bgElevated border border-emerald-500/40 rounded-lg px-3 py-1.5 text-xs shadow-sm transition';
+          topDot.className = 'inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse';
+          topConn.innerHTML = 'Bağlı - Bilgisayarın Hazır';
+          topConn.className = 'font-medium text-emerald-300';
+          topPlan.textContent = 'Paket: Free (Local)';
+          topPlan.className = 'hidden sm:inline font-semibold text-indigo-300';
+        }
+        topCred.textContent = `Kullanılan: ${formatNumberTr(used)} / ${formatNumberTr(maxC)} Kredi (Kalan: ${formatNumberTr(remC)})`;
+
+        // Sekme 2: API Anahtarlarım güncellemesi
+        renderApiKeySection();
+
+        // Sekme 3: Paket aktif rozetleri
+        ['free', 'starter_cloud', 'growth_cloud'].forEach(p => {
+          const b = document.getElementById(`planActiveBadge-${p}`);
+          if (b) {
+            if (acc.plan === p) b.classList.remove('hidden');
+            else b.classList.add('hidden');
+          }
+        });
+
+        selectQuickstartSite(selectedQuickstartService);
+      } catch (err) {
+        console.warn('Hesap bilgisi okunamadı:', err);
+      }
+    }
+
+    function renderApiKeySection() {
+      if (!currentAccount) return;
+      const keyEl = document.getElementById('apiKeyDisplayValue');
+      const toggleBtn = document.getElementById('toggleKeyBtn');
+      const planBadge = document.getElementById('apiKeyPlanBadge');
+      const credSum = document.getElementById('apiKeyCreditSummary');
+      const credBar = document.getElementById('apiKeyCreditBar');
+      const modeInfo = document.getElementById('apiKeyModeInfo');
+      const sdkSnippet = document.getElementById('apiKeySdkSnippet');
+
+      if (keyEl) {
+        keyEl.textContent = isApiKeyVisible ? currentAccount.api_key : currentAccount.masked_api_key;
+      }
+      if (toggleBtn) {
+        toggleBtn.textContent = isApiKeyVisible ? '🙈 Gizle' : '👁️ Göster';
+      }
+      if (planBadge) {
+        planBadge.textContent = `${currentAccount.plan_label || currentAccount.plan} (${currentAccount.mode.toUpperCase()})`;
+      }
+      const rem = currentAccount.remaining_credits ?? 0;
+      const max = currentAccount.max_credits || 1000;
+      const pct = Math.max(0, Math.min(100, Math.round((rem / max) * 100)));
+      if (credSum) {
+        credSum.textContent = `${formatNumberTr(rem)} / ${formatNumberTr(max)} Kredi Kaldı`;
+      }
+      if (credBar) {
+        credBar.style.width = `${pct}%`;
+      }
+      if (modeInfo) {
+        modeInfo.innerHTML = currentAccount.mode === 'cloud'
+          ? `Çalışma Modu: <b class="text-cyan-300">☁️ cloud (7/24 Bulut Tarayıcı Kümesi)</b>`
+          : `Çalışma Modu: <b class="text-emerald-300">💻 local (Kendi Bilgisayarın)</b>`;
+      }
+      if (sdkSnippet) {
+        sdkSnippet.textContent =
+`from ownapi import OwnAPI
+
+api = OwnAPI(api_key="${currentAccount.api_key}")
+flights = api.thy.search_flights(
+    origin_airport_code="IST",
+    destination_airport_code="ESB"
+)
+print(flights)`;
+      }
+    }
+
+    function toggleApiKeyVisibility() {
+      isApiKeyVisible = !isApiKeyVisible;
+      renderApiKeySection();
+    }
+
+    function copyCurrentApiKey() {
+      if (!currentAccount || !currentAccount.api_key) return;
+      navigator.clipboard.writeText(currentAccount.api_key);
+      showToast(`📋 API anahtarınız (<code>${currentAccount.masked_api_key}</code>) panoya kopyalandı!`);
+    }
+
+    async function generateNewApiKey() {
+      const btn = document.getElementById('btnGenerateNewKey');
+      if (btn) btn.disabled = true;
+      try {
+        const res = await fetch('/api/v1/keys/generate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ tenant_id: getTenant() })
+        });
+        const data = await res.json();
+        if (res.ok && data.success) {
+          currentAccount = data;
+          isApiKeyVisible = true;
+          renderApiKeySection();
+          await loadAccountInfo();
+          showToast(`🔑 Yeni API anahtarınız üretildi: <code>${data.api_key}</code>`);
+        } else {
+          showToast(`✖ Anahtar üretilemedi: ${data.detail || data.error}`, true);
+        }
+      } catch (err) {
+        showToast(`✖ Hata: ${err}`, true);
+      } finally {
+        if (btn) btn.disabled = false;
+      }
+    }
+
+    function openCheckoutModal(planKey, planTitle, priceUsd, creditsLabel) {
+      selectedUpgradePlan = planKey;
+      selectedUpgradePrice = priceUsd;
+      document.getElementById('checkoutPlanName').textContent = planTitle;
+      document.getElementById('checkoutPlanCredits').textContent = `${creditsLabel} Bulut Kredisi • mode="cloud"`;
+      document.getElementById('checkoutPlanPrice').textContent = `$${priceUsd}`;
+      document.getElementById('checkoutPayBtnText').textContent = `Öde - $${priceUsd}`;
+      document.getElementById('checkoutFormView').classList.remove('hidden');
+      document.getElementById('checkoutSuccessView').classList.add('hidden');
+      document.getElementById('stripeCheckoutModal').classList.remove('hidden');
+    }
+
+    function closeCheckoutModal() {
+      document.getElementById('stripeCheckoutModal').classList.add('hidden');
+    }
+
+    async function submitBillingUpgrade() {
+      const btn = document.getElementById('checkoutPayBtn');
+      btn.disabled = true;
+      btn.innerHTML = `<span class="animate-spin">⏳</span> Ödeme Doğrulanıyor & Bulut Kümesi Açılıyor...`;
+
+      try {
+        const res = await fetch('/api/v1/billing/upgrade', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            tenant_id: getTenant(),
+            plan: selectedUpgradePlan
+          })
+        });
+        const data = await res.json();
+        if (res.ok && data.success) {
+          currentAccount = data;
+          setExecutionMode('cloud');
+          await loadAccountInfo();
+
+          document.getElementById('checkoutFormView').classList.add('hidden');
+          document.getElementById('checkoutSuccessView').classList.remove('hidden');
+          document.getElementById('checkoutSuccessSubtitle').innerHTML =
+            `<b>${formatNumberTr(data.credits)}</b> bulut krediniz ve <code class="text-cyan-300 font-mono">mode="${data.mode}"</code> erişiminiz anında tanımlandı.`;
+          document.getElementById('checkoutNewApiKey').textContent = data.api_key;
+          document.getElementById('checkoutCloudSnippet').textContent =
+`from ownapi import OwnAPI
+
+api = OwnAPI(api_key="${data.api_key}")
+res = api.thy.search_flights(origin_airport_code="IST", destination_airport_code="ESB")
+print(res)`;
+          showToast(`🎉 <b>Tebrikler! Artık buluttasın.</b> Yeni bulut anahtarın: <code>${data.api_key}</code>`);
+        } else {
+          showToast(`✖ Paket yükseltme hatası: ${data.detail || data.error}`, true);
+        }
+      } catch (err) {
+        showToast(`✖ Ödeme bağlantı hatası: ${err}`, true);
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = `<span>🔒</span> <span id="checkoutPayBtnText">Öde - $${selectedUpgradePrice}</span>`;
+      }
+    }
+
+    function copyUpgradedKey() {
+      const keyTxt = (document.getElementById('checkoutNewApiKey').textContent || '').trim();
+      if (!keyTxt) return;
+      navigator.clipboard.writeText(keyTxt);
+      showToast('📋 Yeni bulut API anahtarınız panoya kopyalandı!');
+    }
+
+    async function selectFreePlan() {
+      try {
+        const res = await fetch('/api/v1/billing/upgrade', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ tenant_id: getTenant(), plan: 'free' })
+        });
+        const data = await res.json();
+        if (res.ok && data.success) {
+          setExecutionMode('local');
+          await loadAccountInfo();
+          showToast(`💻 <b>Free (Local)</b> pakete geçildi (1.000 kredi, mode="local").`);
+        }
+      } catch (err) {
+        showToast(`✖ Hata: ${err}`, true);
+      }
+    }
+
     async function refreshAllData() {
       await Promise.all([
+        loadAccountInfo(),
         loadServices(),
         loadHitlQueue(),
         loadAutoRepairReport(),
@@ -1388,6 +2318,7 @@ print(response)`;
     }
 
     window.addEventListener('DOMContentLoaded', () => {
+      selectQuickstartSite('thy');
       pollHitlPending();
       refreshAllData();
       // Her 2 saniyede bir .sessions/hitl_state.json üzerinden bekleyen HITL onaylarını sorgula

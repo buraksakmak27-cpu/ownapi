@@ -26,12 +26,13 @@ dependencies = [
 ]
 
 [project.scripts]
-own-api = "cli:main"
-shadow-api = "cli:main"
+ownapi = "ownapi.cli:main"
+own-api = "ownapi.cli:main"
+shadow-api = "ownapi.cli:main"
 
 [tool.setuptools]
 py-modules = ["cli", "healer", "compiler", "recorder", "master_mcp", "agent_demo", "server"]
 
 [tool.setuptools.packages.find]
 where = ["."]
-include = ["core*", "own_api*", "shadow_api*", "registry*"]
+include = ["core*", "ownapi*", "own_api*", "shadow_api*", "registry*"]

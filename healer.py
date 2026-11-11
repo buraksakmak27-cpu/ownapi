@@ -1349,6 +1349,7 @@ class SessionHealer:
                     pass
 
                 if not is_resuming_hitl:
+                    paused_shot_b64 = await hitl_mgr.capture_page_screenshot_b64(page)
                     hitl_task = hitl_mgr.enqueue_task(
                         tenant_id=active_tenant,
                         service=self.service,
@@ -1360,6 +1361,8 @@ class SessionHealer:
                         target_url=_build_thy_search_state_url(req_payload) if is_thy_availability else visit_url,
                         reason=f"Captcha / WAF / PerimeterX doğrulaması algılandı (HTTP {resp_status})",
                         in_place_paused=pause_and_wait,
+                        execution_mode=active_mode,
+                        screenshot_b64=paused_shot_b64,
                     )
                     active_hitl_task_id = hitl_task["task_id"]
 
@@ -1487,6 +1490,7 @@ class SessionHealer:
                         console.print("\n[bold yellow]⚠️  Backend oturum/şema uyarısı alındı.[/bold yellow]")
 
                     if not is_resuming_hitl:
+                        paused_thy_shot_b64 = await hitl_mgr.capture_page_screenshot_b64(page)
                         if active_hitl_task_id is None:
                             hitl_task = hitl_mgr.enqueue_task(
                                 tenant_id=active_tenant,
@@ -1499,9 +1503,18 @@ class SessionHealer:
                                 target_url=_build_thy_search_state_url(req_payload),
                                 reason="THY oturum/müsaitlik ön etkileşimi veya WAF doğrulaması gerekiyor",
                                 in_place_paused=pause_and_wait,
+                                execution_mode=active_mode,
+                                screenshot_b64=paused_thy_shot_b64,
                             )
                             active_hitl_task_id = hitl_task["task_id"]
                         else:
+                            if paused_thy_shot_b64:
+                                hitl_mgr.update_task_state(
+                                    active_hitl_task_id,
+                                    status="PAUSED",
+                                    screenshot_b64=paused_thy_shot_b64,
+                                    execution_mode=active_mode,
+                                )
                             hitl_task, _ = hitl_mgr.get_task(active_hitl_task_id, tenant_id=active_tenant)
                             hitl_task = hitl_task or {"task_id": active_hitl_task_id, "reason": "THY doğrulaması gerekiyor"}
 

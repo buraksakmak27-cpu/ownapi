@@ -1009,6 +1009,7 @@ def ask_command(
 
 def main() -> None:
     """OwnAPI CLI giriş noktası."""
+    import ownapi.cli  # noqa: F401
     app()
 
 
