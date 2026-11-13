@@ -85,6 +85,8 @@
           <span id="topStatusConnectionText" class="font-medium text-emerald-300">Bağlı - Bilgisayarın Hazır</span>
           <span class="text-gray-600">|</span>
           <span id="topStatusCreditsText" class="font-mono text-gray-200">Kullanılan: 0 / 1.000 Kredi</span>
+          <span class="text-gray-600">|</span>
+          <span id="topStatusSitesText" class="font-mono font-semibold text-cyan-300">Siteler: 0 / 2</span>
           <span class="text-gray-600 hidden sm:inline">|</span>
           <span id="topStatusPlanText" class="hidden sm:inline font-semibold text-indigo-300">Paket: Free (Local)</span>
         </div>
@@ -526,8 +528,9 @@ ownapi status</pre>
             <p class="text-xs text-gray-400">Kendi bilgisayarınız açıkken yerel Chrome oturumu üzerinden çalışır.</p>
             <ul class="space-y-2 text-xs text-gray-300 pt-2 border-t border-borderSubtle">
               <li class="flex items-center gap-2"><span class="text-emerald-400">✔</span> <b>1.000 istek / ay</b> ücretsiz kredi</li>
+              <li class="flex items-center gap-2"><span class="text-emerald-400">✔</span> <b>En fazla 2 farklı site / konektör</b> (<code class="font-mono text-cyan-300">max_sites = 2</code>)</li>
               <li class="flex items-center gap-2"><span class="text-emerald-400">✔</span> Kendi bilgisayarın (<code class="font-mono text-indigo-300">mode="local"</code>)</li>
-              <li class="flex items-center gap-2"><span class="text-emerald-400">✔</span> Tüm hazır konektörler (THY, Trendyol, Pegasus)</li>
+              <li class="flex items-center gap-2"><span class="text-emerald-400">✔</span> Hazır konektörler (THY, Trendyol, Pegasus vb.)</li>
               <li class="flex items-center gap-2"><span class="text-emerald-400">✔</span> <code class="font-mono text-cyan-300">ownapi init</code> ile Claude MCP bağlantısı</li>
             </ul>
           </div>
@@ -558,6 +561,7 @@ ownapi status</pre>
             <p class="text-xs text-gray-300">Bilgisayarınız kapalıyken bile 7/24 bulut tarayıcı kümesinde kesintisiz çalışır.</p>
             <ul class="space-y-2 text-xs text-gray-200 pt-2 border-t border-borderSubtle">
               <li class="flex items-center gap-2"><span class="text-cyan-400">✔</span> <b>10.000 istek / ay</b> bulut kredisi</li>
+              <li class="flex items-center gap-2"><span class="text-cyan-400">✔</span> <b>En fazla 5 site / konektör</b> (<code class="font-mono text-cyan-300">max_sites = 5</code>)</li>
               <li class="flex items-center gap-2"><span class="text-cyan-400">✔</span> 7/24 Bulut Tarayıcı (<code class="font-mono text-cyan-300">mode="cloud"</code>)</li>
               <li class="flex items-center gap-2"><span class="text-cyan-400">✔</span> Özel <code class="font-mono text-amber-300">sk-ownapi-...</code> bulut anahtarı</li>
               <li class="flex items-center gap-2"><span class="text-cyan-400">✔</span> Gece 03:00 Auto-Repair & HITL bildirimleri</li>
@@ -587,6 +591,7 @@ ownapi status</pre>
             <p class="text-xs text-gray-400">Yüksek hacimli üretim ortamları ve çoklu AI ajan sürüleri için izole bulut kümesi.</p>
             <ul class="space-y-2 text-xs text-gray-300 pt-2 border-t border-borderSubtle">
               <li class="flex items-center gap-2"><span class="text-emerald-400">✔</span> <b>100.000 istek / ay</b> yüksek hacimli kredi</li>
+              <li class="flex items-center gap-2"><span class="text-emerald-400">✔</span> <b>En fazla 50 site / konektör</b> (<code class="font-mono text-cyan-300">max_sites = 50</code>)</li>
               <li class="flex items-center gap-2"><span class="text-emerald-400">✔</span> Özel Bulut Kümesi (<code class="font-mono text-cyan-300">mode="cloud"</code>)</li>
               <li class="flex items-center gap-2"><span class="text-emerald-400">✔</span> Öncelikli GPT-4o Self-Healing 2.0 onarımı</li>
               <li class="flex items-center gap-2"><span class="text-emerald-400">✔</span> Çoklu Kiracı (Multi-Tenant) & SLA Desteği</li>
@@ -788,14 +793,21 @@ ownapi status</pre>
         </div>
 
         <div id="hitlCloudPreviewCards" class="grid grid-cols-1 gap-4">
-          <div class="rounded-xl bg-bgBase/80 border border-borderSubtle p-4 text-xs text-gray-400 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
-            <div>
-              <div class="font-semibold text-gray-200">☁️ Uzak Bulut Tarayıcı Ekranı (Canlı Önizleme) Hazır</div>
-              <div class="text-[11px] text-gray-500 mt-0.5">Bekleyen bir Cloud HITL görevi oluştuğunda canlı ekran görüntüsü (`GET /api/hitl/preview/{task_id}`) otomatik olarak burada açılır.</div>
+          <div class="rounded-xl bg-bgBase/80 border border-borderSubtle p-4 text-xs text-gray-400 space-y-3">
+            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+              <div>
+                <div class="font-semibold text-gray-200">☁️ Uzak Bulut Tarayıcı Ekranı (Canlı Önizleme) Hazır</div>
+                <div class="text-[11px] text-gray-500 mt-0.5">Bekleyen bir Cloud HITL görevi oluştuğunda canlı ekran görüntüsü (`GET /api/hitl/preview/{task_id}`) ve uzaktan OTP giriş alanı otomatik olarak burada açılır.</div>
+              </div>
+              <span class="px-3 py-1.5 rounded-lg bg-emerald-600/20 text-emerald-300 border border-emerald-500/30 font-semibold text-[11px]">
+                Doğrulamayı Tamamla & Devam Et (Resume)
+              </span>
             </div>
-            <span class="px-3 py-1.5 rounded-lg bg-emerald-600/20 text-emerald-300 border border-emerald-500/30 font-semibold text-[11px]">
-              Doğrulamayı Tamamla & Devam Et (Resume)
-            </span>
+            <div class="pt-2 border-t border-borderSubtle/60 flex flex-wrap items-center gap-2 text-[11px] text-gray-400">
+              <span>🔑 SMS / E-Posta Onay Kodu (Varsa):</span>
+              <span class="px-2.5 py-1 rounded bg-bgCard border border-borderSubtle font-mono text-amber-300">[ 123456 ]</span>
+              <span class="text-gray-500">(E-Devlet veya 2FA isteyen siteler için uzaktan kod gönderimi desteklenir)</span>
+            </div>
           </div>
         </div>
       </div>
@@ -1446,8 +1458,11 @@ print(response)`;
           statusBadge.textContent = '200 OK (BAŞARILI)';
           statusBadge.className = 'text-[11px] font-mono px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400';
         } else {
-          statusBadge.textContent = 'HATA';
+          statusBadge.textContent = 'HATA / LİMİT';
           statusBadge.className = 'text-[11px] font-mono px-2 py-0.5 rounded bg-rose-500/20 text-rose-400';
+          if (data.error || data.detail) {
+            showToast(`⚠️ ${data.error || data.detail}`, true);
+          }
         }
         await refreshAllData();
       } catch (err) {
@@ -1495,6 +1510,9 @@ print(response)`;
         statusBadge.className = data.success
           ? 'text-[11px] font-mono px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400'
           : 'text-[11px] font-mono px-2 py-0.5 rounded bg-rose-500/20 text-rose-400';
+        if (!data.success && (data.error || data.detail)) {
+          showToast(`⚠️ ${data.error || data.detail}`, true);
+        }
         await loadAccountInfo();
       } catch (err) {
         viewer.textContent = JSON.stringify({ error: String(err) }, null, 2);
@@ -1692,6 +1710,23 @@ print(response)`;
                       Canlı bulut ekran görüntüsü yükleniyor...
                     </div>
                   </div>
+
+                  <!-- Opsiyonel Uzaktan SMS / E-Posta (OTP) Doğrulama Kodu Giriş Alanı -->
+                  <div class="px-4 py-3 bg-bgElevated/90 border-t border-borderSubtle flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <label for="hitlOtpInput-${t.task_id}" class="text-xs font-semibold text-amber-300 flex items-center gap-2">
+                      <span>🔑 SMS / E-Posta Onay Kodu (Varsa):</span>
+                    </label>
+                    <div class="flex items-center gap-2 flex-1 sm:max-w-md justify-end">
+                      <input id="hitlOtpInput-${t.task_id}" type="text" maxlength="12"
+                        placeholder="123456"
+                        value="${t.otp_code || ''}"
+                        class="w-36 sm:w-44 bg-bgBase border border-amber-500/40 rounded-lg px-3 py-1.5 text-xs font-mono font-bold text-amber-200 tracking-widest placeholder-gray-500 focus:outline-none focus:border-amber-400 text-center" />
+                      <button onclick="approveHitlTask('${t.task_id}')"
+                        class="px-3.5 py-1.5 rounded-lg bg-gradient-to-r from-emerald-600 to-cyan-600 hover:from-emerald-500 hover:to-cyan-500 text-white font-bold text-xs shadow transition whitespace-nowrap">
+                        Doğrulamayı Tamamla & Devam Et
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
             `;
@@ -1779,12 +1814,22 @@ print(response)`;
     }
 
     async function approveHitlTask(taskId) {
-      showToast(`▶️ <b>${taskId}</b> görevi için onay sinyali gönderildi. Duraklatılan ajan kaldığı yerden ('resume') devam ettiriliyor...`);
+      const otpInputEl = document.getElementById(`hitlOtpInput-${taskId}`);
+      const otpCode = otpInputEl ? (otpInputEl.value || '').trim() : '';
+      const otpNotice = otpCode ? ` (OTP Kodu: <b>${otpCode}</b>)` : '';
+      showToast(`▶️ <b>${taskId}</b> görevi için onay sinyali gönderildi${otpNotice}. Duraklatılan ajan kaldığı yerden ('resume') devam ettiriliyor...`);
       try {
-        const res = await fetch(`/api/hitl/approve/${encodeURIComponent(taskId)}`, { method: 'POST' });
+        const res = await fetch(`/api/hitl/resolve/${encodeURIComponent(taskId)}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            otp_code: otpCode || null,
+            tenant_id: getTenant()
+          })
+        });
         const data = await res.json();
         if (res.ok && data.success) {
-          showToast(`✅ Görev <b>${taskId}</b> başarıyla onaylandı ve kaldığı yerden tamamlandı (COMPLETED)!`);
+          showToast(`✅ Görev <b>${taskId}</b>${otpNotice} başarıyla onaylandı ve kaldığı yerden tamamlandı (COMPLETED)!`);
         } else {
           showToast(`✖ Görev onaylama hatası: ${data.detail || data.error}`, true);
         }
@@ -2075,6 +2120,9 @@ print(cloud_res)`;
         const elapsed = data.elapsed_ms || Math.round(performance.now() - t0);
         timer.textContent = `⏱️ ${elapsed} ms`;
         viewer.textContent = JSON.stringify(data, null, 2);
+        if (!data.success && (data.error || data.detail)) {
+          showToast(`⚠️ ${data.error || data.detail}`, true);
+        }
         await loadAccountInfo();
       } catch (err) {
         timer.textContent = 'Hata';
@@ -2097,12 +2145,15 @@ print(cloud_res)`;
         const used = acc.used_credits ?? 0;
         const maxC = acc.max_credits || 1000;
         const remC = acc.remaining_credits ?? acc.credits ?? 1000;
+        const maxSites = acc.max_sites ?? (acc.plan === 'growth_cloud' ? 50 : (acc.plan === 'starter_cloud' ? 5 : 2));
+        const activeSitesCount = acc.active_sites_count ?? (Array.isArray(acc.active_sites) ? acc.active_sites.length : 0);
 
-        // Üst bar canlı Kredi & Mod göstergesi
+        // Üst bar canlı Kredi, Site Limiti & Mod göstergesi
         const topBadge = document.getElementById('topCreditStatusBadge');
         const topDot = document.getElementById('topStatusDot');
         const topConn = document.getElementById('topStatusConnectionText');
         const topCred = document.getElementById('topStatusCreditsText');
+        const topSites = document.getElementById('topStatusSitesText');
         const topPlan = document.getElementById('topStatusPlanText');
 
         if (isCloud) {
@@ -2121,6 +2172,12 @@ print(cloud_res)`;
           topPlan.className = 'hidden sm:inline font-semibold text-indigo-300';
         }
         topCred.textContent = `Kullanılan: ${formatNumberTr(used)} / ${formatNumberTr(maxC)} Kredi (Kalan: ${formatNumberTr(remC)})`;
+        if (topSites) {
+          topSites.textContent = `Siteler: ${activeSitesCount} / ${maxSites}`;
+          topSites.title = (Array.isArray(acc.active_sites) && acc.active_sites.length)
+            ? `Aktif Siteler: ${acc.active_sites.join(', ')}`
+            : `Maksimum ${maxSites} farklı site kullanılabilir`;
+        }
 
         // Sekme 2: API Anahtarlarım güncellemesi
         renderApiKeySection();

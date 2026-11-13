@@ -171,7 +171,7 @@ class HITLQueueManager:
         return "local"
 
     def _normalize_task_fields(self, task: dict[str, Any]) -> dict[str, Any]:
-        """Mevcut alanları bozmadan Cloud HITL önizleme alanlarının varlığını garanti eder."""
+        """Mevcut alanları bozmadan Cloud HITL önizleme ve OTP alanlarının varlığını garanti eder."""
         tid = str(task.get("task_id", "")).strip()
         exec_mode = str(task.get("execution_mode") or task.get("mode") or "local").strip().lower()
         if exec_mode not in ("local", "cloud"):
@@ -180,6 +180,7 @@ class HITLQueueManager:
         task.setdefault("mode", exec_mode)
         task.setdefault("screenshot_b64", None)
         task.setdefault("cloud_preview_url", f"/api/hitl/preview/{tid}" if tid else None)
+        task.setdefault("otp_code", None)
         return task
 
     @staticmethod
@@ -420,6 +421,7 @@ class HITLQueueManager:
             "mode": resolved_mode,
             "screenshot_b64": screenshot_b64,
             "cloud_preview_url": resolved_preview_url,
+            "otp_code": None,
             "created_at": now_iso,
             "paused_at": now_iso,
             "updated_at": now_iso,
@@ -463,6 +465,7 @@ class HITLQueueManager:
         screenshot_b64: str | None = None,
         cloud_preview_url: str | None = None,
         execution_mode: str | None = None,
+        otp_code: str | None = None,
     ) -> dict[str, Any] | None:
         """`.sessions/hitl_state.json` içindeki görevin durumunu ve yanıtını günceller."""
         clean_id = task_id.strip()
@@ -500,6 +503,8 @@ class HITLQueueManager:
                     if clean_exec in ("local", "cloud"):
                         item["execution_mode"] = clean_exec
                         item["mode"] = clean_exec
+                if otp_code is not None:
+                    item["otp_code"] = str(otp_code).strip() or None
 
                 if extra_fields:
                     item.update(extra_fields)
@@ -569,6 +574,7 @@ class HITLQueueManager:
             "screenshot_data_url": data_url,
             "cloud_preview_url": normalized.get("cloud_preview_url") or f"/api/hitl/preview/{normalized['task_id']}",
             "has_live_screenshot": bool(normalized.get("screenshot_b64")),
+            "otp_code": normalized.get("otp_code"),
             "created_at": normalized.get("created_at"),
             "paused_at": normalized.get("paused_at"),
             "updated_at": normalized.get("updated_at"),
@@ -668,18 +674,25 @@ class HITLQueueManager:
                 return t, self._sanitize(str(t.get("tenant_id", "default")))
         return None, self._sanitize(tenant_id or "default")
 
-    def resume_task(self, task_id: str, tenant_id: str | None = None) -> dict[str, Any]:
+    def resume_task(
+        self,
+        task_id: str,
+        tenant_id: str | None = None,
+        otp_code: str | None = None,
+    ) -> dict[str, Any]:
         """
         Bekleyen (`PAUSED` / `PENDING_USER_ACTION`) bir görevi onaylar ve kaldığı yerden (`resume`) devam ettirir:
         1. Eğer ajan şu an bellekte/arka planda `in_place_paused` olarak `.sessions/hitl_state.json` dosyasını
-           dinliyorsa, durumu `APPROVED_TO_RESUME` yaparak ajanın kendi oturumu içinde kaldığı yerden
-           devam etmesini tetikler.
+           dinliyorsa, durumu `APPROVED_TO_RESUME` yaparak (ve varsa `otp_code` bilgisini ileterek) ajanın kendi
+           oturumu içinde kaldığı yerden devam etmesini tetikler.
         2. Eğer ajan süreci kapanmış veya sayfa/sunucu yeniden başlatılmışsa, isteği `.sessions/hitl_state.json`
            kaydından yeniden çalıştırarak tamamlar ve durumu `COMPLETED` olarak kaydeder.
         """
         task, found_tenant = self.get_task(task_id, tenant_id=tenant_id)
         if not task:
             raise ValueError(f"Görev bulunamadı: '{task_id}'")
+
+        clean_otp = str(otp_code or "").strip() or None
 
         if str(task.get("status", "")).upper() == "COMPLETED" and task.get("response") is not None:
             return {
@@ -688,24 +701,34 @@ class HITLQueueManager:
                 "task_id": task["task_id"],
                 "service": task["service"],
                 "tenant_id": found_tenant,
+                "otp_code": clean_otp or task.get("otp_code"),
                 "completed_at": task.get("completed_at"),
                 "response": task.get("response"),
             }
 
+        otp_info_line = (
+            f"\n[white]SMS / E-Posta Onay Kodu (OTP):[/white] [bold green]{clean_otp}[/bold green]"
+            if clean_otp
+            else ""
+        )
         console.print(
             Panel.fit(
                 f"[bold cyan]▶️ HITL Görevi Onaylandı — Kaldığı Yerden Devam Ettiriliyor (Resume)[/bold cyan]\n"
                 f"[white]Görev ID:[/white] [bold yellow]{task['task_id']}[/bold yellow]\n"
                 f"[white]Servis / Tenant:[/white] [magenta]{task['service']}[/magenta] ([cyan]{found_tenant}[/cyan])\n"
                 f"[white]Uç Nokta:[/white] [green]{task['method']} {task['url']}[/green]\n"
-                f"[white]Bekleme Nedeni:[/white] [yellow]{task.get('reason')}[/yellow]",
+                f"[white]Bekleme Nedeni:[/white] [yellow]{task.get('reason')}[/yellow]{otp_info_line}",
                 title="OwnAPI HITL Task Resumer",
                 border_style="cyan",
             )
         )
 
-        # 1. Durumu APPROVED_TO_RESUME olarak işaretle (canlı bekleyen ajan varsa anında uyanır)
-        self.update_task_state(task["task_id"], status="APPROVED_TO_RESUME")
+        # 1. Durumu APPROVED_TO_RESUME olarak işaretle ve varsa otp_code'u kaydet (canlı bekleyen ajan varsa anında uyanır)
+        self.update_task_state(
+            task["task_id"],
+            status="APPROVED_TO_RESUME",
+            otp_code=clean_otp,
+        )
 
         if task.get("in_place_paused"):
             wait_deadline = time.monotonic() + 25.0
@@ -721,6 +744,7 @@ class HITLQueueManager:
                         "task_id": fresh_task["task_id"],
                         "service": fresh_task["service"],
                         "tenant_id": found_tenant,
+                        "otp_code": clean_otp or fresh_task.get("otp_code"),
                         "completed_at": fresh_task.get("completed_at"),
                         "response": fresh_task.get("response"),
                     }
@@ -754,10 +778,15 @@ class HITLQueueManager:
             except Exception:
                 req_headers["Referer"] = "https://www.turkishairlines.com/"
 
-        self.update_task_state(task["task_id"], status="RESUMING")
+        self.update_task_state(task["task_id"], status="RESUMING", otp_code=clean_otp)
 
         prev_resuming = os.environ.get("OWNAPI_HITL_RESUMING")
+        prev_otp = os.environ.get("OWNAPI_HITL_OTP_CODE")
         os.environ["OWNAPI_HITL_RESUMING"] = "1"
+        if clean_otp:
+            os.environ["OWNAPI_HITL_OTP_CODE"] = clean_otp
+        else:
+            os.environ.pop("OWNAPI_HITL_OTP_CODE", None)
         try:
             healer = SessionHealer(
                 target_url=resolved_target_url,
@@ -783,11 +812,16 @@ class HITLQueueManager:
                 os.environ.pop("OWNAPI_HITL_RESUMING", None)
             else:
                 os.environ["OWNAPI_HITL_RESUMING"] = prev_resuming
+            if prev_otp is None:
+                os.environ.pop("OWNAPI_HITL_OTP_CODE", None)
+            else:
+                os.environ["OWNAPI_HITL_OTP_CODE"] = prev_otp
 
         updated = self.update_task_state(
             task["task_id"],
             status="COMPLETED",
             response=response,
+            otp_code=clean_otp,
         )
         now_iso = (updated or {}).get("completed_at") or datetime.now(timezone.utc).isoformat()
 
@@ -800,6 +834,7 @@ class HITLQueueManager:
             "task_id": task["task_id"],
             "service": task["service"],
             "tenant_id": found_tenant,
+            "otp_code": clean_otp or (updated or {}).get("otp_code"),
             "completed_at": now_iso,
             "response": response,
         }

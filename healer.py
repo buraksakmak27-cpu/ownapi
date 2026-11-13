@@ -362,6 +362,158 @@ class SessionHealer:
         except Exception:
             return False
 
+    async def _apply_otp_code_if_present(
+        self,
+        page: Page,
+        otp_code: str | None,
+        tenant_id: str | None = None,
+    ) -> bool:
+        """
+        HITL Onay Merkezi üzerinden kullanıcı `otp_code` (SMS / E-Posta / 2FA doğrulama kodu)
+        gönderdiğinde, açık olan Playwright `page` üzerindeki OTP input alanını otomatik bulur,
+        kodu yazar, gönder (submit/onayla) butonuna tıklar ve oturumu kaydeder.
+        """
+        clean_code = str(otp_code or "").strip()
+        if not clean_code or page is None:
+            return False
+
+        console.print(
+            f"[bold cyan]🔑 [HITL OTP] Uzaktan SMS/E-Posta doğrulama kodu ({clean_code}) sayfaya uygulanıyor...[/bold cyan]"
+        )
+        filled = False
+        try:
+            # 1. Çok kutucuklu (maxlength=1) parçalı OTP girişi kontrolü
+            split_boxes = page.locator('input[maxlength="1"]:visible')
+            split_count = await split_boxes.count()
+            if split_count >= 4 and len(clean_code) >= 4:
+                for idx, ch in enumerate(clean_code[:split_count]):
+                    box = split_boxes.nth(idx)
+                    await box.click(timeout=2000)
+                    await box.fill(ch, timeout=2000)
+                filled = True
+
+            # 2. Tekil semantik OTP / SMS / Doğrulama Kodu input seçicileri
+            if not filled:
+                otp_selectors = [
+                    'input[autocomplete="one-time-code"]:visible',
+                    'input[name*="otp" i]:visible',
+                    'input[name*="sms" i]:visible',
+                    'input[name*="code" i]:visible',
+                    'input[name*="kod" i]:visible',
+                    'input[name*="dogrulama" i]:visible',
+                    'input[name*="verify" i]:visible',
+                    'input[name*="pin" i]:visible',
+                    'input[id*="otp" i]:visible',
+                    'input[id*="sms" i]:visible',
+                    'input[id*="code" i]:visible',
+                    'input[id*="kod" i]:visible',
+                    'input[id*="dogrulama" i]:visible',
+                    'input[id*="verify" i]:visible',
+                    'input[placeholder*="kod" i]:visible',
+                    'input[placeholder*="code" i]:visible',
+                    'input[placeholder*="sms" i]:visible',
+                    'input[placeholder*="otp" i]:visible',
+                    'input[placeholder*="doğrulama" i]:visible',
+                    'input[placeholder*="dogrulama" i]:visible',
+                    'input[placeholder*="onay" i]:visible',
+                    'input[aria-label*="kod" i]:visible',
+                    'input[aria-label*="code" i]:visible',
+                    'input[aria-label*="sms" i]:visible',
+                    'input[aria-label*="otp" i]:visible',
+                    'input[type="tel"]:visible',
+                    'input[type="number"]:visible',
+                    'input[type="text"]:visible',
+                ]
+                target_locator = None
+                for sel in otp_selectors:
+                    loc = page.locator(sel)
+                    if await loc.count() > 0:
+                        target_locator = loc.first
+                        break
+
+                if target_locator is not None:
+                    await target_locator.click(timeout=3000)
+                    await target_locator.fill(clean_code, timeout=3000)
+                    filled = True
+
+            if not filled:
+                # JS tabanlı yedek doldurma
+                filled = bool(
+                    await page.evaluate(
+                        """(code) => {
+                            const inputs = Array.from(document.querySelectorAll('input:not([type="hidden"]):not([type="submit"]):not([type="button"]):not([type="checkbox"]):not([type="radio"])'));
+                            const visible = inputs.filter(el => el.offsetParent !== null || el.getClientRects().length > 0);
+                            const target = visible[0] || inputs[0];
+                            if (!target) return false;
+                            target.focus();
+                            target.value = code;
+                            target.dispatchEvent(new Event('input', { bubbles: true }));
+                            target.dispatchEvent(new Event('change', { bubbles: true }));
+                            return true;
+                        }""",
+                        clean_code,
+                    )
+                )
+
+            if filled:
+                # 3. Gönder / Onayla / Doğrula / Devam Et butonunu bul ve tıkla
+                submit_selectors = [
+                    'button[type="submit"]:visible',
+                    'input[type="submit"]:visible',
+                    'button:has-text("Onayla"):visible',
+                    'button:has-text("Doğrula"):visible',
+                    'button:has-text("Dogrula"):visible',
+                    'button:has-text("Gönder"):visible',
+                    'button:has-text("Gonder"):visible',
+                    'button:has-text("Devam"):visible',
+                    'button:has-text("Giriş"):visible',
+                    'button:has-text("Verify"):visible',
+                    'button:has-text("Confirm"):visible',
+                    'button:has-text("Submit"):visible',
+                ]
+                clicked_submit = False
+                for btn_sel in submit_selectors:
+                    btn_loc = page.locator(btn_sel)
+                    if await btn_loc.count() > 0:
+                        await btn_loc.first.click(timeout=3000)
+                        clicked_submit = True
+                        break
+
+                if not clicked_submit:
+                    try:
+                        await page.keyboard.press("Enter")
+                    except Exception:
+                        pass
+
+                await asyncio.sleep(1.0)
+
+                # 4. Güncel çerezleri ve oturumu TokenStore'a kaydet
+                try:
+                    ctx = page.context
+                    cookies = await ctx.cookies()
+                    ua = await page.evaluate("() => navigator.userAgent")
+                    self.token_store.save_session(
+                        tenant_id=tenant_id or self.tenant_id,
+                        service=self.service,
+                        cookies=cookies,
+                        user_agent=ua,
+                        metadata={
+                            "target_url": page.url,
+                            "healed_at": datetime.now(timezone.utc).isoformat(),
+                            "otp_verified": True,
+                        },
+                    )
+                except Exception:
+                    pass
+
+                console.print(
+                    f"[bold green]✔ [HITL OTP] Doğrulama kodu ({clean_code}) başarıyla girildi ve onaylandı![/bold green]"
+                )
+                return True
+        except Exception as exc:
+            console.print(f"[dim yellow]⚠️ OTP kodu uygulama uyarısı: {exc}[/dim yellow]")
+        return False
+
     async def _handle_human_challenge_if_present(self, page: Page, wait_sec: int | None = None) -> None:
         """
         PerimeterX veya Captcha ekranÄ± tespit edilirse kullanÄ±cÄ±ya doÄŸrulamayÄ±
@@ -1241,11 +1393,15 @@ class SessionHealer:
             hitl_mgr = HITLQueueManager()
             active_hitl_task_id: str | None = None
             is_resuming_hitl = os.getenv("OWNAPI_HITL_RESUMING", "0").strip() == "1"
+            env_otp_code = os.getenv("OWNAPI_HITL_OTP_CODE", "").strip() or None
             pause_and_wait = (
                 not is_resuming_hitl
                 and os.getenv("OWNAPI_HITL_PAUSE_AND_WAIT", "1").strip().lower() not in ("0", "false", "no")
             )
             pause_timeout_sec = float(os.getenv("OWNAPI_HITL_PAUSE_TIMEOUT", "300"))
+
+            if is_resuming_hitl and env_otp_code:
+                await self._apply_otp_code_if_present(page, env_otp_code, tenant_id=active_tenant)
 
             # Eğer THY availability çağrısıysa ve ana sayfada WAF engeli yoksa (veya HITL resume modundaysak),
             # doğrudan /api/v1/availability isteği atmadan ÖNCE arama URL'sine gidip sayfa state'ini oluştur!
@@ -1424,8 +1580,13 @@ class SessionHealer:
                     console.print(
                         f"[bold green]▶️  [HITL RESUMED] Kullanıcı onayı alındı ({hitl_task['task_id']}), ajan kaldığı yerden devam ediyor...[/bold green]"
                     )
+                    resumed_otp = str(resumed_task.get("otp_code") or os.getenv("OWNAPI_HITL_OTP_CODE") or "").strip() or None
+                    if resumed_otp:
+                        await self._apply_otp_code_if_present(page, resumed_otp, tenant_id=active_tenant)
                 else:
                     await asyncio.sleep(2.0)
+                    if env_otp_code:
+                        await self._apply_otp_code_if_present(page, env_otp_code, tenant_id=active_tenant)
 
                 # WAF/Captcha geçildikten ve HITL onayı alındıktan sonra:
                 # Doğrudan API isteği atmadan ÖNCE Generic Form Automation ve arama URL'si ile sayfa state'ini oluştur!
@@ -1576,8 +1737,13 @@ class SessionHealer:
                         console.print(
                             f"[bold green]▶️  [HITL RESUMED] Kullanıcı onayı alındı ({hitl_task['task_id']}), THY görevi kaldığı yerden devam ediyor...[/bold green]"
                         )
+                        resumed_thy_otp = str(resumed_task.get("otp_code") or os.getenv("OWNAPI_HITL_OTP_CODE") or "").strip() or None
+                        if resumed_thy_otp:
+                            await self._apply_otp_code_if_present(page, resumed_thy_otp, tenant_id=active_tenant)
                     else:
                         await asyncio.sleep(2.0)
+                        if env_otp_code:
+                            await self._apply_otp_code_if_present(page, env_otp_code, tenant_id=active_tenant)
 
                     captured_text = captured_browser_response.get("text", "")
                     if captured_text and _is_populated_availability(captured_text):

@@ -8,9 +8,9 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-from fastapi import FastAPI, Header, HTTPException, Query
+from fastapi import Body, FastAPI, Header, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
@@ -21,10 +21,13 @@ if str(PROJECT_ROOT) not in sys.path:
 from compiler import RegistrySchema
 from core.api_keys import (
     PLAN_CATALOG,
+    SITE_LIMIT_WARNING_MESSAGE,
+    SiteLimitExceededError,
     consume_credit,
     generate_api_key,
     get_or_create_tenant,
     get_tenant_info,
+    register_site_usage,
     upgrade_plan,
 )
 from core.auto_repair import AutoRepairEngine
@@ -69,6 +72,7 @@ class CallRequest(BaseModel):
 
 class AskRequest(BaseModel):
     prompt: str = Field(..., description="Doğal dil ajanına sorulacak soru veya talimat")
+    service: str | None = Field(default=None, description="Opsiyonel hedef site/konektör adı")
     tenant_id: str = Field(default="default", description="Kiracı ID'si")
     api_key: str | None = Field(default=None, description="Opsiyonel sk-ownapi-... API anahtarı")
     mode: str | None = Field(default=None, description="Çalışma modu: 'local' veya 'cloud'")
@@ -112,6 +116,11 @@ class BillingUpgradeRequest(BaseModel):
     plan: str = Field(default="starter_cloud", description="Hedef paket: 'starter_cloud' ($10), 'growth_cloud' ($49) veya 'free'")
 
 
+class HITLResolveRequest(BaseModel):
+    otp_code: str | None = Field(default=None, description="Opsiyonel SMS / E-Posta / 2FA doğrulama kodu (örn: 123456)")
+    tenant_id: str | None = Field(default=None, description="Opsiyonel kiracı ID'si")
+
+
 def _mask_api_key(api_key: str) -> str:
     clean = str(api_key or "").strip()
     if len(clean) <= 16:
@@ -128,6 +137,8 @@ def _build_account_payload(tenant_id: str = "default") -> dict[str, Any]:
     plan_used = max(0, max_credits - rem_credits)
     consumed = int(rec.get("total_consumed", plan_used))
     full_key = str(rec.get("api_key", ""))
+    max_sites = int(rec.get("max_sites", plan_meta.get("max_sites", 2)))
+    active_sites = list(rec.get("active_sites", [])) if isinstance(rec.get("active_sites"), list) else []
     return {
         "success": True,
         "tenant_id": rec.get("tenant_id", tenant_id),
@@ -141,6 +152,9 @@ def _build_account_payload(tenant_id: str = "default") -> dict[str, Any]:
         "total_credits": max_credits,
         "used_credits": plan_used,
         "total_consumed": consumed,
+        "max_sites": max_sites,
+        "active_sites": active_sites,
+        "active_sites_count": len(active_sites),
         "api_key": full_key,
         "masked_api_key": _mask_api_key(full_key),
         "created_at": rec.get("created_at"),
@@ -282,13 +296,14 @@ async def list_services(tenant_id: str = Query(default="default")) -> dict[str, 
 
 
 @app.post("/api/v1/onboard")
-async def onboard_site_endpoint(req: OnboardRequest) -> dict[str, Any]:
+async def onboard_site_endpoint(req: OnboardRequest) -> Any:
     """
     Web Dashboard üzerinden yeni bir siteyi sisteme ekler (`onboard_new_site`):
-    1. Plaid tarzı yasal onay (User Delegation Consent) kontrolünü yapar ve SHA-256 imzasıyla loglar.
-    2. Tarayıcı oturumunu açıp XHR/Fetch trafiğini yakalar (`wait_seconds` veya tarayıcı içi 'Kaydı Bitir' butonuyla).
-    3. GPT-4o ile `client.py`, `schema.json` ve `__init__.py` dosyalarını derler.
-    4. 3x Auto-Test (Compiler + Validator Loop) doğrulamasını çalıştırıp sonucu döndürür.
+    1. Paket bazlı maksimum site limitini (`max_sites` / `active_sites`) kontrol eder.
+    2. Plaid tarzı yasal onay (User Delegation Consent) kontrolünü yapar ve SHA-256 imzasıyla loglar.
+    3. Tarayıcı oturumunu açıp XHR/Fetch trafiğini yakalar (`wait_seconds` veya tarayıcı içi 'Kaydı Bitir' butonuyla).
+    4. GPT-4o ile `client.py`, `schema.json` ve `__init__.py` dosyalarını derler.
+    5. 3x Auto-Test (Compiler + Validator Loop) doğrulamasını çalıştırıp sonucu döndürür.
     """
     if not req.consent_accepted:
         raise HTTPException(
@@ -303,6 +318,28 @@ async def onboard_site_endpoint(req: OnboardRequest) -> dict[str, Any]:
 
     if not target_url.startswith(("http://", "https://")):
         target_url = f"https://{target_url}"
+
+    try:
+        register_site_usage(req.tenant_id, svc_name)
+    except SiteLimitExceededError as exc:
+        acc = _build_account_payload(tenant_id=req.tenant_id)
+        return JSONResponse(
+            status_code=403,
+            content={
+                "success": False,
+                "service_name": svc_name,
+                "target_url": target_url,
+                "tenant_id": acc["tenant_id"],
+                "plan": acc["plan"],
+                "max_sites": acc["max_sites"],
+                "active_sites": acc["active_sites"],
+                "active_sites_count": acc["active_sites_count"],
+                "error": str(exc),
+                "detail": str(exc),
+                "warning": str(exc),
+                "message": str(exc),
+            },
+        )
 
     start_t = time.perf_counter()
     try:
@@ -320,8 +357,12 @@ async def onboard_site_endpoint(req: OnboardRequest) -> dict[str, Any]:
             wait_seconds=req.wait_seconds,
         )
         elapsed_ms = round((time.perf_counter() - start_t) * 1000.0, 2)
+        acc = _build_account_payload(tenant_id=req.tenant_id)
         return {
             **result,
+            "max_sites": acc["max_sites"],
+            "active_sites": acc["active_sites"],
+            "active_sites_count": acc["active_sites_count"],
             "elapsed_ms": elapsed_ms,
             "timestamp": datetime.now(timezone.utc).isoformat(),
         }
@@ -336,20 +377,48 @@ async def onboard_site_endpoint(req: OnboardRequest) -> dict[str, Any]:
         }
 
 
+def _detect_service_from_prompt(prompt: str, explicit_service: str | None = None) -> str | None:
+    """Doğal dil sorusu (`prompt`) içinden kullanılan site/konektör adını tespit eder."""
+    if explicit_service and explicit_service.strip():
+        return explicit_service.strip().lower()
+    lower_p = (prompt or "").lower()
+    reg_dir = PROJECT_ROOT / "registry"
+    candidates: list[str] = []
+    if reg_dir.exists():
+        for child in sorted(reg_dir.iterdir()):
+            if child.is_dir() and not child.name.startswith("_"):
+                candidates.append(child.name.lower())
+    for extra in ("thy", "trendyol", "pegasus", "enuygun", "wikipedia", "linkedin_jobs", "biletix", "obilet", "hepsiburada", "amazon"):
+        if extra not in candidates:
+            candidates.append(extra)
+    if "türk hava yolları" in lower_p or "turk hava yollari" in lower_p or "turkish airlines" in lower_p:
+        return "thy"
+    if "linkedin" in lower_p and "linkedin_jobs" in candidates:
+        return "linkedin_jobs"
+    for svc in candidates:
+        if svc in lower_p:
+            return svc
+    return None
+
+
 def _consume_and_resolve_account(
     tenant_id: str = "default",
     api_key: str | None = None,
     requested_mode: str | None = None,
+    service_name: str | None = None,
 ) -> dict[str, Any]:
     """
     `X-API-Key` / `api_key` veya `tenant_id` üzerinden kullanıcıyı bulur,
+    varsa `service_name` için paket bazlı site limitini (`register_site_usage`) kontrol eder,
     `core/api_keys.py` (`consume_credit`) ile 1 kredi düşer ve aktif modu ('local' / 'cloud')
-    ile güncel kredi/paket bilgilerini döndürür.
+    ile güncel kredi/paket/site bilgilerini döndürür.
     """
     auth_id = (api_key or tenant_id or "default").strip() or "default"
     info_before = get_tenant_info(auth_id)
     resolved_tenant = str(info_before.get("tenant_id") or tenant_id or "default")
-    consume_credit(auth_id, amount=1)
+    if service_name:
+        register_site_usage(auth_id, service_name)
+    consume_credit(auth_id, amount=1, service=service_name)
     acc = _build_account_payload(tenant_id=resolved_tenant)
 
     plan_mode = str(acc.get("mode", "local")).strip().lower()
@@ -371,6 +440,9 @@ def _consume_and_resolve_account(
         "used_credits": int(acc.get("used_credits", 0)),
         "credits": int(acc.get("credits", 0)),
         "max_credits": int(acc.get("max_credits", 1000)),
+        "max_sites": int(acc.get("max_sites", 2)),
+        "active_sites": list(acc.get("active_sites", [])),
+        "active_sites_count": int(acc.get("active_sites_count", 0)),
     }
 
 
@@ -378,16 +450,39 @@ def _consume_and_resolve_account(
 async def call_service(
     req: CallRequest,
     x_api_key: str | None = Header(default=None, alias="X-API-Key"),
-) -> dict[str, Any]:
+) -> Any:
     """
     İlgili servisi User-Delegated Browser Middleware üzerinden çalıştırıp JSON yanıtını,
-    süresini (ms) ve güncel kredi/paket/mod durumunu döndürür.
+    süresini (ms) ve güncel kredi/paket/mod/site limiti durumunu döndürür.
     """
     try:
         credit_ctx = _consume_and_resolve_account(
             tenant_id=req.tenant_id,
             api_key=x_api_key or req.api_key,
             requested_mode=req.mode,
+            service_name=req.service,
+        )
+    except SiteLimitExceededError as exc:
+        auth_id = (x_api_key or req.api_key or req.tenant_id or "default").strip() or "default"
+        acc = _build_account_payload(tenant_id=str(get_tenant_info(auth_id).get("tenant_id", req.tenant_id)))
+        return JSONResponse(
+            status_code=403,
+            content={
+                "success": False,
+                "service": req.service,
+                "tenant_id": acc["tenant_id"],
+                "plan": acc["plan"],
+                "mode": acc["mode"],
+                "remaining_credits": acc["remaining_credits"],
+                "used_credits": acc["used_credits"],
+                "max_sites": acc["max_sites"],
+                "active_sites": acc["active_sites"],
+                "active_sites_count": acc["active_sites_count"],
+                "error": str(exc),
+                "detail": str(exc),
+                "warning": str(exc),
+                "message": str(exc),
+            },
         )
     except ValueError as exc:
         raise HTTPException(status_code=402, detail=str(exc))
@@ -422,6 +517,9 @@ async def call_service(
             "used_credits": credit_ctx["used_credits"],
             "credits": credit_ctx["credits"],
             "max_credits": credit_ctx["max_credits"],
+            "max_sites": credit_ctx["max_sites"],
+            "active_sites": credit_ctx["active_sites"],
+            "active_sites_count": credit_ctx["active_sites_count"],
             "non_interactive": req.non_interactive,
             "elapsed_ms": elapsed_ms,
             "timestamp": datetime.now(timezone.utc).isoformat(),
@@ -441,6 +539,9 @@ async def call_service(
             "used_credits": credit_ctx["used_credits"],
             "credits": credit_ctx["credits"],
             "max_credits": credit_ctx["max_credits"],
+            "max_sites": credit_ctx["max_sites"],
+            "active_sites": credit_ctx["active_sites"],
+            "active_sites_count": credit_ctx["active_sites_count"],
             "elapsed_ms": elapsed_ms,
             "error": str(exc),
         }
@@ -450,15 +551,40 @@ async def call_service(
 async def ask_agent(
     req: AskRequest,
     x_api_key: str | None = Header(default=None, alias="X-API-Key"),
-) -> dict[str, Any]:
+) -> Any:
     """
-    Doğal dil ajanını (`OwnAPIClient.ask`) çalıştırıp yanıtı ve güncel kredi/paket/mod durumunu döndürür.
+    Doğal dil ajanını (`OwnAPIClient.ask`) çalıştırıp yanıtı ve güncel kredi/paket/mod/site limiti durumunu döndürür.
     """
+    detected_svc = _detect_service_from_prompt(req.prompt, req.service)
     try:
         credit_ctx = _consume_and_resolve_account(
             tenant_id=req.tenant_id,
             api_key=x_api_key or req.api_key,
             requested_mode=req.mode,
+            service_name=detected_svc,
+        )
+    except SiteLimitExceededError as exc:
+        auth_id = (x_api_key or req.api_key or req.tenant_id or "default").strip() or "default"
+        acc = _build_account_payload(tenant_id=str(get_tenant_info(auth_id).get("tenant_id", req.tenant_id)))
+        return JSONResponse(
+            status_code=403,
+            content={
+                "success": False,
+                "prompt": req.prompt,
+                "service": detected_svc,
+                "tenant_id": acc["tenant_id"],
+                "plan": acc["plan"],
+                "mode": acc["mode"],
+                "remaining_credits": acc["remaining_credits"],
+                "used_credits": acc["used_credits"],
+                "max_sites": acc["max_sites"],
+                "active_sites": acc["active_sites"],
+                "active_sites_count": acc["active_sites_count"],
+                "error": str(exc),
+                "detail": str(exc),
+                "warning": str(exc),
+                "message": str(exc),
+            },
         )
     except ValueError as exc:
         raise HTTPException(status_code=402, detail=str(exc))
@@ -478,6 +604,7 @@ async def ask_agent(
         return {
             "success": True,
             "prompt": req.prompt,
+            "service": detected_svc,
             "tenant_id": active_tenant,
             "plan": credit_ctx["plan"],
             "mode": active_mode,
@@ -485,6 +612,9 @@ async def ask_agent(
             "used_credits": credit_ctx["used_credits"],
             "credits": credit_ctx["credits"],
             "max_credits": credit_ctx["max_credits"],
+            "max_sites": credit_ctx["max_sites"],
+            "active_sites": credit_ctx["active_sites"],
+            "active_sites_count": credit_ctx["active_sites_count"],
             "elapsed_ms": elapsed_ms,
             "answer": answer,
         }
@@ -493,6 +623,7 @@ async def ask_agent(
         return {
             "success": False,
             "prompt": req.prompt,
+            "service": detected_svc,
             "tenant_id": active_tenant,
             "plan": credit_ctx["plan"],
             "mode": active_mode,
@@ -500,6 +631,9 @@ async def ask_agent(
             "used_credits": credit_ctx["used_credits"],
             "credits": credit_ctx["credits"],
             "max_credits": credit_ctx["max_credits"],
+            "max_sites": credit_ctx["max_sites"],
+            "active_sites": credit_ctx["active_sites"],
+            "active_sites_count": credit_ctx["active_sites_count"],
             "elapsed_ms": elapsed_ms,
             "error": str(exc),
         }
@@ -660,24 +794,39 @@ async def get_hitl_preview(
     return preview
 
 
+@app.post("/api/hitl/resolve/{task_id}")
+@app.post("/api/v1/hitl/resolve/{task_id}")
 @app.post("/api/hitl/approve/{task_id}")
 @app.post("/api/hitl/resume/{task_id}")
 @app.post("/api/v1/hitl/approve/{task_id}")
 @app.post("/api/v1/hitl/resume/{task_id}")
 async def approve_hitl_task(
     task_id: str,
+    req: HITLResolveRequest | None = Body(default=None),
     tenant_id: str | None = Query(default=None),
+    otp_code: str | None = Query(default=None, description="Opsiyonel SMS / E-Posta / 2FA doğrulama kodu"),
 ) -> dict[str, Any]:
     """
-    `.sessions/hitl_state.json` içindeki bekleyen (`PAUSED`) HITL görevini onaylar
+    `.sessions/hitl_state.json` içindeki bekleyen (`PAUSED`) HITL görevini onaylar,
+    varsa `otp_code` (SMS/E-Posta doğrulama kodu) parametresini açık tarayıcıya iletir
     ve duraklatılmış ajanın kaldığı yerden (`resume_task`) devam etmesini sağlar.
     """
+    eff_tenant = (req.tenant_id if req and req.tenant_id else tenant_id) or None
+    eff_otp = (req.otp_code if req and req.otp_code is not None else otp_code) or None
+    if eff_otp is not None:
+        eff_otp = str(eff_otp).strip() or None
+
     mgr = HITLQueueManager()
-    task, _ = mgr.get_task(task_id, tenant_id=tenant_id)
+    task, _ = mgr.get_task(task_id, tenant_id=eff_tenant)
     if not task:
         raise HTTPException(status_code=404, detail=f"HITL görevi '{task_id}' bulunamadı.")
     try:
-        res = await asyncio.to_thread(mgr.resume_task, task_id=task_id, tenant_id=tenant_id)
+        res = await asyncio.to_thread(
+            mgr.resume_task,
+            task_id=task_id,
+            tenant_id=eff_tenant,
+            otp_code=eff_otp,
+        )
         return {"success": True, **res}
     except Exception as exc:
         raise HTTPException(status_code=500, detail=str(exc))

@@ -22,6 +22,7 @@ PLAN_CATALOG: dict[str, dict[str, Any]] = {
         "credits": 1_000,
         "mode": "local",
         "price_usd": 0,
+        "max_sites": 2,
     },
     "starter_cloud": {
         "plan": "starter_cloud",
@@ -29,6 +30,7 @@ PLAN_CATALOG: dict[str, dict[str, Any]] = {
         "credits": 10_000,
         "mode": "cloud",
         "price_usd": 10,
+        "max_sites": 5,
     },
     "growth_cloud": {
         "plan": "growth_cloud",
@@ -36,12 +38,22 @@ PLAN_CATALOG: dict[str, dict[str, Any]] = {
         "credits": 100_000,
         "mode": "cloud",
         "price_usd": 49,
+        "max_sites": 50,
     },
 }
+
+SITE_LIMIT_WARNING_MESSAGE = "Paketinizin maksimum site limitine ulaştınız. Bulut paketine yükseltin."
 
 
 class InsufficientCreditsError(ValueError):
     """Kullanıcının kalan kredisi talep edilen işlem miktarından az olduğunda fırlatılır."""
+
+
+class SiteLimitExceededError(ValueError):
+    """Kullanıcının paketindeki maksimum site/konektör limiti aşıldığında fırlatılır."""
+
+    def __init__(self, message: str = SITE_LIMIT_WARNING_MESSAGE) -> None:
+        super().__init__(message)
 
 
 class APIKeyResult(str):
@@ -208,18 +220,46 @@ class APIKeyManager:
             )
             tmp_file.replace(self.state_file)
 
+    @staticmethod
+    def _ensure_site_fields(record: dict[str, Any]) -> bool:
+        """Kayıt üzerinde `max_sites` ve `active_sites` alanlarının varlığını garanti eder."""
+        changed = False
+        plan_key = str(record.get("plan") or "free").strip().lower()
+        plan_meta = PLAN_CATALOG.get(plan_key, PLAN_CATALOG["free"])
+        expected_max = int(plan_meta.get("max_sites", 2))
+        if "max_sites" not in record or not isinstance(record.get("max_sites"), int):
+            record["max_sites"] = expected_max
+            changed = True
+        raw_sites = record.get("active_sites")
+        if not isinstance(raw_sites, list):
+            record["active_sites"] = []
+            changed = True
+        else:
+            normalized_sites: list[str] = []
+            for s in raw_sites:
+                cs = str(s or "").strip().lower()
+                if cs and cs not in normalized_sites:
+                    normalized_sites.append(cs)
+            if normalized_sites != raw_sites:
+                record["active_sites"] = normalized_sites
+                changed = True
+        return changed
+
     def get_or_create_tenant(self, tenant_id: str = "default") -> dict[str, Any]:
         """
         Kullanıcı (`tenant_id`) kaydını döndürür.
         Eğer kullanıcı henüz kayıtlı değilse varsayılan olarak `free` paket
-        (1.000 kredi, `mode="local"`) ve yeni bir `sk-ownapi-...` anahtarı ile oluşturur.
+        (1.000 kredi, `mode="local"`, `max_sites=2`, `active_sites=[]`) ve yeni bir `sk-ownapi-...` anahtarı ile oluşturur.
         """
         clean_tenant = _sanitize_tenant_id(tenant_id)
         with _STATE_LOCK:
             state = self._load_state()
             tenants = state.setdefault("tenants", {})
             if clean_tenant in tenants and isinstance(tenants[clean_tenant], dict):
-                return dict(tenants[clean_tenant])
+                rec = tenants[clean_tenant]
+                if self._ensure_site_fields(rec):
+                    self._save_state(state)
+                return dict(rec)
 
             plan_meta = PLAN_CATALOG["free"]
             now_iso = datetime.now(timezone.utc).isoformat()
@@ -232,6 +272,8 @@ class APIKeyManager:
                 "credits": int(plan_meta["credits"]),
                 "mode": plan_meta["mode"],
                 "price_usd": int(plan_meta["price_usd"]),
+                "max_sites": int(plan_meta["max_sites"]),
+                "active_sites": [],
                 "total_consumed": 0,
                 "created_at": now_iso,
                 "updated_at": now_iso,
@@ -256,6 +298,7 @@ class APIKeyManager:
             existing = tenants.get(clean_tenant) if isinstance(tenants.get(clean_tenant), dict) else {}
             now_iso = datetime.now(timezone.utc).isoformat()
             new_key = _build_secret_key()
+            existing_sites = existing.get("active_sites") if isinstance(existing.get("active_sites"), list) else []
 
             record: dict[str, Any] = {
                 "tenant_id": clean_tenant,
@@ -265,10 +308,13 @@ class APIKeyManager:
                 "credits": int(plan_meta["credits"]),
                 "mode": plan_meta["mode"],
                 "price_usd": int(plan_meta["price_usd"]),
+                "max_sites": int(plan_meta["max_sites"]),
+                "active_sites": list(existing_sites),
                 "total_consumed": int(existing.get("total_consumed", 0)),
                 "created_at": existing.get("created_at") or now_iso,
                 "updated_at": now_iso,
             }
+            self._ensure_site_fields(record)
             tenants[clean_tenant] = record
             self._save_state(state)
             return APIKeyResult(new_key, record)
@@ -290,11 +336,54 @@ class APIKeyManager:
                 raise KeyError(f"Geçersiz veya tanımsız API anahtarı: '{raw}'")
             return _sanitize_tenant_id(raw)
 
-    def consume_credit(self, tenant_id_or_key: str, amount: int = 1) -> CreditBalance:
+    def register_site_usage(self, tenant_id_or_key: str, service_name: str | None) -> dict[str, Any]:
+        """
+        Kullanıcının bir site/konektör kullanımını `active_sites` listesine kaydeder.
+        Eğer site zaten `active_sites` içindeyse izin verir; yeni bir site eklenirken
+        `len(active_sites) >= max_sites` ise `SiteLimitExceededError` fırlatır:
+        "Paketinizin maksimum site limitine ulaştınız. Bulut paketine yükseltin."
+        """
+        clean_site = re.sub(r"[^a-zA-Z0-9_\-\.]", "_", (service_name or "").strip().lower()).strip("_")
+        with _STATE_LOCK:
+            clean_tenant = self.resolve_tenant_id(tenant_id_or_key)
+            state = self._load_state()
+            tenants = state.setdefault("tenants", {})
+            if clean_tenant not in tenants or not isinstance(tenants[clean_tenant], dict):
+                self.get_or_create_tenant(clean_tenant)
+                state = self._load_state()
+                tenants = state.setdefault("tenants", {})
+
+            record = tenants[clean_tenant]
+            self._ensure_site_fields(record)
+
+            if not clean_site:
+                return dict(record)
+
+            active_sites: list[str] = list(record.get("active_sites", []))
+            max_sites = int(record.get("max_sites", PLAN_CATALOG.get(record.get("plan", "free"), PLAN_CATALOG["free"])["max_sites"]))
+
+            if clean_site not in active_sites:
+                if len(active_sites) >= max_sites:
+                    raise SiteLimitExceededError(SITE_LIMIT_WARNING_MESSAGE)
+                active_sites.append(clean_site)
+                record["active_sites"] = active_sites
+                record["updated_at"] = datetime.now(timezone.utc).isoformat()
+                tenants[clean_tenant] = record
+                self._save_state(state)
+
+            return dict(record)
+
+    def consume_credit(
+        self,
+        tenant_id_or_key: str,
+        amount: int = 1,
+        service: str | None = None,
+    ) -> CreditBalance:
         """
         Her kullanımda kullanıcının (`tenant_id` veya `sk-ownapi-...` anahtarı) kredisinden
         `amount` kadar düşer, `.sessions/api_keys.json` dosyasını günceller ve kalan krediyi döndürür.
         Yeni bir `tenant_id` ile çağrılırsa önce varsayılan `free` paketi (1.000 kredi, `mode="local"`) tanımlar.
+        Eğer `service` belirtilmişse önce site limitini kontrol edip `active_sites` listesine ekler.
         """
         if amount < 0:
             raise ValueError("Düşülecek kredi miktarı (amount) negatif olamaz.")
@@ -309,6 +398,14 @@ class APIKeyManager:
                 tenants = state.setdefault("tenants", {})
 
             record = tenants[clean_tenant]
+            self._ensure_site_fields(record)
+
+            if service:
+                self.register_site_usage(clean_tenant, service)
+                state = self._load_state()
+                tenants = state.setdefault("tenants", {})
+                record = tenants[clean_tenant]
+
             current_credits = int(record.get("credits", 0))
             if current_credits < amount:
                 raise InsufficientCreditsError(
@@ -327,9 +424,9 @@ class APIKeyManager:
     def upgrade_plan(self, tenant_id: str, plan: str = "starter_cloud") -> APIKeyResult:
         """
         Kullanıcıyı belirtilen pakete geçirir ve yeni `sk-ownapi-...` anahtarını döndürür:
-        - `starter_cloud`: $10 bulut paketi -> 10.000 kredi, `mode="cloud"`
-        - `growth_cloud`: $49 bulut paketi -> 100.000 kredi, `mode="cloud"`
-        - `free`: $0 yerel paket -> 1.000 kredi, `mode="local"`
+        - `starter_cloud`: $10 bulut paketi -> 10.000 kredi, `mode="cloud"`, `max_sites=5`
+        - `growth_cloud`: $49 bulut paketi -> 100.000 kredi, `mode="cloud"`, `max_sites=50`
+        - `free`: $0 yerel paket -> 1.000 kredi, `mode="local"`, `max_sites=2`
         """
         clean_tenant = _sanitize_tenant_id(tenant_id)
         clean_plan = _normalize_plan(plan)
@@ -341,6 +438,7 @@ class APIKeyManager:
             existing = tenants.get(clean_tenant) if isinstance(tenants.get(clean_tenant), dict) else {}
             now_iso = datetime.now(timezone.utc).isoformat()
             new_key = _build_secret_key()
+            existing_sites = existing.get("active_sites") if isinstance(existing.get("active_sites"), list) else []
 
             record: dict[str, Any] = {
                 "tenant_id": clean_tenant,
@@ -350,17 +448,20 @@ class APIKeyManager:
                 "credits": int(plan_meta["credits"]),
                 "mode": plan_meta["mode"],
                 "price_usd": int(plan_meta["price_usd"]),
+                "max_sites": int(plan_meta["max_sites"]),
+                "active_sites": list(existing_sites),
                 "total_consumed": int(existing.get("total_consumed", 0)),
                 "created_at": existing.get("created_at") or now_iso,
                 "upgraded_at": now_iso,
                 "updated_at": now_iso,
             }
+            self._ensure_site_fields(record)
             tenants[clean_tenant] = record
             self._save_state(state)
             return APIKeyResult(new_key, record)
 
     def get_tenant_info(self, tenant_id_or_key: str = "default") -> dict[str, Any]:
-        """Kullanıcının güncel paket, mod, anahtar ve kalan kredi bilgilerini döndürür."""
+        """Kullanıcının güncel paket, mod, anahtar, site limiti ve kalan kredi bilgilerini döndürür."""
         clean_tenant = self.resolve_tenant_id(tenant_id_or_key)
         return self.get_or_create_tenant(clean_tenant)
 
@@ -386,13 +487,23 @@ def generate_api_key(
     return mgr.generate_api_key(tenant_id=tenant_id, plan=plan)
 
 
+def register_site_usage(
+    tenant_id_or_key: str,
+    service_name: str | None,
+    state_file: Path | str | None = None,
+) -> dict[str, Any]:
+    mgr = APIKeyManager(state_file=state_file) if state_file else _default_manager
+    return mgr.register_site_usage(tenant_id_or_key=tenant_id_or_key, service_name=service_name)
+
+
 def consume_credit(
     tenant_id_or_key: str,
     amount: int = 1,
     state_file: Path | str | None = None,
+    service: str | None = None,
 ) -> CreditBalance:
     mgr = APIKeyManager(state_file=state_file) if state_file else _default_manager
-    return mgr.consume_credit(tenant_id_or_key=tenant_id_or_key, amount=amount)
+    return mgr.consume_credit(tenant_id_or_key=tenant_id_or_key, amount=amount, service=service)
 
 
 def upgrade_plan(

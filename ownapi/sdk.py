@@ -96,14 +96,24 @@ class ServiceNamespaceProxy:
             auth_identifier = self._owner.api_key or self._owner.tenant_id
             state_path = self._owner._state_file
             info = get_tenant_info(auth_identifier, state_file=state_path)
-            balance = consume_credit(auth_identifier, amount=1, state_file=state_path)
+            balance = consume_credit(
+                auth_identifier,
+                amount=1,
+                state_file=state_path,
+                service=self._service_name,
+            )
             active_tenant = str(info.get("tenant_id") or self._owner.tenant_id or "default")
             active_mode = str(self._owner._explicit_mode or info.get("mode") or self._owner.mode or "local")
             return active_tenant, active_mode, self._owner.api_key, balance
 
         # Bedava yerel mod (`from ownapi import thy, trendyol, pegasus`)
         info = get_or_create_tenant(self._default_tenant_id, state_file=self._state_file)
-        balance = consume_credit(self._default_tenant_id, amount=1, state_file=self._state_file)
+        balance = consume_credit(
+            self._default_tenant_id,
+            amount=1,
+            state_file=self._state_file,
+            service=self._service_name,
+        )
         active_tenant = str(info.get("tenant_id") or self._default_tenant_id)
         active_mode = str(info.get("mode") or self._default_mode or "local")
         return active_tenant, active_mode, info.get("api_key"), balance
@@ -334,7 +344,12 @@ class OwnAPI:
         auth_id = self.api_key or self.tenant_id
         info = get_tenant_info(auth_id, state_file=self._state_file)
         if _consume_credit:
-            consume_credit(auth_id, amount=1, state_file=self._state_file)
+            consume_credit(
+                auth_id,
+                amount=1,
+                state_file=self._state_file,
+                service=target_schema.service_name,
+            )
 
         active_mode = (mode or self._explicit_mode or info.get("mode") or self.mode or "local").strip().lower()
         if active_mode not in ("local", "cloud"):
@@ -374,8 +389,8 @@ class OwnAPI:
     def list_hitl_queue(self, status_filter: str | None = None) -> list[dict[str, Any]]:
         return self.hitl_queue.list_tasks(tenant_id=self.tenant_id, status_filter=status_filter)
 
-    def resume_hitl_task(self, task_id: str) -> dict[str, Any]:
-        return self.hitl_queue.resume_task(task_id=task_id, tenant_id=self.tenant_id)
+    def resume_hitl_task(self, task_id: str, otp_code: str | None = None) -> dict[str, Any]:
+        return self.hitl_queue.resume_task(task_id=task_id, tenant_id=self.tenant_id, otp_code=otp_code)
 
     def onboard(
         self,
